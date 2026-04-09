@@ -145,6 +145,7 @@ const T = {
     'blog9.exc':   'Катастрофизация, чтение мыслей, персонализация... Разбираю 10 самых распространённых паттернов.',
     'cookie.policy': 'политике конфиденциальности',
     'contact.city':  '📍 Варшава · Онлайн',
+    'article.back':  'Все статьи',
 
     /* Library */
     'lib.tag':    'Библиотека',
@@ -443,6 +444,7 @@ const T = {
     'blog9.exc':   'Katastrofizacja, czytanie w myślach, personalizacja... Omawiam 10 najczęstszych wzorców.',
     'cookie.policy': 'polityce prywatności',
     'contact.city':  '📍 Warszawa · Online',
+    'article.back':  'Wszystkie artykuły',
 
     /* Library */
     'lib.tag':    'Biblioteka',
@@ -618,6 +620,11 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n-ph]').forEach(el => {
     const key = el.dataset.i18nPh;
     if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+
+  // Toggle language-specific content blocks (data-lang="ru" / data-lang="pl")
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.style.display = el.dataset.lang === lang ? '' : 'none';
   });
 
   // Update html lang attribute
