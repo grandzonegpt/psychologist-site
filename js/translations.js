@@ -1,5 +1,5 @@
 /* ================================================
-   translations.js — RU / PL
+   translations.js :: RU / PL
    ================================================ */
 
 const T = {
@@ -30,9 +30,9 @@ const T = {
     'about.tag':      'О себе',
     'about.title':    'Профессиональная помощь',
     'about.title.s':  'с доказанной эффективностью',
-    'about.bio1':     'Я психолог, психотравматолог и специалист по когнитивно-поведенческой терапии в процессе 4-летнего обучения (в школе, аккредитованной Польским обществом КПТ, PTTPB).',
-    'about.bio2':     'Я веду приём взрослых пациентов. Наибольший опыт у меня в работе с травмой и тревогой. В практике я опираюсь исключительно на методы с доказанной научной эффективностью, а моя работа проходит регулярную супервизию.',
-    'about.bio3':     'Я также дипломированный коуч (Варшавский университет) и помогаю людям, которые чувствуют выгорание или хотят выстроить долгосрочный план для своей жизни.',
+    'about.bio1':     'Я психолог, психотравматолог и КПТ-терапевт в процессе 4-летнего обучения в школе, аккредитованной PTTPB.',
+    'about.bio2':     'Работаю со взрослыми. Больше всего опыта в работе с травмой и тревогой. Опираюсь на методы с доказательной базой, прохожу супервизию.',
+    'about.bio3':     'Ещё я дипломированный коуч (Варшавский университет) и работаю с теми, кто переживает выгорание или ищет направление в жизни.',
     'about.c1':  'Университет SWPS, Варшава',
     'about.c2':  'Клиническая психология',
     'about.c3':  'Психотравматология',
@@ -55,7 +55,7 @@ const T = {
     'svc1.desc': 'Работа с последствиями травмирующих событий. Аварии, насилие, тяжёлые жизненные потрясения. Восстановление ощущения безопасности.',
     'svc1.t1':'ПТСР','svc1.t2':'КПТ','svc1.t3':'Травма',
     'svc2.name': 'Тревожные расстройства',
-    'svc2.desc': 'Панические атаки, фобии, генерализованная тревожность, социальная тревога. Эффективная работа через проверенные протоколы КПТ.',
+    'svc2.desc': 'Панические атаки, фобии, генерализованная тревожность, социальная тревога. Работаем по протоколам КПТ.',
     'svc2.t1':'Паника','svc2.t2':'Фобии','svc2.t3':'ГТР',
     'svc3.name': 'ОКР и навязчивые состояния',
     'svc3.desc': 'Навязчивые мысли и действия, которые мешают жить. Работа по протоколам экспозиции и предотвращения реакции (ERP).',
@@ -67,7 +67,7 @@ const T = {
     'svc5.desc': 'Выгорание, потеря мотивации, низкая самооценка. Разработка долгосрочного видения и плана конкретных действий. Коуч Варшавского университета.',
     'svc5.t1':'Коучинг','svc5.t2':'Цели','svc5.t3':'Мотивация',
     'svc6.name': 'Онлайн-консультации',
-    'svc6.desc': 'Все консультации доступны онлайн в удобное для вас время. Это удобно, конфиденциально и так же эффективно, как очные встречи.',
+    'svc6.desc': 'Провожу онлайн, без привязки к городу. Zoom, Google Meet, Telegram. Так же эффективно, как очно.',
     'svc6.t1':'Онлайн','svc6.t2':'Весь мир','svc6.t3':'Гибко',
 
     /* Process */
@@ -90,11 +90,11 @@ const T = {
     'faq1.q': 'Как проходит первая сессия?',
     'faq1.a': 'Это просто разговор. Вы рассказываете о своей ситуации, я задаю вопросы. Вместе решаем, хотим ли работать дальше. Без давления, без обязательств.',
     'faq2.q': 'Это конфиденциально?',
-    'faq2.a': 'Да. Профессиональная тайна является основой моей работы. Ничего из того, что вы скажете, не выйдет за пределы наших сессий.',
+    'faq2.a': 'Да. Профессиональная тайна. Ничего из того, что вы скажете, не выйдет за пределы наших сессий.',
     'faq3.q': 'Сколько сессий мне нужно?',
     'faq3.a': 'Это зависит от запроса и темпа работы. Часто изменения заметны уже через несколько сессий. Будем отслеживать прогресс вместе.',
     'faq4.q': 'Я никогда не ходил к психологу. Это нормально?',
-    'faq4.a': 'Конечно. Большинство моих клиентов обращаются впервые. Не нужно ничего знать о терапии, чтобы начать.',
+    'faq4.a': 'Конечно. Большинство приходят впервые. Не нужно знать о терапии ничего, чтобы начать.',
     'faq5.q': 'Только онлайн?',
     'faq5.a': 'Да, все консультации проходят онлайн. Это так же эффективно, как очные встречи, и намного удобнее для большинства людей.',
     'faq6.q': 'На каком языке можно работать?',
@@ -104,7 +104,7 @@ const T = {
     'book.tag':   'Запись',
     'book.title': 'Начнём',
     'book.title.s':'разговор',
-    'book.desc':  'Выберите удобное время и заполните короткую форму. Я свяжусь с вами в течение суток для подтверждения.',
+    'book.desc':  'Выберите время в календаре. Я подтвержу в течение суток.',
     'book.note':  '<strong>Первая консультация</strong>: знакомство без обязательств. Мы обсудим вашу ситуацию, и вы решите, хотите ли продолжить работу.',
     'book.d1':    '50 минут, стандартная сессия',
     'book.d2':    'Онлайн (Zoom, Google Meet, Telegram)',
@@ -225,6 +225,16 @@ const T = {
     'lib.page.cta.sub':'Записывайтесь на консультацию. На первой встрече поговорим о вашей ситуации без обязательств.',
     'lib.page.cta.btn':'Записаться на консультацию',
 
+    /* Blog UI */
+    'blog.read': 'Читать',
+    'blog.more': 'Загрузить ещё',
+    'blog.done': 'Всё загружено',
+
+    /* Cookie */
+    'cookie.text':   'Сайт использует cookie. Подробнее в',
+    'cookie.accept': 'Принять',
+    'cookie.reject': 'Только необходимые',
+
     /* Blog filters */
     'blog.filter.all':        'Все',
     'blog.filter.anxiety':    'Тревога',
@@ -302,9 +312,9 @@ const T = {
     'about.tag':      'O mnie',
     'about.title':    'Profesjonalna pomoc',
     'about.title.s':  'oparta na dowodach',
-    'about.bio1':     'Jestem psychologiem, psychotraumatologiem oraz psychoterapeutą poznawczo-behawioralnym w trakcie 4-letniego szkolenia, akredytowanego przez Polskie Towarzystwo Terapii Poznawczej i Behawioralnej (PTTPB).',
-    'about.bio2':     'Pracuję z osobami dorosłymi. Moje największe doświadczenie dotyczy pracy z traumą i zaburzeniami lękowymi. Opieram się wyłącznie na metodach o udowodnionej skuteczności naukowej, a moja praca podlega regularnej superwizji.',
-    'about.bio3':     'Jestem także dyplomowanym coachem (Uniwersytet Warszawski) i pomagam osobom doświadczającym wypalenia zawodowego, utraty motywacji lub chcącym zbudować długoterminowy plan dla swojego życia.',
+    'about.bio1':     'Jestem psychologiem, psychotraumatologiem oraz psychoterapeutą CBT w trakcie 4-letniego szkolenia, akredytowanego przez PTTPB.',
+    'about.bio2':     'Pracuję z dorosłymi. Największe doświadczenie mam w pracy z traumą i zaburzeniami lękowymi. Opieram się na metodach z udowodnioną skutecznością i regularnie poddaję swoją pracę superwizji.',
+    'about.bio3':     'Jestem też dyplomowanym coachem (Uniwersytet Warszawski) i pracuję z osobami przeżywającymi wypalenie lub szukającymi kierunku w życiu.',
     'about.c1':  'Uniwersytet SWPS, Warszawa',
     'about.c2':  'Psychologia kliniczna',
     'about.c3':  'Psychotraumatologia',
@@ -496,6 +506,16 @@ const T = {
     'lib.page.cta.title.s':'przeczytane?',
     'lib.page.cta.sub':'Umów się na konsultację. Na pierwszym spotkaniu porozmawiamy o Twojej sytuacji bez zobowiązań.',
     'lib.page.cta.btn':'Umów konsultację',
+
+    /* Blog UI */
+    'blog.read': 'Czytaj',
+    'blog.more': 'Załaduj więcej',
+    'blog.done': 'Wszystko załadowane',
+
+    /* Cookie */
+    'cookie.text':   'Strona używa plików cookie. Więcej w',
+    'cookie.accept': 'Akceptuj',
+    'cookie.reject': 'Tylko niezbędne',
 
     /* Blog filters */
     'blog.filter.all':        'Wszystko',
