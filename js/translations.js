@@ -1,0 +1,496 @@
+/* ================================================
+   translations.js — RU / PL
+   ================================================ */
+
+const T = {
+  ru: {
+    /* Nav */
+    'nav.about':      'О себе',
+    'nav.services':   'Направления',
+    'nav.booking':    'Запись',
+    'nav.blog':       'Блог',
+    'nav.library':    'Библиотека',
+    'nav.cta':        'Начать разговор',
+    'nav.logo.sub':   'Психолог · Варшава',
+
+    /* Hero */
+    'hero.eyebrow':   'Онлайн · Варшава',
+    'hero.name.light':'Имя',
+    'hero.name.bold': 'Фамилия',
+    'hero.role':      'Психолог · Психотравматолог · КПТ-терапевт',
+    'hero.desc':      'Иногда тревога просто не уходит. Иногда что-то случилось, и жизнь разделилась на до и после. Иногда всё вроде бы в порядке, но что-то внутри не так. Я помогу вам разобраться и найти почву под ногами.',
+    'hero.cta1':      'Начать разговор',
+    'hero.cta2':      'Узнать больше',
+    'hero.badge1.val':'100+',
+    'hero.badge1.lbl':'клиентов',
+    'hero.badge2.val':'КПТ',
+    'hero.badge2.lbl':'подход',
+
+    /* About */
+    'about.tag':      'О себе',
+    'about.title':    'Профессиональная помощь',
+    'about.title.s':  'с доказанной эффективностью',
+    'about.bio1':     'Я психолог, психотравматолог и специалист по когнитивно-поведенческой терапии в процессе 4-летнего обучения (в школе, аккредитованной Польским обществом КПТ, PTTPB).',
+    'about.bio2':     'Я веду приём взрослых пациентов. Наибольший опыт у меня в работе с травмой и тревогой. В практике я опираюсь исключительно на методы с доказанной научной эффективностью, а моя работа проходит регулярную супервизию.',
+    'about.bio3':     'Я также дипломированный коуч (Варшавский университет) и помогаю людям, которые чувствуют выгорание или хотят выстроить долгосрочный план для своей жизни.',
+    'about.c1':  'Университет SWPS, Варшава',
+    'about.c2':  'Клиническая психология',
+    'about.c3':  'Психотравматология',
+    'about.c4':  'КПТ (PTTPB)',
+    'about.c5':  'Дипломированный коуч',
+    'about.c6':  'Регулярная супервизия',
+    'about.stat1.val':'4',
+    'about.stat1.lbl':'года обучения КПТ',
+    'about.stat2.val':'100+',
+    'about.stat2.lbl':'клиентов',
+    'about.stat3.val':'🌐',
+    'about.stat3.lbl':'онлайн · весь мир',
+
+    /* Services */
+    'svc.tag':   'Направления',
+    'svc.title': 'С чем я',
+    'svc.title.s':'помогаю',
+    'svc.link':  'Записаться',
+    'svc1.name': 'Психологическая травма и ПТСР',
+    'svc1.desc': 'Работа с последствиями травмирующих событий. Аварии, насилие, тяжёлые жизненные потрясения. Восстановление ощущения безопасности.',
+    'svc1.t1':'ПТСР','svc1.t2':'КПТ','svc1.t3':'Травма',
+    'svc2.name': 'Тревожные расстройства',
+    'svc2.desc': 'Панические атаки, фобии, генерализованная тревожность, социальная тревога. Эффективная работа через проверенные протоколы КПТ.',
+    'svc2.t1':'Паника','svc2.t2':'Фобии','svc2.t3':'ГТР',
+    'svc3.name': 'ОКР и навязчивые состояния',
+    'svc3.desc': 'Навязчивые мысли и действия, которые мешают жить. Работа по протоколам экспозиции и предотвращения реакции (ERP).',
+    'svc3.t1':'ОКР','svc3.t2':'ERP','svc3.t3':'КПТ',
+    'svc4.name': 'Депрессия и качество жизни',
+    'svc4.desc': 'Подавленность, потеря смысла, нарушения сна, психосоматика. Трудности адаптации в новой стране. Работа с глубинными убеждениями.',
+    'svc4.t1':'Депрессия','svc4.t2':'Сон','svc4.t3':'Адаптация',
+    'svc5.name': 'Коучинг и развитие',
+    'svc5.desc': 'Выгорание, потеря мотивации, низкая самооценка. Разработка долгосрочного видения и плана конкретных действий. Коуч Варшавского университета.',
+    'svc5.t1':'Коучинг','svc5.t2':'Цели','svc5.t3':'Мотивация',
+    'svc6.name': 'Онлайн-консультации',
+    'svc6.desc': 'Все консультации доступны онлайн в удобное для вас время. Это удобно, конфиденциально и так же эффективно, как очные встречи.',
+    'svc6.t1':'Онлайн','svc6.t2':'Весь мир','svc6.t3':'Гибко',
+
+    /* Process */
+    'proc.tag':   'Как мы работаем',
+    'proc.title': 'Четыре шага',
+    'proc.title.s':'к изменениям',
+    'step1.t': 'Первый контакт',
+    'step1.d': 'Напишите мне или заполните форму записи. Опишите вкратце свою ситуацию.',
+    'step2.t': 'Первая консультация',
+    'step2.d': 'В безопасной атмосфере обсудим вашу ситуацию. Я честно скажу, как будет строиться работа.',
+    'step3.t': 'Регулярные сессии',
+    'step3.d': 'Работа по согласованному плану. Обычно раз в неделю. Конкретные инструменты для реальной жизни.',
+    'step4.t': 'Завершение',
+    'step4.d': 'Когда вы будете готовы двигаться самостоятельно, спланируем завершение и закрепим результат.',
+
+    /* FAQ */
+    'faq.tag':   'Частые вопросы',
+    'faq.title': 'Вопросы,',
+    'faq.title.s':'которые вы боитесь задать',
+    'faq1.q': 'Как проходит первая сессия?',
+    'faq1.a': 'Это просто разговор. Вы рассказываете о своей ситуации, я задаю вопросы. Вместе решаем, хотим ли работать дальше. Без давления, без обязательств.',
+    'faq2.q': 'Это конфиденциально?',
+    'faq2.a': 'Да. Профессиональная тайна является основой моей работы. Ничего из того, что вы скажете, не выйдет за пределы наших сессий.',
+    'faq3.q': 'Сколько сессий мне нужно?',
+    'faq3.a': 'Это зависит от запроса и темпа работы. Часто изменения заметны уже через несколько сессий. Будем отслеживать прогресс вместе.',
+    'faq4.q': 'Я никогда не ходил к психологу. Это нормально?',
+    'faq4.a': 'Конечно. Большинство моих клиентов обращаются впервые. Не нужно ничего знать о терапии, чтобы начать.',
+    'faq5.q': 'Только онлайн?',
+    'faq5.a': 'Да, все консультации проходят онлайн. Это так же эффективно, как очные встречи, и намного удобнее для большинства людей.',
+    'faq6.q': 'На каком языке можно работать?',
+    'faq6.a': 'На русском, польском или английском. Выбор полностью за вами.',
+
+    /* Booking */
+    'book.tag':   'Запись',
+    'book.title': 'Начнём',
+    'book.title.s':'разговор',
+    'book.desc':  'Выберите удобное время и заполните короткую форму. Я свяжусь с вами в течение суток для подтверждения.',
+    'book.note':  '<strong>Первая консультация</strong>: знакомство без обязательств. Мы обсудим вашу ситуацию, и вы решите, хотите ли продолжить работу.',
+    'book.d1':    '50 минут, стандартная сессия',
+    'book.d2':    'Онлайн (Zoom, Google Meet, Telegram)',
+    'book.d3':    'Русский · Polski · English',
+    'book.d4':    'Полная конфиденциальность',
+
+    /* Blog */
+    'blog.tag':    'Блог',
+    'blog.title':  'Мысли',
+    'blog.title.s':'и знания',
+    'blog.all':    'Все статьи',
+    'blog1.cat':   'Тревога',
+    'blog1.title': 'Панические атаки: что происходит в теле и как справиться прямо сейчас',
+    'blog1.exc':   'Паническая атака не опасна, хотя именно так ощущается. Адреналин, учащённое сердцебиение, ощущение нереальности... Разбираем физиологию, когнитивные ловушки и конкретные техники.',
+    'blog1.date':  '12 марта 2025',
+    'blog1.time':  '6 мин чтения',
+    'blog2.cat':   'КПТ',
+    'blog2.title': 'Что такое когнитивно-поведенческая терапия и почему она работает',
+    'blog2.date':  '3 февраля 2025',
+    'blog2.time':  '5 мин',
+    'blog3.cat':   'Травма',
+    'blog3.title': 'ПТСР: когда травма не уходит. Признаки, которые мы не замечаем',
+    'blog3.date':  '18 января 2025',
+    'blog3.time':  '8 мин',
+
+    /* Library */
+    'lib.tag':    'Библиотека',
+    'lib.title':  'Рекомендованные',
+    'lib.title.s':'ресурсы',
+    'lib.all':    'Вся библиотека',
+    'lib1.type':  '📚 Книга',
+    'lib1.title': 'Тело помнит всё',
+    'lib1.auth':  'Бессел ван дер Колк',
+    'lib1.desc':  'Фундаментальный труд о психологической травме и о том, как она хранится в теле. Обязательное чтение.',
+    'lib2.type':  '📚 Книга',
+    'lib2.title': 'Хорошее самочувствие',
+    'lib2.auth':  'Дэвид Д. Бёрнс',
+    'lib2.desc':  'Классика КПТ. Практические техники работы с депрессивными мыслями. Проверено временем и исследованиями.',
+    'lib3.type':  '📚 Книга',
+    'lib3.title': 'Когда тело говорит «нет»',
+    'lib3.auth':  'Габор Матэ',
+    'lib3.desc':  'О связи психологических травм и хронических заболеваний. Переосмысляет понятие психосоматики.',
+    'lib4.type':  '📚 Книга',
+    'lib4.title': 'Человек в поисках смысла',
+    'lib4.auth':  'Виктор Франкл',
+    'lib4.desc':  'Философия выживания и обретения смысла в самых тяжёлых обстоятельствах. Книга, которая меняет взгляд на жизнь.',
+
+    /* Testimonials */
+    'test.tag':    'Отзывы',
+    'test.title':  'Что говорят',
+    'test.title.s':'клиенты',
+    'test1.text':  '«После нескольких сессий я наконец-то начал понимать, откуда берётся моя тревога. Появились конкретные инструменты, которые я использую каждый день.»',
+    'test1.name':  'М., 34 года',
+    'test1.meta':  'тревожное расстройство',
+    'test2.text':  '«Обратился с паническими атаками, которые мешали нормально жить. Уже через месяц работы заметил значительные изменения. Не думал, что это можно решить так быстро.»',
+    'test2.name':  'А., 28 лет',
+    'test2.meta':  'панические атаки',
+    'test3.text':  '«Это был первый раз, когда я по-настоящему почувствовал себя услышанным. Онлайн-формат оказался очень удобным.»',
+    'test3.name':  'К., 41 год',
+    'test3.meta':  'жизненный кризис',
+    'test4.text':  '«Переехав в другую страну, я столкнулась с тяжёлой адаптацией. Помощь психолога помогла мне обрести почву под ногами.»',
+    'test4.name':  'Е., 29 лет',
+    'test4.meta':  'адаптация, эмиграция',
+    'test5.text':  '«Работала с навязчивыми мыслями несколько лет. После 3 месяцев КПТ их интенсивность снизилась кардинально.»',
+    'test5.name':  'Н., 33 года',
+    'test5.meta':  'ОКР',
+
+    /* Contact */
+    'contact.tag':   'Контакт',
+    'contact.title': 'Готовы сделать',
+    'contact.title.s':'первый шаг?',
+    'contact.sub':   'Запишитесь на первую консультацию или напишите мне напрямую. Я отвечаю в течение суток.',
+    'contact.cta':   'Начать разговор',
+
+    /* Footer */
+    'footer.copy':    '© 2025 Имя Фамилия · Психолог',
+    'footer.privacy': 'Конфиденциальность',
+    'footer.booking': 'Запись',
+    'footer.blog':    'Блог',
+    'footer.library': 'Библиотека',
+
+    /* Modal */
+    'modal.title': 'Запись на сессию',
+    'modal.sub':   'Заполните форму, и я свяжусь для подтверждения в течение суток.',
+    'modal.name':  'Имя',
+    'modal.name.ph':'Как вас зовут?',
+    'modal.contact':'Email или Telegram',
+    'modal.contact.ph':'@username или email@mail.com',
+    'modal.note':  'С чем хотите обратиться?',
+    'modal.note.ph':'Кратко опишите ситуацию (необязательно)',
+    'modal.submit':'Записаться',
+    'modal.ok.title':'Вы записаны!',
+    'modal.ok.close':'Закрыть',
+
+    /* Calendar */
+    'cal.placeholder':'Выберите дату, чтобы увидеть доступное время',
+    'cal.slots.title':'Доступное время',
+    'cal.days': ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+    'cal.months':['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+
+    /* Blog page hero */
+    'blog.page.tag':  'Блог',
+    'blog.page.title':'Мысли',
+    'blog.page.title.s':'и знания',
+    'blog.page.sub':  'Пишу о тревоге, травме, ментальном здоровье и практических инструментах КПТ. Только то, что работает.',
+    'blog.page.cta.title':'Вопросы после прочитанного?',
+    'blog.page.cta.title.s':'Поговорим лично.',
+    'blog.page.cta.sub':'Первая консультация в безопасной атмосфере, без обязательств.',
+    'blog.page.cta.btn':'Записаться на консультацию',
+
+    /* Library page hero */
+    'lib.page.tag':   'Библиотека',
+    'lib.page.title': 'Рекомендованные',
+    'lib.page.title.s':'ресурсы',
+    'lib.page.sub':   'Личная подборка книг, статей и практических материалов: всё, что я сам читаю, рекомендую клиентам и считаю по-настоящему ценным.',
+    'lib.page.cta.title':'Хотите обсудить',
+    'lib.page.cta.title.s':'прочитанное?',
+    'lib.page.cta.sub':'Записывайтесь на консультацию. На первой встрече поговорим о вашей ситуации без обязательств.',
+    'lib.page.cta.btn':'Записаться на консультацию',
+  },
+
+  pl: {
+    /* Nav */
+    'nav.about':      'O mnie',
+    'nav.services':   'Zakres pomocy',
+    'nav.booking':    'Umów wizytę',
+    'nav.blog':       'Blog',
+    'nav.library':    'Biblioteka',
+    'nav.cta':        'Zacznij rozmowę',
+    'nav.logo.sub':   'Psycholog · Warszawa',
+
+    /* Hero */
+    'hero.eyebrow':   'Online · Warszawa',
+    'hero.name.light':'Imię',
+    'hero.name.bold': 'Nazwisko',
+    'hero.role':      'Psycholog · Psychotraumatolog · Psychoterapeuta CBT',
+    'hero.desc':      'Zmagasz się z lękiem, który nie odpuszcza? Przeżyłeś coś trudnego i nie wiesz, jak wrócić do siebie? A może wszystko wydaje się w porządku, ale coś w środku nie gra? Pomogę Ci odzyskać równowagę i poczucie gruntu pod nogami.',
+    'hero.cta1':      'Zacznij rozmowę',
+    'hero.cta2':      'Dowiedz się więcej',
+    'hero.badge1.val':'100+',
+    'hero.badge1.lbl':'klientów',
+    'hero.badge2.val':'CBT',
+    'hero.badge2.lbl':'podejście',
+
+    /* About */
+    'about.tag':      'O mnie',
+    'about.title':    'Profesjonalna pomoc',
+    'about.title.s':  'oparta na dowodach',
+    'about.bio1':     'Jestem psychologiem, psychotraumatologiem oraz psychoterapeutą poznawczo-behawioralnym w trakcie 4-letniego szkolenia, akredytowanego przez Polskie Towarzystwo Terapii Poznawczej i Behawioralnej (PTTPB).',
+    'about.bio2':     'Pracuję z osobami dorosłymi. Moje największe doświadczenie dotyczy pracy z traumą i zaburzeniami lękowymi. Opieram się wyłącznie na metodach o udowodnionej skuteczności naukowej, a moja praca podlega regularnej superwizji.',
+    'about.bio3':     'Jestem także dyplomowanym coachem (Uniwersytet Warszawski) i pomagam osobom doświadczającym wypalenia zawodowego, utraty motywacji lub chcącym zbudować długoterminowy plan dla swojego życia.',
+    'about.c1':  'Uniwersytet SWPS, Warszawa',
+    'about.c2':  'Psychologia kliniczna',
+    'about.c3':  'Psychotraumatologia',
+    'about.c4':  'CBT (PTTPB)',
+    'about.c5':  'Dyplomowany coach',
+    'about.c6':  'Regularna superwizja',
+    'about.stat1.val':'4',
+    'about.stat1.lbl':'lata szkolenia CBT',
+    'about.stat2.val':'100+',
+    'about.stat2.lbl':'klientów',
+    'about.stat3.val':'🌐',
+    'about.stat3.lbl':'online · cały świat',
+
+    /* Services */
+    'svc.tag':   'Zakres pomocy',
+    'svc.title': 'W czym',
+    'svc.title.s':'pomagam',
+    'svc.link':  'Umów wizytę',
+    'svc1.name': 'Trauma psychologiczna i PTSD',
+    'svc1.desc': 'Praca z konsekwencjami traumatycznych wydarzeń. Wypadki, przemoc, trudne przeżycia. Odbudowa poczucia bezpieczeństwa.',
+    'svc1.t1':'PTSD','svc1.t2':'CBT','svc1.t3':'Trauma',
+    'svc2.name': 'Zaburzenia lękowe',
+    'svc2.desc': 'Napady paniki, fobie, uogólniony lęk, silna lękliwość społeczna. Skuteczna praca w oparciu o protokoły CBT.',
+    'svc2.t1':'Napady paniki','svc2.t2':'Fobie','svc2.t3':'Lęk',
+    'svc3.name': 'OCD i myśli natrętne',
+    'svc3.desc': 'Obsesje i kompulsje utrudniające codzienne funkcjonowanie. Praca według protokołu ERP (ekspozycja i zapobieganie reakcji).',
+    'svc3.t1':'OCD','svc3.t2':'ERP','svc3.t3':'CBT',
+    'svc4.name': 'Depresja i jakość życia',
+    'svc4.desc': 'Obniżony nastrój, utrata sensu, problemy ze snem, dolegliwości psychosomatyczne. Trudności adaptacyjne w nowym kraju.',
+    'svc4.t1':'Depresja','svc4.t2':'Sen','svc4.t3':'Adaptacja',
+    'svc5.name': 'Coaching i rozwój',
+    'svc5.desc': 'Wypalenie zawodowe, utrata motywacji, niska samoocena. Budowanie długoterminowej wizji i planu konkretnych działań.',
+    'svc5.t1':'Coaching','svc5.t2':'Cele','svc5.t3':'Motywacja',
+    'svc6.name': 'Sesje online',
+    'svc6.desc': 'Wszystkie konsultacje dostępne online w dogodnym dla Ciebie terminie. Wygodnie, poufnie i równie skutecznie jak spotkania stacjonarne.',
+    'svc6.t1':'Online','svc6.t2':'Cały świat','svc6.t3':'Elastycznie',
+
+    /* Process */
+    'proc.tag':   'Jak pracujemy',
+    'proc.title': 'Cztery kroki',
+    'proc.title.s':'do zmiany',
+    'step1.t': 'Pierwszy kontakt',
+    'step1.d': 'Napisz do mnie lub wypełnij formularz. Krótko opisz swoją sytuację.',
+    'step2.t': 'Pierwsza konsultacja',
+    'step2.d': 'W bezpiecznej atmosferze omówimy Twoją sytuację. Powiem szczerze, jak może wyglądać nasza współpraca.',
+    'step3.t': 'Regularne sesje',
+    'step3.d': 'Praca według uzgodnionego planu. Zazwyczaj raz w tygodniu. Konkretne narzędzia do zastosowania w codziennym życiu.',
+    'step4.t': 'Zakończenie',
+    'step4.d': 'Gdy będziesz gotowy do samodzielnego działania, wspólnie zaplanujemy zamknięcie pracy i utrwalimy rezultaty.',
+
+    /* FAQ */
+    'faq.tag':   'Często zadawane pytania',
+    'faq.title': 'Pytania,',
+    'faq.title.s':'których boisz się zadać',
+    'faq1.q': 'Jak wygląda pierwsza sesja?',
+    'faq1.a': 'To po prostu rozmowa. Opowiadasz mi o swojej sytuacji, ja zadaję pytania. Razem ustalamy, czy i jak chcemy pracować. Bez presji, bez zobowiązań.',
+    'faq2.q': 'Czy wszystko jest poufne?',
+    'faq2.a': 'Tak. Tajemnica zawodowa to podstawa mojej pracy. Nic, co powiesz, nie wychodzi poza nasze sesje.',
+    'faq3.q': 'Ile sesji będę potrzebować?',
+    'faq3.a': 'To zależy od problemu i tempa pracy. Często zmiany są widoczne już po kilku sesjach. Razem będziemy monitorować postępy.',
+    'faq4.q': 'Nigdy nie byłem u psychologa. Czy to normalne?',
+    'faq4.a': 'Jak najbardziej. Większość moich klientów zgłasza się po raz pierwszy. Nie musisz nic wiedzieć o terapii, żeby zacząć.',
+    'faq5.q': 'Czy pracujesz tylko online?',
+    'faq5.a': 'Tak, wszystkie konsultacje odbywają się online. Jest to równie skuteczne jak spotkania stacjonarne i wygodniejsze dla większości klientów.',
+    'faq6.q': 'W jakim języku można pracować?',
+    'faq6.a': 'Po rosyjsku, polsku lub angielsku. Wybór należy do Ciebie.',
+
+    /* Booking */
+    'book.tag':   'Umów wizytę',
+    'book.title': 'Zacznijmy',
+    'book.title.s':'rozmowę',
+    'book.desc':  'Wybierz odpowiedni termin i wypełnij krótki formularz. Odezwę się w ciągu doby, aby potwierdzić rezerwację.',
+    'book.note':  '<strong>Pierwsza konsultacja</strong> to spotkanie bez zobowiązań. Omówimy Twoją sytuację, a Ty zdecydujesz, czy chcesz kontynuować pracę.',
+    'book.d1':    '50 minut, standardowa sesja',
+    'book.d2':    'Online (Zoom, Google Meet, Telegram)',
+    'book.d3':    'Rosyjski · Polski · Angielski',
+    'book.d4':    'Pełna poufność',
+
+    /* Blog */
+    'blog.tag':    'Blog',
+    'blog.title':  'Myśli',
+    'blog.title.s':'i wiedza',
+    'blog.all':    'Wszystkie artykuły',
+    'blog1.cat':   'Lęk',
+    'blog1.title': 'Napady paniki: co dzieje się w ciele i jak sobie poradzić',
+    'blog1.exc':   'Napad paniki nie jest niebezpieczny, choć tak właśnie się odczuwa. Adrenalina, szybkie bicie serca, poczucie nierealności... Omawiamy fizjologię, pułapki poznawcze i konkretne techniki.',
+    'blog1.date':  '12 marca 2025',
+    'blog1.time':  '6 min czytania',
+    'blog2.cat':   'CBT',
+    'blog2.title': 'Czym jest terapia poznawczo-behawioralna i dlaczego działa',
+    'blog2.date':  '3 lutego 2025',
+    'blog2.time':  '5 min',
+    'blog3.cat':   'Trauma',
+    'blog3.title': 'PTSD: kiedy trauma nie odchodzi. Objawy, których nie zauważamy',
+    'blog3.date':  '18 stycznia 2025',
+    'blog3.time':  '8 min',
+
+    /* Library */
+    'lib.tag':    'Biblioteka',
+    'lib.title':  'Polecane',
+    'lib.title.s':'zasoby',
+    'lib.all':    'Cała biblioteka',
+    'lib1.type':  '📚 Książka',
+    'lib1.title': 'Ciało pamięta',
+    'lib1.auth':  'Bessel van der Kolk',
+    'lib1.desc':  'Fundamentalne dzieło o traumie psychologicznej i o tym, jak ciało przechowuje jej ślady. Lektura obowiązkowa.',
+    'lib2.type':  '📚 Książka',
+    'lib2.title': 'Dobry nastrój',
+    'lib2.auth':  'David D. Burns',
+    'lib2.desc':  'Klasyka terapii poznawczo-behawioralnej. Praktyczne techniki pracy z myślami depresyjnymi. Sprawdzone przez czas i badania.',
+    'lib3.type':  '📚 Książka',
+    'lib3.title': 'Gdy ciało mówi nie',
+    'lib3.auth':  'Gabor Maté',
+    'lib3.desc':  'O związku między wzorcami psychologicznymi a chorobami przewlekłymi. Zmienia spojrzenie na pojęcie psychosomatyki.',
+    'lib4.type':  '📚 Książka',
+    'lib4.title': 'Człowiek w poszukiwaniu sensu',
+    'lib4.auth':  'Viktor Frankl',
+    'lib4.desc':  'Filozofia przetrwania i odnajdywania sensu w najtrudniejszych okolicznościach. Książka, która zmienia perspektywę.',
+
+    /* Testimonials */
+    'test.tag':    'Opinie',
+    'test.title':  'Co mówią',
+    'test.title.s':'klienci',
+    'test1.text':  '«Po kilku sesjach zrozumiałem, skąd bierze się mój lęk. Pojawiły się konkretne narzędzia, z których korzystam każdego dnia.»',
+    'test1.name':  'M., 34 lata',
+    'test1.meta':  'zaburzenia lękowe',
+    'test2.text':  '«Zgłosiłem się z napadami paniki, które utrudniały normalne funkcjonowanie. Już po miesiącu pracy zauważyłem znaczące zmiany.»',
+    'test2.name':  'A., 28 lat',
+    'test2.meta':  'napady paniki',
+    'test3.text':  '«Po raz pierwszy poczułem, że naprawdę ktoś mnie słucha. Format online okazał się bardzo wygodny.»',
+    'test3.name':  'K., 41 lat',
+    'test3.meta':  'kryzys życiowy',
+    'test4.text':  '«Po przeprowadzce do nowego kraju miałam trudności z adaptacją. Pomoc psychologa pomogła mi znaleźć grunt pod nogami.»',
+    'test4.name':  'E., 29 lat',
+    'test4.meta':  'adaptacja, emigracja',
+    'test5.text':  '«Pracowałam z natrętnymi myślami przez kilka lat. Po 3 miesiącach CBT ich intensywność dramatycznie zmalała.»',
+    'test5.name':  'N., 33 lata',
+    'test5.meta':  'OCD',
+
+    /* Contact */
+    'contact.tag':   'Kontakt',
+    'contact.title': 'Gotowy na',
+    'contact.title.s':'pierwszy krok?',
+    'contact.sub':   'Umów się na pierwszą konsultację lub napisz do mnie bezpośrednio. Odpowiadam w ciągu doby.',
+    'contact.cta':   'Zacznij rozmowę',
+
+    /* Footer */
+    'footer.copy':    '© 2025 Imię Nazwisko · Psycholog',
+    'footer.privacy': 'Polityka prywatności',
+    'footer.booking': 'Umów wizytę',
+    'footer.blog':    'Blog',
+    'footer.library': 'Biblioteka',
+
+    /* Modal */
+    'modal.title': 'Umów sesję',
+    'modal.sub':   'Wypełnij formularz, a odezwę się w ciągu doby, aby potwierdzić.',
+    'modal.name':  'Imię',
+    'modal.name.ph':'Jak masz na imię?',
+    'modal.contact':'Email lub Telegram',
+    'modal.contact.ph':'@nazwa lub email@mail.com',
+    'modal.note':  'Z czym chcesz się zgłosić?',
+    'modal.note.ph':'Krótko opisz sytuację (opcjonalnie)',
+    'modal.submit':'Umów wizytę',
+    'modal.ok.title':'Wizyta umówiona!',
+    'modal.ok.close':'Zamknij',
+
+    /* Calendar */
+    'cal.placeholder':'Wybierz datę, aby zobaczyć dostępne godziny',
+    'cal.slots.title':'Dostępne godziny',
+    'cal.days': ['Pn','Wt','Sr','Cz','Pt','So','Nd'],
+    'cal.months':['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+
+    /* Blog page */
+    'blog.page.tag':  'Blog',
+    'blog.page.title':'Myśli',
+    'blog.page.title.s':'i wiedza',
+    'blog.page.sub':  'Piszę o lęku, traumie, zdrowiu psychicznym i praktycznych narzędziach CBT. Tylko to, co naprawdę działa.',
+    'blog.page.cta.title':'Masz pytania po przeczytaniu?',
+    'blog.page.cta.title.s':'Porozmawiajmy.',
+    'blog.page.cta.sub':'Pierwsza konsultacja w bezpiecznej atmosferze, bez zobowiązań.',
+    'blog.page.cta.btn':'Umów konsultację',
+
+    /* Library page */
+    'lib.page.tag':   'Biblioteka',
+    'lib.page.title': 'Polecane',
+    'lib.page.title.s':'zasoby',
+    'lib.page.sub':   'Osobisty wybór książek, artykułów i materiałów praktycznych. Tylko to, co sam czytam i polecam klientom.',
+    'lib.page.cta.title':'Chcesz omówić',
+    'lib.page.cta.title.s':'przeczytane?',
+    'lib.page.cta.sub':'Umów się na konsultację. Na pierwszym spotkaniu porozmawiamy o Twojej sytuacji bez zobowiązań.',
+    'lib.page.cta.btn':'Umów konsultację',
+  }
+};
+
+/* ── Apply translations ── */
+function applyLang(lang) {
+  const dict = T[lang];
+  if (!dict) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    if (dict[key] !== undefined) el.placeholder = dict[key];
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'pl' ? 'pl' : 'ru';
+
+  // Persist
+  localStorage.setItem('lang', lang);
+
+  // Notify calendar to re-render with new locale
+  if (typeof renderCalendar === 'function') renderCalendar();
+}
+
+function initLang() {
+  const saved = localStorage.getItem('lang') || 'ru';
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === saved);
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyLang(btn.dataset.lang);
+    });
+  });
+  applyLang(saved);
+}
+
+document.addEventListener('DOMContentLoaded', initLang);

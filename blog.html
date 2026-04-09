@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Блог | Имя Фамилия · Психолог</title>
+  <meta name="description" content="Статьи о психологии, КПТ, тревоге, травме и ментальном здоровье." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-name">Имя Фамилия</span>
+      <span class="logo-sub" data-i18n="nav.logo.sub">Психолог · Варшава</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#about"    data-i18n="nav.about">О себе</a></li>
+      <li><a href="index.html#services" data-i18n="nav.services">Направления</a></li>
+      <li><a href="index.html#booking"  data-i18n="nav.booking">Запись</a></li>
+      <li><a href="blog.html" style="color:var(--text-primary)" data-i18n="nav.blog">Блог</a></li>
+      <li><a href="library.html" data-i18n="nav.library">Библиотека</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="pl">PL</button>
+      </div>
+      <a href="index.html#booking" class="btn btn-primary" data-i18n="nav.cta">Начать разговор</a>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <div class="lang-switch-mobile">
+    <button class="lang-btn active" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="pl">PL</button>
+  </div>
+  <a href="index.html#about"    class="mobile-link" data-i18n="nav.about">О себе</a>
+  <a href="index.html#services" class="mobile-link" data-i18n="nav.services">Направления</a>
+  <a href="index.html#booking"  class="mobile-link" data-i18n="nav.booking">Запись</a>
+  <a href="blog.html"           class="mobile-link" data-i18n="nav.blog">Блог</a>
+  <a href="library.html"        class="mobile-link" data-i18n="nav.library">Библиотека</a>
+  <a href="index.html#booking" class="btn btn-warm" data-i18n="nav.cta">Начать разговор</a>
+</div>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="section-tag" data-i18n="blog.page.tag">Блог</span>
+    <h1 class="section-title">
+      <span data-i18n="blog.page.title">Мысли</span><br>
+      <strong data-i18n="blog.page.title.s">и знания</strong>
+    </h1>
+    <p class="page-hero-sub" data-i18n="blog.page.sub">
+      Пишу о тревоге, травме, ментальном здоровье и практических инструментах КПТ. Только то, что работает.
+    </p>
+  </div>
+</section>
+
+<!-- Blog list -->
+<section class="blog-list">
+  <div class="container">
+
+    <div class="filter-tabs" id="blog-filters">
+      <button class="ftab active" data-cat="all">Все / Wszystko</button>
+      <button class="ftab" data-cat="anxiety">Тревога / Lęk</button>
+      <button class="ftab" data-cat="trauma">Травма / Trauma</button>
+      <button class="ftab" data-cat="cbt">КПТ / CBT</button>
+      <button class="ftab" data-cat="depression">Депрессия / Depresja</button>
+      <button class="ftab" data-cat="coaching">Коучинг / Coaching</button>
+    </div>
+
+    <div class="blog-posts-grid" id="blog-grid">
+
+      <a class="bpc reveal" data-cat="anxiety" href="blog/panic-attacks.html">
+        <div class="bpc-date">12.03.2025 · 6 min</div>
+        <h2 class="bpc-title" data-i18n="blog1.title">Панические атаки: что происходит в теле и как справиться прямо сейчас</h2>
+        <p class="bpc-excerpt" data-i18n="blog1.exc">Паническая атака не опасна, хотя именно так ощущается. Разбираем физиологию, когнитивные ловушки и конкретные техники.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </a>
+
+      <a class="bpc reveal d1" data-cat="cbt" href="blog/cbt.html">
+        <div class="bpc-date">03.02.2025 · 5 min</div>
+        <h2 class="bpc-title" data-i18n="blog2.title">Что такое когнитивно-поведенческая терапия и почему она работает</h2>
+        <p class="bpc-excerpt">КПТ: наиболее изученный метод в психотерапии. Объясняю принципы, структуру сессий и почему этот подход меняет жизнь конкретными, измеримыми шагами.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </a>
+
+      <a class="bpc reveal d2" data-cat="trauma" href="blog/ptsd.html">
+        <div class="bpc-date">18.01.2025 · 8 min</div>
+        <h2 class="bpc-title" data-i18n="blog3.title">ПТСР: когда травма не уходит. Признаки, которые мы не замечаем</h2>
+        <p class="bpc-excerpt">Посттравматическое расстройство касается не только войны. Любое событие, которое перегрузило нашу психику, может оставить след.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </a>
+
+      <div class="bpc reveal" data-cat="anxiety">
+        <div class="bpc-date">05.12.2024 · 4 min</div>
+        <h2 class="bpc-title">Тревожность и тревога: в чём разница и когда пора обратиться за помощью</h2>
+        <p class="bpc-excerpt">Тревога нормальна. Тревожное расстройство уже нет. Разбираю, где проходит граница и какие симптомы говорят о том, что стоит поговорить со специалистом.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+      <div class="bpc reveal d1" data-cat="depression">
+        <div class="bpc-date">19.11.2024 · 7 min</div>
+        <h2 class="bpc-title">Выгорание: 7 признаков и первые шаги к восстановлению</h2>
+        <p class="bpc-excerpt">Выгорание: не слабость и не лень. Это исчерпание ресурсов. Как отличить его от усталости и как начать возвращаться к себе.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+      <div class="bpc reveal d2" data-cat="coaching">
+        <div class="bpc-date">01.10.2024 · 5 min</div>
+        <h2 class="bpc-title">Психология и коучинг: что выбрать и чем они отличаются</h2>
+        <p class="bpc-excerpt">Оба варианта помогают измениться, но работают с разным. Объясняю принципиальную разницу подходов и кому что подходит больше.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+      <div class="bpc reveal" data-cat="trauma">
+        <div class="bpc-date">14.09.2024 · 6 min</div>
+        <h2 class="bpc-title">Техники заземления: как успокоиться, когда захлёстывают эмоции</h2>
+        <p class="bpc-excerpt">Заземление: набор техник для возвращения в «здесь и сейчас». Они работают при тревоге, флэшбэках, диссоциации. Подробные инструкции к каждой.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+      <div class="bpc reveal d1" data-cat="depression">
+        <div class="bpc-date">30.08.2024 · 5 min</div>
+        <h2 class="bpc-title">Нарушения сна и психика: как разорвать порочный круг</h2>
+        <p class="bpc-excerpt">Депрессия нарушает сон, плохой сон усугубляет депрессию. КПТ при инсомнии (КПТ-I): единственный метод, который действительно меняет структуру сна.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+      <div class="bpc reveal d2" data-cat="cbt">
+        <div class="bpc-date">10.07.2024 · 4 min</div>
+        <h2 class="bpc-title">Когнитивные искажения: 10 ловушек мышления, которые делают нас несчастными</h2>
+        <p class="bpc-excerpt">Катастрофизация, чтение мыслей, персонализация... Разбираю 10 самых распространённых паттернов и объясняю, как с ними работать.</p>
+        <span class="bpc-more">Читать / Czytaj</span>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3rem;">
+      <button class="btn btn-ghost" id="load-more-btn">Загрузить ещё / Załaduj więcej</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section contact" style="padding:80px 0">
+  <div class="container">
+    <div class="contact-inner">
+      <h2 class="contact-cta reveal">
+        <span data-i18n="blog.page.cta.title">Вопросы после прочитанного?</span><br>
+        <strong data-i18n="blog.page.cta.title.s">Поговорим лично.</strong>
+      </h2>
+      <p class="contact-sub reveal d1" data-i18n="blog.page.cta.sub">Первая консультация в безопасной атмосфере, без обязательств.</p>
+      <a href="index.html#booking" class="btn btn-warm reveal d2" style="display:inline-flex;margin:0 auto;" data-i18n="blog.page.cta.btn">
+        Записаться на консультацию
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy" data-i18n="footer.copy">© 2025 Алексей Левашов · Психолог</span>
+    <div class="footer-links">
+      <a href="privacy.html" data-i18n="footer.privacy">Конфиденциальность</a>
+      <a href="index.html#booking" data-i18n="footer.booking">Запись</a>
+      <a href="blog.html" data-i18n="footer.blog">Блог</a>
+      <a href="library.html" data-i18n="footer.library">Библиотека</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie banner -->
+<div class="cookie-banner" id="cookie-banner">
+  <p class="cookie-text">
+    Этот сайт использует файлы cookie для корректной работы. Подробнее в <a href="privacy.html">политике конфиденциальности</a>.
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn-reject" id="cookie-reject">Только необходимые</button>
+    <button class="cookie-btn-accept" id="cookie-accept">Принять все</button>
+  </div>
+</div>
+
+<script src="js/translations.js"></script>
+<script src="js/main.js"></script>
+<script>
+  const filterBtns = document.querySelectorAll('.ftab');
+  const posts = document.querySelectorAll('.bpc[data-cat]');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      posts.forEach(p => {
+        p.style.display = (cat === 'all' || p.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+  document.getElementById('load-more-btn')?.addEventListener('click', function() {
+    this.textContent = 'Всё загружено / Wszystko załadowane';
+    this.disabled = true;
+    this.style.opacity = '.4';
+  });
+</script>
+</body>
+</html>

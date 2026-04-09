@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Имя Фамилия | Психолог · Психотерапевт</title>
+  <meta name="description" content="Психолог, психотравматолог и КПТ-терапевт. Помогаю справиться с тревогой, травмой, паническими атаками и ОКР. Онлайн-консультации." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-name">Имя Фамилия</span>
+      <span class="logo-sub" data-i18n="nav.logo.sub">Психолог · Варшава</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about"    data-i18n="nav.about">О себе</a></li>
+      <li><a href="#services" data-i18n="nav.services">Направления</a></li>
+      <li><a href="#booking"  data-i18n="nav.booking">Запись</a></li>
+      <li><a href="blog.html" data-i18n="nav.blog">Блог</a></li>
+      <li><a href="library.html" data-i18n="nav.library">Библиотека</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="pl">PL</button>
+      </div>
+      <a href="#booking" class="btn btn-primary" data-i18n="nav.cta">Начать разговор</a>
+      <button class="nav-menu-btn" id="menu-btn" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" id="mobile-nav">
+  <div class="lang-switch-mobile">
+    <button class="lang-btn active" data-lang="ru">RU</button>
+    <button class="lang-btn" data-lang="pl">PL</button>
+  </div>
+  <a href="#about"       class="mobile-link" data-i18n="nav.about">О себе</a>
+  <a href="#services"    class="mobile-link" data-i18n="nav.services">Направления</a>
+  <a href="#booking"     class="mobile-link" data-i18n="nav.booking">Запись</a>
+  <a href="blog.html"    class="mobile-link" data-i18n="nav.blog">Блог</a>
+  <a href="library.html" class="mobile-link" data-i18n="nav.library">Библиотека</a>
+  <a href="#booking" class="btn btn-warm" data-i18n="nav.cta">Начать разговор</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-dot"></div>
+        <span class="hero-eyebrow-text" data-i18n="hero.eyebrow">Онлайн · Варшава</span>
+      </div>
+      <h1 class="hero-name">
+        <span style="font-weight:200" data-i18n="hero.name.light">Имя</span>
+        <strong data-i18n="hero.name.bold">Фамилия</strong>
+      </h1>
+      <p class="hero-role" data-i18n="hero.role">Психолог · Психотравматолог · КПТ-терапевт</p>
+      <p class="hero-desc" data-i18n="hero.desc">
+        Иногда тревога просто не уходит. Иногда что-то случилось, и жизнь разделилась на до и после. Иногда всё вроде бы в порядке, но что-то внутри не так. Я помогу вам разобраться и найти почву под ногами.
+      </p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-warm" data-i18n="hero.cta1">Начать разговор</a>
+        <a href="#about"   class="btn btn-ghost" data-i18n="hero.cta2">Узнать больше</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-photo">
+        <svg class="hero-photo-icon" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span style="font-family:var(--font-m);font-size:.72rem;color:var(--text-muted);margin-top:.75rem;letter-spacing:.06em;">// ваше фото</span>
+      </div>
+      <div class="hero-badge b1">
+        <div class="hb-val" data-i18n="hero.badge1.val">100+</div>
+        <div class="hb-lbl" data-i18n="hero.badge1.lbl">клиентов</div>
+      </div>
+      <div class="hero-badge b2">
+        <div class="hb-val" data-i18n="hero.badge2.val">КПТ</div>
+        <div class="hb-lbl" data-i18n="hero.badge2.lbl">подход</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <div class="about-accent"></div>
+        <div class="about-photo">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" style="opacity:.12">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span style="font-family:var(--font-m);font-size:.72rem;margin-top:.75rem;letter-spacing:.06em;">// ваше фото</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-tag reveal" data-i18n="about.tag">О себе</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="about.title">Профессиональная помощь</span><br>
+          <strong data-i18n="about.title.s">с доказанной эффективностью</strong>
+        </h2>
+        <p class="about-bio reveal d2" data-i18n="about.bio1">
+          Я психолог, психотравматолог и специалист по когнитивно-поведенческой терапии в процессе 4-летнего обучения (в школе, аккредитованной Польским обществом КПТ, PTTPB).
+        </p>
+        <p class="about-bio reveal d3" data-i18n="about.bio2">
+          Я веду приём взрослых пациентов. Наибольший опыт у меня в работе с травмой и тревогой. В практике я опираюсь исключительно на методы с доказанной научной эффективностью, а моя работа проходит регулярную супервизию.
+        </p>
+        <p class="about-bio reveal d3" data-i18n="about.bio3">
+          Я также дипломированный коуч (Варшавский университет) и помогаю людям, которые чувствуют выгорание или хотят выстроить долгосрочный план для своей жизни.
+        </p>
+        <div class="credentials reveal d4">
+          <span class="cred" data-i18n="about.c1">Университет SWPS, Варшава</span>
+          <span class="cred" data-i18n="about.c2">Клиническая психология</span>
+          <span class="cred" data-i18n="about.c3">Психотравматология</span>
+          <span class="cred" data-i18n="about.c4">КПТ (PTTPB)</span>
+          <span class="cred" data-i18n="about.c5">Дипломированный коуч</span>
+          <span class="cred" data-i18n="about.c6">Регулярная супервизия</span>
+        </div>
+        <div class="about-stats reveal d4">
+          <div class="stat">
+            <div class="stat-val" data-i18n="about.stat1.val">4</div>
+            <div class="stat-lbl" data-i18n="about.stat1.lbl">года обучения КПТ</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" data-i18n="about.stat2.val">100+</div>
+            <div class="stat-lbl" data-i18n="about.stat2.lbl">клиентов</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val" data-i18n="about.stat3.val">🌐</div>
+            <div class="stat-lbl" data-i18n="about.stat3.lbl">онлайн · весь мир</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="svc.tag">Направления</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="svc.title">С чем я</span><br>
+          <strong data-i18n="svc.title.s">помогаю</strong>
+        </h2>
+      </div>
+      <a href="#booking" class="view-all reveal d2" data-i18n="svc.link">Записаться</a>
+    </div>
+    <div class="services-grid reveal">
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <div class="svc-name" data-i18n="svc1.name">Психологическая травма и ПТСР</div>
+        <p class="svc-desc" data-i18n="svc1.desc">Работа с последствиями травмирующих событий. Аварии, насилие, тяжёлые жизненные потрясения. Восстановление ощущения безопасности.</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc1.t1">ПТСР</span>
+          <span class="svc-tag" data-i18n="svc1.t2">КПТ</span>
+          <span class="svc-tag" data-i18n="svc1.t3">Травма</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">💨</div>
+        <div class="svc-name" data-i18n="svc2.name">Тревожные расстройства</div>
+        <p class="svc-desc" data-i18n="svc2.desc">Панические атаки, фобии, генерализованная тревожность, социальная тревога. Эффективная работа через проверенные протоколы КПТ.</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc2.t1">Паника</span>
+          <span class="svc-tag" data-i18n="svc2.t2">Фобии</span>
+          <span class="svc-tag" data-i18n="svc2.t3">ГТР</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🔁</div>
+        <div class="svc-name" data-i18n="svc3.name">ОКР и навязчивые состояния</div>
+        <p class="svc-desc" data-i18n="svc3.desc">Навязчивые мысли и действия, которые мешают жить. Работа по протоколам экспозиции и предотвращения реакции (ERP).</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc3.t1">ОКР</span>
+          <span class="svc-tag" data-i18n="svc3.t2">ERP</span>
+          <span class="svc-tag" data-i18n="svc3.t3">КПТ</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🌑</div>
+        <div class="svc-name" data-i18n="svc4.name">Депрессия и качество жизни</div>
+        <p class="svc-desc" data-i18n="svc4.desc">Подавленность, потеря смысла, нарушения сна, психосоматика. Трудности адаптации в новой стране. Работа с глубинными убеждениями.</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc4.t1">Депрессия</span>
+          <span class="svc-tag" data-i18n="svc4.t2">Сон</span>
+          <span class="svc-tag" data-i18n="svc4.t3">Адаптация</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🚀</div>
+        <div class="svc-name" data-i18n="svc5.name">Коучинг и развитие</div>
+        <p class="svc-desc" data-i18n="svc5.desc">Выгорание, потеря мотивации, низкая самооценка. Разработка долгосрочного видения и плана конкретных действий. Коуч Варшавского университета.</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc5.t1">Коучинг</span>
+          <span class="svc-tag" data-i18n="svc5.t2">Цели</span>
+          <span class="svc-tag" data-i18n="svc5.t3">Мотивация</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">💻</div>
+        <div class="svc-name" data-i18n="svc6.name">Онлайн-консультации</div>
+        <p class="svc-desc" data-i18n="svc6.desc">Все консультации доступны онлайн в удобное для вас время. Это удобно, конфиденциально и так же эффективно, как очные встречи.</p>
+        <div class="svc-tags">
+          <span class="svc-tag" data-i18n="svc6.t1">Онлайн</span>
+          <span class="svc-tag" data-i18n="svc6.t2">Весь мир</span>
+          <span class="svc-tag" data-i18n="svc6.t3">Гибко</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="section process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="proc.tag">Как мы работаем</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="proc.title">Четыре шага</span><br>
+          <strong data-i18n="proc.title.s">к изменениям</strong>
+        </h2>
+      </div>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-t" data-i18n="step1.t">Первый контакт</div>
+        <p class="step-d" data-i18n="step1.d">Напишите мне или заполните форму записи. Опишите вкратце свою ситуацию.</p>
+      </div>
+      <div class="process-step reveal d1">
+        <div class="step-num">02</div>
+        <div class="step-t" data-i18n="step2.t">Первая консультация</div>
+        <p class="step-d" data-i18n="step2.d">В безопасной атмосфере обсудим вашу ситуацию. Я честно скажу, как будет строиться работа.</p>
+      </div>
+      <div class="process-step reveal d2">
+        <div class="step-num">03</div>
+        <div class="step-t" data-i18n="step3.t">Регулярные сессии</div>
+        <p class="step-d" data-i18n="step3.d">Работа по согласованному плану. Обычно раз в неделю. Конкретные инструменты для реальной жизни.</p>
+      </div>
+      <div class="process-step reveal d3">
+        <div class="step-num">04</div>
+        <div class="step-t" data-i18n="step4.t">Завершение</div>
+        <p class="step-d" data-i18n="step4.d">Когда вы будете готовы двигаться самостоятельно, спланируем завершение и закрепим результат.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="faq.tag">Частые вопросы</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="faq.title">Вопросы,</span><br>
+          <strong data-i18n="faq.title.s">которые вы боитесь задать</strong>
+        </h2>
+      </div>
+    </div>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq1.q">Как проходит первая сессия?</div>
+        <p class="faq-a" data-i18n="faq1.a">Это просто разговор. Вы рассказываете о своей ситуации, я задаю вопросы. Вместе решаем, хотим ли работать дальше. Без давления, без обязательств.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq2.q">Это конфиденциально?</div>
+        <p class="faq-a" data-i18n="faq2.a">Да. Профессиональная тайна является основой моей работы. Ничего из того, что вы скажете, не выйдет за пределы наших сессий.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq3.q">Сколько сессий мне нужно?</div>
+        <p class="faq-a" data-i18n="faq3.a">Это зависит от запроса и темпа работы. Часто изменения заметны уже через несколько сессий. Будем отслеживать прогресс вместе.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq4.q">Я никогда не ходил к психологу. Это нормально?</div>
+        <p class="faq-a" data-i18n="faq4.a">Конечно. Большинство моих клиентов обращаются впервые. Не нужно ничего знать о терапии, чтобы начать.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq5.q">Только онлайн?</div>
+        <p class="faq-a" data-i18n="faq5.a">Да, все консультации проходят онлайн. Это так же эффективно, как очные встречи, и намного удобнее для большинства людей.</p>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq6.q">На каком языке можно работать?</div>
+        <p class="faq-a" data-i18n="faq6.a">На русском, польском или английском. Выбор полностью за вами.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BOOKING ===== -->
+<section class="section" id="booking">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="book.tag">Запись</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="book.title">Начнём</span><br>
+          <strong data-i18n="book.title.s">разговор</strong>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="booking-strip reveal">
+      <div class="bd-item">
+        <div class="bd-icon">💬</div>
+        <span data-i18n-html="book.note"><strong>Первая консультация</strong>: знакомство без обязательств.</span>
+      </div>
+      <div class="bd-item">
+        <div class="bd-icon">⏱</div>
+        <span data-i18n="book.d1">50 минут, стандартная сессия</span>
+      </div>
+      <div class="bd-item">
+        <div class="bd-icon">🌍</div>
+        <span data-i18n="book.d3">Русский · Polski · English</span>
+      </div>
+      <div class="bd-item">
+        <div class="bd-icon">🔒</div>
+        <span data-i18n="book.d4">Полная конфиденциальность</span>
+      </div>
+    </div>
+
+    <!-- Cal.com inline embed -->
+    <div class="cal-embed-wrap reveal d1">
+      <div id="cal-inline"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section class="section blog" id="blog">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="blog.tag">Блог</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="blog.title">Мысли</span><br>
+          <strong data-i18n="blog.title.s">и знания</strong>
+        </h2>
+      </div>
+      <a href="blog.html" class="view-all reveal d2" data-i18n="blog.all">Все статьи</a>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-feat" onclick="location.href='blog.html'">
+        <div class="blog-cat" data-i18n="blog1.cat">Тревога</div>
+        <h3 class="blog-title" data-i18n="blog1.title">Панические атаки: что происходит в теле и как справиться прямо сейчас</h3>
+        <p class="blog-excerpt" data-i18n="blog1.exc">Паническая атака не опасна, хотя именно так ощущается. Адреналин, учащённое сердцебиение, ощущение нереальности... Разбираем физиологию, когнитивные ловушки и конкретные техники.</p>
+        <div class="blog-meta">
+          <span data-i18n="blog1.date">12 марта 2025</span>
+          <span class="blog-meta-dot"></span>
+          <span data-i18n="blog1.time">6 мин чтения</span>
+        </div>
+      </div>
+      <div class="blog-sidebar">
+        <div class="blog-card" onclick="location.href='blog.html'">
+          <div class="blog-cat" data-i18n="blog2.cat">КПТ</div>
+          <h3 class="blog-title" data-i18n="blog2.title">Что такое когнитивно-поведенческая терапия и почему она работает</h3>
+          <div class="blog-meta">
+            <span data-i18n="blog2.date">3 февраля 2025</span>
+            <span class="blog-meta-dot"></span>
+            <span data-i18n="blog2.time">5 мин</span>
+          </div>
+        </div>
+        <div class="blog-card" onclick="location.href='blog.html'">
+          <div class="blog-cat" data-i18n="blog3.cat">Травма</div>
+          <h3 class="blog-title" data-i18n="blog3.title">ПТСР: когда травма не уходит. Признаки, которые мы не замечаем</h3>
+          <div class="blog-meta">
+            <span data-i18n="blog3.date">18 января 2025</span>
+            <span class="blog-meta-dot"></span>
+            <span data-i18n="blog3.time">8 мин</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIBRARY ===== -->
+<section class="section" id="library">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="lib.tag">Библиотека</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="lib.title">Рекомендованные</span><br>
+          <strong data-i18n="lib.title.s">ресурсы</strong>
+        </h2>
+      </div>
+      <a href="library.html" class="view-all reveal d2" data-i18n="lib.all">Вся библиотека</a>
+    </div>
+    <div class="library-grid reveal">
+      <div class="lib-card">
+        <div class="lib-type" data-i18n="lib1.type">📚 Книга</div>
+        <div class="lib-book-spine" style="background:linear-gradient(135deg,#1a2456,#2d47cc)"></div>
+        <div class="lib-title" data-i18n="lib1.title">Тело помнит всё</div>
+        <div class="lib-author" data-i18n="lib1.auth">Бессел ван дер Колк</div>
+        <p class="lib-desc" data-i18n="lib1.desc">Фундаментальный труд о психологической травме и о том, как она хранится в теле. Обязательное чтение.</p>
+      </div>
+      <div class="lib-card">
+        <div class="lib-type" data-i18n="lib2.type">📚 Книга</div>
+        <div class="lib-book-spine" style="background:linear-gradient(135deg,#0d2a1a,#1a7a40)"></div>
+        <div class="lib-title" data-i18n="lib2.title">Хорошее самочувствие</div>
+        <div class="lib-author" data-i18n="lib2.auth">Дэвид Д. Бёрнс</div>
+        <p class="lib-desc" data-i18n="lib2.desc">Классика КПТ. Практические техники работы с депрессивными мыслями. Проверено временем и исследованиями.</p>
+      </div>
+      <div class="lib-card">
+        <div class="lib-type" data-i18n="lib3.type">📚 Книга</div>
+        <div class="lib-book-spine" style="background:linear-gradient(135deg,#2a1a0d,#7a3a1a)"></div>
+        <div class="lib-title" data-i18n="lib3.title">Когда тело говорит «нет»</div>
+        <div class="lib-author" data-i18n="lib3.auth">Габор Матэ</div>
+        <p class="lib-desc" data-i18n="lib3.desc">О связи психологических травм и хронических заболеваний. Переосмысляет понятие психосоматики.</p>
+      </div>
+      <div class="lib-card">
+        <div class="lib-type" data-i18n="lib4.type">📚 Книга</div>
+        <div class="lib-book-spine" style="background:linear-gradient(135deg,#1a0d2a,#5a1a7a)"></div>
+        <div class="lib-title" data-i18n="lib4.title">Человек в поисках смысла</div>
+        <div class="lib-author" data-i18n="lib4.auth">Виктор Франкл</div>
+        <p class="lib-desc" data-i18n="lib4.desc">Философия выживания и обретения смысла в самых тяжёлых обстоятельствах. Книга, которая меняет взгляд на жизнь.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="section-tag reveal" data-i18n="test.tag">Отзывы</span>
+        <h2 class="section-title reveal d1">
+          <span data-i18n="test.title">Что говорят</span><br>
+          <strong data-i18n="test.title.s">клиенты</strong>
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:var(--max-width);margin:0 auto;padding:0 2rem;">
+    <div class="test-track reveal" id="testimonials-track">
+      <div class="test-card">
+        <p class="test-text" data-i18n="test1.text">«После нескольких сессий я наконец-то начал понимать, откуда берётся моя тревога. Появились конкретные инструменты, которые я использую каждый день.»</p>
+        <div class="test-author">
+          <div class="test-av">М</div>
+          <div>
+            <div class="test-name" data-i18n="test1.name">М., 34 года</div>
+            <div class="test-meta" data-i18n="test1.meta">тревожное расстройство</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-text" data-i18n="test2.text">«Обратился с паническими атаками, которые мешали нормально жить. Уже через месяц работы заметил значительные изменения. Не думал, что это можно решить так быстро.»</p>
+        <div class="test-author">
+          <div class="test-av">А</div>
+          <div>
+            <div class="test-name" data-i18n="test2.name">А., 28 лет</div>
+            <div class="test-meta" data-i18n="test2.meta">панические атаки</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-text" data-i18n="test3.text">«Это был первый раз, когда я по-настоящему почувствовал себя услышанным. Онлайн-формат оказался очень удобным.»</p>
+        <div class="test-author">
+          <div class="test-av">К</div>
+          <div>
+            <div class="test-name" data-i18n="test3.name">К., 41 год</div>
+            <div class="test-meta" data-i18n="test3.meta">жизненный кризис</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-text" data-i18n="test4.text">«Переехав в другую страну, я столкнулась с тяжёлой адаптацией. Помощь психолога помогла мне обрести почву под ногами.»</p>
+        <div class="test-author">
+          <div class="test-av">Е</div>
+          <div>
+            <div class="test-name" data-i18n="test4.name">Е., 29 лет</div>
+            <div class="test-meta" data-i18n="test4.meta">адаптация, эмиграция</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="test-text" data-i18n="test5.text">«Работала с навязчивыми мыслями несколько лет. После 3 месяцев КПТ их интенсивность снизилась кардинально.»</p>
+        <div class="test-author">
+          <div class="test-av">Н</div>
+          <div>
+            <div class="test-name" data-i18n="test5.name">Н., 33 года</div>
+            <div class="test-meta" data-i18n="test5.meta">ОКР</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <span class="section-tag reveal" style="justify-content:center" data-i18n="contact.tag">Контакт</span>
+      <h2 class="contact-cta reveal d1">
+        <span data-i18n="contact.title">Готовы сделать</span><br>
+        <strong data-i18n="contact.title.s">первый шаг?</strong>
+      </h2>
+      <p class="contact-sub reveal d2" data-i18n="contact.sub">
+        Запишитесь на первую консультацию или напишите мне напрямую. Я отвечаю в течение суток.
+      </p>
+      <div class="reveal d3">
+        <a href="#booking" class="btn btn-warm" style="margin:0 auto;display:inline-flex;" data-i18n="contact.cta">Начать разговор</a>
+      </div>
+      <div class="contact-links reveal d4">
+        <a href="mailto:your@email.com" class="contact-link">✉️ your@email.com</a>
+        <a href="https://t.me/yourusername" class="contact-link">✈️ Telegram</a>
+        <a href="#" class="contact-link">📍 Варшава · Онлайн</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy" data-i18n="footer.copy">© 2025 Алексей Левашов · Психолог</span>
+    <div class="footer-links">
+      <a href="privacy.html" data-i18n="footer.privacy">Конфиденциальность</a>
+      <a href="#booking" data-i18n="footer.booking">Запись</a>
+      <a href="blog.html" data-i18n="footer.blog">Блог</a>
+      <a href="library.html" data-i18n="footer.library">Библиотека</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie banner -->
+<div class="cookie-banner" id="cookie-banner">
+  <p class="cookie-text">
+    Этот сайт использует файлы cookie для корректной работы. Подробнее в <a href="privacy.html">политике конфиденциальности</a>.
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn-reject" id="cookie-reject">Только необходимые</button>
+    <button class="cookie-btn-accept" id="cookie-accept">Принять все</button>
+  </div>
+</div>
+
+<script src="js/translations.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Cal.com embed -->
+<script type="text/javascript">
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal; let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {}; cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["-", namespace, ar]);
+        } else { p(cal, ar); }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+
+  Cal("inline", {
+    elementOrSelector: "#cal-inline",
+    config: { layout: "month_view", duration: 50 },
+    calLink: "aliaksei-levashou",
+  });
+
+  Cal("ui", {
+    theme: "dark",
+    styles: {
+      branding: { brandColor: "#4361ee" }
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  });
+</script>
+</body>
+</html>
