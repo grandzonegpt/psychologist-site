@@ -15,8 +15,8 @@ const T = {
 
     /* Hero */
     'hero.eyebrow':   'Онлайн · Варшава',
-    'hero.name.light':'Имя',
-    'hero.name.bold': 'Фамилия',
+    'hero.name.light':'Алексей',
+    'hero.name.bold': 'Левашов',
     'hero.role':      'Психолог · Психотравматолог · КПТ-терапевт',
     'hero.desc':      'Иногда тревога просто не уходит. Иногда что-то случилось, и жизнь разделилась на до и после. Иногда всё вроде бы в порядке, но что-то внутри не так. Я помогу вам разобраться и найти почву под ногами.',
     'hero.cta1':      'Начать разговор',
@@ -196,7 +196,7 @@ const T = {
     'contact.cta':   'Начать разговор',
 
     /* Footer */
-    'footer.copy':    '© 2025 Имя Фамилия · Психолог',
+    'footer.copy':    '© 2025 Алексей Левашов · Психолог',
     'footer.privacy': 'Конфиденциальность',
     'footer.booking': 'Запись',
     'footer.blog':    'Блог',
@@ -313,8 +313,8 @@ const T = {
 
     /* Hero */
     'hero.eyebrow':   'Online · Warszawa',
-    'hero.name.light':'Imię',
-    'hero.name.bold': 'Nazwisko',
+    'hero.name.light':'Aleksiej',
+    'hero.name.bold': 'Lewaszow',
     'hero.role':      'Psycholog · Psychotraumatolog · Psychoterapeuta CBT',
     'hero.desc':      'Zmagasz się z lękiem, który nie odpuszcza? Przeżyłeś coś trudnego i nie wiesz, jak wrócić do siebie? A może wszystko wydaje się w porządku, ale coś w środku nie gra? Pomogę Ci odzyskać równowagę i poczucie gruntu pod nogami.',
     'hero.cta1':      'Zacznij rozmowę',
@@ -494,7 +494,7 @@ const T = {
     'contact.cta':   'Zacznij rozmowę',
 
     /* Footer */
-    'footer.copy':    '© 2025 Imię Nazwisko · Psycholog',
+    'footer.copy':    '© 2025 Aleksiej Lewaszow · Psycholog',
     'footer.privacy': 'Polityka prywatności',
     'footer.booking': 'Umów wizytę',
     'footer.blog':    'Blog',

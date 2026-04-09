@@ -875,6 +875,8 @@ ul { list-style: none; }
   .library-grid { grid-template-columns: 1fr; }
   .modal { padding: 1.75rem 1.5rem; }
   .faq-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr; }
+  .test-card { width: min(360px, calc(100vw - 3rem)); }
 }
 
 /* ------ BOOKING (Cal.com layout) ------ */
