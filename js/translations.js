@@ -224,6 +224,55 @@ const T = {
     'lib.page.cta.title.s':'прочитанное?',
     'lib.page.cta.sub':'Записывайтесь на консультацию. На первой встрече поговорим о вашей ситуации без обязательств.',
     'lib.page.cta.btn':'Записаться на консультацию',
+
+    /* Blog filters */
+    'blog.filter.all':        'Все',
+    'blog.filter.anxiety':    'Тревога',
+    'blog.filter.trauma':     'Травма',
+    'blog.filter.cbt':        'КПТ',
+    'blog.filter.depression': 'Депрессия',
+    'blog.filter.coaching':   'Коучинг',
+
+    /* Library filters & section headings */
+    'lib.filter.all':      'Все',
+    'lib.filter.book':     'Книги',
+    'lib.filter.article':  'Статьи',
+    'lib.filter.practice': 'Практики',
+    'lib.filter.audio':    'Подкасты',
+    'lib.sec.books':       '📚 Книги',
+    'lib.sec.articles':    '📄 Статьи и практики',
+
+    /* Library badges */
+    'lib.badge.book':     'Книга',
+    'lib.badge.article':  'Статья',
+    'lib.badge.practice': 'Практика',
+    'lib.badge.audio':    'Подкаст',
+
+    /* Library authors */
+    'lib.from.practice': 'Из личной практики',
+    'lib.classic':       'Классическая техника',
+
+    /* Library items 5-6 (books without i18n) */
+    'lib5.title': 'Терапия беспокойства',
+    'lib5.auth':  'Edmund Bourne',
+    'lib5.desc':  'Исчерпывающее руководство по работе с тревожными расстройствами. Конкретные техники для панических атак, фобий, ГТР и социальной тревожности.',
+    'lib6.title': 'Осознанность',
+    'lib6.auth':  'Марк Уильямс, Дэнни Пенман',
+    'lib6.desc':  '8-недельная программа снижения тревоги, стресса и депрессии. Основана на MBSR. Включает аудиоупражнения для медитации.',
+
+    /* Library items 7-12 (articles/practices without i18n) */
+    'lib7.title': 'Самопомощь при панических атаках',
+    'lib7.desc':  'Пошаговое руководство для ситуаций, когда паника накрывает здесь и сейчас. Техники дыхания, когнитивного переключения и работы с телом.',
+    'lib8.title': '5 техник заземления при ПТСР',
+    'lib8.desc':  'Техника 5-4-3-2-1, «холодная вода», «корни», дыхание по квадрату и другие методы быстрого возвращения в «здесь и сейчас». С подробными инструкциями.',
+    'lib9.title': 'Как вести дневник настроения',
+    'lib9.desc':  'Дневник настроения: простой, но мощный инструмент КПТ. Объясняю как заполнять, что отслеживать и как анализировать паттерны.',
+    'lib10.title':'Прогрессивная мышечная релаксация',
+    'lib10.desc': 'Проверенная техника глубокого расслабления по Джекобсону. Особенно эффективна при тревоге, нарушениях сна и психосоматических симптомах.',
+    'lib11.title':'Адаптация в новой стране: почему это так тяжело',
+    'lib11.desc': 'Переезд воспринимается как утрата. Grief of migration. Разбираю стадии адаптации и конкретные стратегии для тех, кто живёт между двумя культурами.',
+    'lib12.title':'Therapist Uncensored',
+    'lib12.desc': 'Один из лучших подкастов о нейронауках и психотерапии. Разбирают теорию привязанности, травму, EMDR и КПТ. На английском, но понятно для широкой аудитории.',
   },
 
   pl: {
@@ -447,6 +496,55 @@ const T = {
     'lib.page.cta.title.s':'przeczytane?',
     'lib.page.cta.sub':'Umów się na konsultację. Na pierwszym spotkaniu porozmawiamy o Twojej sytuacji bez zobowiązań.',
     'lib.page.cta.btn':'Umów konsultację',
+
+    /* Blog filters */
+    'blog.filter.all':        'Wszystko',
+    'blog.filter.anxiety':    'Lęk',
+    'blog.filter.trauma':     'Trauma',
+    'blog.filter.cbt':        'CBT',
+    'blog.filter.depression': 'Depresja',
+    'blog.filter.coaching':   'Coaching',
+
+    /* Library filters & section headings */
+    'lib.filter.all':      'Wszystko',
+    'lib.filter.book':     'Książki',
+    'lib.filter.article':  'Artykuły',
+    'lib.filter.practice': 'Ćwiczenia',
+    'lib.filter.audio':    'Podcasty',
+    'lib.sec.books':       '📚 Książki',
+    'lib.sec.articles':    '📄 Artykuły i ćwiczenia',
+
+    /* Library badges */
+    'lib.badge.book':     'Książka',
+    'lib.badge.article':  'Artykuł',
+    'lib.badge.practice': 'Ćwiczenie',
+    'lib.badge.audio':    'Podcast',
+
+    /* Library authors */
+    'lib.from.practice': 'Z własnej praktyki',
+    'lib.classic':       'Technika klasyczna',
+
+    /* Library items 5-6 */
+    'lib5.title': 'Terapia niepokoju',
+    'lib5.auth':  'Edmund Bourne',
+    'lib5.desc':  'Wyczerpujący przewodnik po zaburzeniach lękowych. Konkretne techniki dla napadów paniki, fobii, GAD i lęku społecznego.',
+    'lib6.title': 'Mindfulness',
+    'lib6.auth':  'Mark Williams, Danny Penman',
+    'lib6.desc':  '8-tygodniowy program redukcji lęku, stresu i depresji. Oparty na MBSR. Zawiera ćwiczenia audio do medytacji.',
+
+    /* Library items 7-12 */
+    'lib7.title': 'Samopomoc przy napadach paniki',
+    'lib7.desc':  'Przewodnik krok po kroku na sytuacje, gdy panika pojawia się tu i teraz. Techniki oddechowe, poznawcze i praca z ciałem.',
+    'lib8.title': '5 technik uziemienia przy PTSD',
+    'lib8.desc':  'Technika 5-4-3-2-1, «zimna woda», «korzenie», oddychanie po kwadracie i inne metody szybkiego powrotu do «tu i teraz». Ze szczegółowymi instrukcjami.',
+    'lib9.title': 'Jak prowadzić dziennik nastroju',
+    'lib9.desc':  'Dziennik nastroju: proste, ale skuteczne narzędzie CBT. Wyjaśniam jak go wypełniać, co śledzić i jak analizować wzorce.',
+    'lib10.title':'Progresywna relaksacja mięśni',
+    'lib10.desc': 'Sprawdzona technika głębokiego odprężenia według Jacobsona. Szczególnie skuteczna przy lęku, zaburzeniach snu i objawach psychosomatycznych.',
+    'lib11.title':'Adaptacja w nowym kraju: dlaczego to takie trudne',
+    'lib11.desc': 'Przeprowadzka jest przeżywana jak utrata. Grief of migration. Omawiam etapy adaptacji i konkretne strategie dla osób żyjących między dwiema kulturami.',
+    'lib12.title':'Therapist Uncensored',
+    'lib12.desc': 'Jeden z najlepszych podcastów o neuronauce i psychoterapii. Omawiają teorię przywiązania, traumę, EMDR i CBT. Po angielsku, ale zrozumiały dla szerokiej publiczności.',
   }
 };
 
@@ -478,6 +576,9 @@ function applyLang(lang) {
 
   // Notify calendar to re-render with new locale
   if (typeof renderCalendar === 'function') renderCalendar();
+
+  // Reinit Cal.com embed with new locale
+  if (typeof reinitCal === 'function') reinitCal(lang);
 }
 
 function initLang() {

@@ -588,20 +588,26 @@
 
   Cal("init", { origin: "https://cal.com" });
 
-  Cal("inline", {
-    elementOrSelector: "#cal-inline",
-    config: { layout: "month_view", duration: 50 },
-    calLink: "aliaksei-levashou",
-  });
+  function _calInit(locale) {
+    const el = document.getElementById('cal-inline');
+    if (!el) return;
+    el.innerHTML = '';
+    Cal("inline", {
+      elementOrSelector: "#cal-inline",
+      config: { layout: "month_view", duration: 50, locale: locale },
+      calLink: "aliaksei-levashou",
+    });
+    Cal("ui", {
+      theme: "dark",
+      styles: { branding: { brandColor: "#4361ee" } },
+      hideEventTypeDetails: false,
+      layout: "month_view",
+    });
+  }
 
-  Cal("ui", {
-    theme: "dark",
-    styles: {
-      branding: { brandColor: "#4361ee" }
-    },
-    hideEventTypeDetails: false,
-    layout: "month_view",
-  });
+  _calInit(localStorage.getItem('lang') || 'ru');
+
+  window.reinitCal = function(lang) { _calInit(lang); };
 </script>
 </body>
 </html>
