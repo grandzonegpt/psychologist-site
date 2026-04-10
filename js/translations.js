@@ -15,9 +15,11 @@ const T = {
 
     /* Hero */
     'hero.eyebrow':   'Онлайн · Варшава',
+    'hero.h1':        '<span style="font-weight:300">Тревога, травма, адаптация<br>в новой стране.</span><br><strong>КПТ-терапия на русском и польском.</strong>',
     'hero.name.light':'Алексей',
     'hero.name.bold': 'Левашов',
-    'hero.role':      'Психолог · Психотравматолог · КПТ-терапевт',
+    'hero.role':      'Алексей Левашов · Психолог · Психотравматолог · КПТ-терапевт',
+    'hero.cred':      'Практика консультирования с 2017 · КПТ-терапия с 2023',
     'hero.desc':      'Иногда тревога просто не уходит. Иногда что-то случилось, и жизнь разделилась на до и после. Иногда всё вроде бы в порядке, но что-то внутри не так. Я помогу вам разобраться и найти почву под ногами.',
     'hero.cta1':      'Начать разговор',
     'hero.cta2':      'Узнать больше',
@@ -31,7 +33,7 @@ const T = {
     'about.title':    'Профессиональная помощь',
     'about.title.s':  'с доказанной эффективностью',
     'about.bio1':     'Я психолог, психотравматолог и КПТ-терапевт в процессе 4-летнего обучения в школе, аккредитованной PTTPB.',
-    'about.bio2':     'Работаю со взрослыми. Больше всего опыта в работе с травмой и тревогой. Опираюсь на методы с доказательной базой, прохожу супервизию.',
+    'about.bio2':     'Работаю со взрослыми. Больше всего опыта в работе с травмой и тревогой. Опираюсь на методы с доказательной базой. Работаю под постоянной супервизией согласно стандартам PTTPB.',
     'about.bio3':     'Ещё я дипломированный коуч (Варшавский университет) и работаю с теми, кто переживает выгорание или ищет направление в жизни.',
     'about.c1':  'Университет SWPS, Варшава',
     'about.c2':  'Клиническая психология',
@@ -98,18 +100,41 @@ const T = {
     'faq5.q': 'Только онлайн?',
     'faq5.a': 'Да, все консультации проходят онлайн. Это так же эффективно, как очные встречи, и намного удобнее для большинства людей.',
     'faq6.q': 'На каком языке можно работать?',
-    'faq6.a': 'На русском, польском или английском. Выбор полностью за вами.',
+    'faq6.a': 'На русском или польском. Выбор полностью за вами.',
 
     /* Booking */
     'book.tag':   'Запись',
     'book.title': 'Начнём',
     'book.title.s':'разговор',
-    'book.desc':  'Выберите время в календаре. Я подтвержу в течение суток.',
-    'book.note':  '<strong>Первая консультация</strong>: знакомство без обязательств. Мы обсудим вашу ситуацию, и вы решите, хотите ли продолжить работу.',
-    'book.d1':    '50 минут, стандартная сессия',
-    'book.d2':    'Онлайн (Zoom, Google Meet, Telegram)',
-    'book.d3':    'Русский · Polski · English',
+    'book.desc':  'Заполните форму, я свяжусь с вами в течение 24 часов в будние дни.',
+    'book.d1':    'Сессия 50 минут',
+    'book.d2':    '180 PLN · Карта, BLIK, EUR, USD через Stripe',
+    'book.d3':    'Русский · Polski',
     'book.d4':    'Полная конфиденциальность',
+
+    /* Booking form */
+    'bf.name':         'Имя',
+    'bf.name.ph':      'Как вас зовут',
+    'bf.email':        'Email',
+    'bf.phone':        'Телефон или Telegram',
+    'bf.phone.ph':     '+48... или @username',
+    'bf.lang':         'Язык сессии',
+    'bf.currency':     'Валюта оплаты',
+    'bf.when':         'Удобное время',
+    'bf.when.ph':      'Например: будни вечером',
+    'bf.msg':          'С чем хотите обратиться (необязательно)',
+    'bf.msg.ph':       'Кратко опишите ситуацию',
+    'bf.consent1.ru':  'Я согласен(на) на обработку моих персональных данных согласно политике конфиденциальности.',
+    'bf.consent1.pl':  '(Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności.)',
+    'bf.consent2.ru':  'Я согласен(на) получить ответ по email или Telegram с подтверждением записи.',
+    'bf.consent2.pl':  '(Wyrażam zgodę na otrzymanie odpowiedzi mailem lub przez Telegram w celu potwierdzenia rezerwacji.)',
+    'bf.consent3.ru':  'Я ознакомился(ась) с регламентом оказания услуг и принимаю его условия.',
+    'bf.consent3.pl':  '(Zapoznałem(am) się z regulaminem świadczenia usług i akceptuję jego warunki.)',
+    'bf.consent4.ru':  'Я даю явное согласие на обработку моих данных о здоровье в целях психологической помощи.',
+    'bf.consent4.pl':  '(Wyrażam wyraźną zgodę na przetwarzanie moich danych dotyczących zdrowia w celu udzielenia pomocy psychologicznej, art. 9 ust. 2 lit. a RODO.)',
+    'bf.submit.ru':    'Отправить заявку',
+    'bf.submit.pl':    '(Wyślij zgłoszenie)',
+    'bf.thanks':       'Спасибо! Отвечу в течение 24 часов в будние дни на ваш email. Дальнейшие шаги и ссылка на оплату придут отдельным письмом.',
 
     /* Blog */
     'blog.tag':    'Блог',
@@ -199,11 +224,12 @@ const T = {
     'contact.cta':   'Начать разговор',
 
     /* Footer */
-    'footer.copy':    '© 2025 Алексей Левашов · Психолог',
-    'footer.privacy': 'Конфиденциальность',
-    'footer.booking': 'Запись',
-    'footer.blog':    'Блог',
-    'footer.library': 'Библиотека',
+    'footer.copy':     '© 2025 Алексей Левашов · Психолог',
+    'footer.privacy':  'Конфиденциальность',
+    'footer.regulamin':'Регламент',
+    'footer.booking':  'Запись',
+    'footer.blog':     'Блог',
+    'footer.library':  'Библиотека',
 
     /* Modal */
     'modal.title': 'Запись на сессию',
@@ -301,7 +327,7 @@ const T = {
     'lib11.title':'Адаптация в новой стране: почему это так тяжело',
     'lib11.desc': 'Переезд воспринимается как утрата. Grief of migration. Разбираю стадии адаптации и конкретные стратегии для тех, кто живёт между двумя культурами.',
     'lib12.title':'Therapist Uncensored',
-    'lib12.desc': 'Один из лучших подкастов о нейронауках и психотерапии. Разбирают теорию привязанности, травму, EMDR и КПТ. На английском, но понятно для широкой аудитории.',
+    'lib12.desc': 'Один из лучших подкастов о нейронауках и психотерапии. Разбирают теорию привязанности, травму, EMDR и КПТ.',
   },
 
   pl: {
@@ -316,9 +342,11 @@ const T = {
 
     /* Hero */
     'hero.eyebrow':   'Online · Warszawa',
+    'hero.h1':        '<span style="font-weight:300">Lęk, trauma, adaptacja<br>w nowym kraju.</span><br><strong>Terapia CBT po polsku i rosyjsku.</strong>',
     'hero.name.light':'Aleksiej',
     'hero.name.bold': 'Lewaszow',
-    'hero.role':      'Psycholog · Psychotraumatolog · Psychoterapeuta CBT',
+    'hero.role':      'Aleksiej Lewaszow · Psycholog · Psychotraumatolog · Psychoterapeuta CBT',
+    'hero.cred':      'Praktyka konsultacyjna od 2017 · Terapia CBT od 2023',
     'hero.desc':      'Zmagasz się z lękiem, który nie odpuszcza? Przeżyłeś coś trudnego i nie wiesz, jak wrócić do siebie? A może wszystko wydaje się w porządku, ale coś w środku nie gra? Pomogę Ci odzyskać równowagę i poczucie gruntu pod nogami.',
     'hero.cta1':      'Zacznij rozmowę',
     'hero.cta2':      'Dowiedz się więcej',
@@ -332,7 +360,7 @@ const T = {
     'about.title':    'Profesjonalna pomoc',
     'about.title.s':  'oparta na dowodach',
     'about.bio1':     'Jestem psychologiem, psychotraumatologiem oraz psychoterapeutą CBT w trakcie 4-letniego szkolenia, akredytowanego przez PTTPB.',
-    'about.bio2':     'Pracuję z dorosłymi. Największe doświadczenie mam w pracy z traumą i zaburzeniami lękowymi. Opieram się na metodach z udowodnioną skutecznością i regularnie poddaję swoją pracę superwizji.',
+    'about.bio2':     'Pracuję z dorosłymi. Największe doświadczenie mam w pracy z traumą i zaburzeniami lękowymi. Opieram się na metodach z udowodnioną skutecznością. Pracuję pod stałą superwizją zgodnie ze standardami PTTPB.',
     'about.bio3':     'Jestem też dyplomowanym coachem (Uniwersytet Warszawski) i pracuję z osobami przeżywającymi wypalenie lub szukającymi kierunku w życiu.',
     'about.c1':  'Uniwersytet SWPS, Warszawa',
     'about.c2':  'Psychologia kliniczna',
@@ -399,18 +427,41 @@ const T = {
     'faq5.q': 'Czy pracujesz tylko online?',
     'faq5.a': 'Tak, wszystkie konsultacje odbywają się online. Jest to równie skuteczne jak spotkania stacjonarne i wygodniejsze dla większości klientów.',
     'faq6.q': 'W jakim języku można pracować?',
-    'faq6.a': 'Po rosyjsku, polsku lub angielsku. Wybór należy do Ciebie.',
+    'faq6.a': 'Po polsku lub rosyjsku. Wybór należy do Ciebie.',
 
     /* Booking */
     'book.tag':   'Umów wizytę',
     'book.title': 'Zacznijmy',
     'book.title.s':'rozmowę',
-    'book.desc':  'Wybierz odpowiedni termin i wypełnij krótki formularz. Odezwę się w ciągu doby, aby potwierdzić rezerwację.',
-    'book.note':  '<strong>Pierwsza konsultacja</strong> to spotkanie bez zobowiązań. Omówimy Twoją sytuację, a Ty zdecydujesz, czy chcesz kontynuować pracę.',
-    'book.d1':    '50 minut, standardowa sesja',
-    'book.d2':    'Online (Zoom, Google Meet, Telegram)',
-    'book.d3':    'Rosyjski · Polski · Angielski',
+    'book.desc':  'Wypełnij formularz, odpowiem w ciągu 24 godzin w dni robocze.',
+    'book.d1':    'Sesja 50 minut',
+    'book.d2':    '180 PLN · Karta, BLIK, EUR, USD przez Stripe',
+    'book.d3':    'Polski · Rosyjski',
     'book.d4':    'Pełna poufność',
+
+    /* Booking form */
+    'bf.name':         'Imię',
+    'bf.name.ph':      'Jak masz na imię',
+    'bf.email':        'Email',
+    'bf.phone':        'Telefon lub Telegram',
+    'bf.phone.ph':     '+48... lub @username',
+    'bf.lang':         'Język sesji',
+    'bf.currency':     'Waluta płatności',
+    'bf.when':         'Dogodny termin',
+    'bf.when.ph':      'Np.: dni robocze wieczorem',
+    'bf.msg':          'Z czym chcesz się zgłosić (opcjonalnie)',
+    'bf.msg.ph':       'Krótko opisz sytuację',
+    'bf.consent1.ru':  'Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności.',
+    'bf.consent1.pl':  '(Я согласен(на) на обработку моих персональных данных согласно политике конфиденциальности.)',
+    'bf.consent2.ru':  'Wyrażam zgodę na otrzymanie odpowiedzi mailem lub przez Telegram w celu potwierdzenia rezerwacji.',
+    'bf.consent2.pl':  '(Я согласен(на) получить ответ по email или Telegram с подтверждением записи.)',
+    'bf.consent3.ru':  'Zapoznałem(am) się z regulaminem świadczenia usług i akceptuję jego warunki.',
+    'bf.consent3.pl':  '(Я ознакомился(ась) с регламентом оказания услуг и принимаю его условия.)',
+    'bf.consent4.ru':  'Wyrażam wyraźną zgodę na przetwarzanie moich danych dotyczących zdrowia w celu udzielenia pomocy psychologicznej (art. 9 ust. 2 lit. a RODO).',
+    'bf.consent4.pl':  '(Я даю явное согласие на обработку моих данных о здоровье в целях психологической помощи.)',
+    'bf.submit.ru':    'Wyślij zgłoszenie',
+    'bf.submit.pl':    '(Отправить заявку)',
+    'bf.thanks':       'Dziękuję! Odpowiem w ciągu 24 godzin w dni robocze na Twój email. Dalsze kroki i link do płatności otrzymasz osobnym mailem.',
 
     /* Blog */
     'blog.tag':    'Blog',
@@ -500,11 +551,12 @@ const T = {
     'contact.cta':   'Zacznij rozmowę',
 
     /* Footer */
-    'footer.copy':    '© 2025 Aleksiej Lewaszow · Psycholog',
-    'footer.privacy': 'Polityka prywatności',
-    'footer.booking': 'Umów wizytę',
-    'footer.blog':    'Blog',
-    'footer.library': 'Biblioteka',
+    'footer.copy':     '© 2025 Aleksiej Lewaszow · Psycholog',
+    'footer.privacy':  'Polityka prywatności',
+    'footer.regulamin':'Regulamin',
+    'footer.booking':  'Umów wizytę',
+    'footer.blog':     'Blog',
+    'footer.library':  'Biblioteka',
 
     /* Modal */
     'modal.title': 'Umów sesję',
@@ -602,7 +654,7 @@ const T = {
     'lib11.title':'Adaptacja w nowym kraju: dlaczego to takie trudne',
     'lib11.desc': 'Przeprowadzka jest przeżywana jak utrata. Grief of migration. Omawiam etapy adaptacji i konkretne strategie dla osób żyjących między dwiema kulturami.',
     'lib12.title':'Therapist Uncensored',
-    'lib12.desc': 'Jeden z najlepszych podcastów o neuronauce i psychoterapii. Omawiają teorię przywiązania, traumę, EMDR i CBT. Po angielsku, ale zrozumiały dla szerokiej publiczności.',
+    'lib12.desc': 'Jeden z najlepszych podcastów o neuronauce i psychoterapii. Omawiają teorię przywiązania, traumę, EMDR i CBT.',
   }
 };
 
@@ -646,7 +698,11 @@ function applyLang(lang) {
 }
 
 function initLang() {
-  const saved = localStorage.getItem('lang') || 'ru';
+  // Priority: URL ?lang= > localStorage > default ru
+  const urlLang = new URLSearchParams(window.location.search).get('lang');
+  const saved = (urlLang === 'pl' || urlLang === 'ru')
+    ? urlLang
+    : (localStorage.getItem('lang') || 'ru');
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === saved);
     btn.addEventListener('click', () => {

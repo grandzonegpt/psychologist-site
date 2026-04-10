@@ -3,9 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Алексей Левашов | Психолог · КПТ-терапевт</title>
-  <meta name="description" content="Психолог, психотравматолог и КПТ-терапевт. Помогаю справиться с тревогой, травмой, паническими атаками и ОКР. Онлайн-консультации." />
+  <title>Алексей Левашов | Психолог · КПТ-терапевт · Варшава</title>
+  <meta name="description" content="Психолог, психотравматолог и КПТ-терапевт. Помогаю с тревогой, травмой, адаптацией в новой стране. Онлайн-консультации на русском и польском." />
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="ru" href="https://www.levashou.pl/" />
+  <link rel="alternate" hreflang="pl" href="https://www.levashou.pl/?lang=pl" />
+  <link rel="alternate" hreflang="x-default" href="https://www.levashou.pl/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.levashou.pl/" />
+  <meta property="og:title" content="Алексей Левашов | Психолог · КПТ-терапевт · Варшава" />
+  <meta property="og:description" content="Тревога, травма, адаптация в новой стране. КПТ-терапия на русском и польском." />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- JSON-LD: Person + Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Psychologist",
+    "name": "Алексей Левашов",
+    "alternateName": "Aleksiej Lewaszow",
+    "description": "Психолог, психотравматолог, КПТ-терапевт. Варшава.",
+    "url": "https://www.levashou.pl/",
+    "email": "kontakt@levashou.pl",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Warszawa",
+      "addressCountry": "PL"
+    },
+    "availableLanguage": ["ru", "pl"],
+    "areaServed": "Worldwide",
+    "priceRange": "180 PLN"
+  }
+  </script>
 </head>
 <body>
 
@@ -58,11 +93,12 @@
         <div class="hero-dot"></div>
         <span class="hero-eyebrow-text" data-i18n="hero.eyebrow">Онлайн · Варшава</span>
       </div>
-      <h1 class="hero-name">
-        <span style="font-weight:200" data-i18n="hero.name.light">Алексей</span>
-        <strong data-i18n="hero.name.bold">Левашов</strong>
+      <h1 class="hero-name" data-i18n-html="hero.h1">
+        <span style="font-weight:300">Тревога, травма, адаптация<br>в новой стране.</span><br>
+        <strong>КПТ-терапия на русском и польском.</strong>
       </h1>
-      <p class="hero-role" data-i18n="hero.role">Психолог · Психотравматолог · КПТ-терапевт</p>
+      <p class="hero-role" data-i18n="hero.role">Алексей Левашов · Психолог · Психотравматолог · КПТ-терапевт</p>
+      <p class="hero-credentials" data-i18n="hero.cred">Практика консультирования с 2017 · КПТ-терапия с 2023</p>
       <p class="hero-desc" data-i18n="hero.desc">
         Иногда тревога просто не уходит. Иногда что-то случилось, и жизнь разделилась на до и после. Иногда всё вроде бы в порядке, но что-то внутри не так. Я помогу вам разобраться и найти почву под ногами.
       </p>
@@ -117,7 +153,7 @@
           Я психолог, психотравматолог и специалист по когнитивно-поведенческой терапии в процессе 4-летнего обучения (в школе, аккредитованной Польским обществом КПТ, PTTPB).
         </p>
         <p class="about-bio reveal d3" data-i18n="about.bio2">
-          Я веду приём взрослых пациентов. Наибольший опыт у меня в работе с травмой и тревогой. В практике я опираюсь исключительно на методы с доказанной научной эффективностью, а моя работа проходит регулярную супервизию.
+          Я веду приём взрослых пациентов. Наибольший опыт у меня в работе с травмой и тревогой. В практике я опираюсь исключительно на методы с доказанной научной эффективностью. Работаю под постоянной супервизией согласно стандартам PTTPB.
         </p>
         <p class="about-bio reveal d3" data-i18n="about.bio3">
           Я также дипломированный коуч (Варшавский университет) и помогаю людям, которые чувствуют выгорание или хотят выстроить долгосрочный план для своей жизни.
@@ -299,7 +335,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq6.q">На каком языке можно работать?</div>
-        <p class="faq-a" data-i18n="faq6.a">На русском, польском или английском. Выбор полностью за вами.</p>
+        <p class="faq-a" data-i18n="faq6.a">На русском или польском. Выбор полностью за вами.</p>
       </div>
     </div>
   </div>
@@ -318,19 +354,19 @@
       </div>
     </div>
 
-    <!-- Info strip -->
+    <!-- Price / info strip -->
     <div class="booking-strip reveal">
       <div class="bd-item">
-        <div class="bd-icon">💬</div>
-        <span data-i18n-html="book.note"><strong>Первая консультация</strong>: знакомство без обязательств.</span>
+        <div class="bd-icon">⏱</div>
+        <span data-i18n="book.d1">Сессия 50 минут</span>
       </div>
       <div class="bd-item">
-        <div class="bd-icon">⏱</div>
-        <span data-i18n="book.d1">50 минут, стандартная сессия</span>
+        <div class="bd-icon">💳</div>
+        <span data-i18n="book.d2">180 PLN · Карта, BLIK, EUR, USD через Stripe</span>
       </div>
       <div class="bd-item">
         <div class="bd-icon">🌍</div>
-        <span data-i18n="book.d3">Русский · Polski · English</span>
+        <span data-i18n="book.d3">Русский · Polski</span>
       </div>
       <div class="bd-item">
         <div class="bd-icon">🔒</div>
@@ -338,10 +374,98 @@
       </div>
     </div>
 
-    <!-- Cal.com inline embed -->
-    <div class="cal-embed-wrap reveal d1">
-      <div id="cal-inline"></div>
-    </div>
+    <!-- Booking form -->
+    <form class="booking-form reveal d1" id="booking-form" action="https://formsubmit.co/kontakt@levashou.pl" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://www.levashou.pl/?sent=1">
+
+      <div class="bf-row">
+        <div class="bf-field">
+          <label for="bf-name" data-i18n="bf.name">Имя</label>
+          <input type="text" id="bf-name" name="Имя" required data-i18n-ph="bf.name.ph" placeholder="Как вас зовут">
+        </div>
+        <div class="bf-field">
+          <label for="bf-email" data-i18n="bf.email">Email</label>
+          <input type="email" id="bf-email" name="Email" required placeholder="email@example.com">
+        </div>
+      </div>
+
+      <div class="bf-row">
+        <div class="bf-field">
+          <label for="bf-phone" data-i18n="bf.phone">Телефон или Telegram</label>
+          <input type="text" id="bf-phone" name="Телефон/Telegram" data-i18n-ph="bf.phone.ph" placeholder="+48... или @username">
+        </div>
+        <div class="bf-field">
+          <label for="bf-lang" data-i18n="bf.lang">Язык сессии</label>
+          <select id="bf-lang" name="Язык сессии" required>
+            <option value="Русский">Русский</option>
+            <option value="Polski">Polski</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="bf-row">
+        <div class="bf-field">
+          <label for="bf-currency" data-i18n="bf.currency">Валюта оплаты</label>
+          <select id="bf-currency" name="Валюта оплаты" required>
+            <option value="PLN">PLN</option>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        <div class="bf-field">
+          <label for="bf-when" data-i18n="bf.when">Удобное время</label>
+          <input type="text" id="bf-when" name="Удобное время" data-i18n-ph="bf.when.ph" placeholder="Например: будни вечером">
+        </div>
+      </div>
+
+      <div class="bf-field">
+        <label for="bf-msg" data-i18n="bf.msg">С чем хотите обратиться (необязательно)</label>
+        <textarea id="bf-msg" name="Сообщение" rows="4" data-i18n-ph="bf.msg.ph" placeholder="Кратко опишите ситуацию"></textarea>
+      </div>
+
+      <div class="bf-consents">
+        <label class="bf-check">
+          <input type="checkbox" name="Согласие: данные" required>
+          <span>
+            <span class="bf-c-ru" data-i18n="bf.consent1.ru">Я согласен(на) на обработку моих персональных данных согласно политике конфиденциальности.</span>
+            <span class="bf-c-pl" data-i18n="bf.consent1.pl">(Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z polityką prywatności.)</span>
+          </span>
+        </label>
+
+        <label class="bf-check">
+          <input type="checkbox" name="Согласие: контакт" required>
+          <span>
+            <span class="bf-c-ru" data-i18n="bf.consent2.ru">Я согласен(на) получить ответ по email или Telegram с подтверждением записи.</span>
+            <span class="bf-c-pl" data-i18n="bf.consent2.pl">(Wyrażam zgodę na otrzymanie odpowiedzi mailem lub przez Telegram w celu potwierdzenia rezerwacji.)</span>
+          </span>
+        </label>
+
+        <label class="bf-check">
+          <input type="checkbox" name="Согласие: regulamin" required>
+          <span>
+            <span class="bf-c-ru" data-i18n="bf.consent3.ru">Я ознакомился(ась) с <a href="regulamin.html">регламентом оказания услуг</a> и принимаю его условия.</span>
+            <span class="bf-c-pl" data-i18n="bf.consent3.pl">(Zapoznałem(am) się z <a href="regulamin.html">regulaminem świadczenia usług</a> i akceptuję jego warunki.)</span>
+          </span>
+        </label>
+
+        <label class="bf-check">
+          <input type="checkbox" name="Согласие: чувствительные данные" required>
+          <span>
+            <span class="bf-c-ru" data-i18n="bf.consent4.ru">Я даю явное согласие на обработку моих данных о здоровье в целях психологической помощи.</span>
+            <span class="bf-c-pl" data-i18n="bf.consent4.pl">(Wyrażam wyraźną zgodę na przetwarzanie moich danych dotyczących zdrowia w celu udzielenia pomocy psychologicznej, art. 9 ust. 2 lit. a RODO.)</span>
+          </span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-warm bf-submit">
+        <span class="bf-s-ru" data-i18n="bf.submit.ru">Отправить заявку</span>
+        <span class="bf-s-pl" data-i18n="bf.submit.pl">(Wyślij zgłoszenie)</span>
+      </button>
+
+      <p class="bf-thanks" data-i18n="bf.thanks">Спасибо! Отвечу в течение 24 часов в будние дни на ваш email. Дальнейшие шаги и ссылка на оплату придут отдельным письмом.</p>
+    </form>
   </div>
 </section>
 
@@ -539,6 +663,7 @@
     <span class="footer-copy" data-i18n="footer.copy">© 2025 Алексей Левашов · Психолог</span>
     <div class="footer-links">
       <a href="privacy.html" data-i18n="footer.privacy">Конфиденциальность</a>
+      <a href="regulamin.html" data-i18n="footer.regulamin">Регламент</a>
       <a href="#booking" data-i18n="footer.booking">Запись</a>
       <a href="blog.html" data-i18n="footer.blog">Блог</a>
       <a href="library.html" data-i18n="footer.library">Библиотека</a>
@@ -558,55 +683,19 @@
 <script src="js/translations.js"></script>
 <script src="js/main.js"></script>
 
-<!-- Cal.com embed -->
-<script type="text/javascript">
-  (function (C, A, L) {
-    let p = function (a, ar) { a.q.push(ar); };
-    let d = C.document;
-    C.Cal = C.Cal || function () {
-      let cal = C.Cal; let ar = arguments;
-      if (!cal.loaded) {
-        cal.ns = {}; cal.q = cal.q || [];
-        d.head.appendChild(d.createElement("script")).src = A;
-        cal.loaded = true;
+<script>
+  // Show success message after form submission redirect
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('booking-form');
+      const thanks = form ? form.querySelector('.bf-thanks') : null;
+      if (form && thanks) {
+        Array.from(form.children).forEach(c => { if (c !== thanks) c.style.display = 'none'; });
+        thanks.classList.add('visible');
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-      if (ar[0] === L) {
-        const api = function () { p(api, arguments); };
-        const namespace = ar[1];
-        api.q = api.q || [];
-        if (typeof namespace === "string") {
-          cal.ns[namespace] = cal.ns[namespace] || api;
-          p(cal.ns[namespace], ar);
-          p(cal, ["-", namespace, ar]);
-        } else { p(cal, ar); }
-        return;
-      }
-      p(cal, ar);
-    };
-  })(window, "https://app.cal.com/embed/embed.js", "init");
-
-  Cal("init", { origin: "https://cal.com" });
-
-  function _calInit(locale) {
-    const el = document.getElementById('cal-inline');
-    if (!el) return;
-    el.innerHTML = '';
-    Cal("inline", {
-      elementOrSelector: "#cal-inline",
-      config: { layout: "month_view", duration: 50, locale: locale },
-      calLink: "aliaksei-levashou",
-    });
-    Cal("ui", {
-      theme: "dark",
-      styles: { branding: { brandColor: "#4361ee" } },
-      hideEventTypeDetails: false,
-      layout: "month_view",
     });
   }
-
-  _calInit(localStorage.getItem('lang') || 'ru');
-
-  window.reinitCal = function(lang) { _calInit(lang); };
 </script>
 </body>
 </html>
