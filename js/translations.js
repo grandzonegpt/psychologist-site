@@ -623,7 +623,8 @@ function applyLang(lang) {
   });
 
   // Toggle language-specific content blocks (data-lang="ru" / data-lang="pl")
-  document.querySelectorAll('[data-lang]').forEach(el => {
+  // Exclude lang switch buttons which also use data-lang
+  document.querySelectorAll('[data-lang]:not(.lang-btn)').forEach(el => {
     el.style.display = el.dataset.lang === lang ? '' : 'none';
   });
 
