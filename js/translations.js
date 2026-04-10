@@ -146,6 +146,8 @@ const T = {
     'cookie.policy': 'политике конфиденциальности',
     'contact.city':  '📍 Варшава · Онлайн',
     'article.back':  'Все статьи',
+    'privacy.back':  'На главную',
+    'privacy.cat':   'RODO / GDPR · Обновлено: апрель 2025',
 
     /* Library */
     'lib.tag':    'Библиотека',
@@ -445,6 +447,8 @@ const T = {
     'cookie.policy': 'polityce prywatności',
     'contact.city':  '📍 Warszawa · Online',
     'article.back':  'Wszystkie artykuły',
+    'privacy.back':  'Strona główna',
+    'privacy.cat':   'RODO / GDPR · Aktualizacja: kwiecień 2025',
 
     /* Library */
     'lib.tag':    'Biblioteka',
