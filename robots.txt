@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/tmp/
+
+Sitemap: https://www.levashou.pl/sitemap.xml

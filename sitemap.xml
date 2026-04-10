@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.levashou.pl/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.levashou.pl/index.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.levashou.pl/index-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.levashou.pl/index.html"/>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.levashou.pl/index-pl.html</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.levashou.pl/index.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.levashou.pl/index-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.levashou.pl/index.html"/>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://www.levashou.pl/blog.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.levashou.pl/blog-pl.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.levashou.pl/library.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.levashou.pl/library-pl.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.levashou.pl/privacy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.levashou.pl/privacy-pl.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.levashou.pl/regulamin.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.levashou.pl/regulamin-pl.html</loc><priority>0.3</priority></url>
+  <url><loc>https://www.levashou.pl/blog/anxiety-disorder.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/panic-attacks.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/ptsd.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/cbt.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/cognitive-distortions.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/grounding.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/sleep.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/burnout.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.levashou.pl/blog/coaching-vs-psychology.html</loc><priority>0.6</priority></url>
+</urlset>
