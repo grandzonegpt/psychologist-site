@@ -67,111 +67,620 @@
   <div class="container">
 
     <div class="filter-tabs" id="lib-filters">
-      <button class="ftab active" data-cat="all" data-i18n="lib.filter.all">Все</button>
-      <button class="ftab" data-cat="book" data-i18n="lib.filter.book">Книги</button>
-      <button class="ftab" data-cat="article" data-i18n="lib.filter.article">Статьи</button>
-      <button class="ftab" data-cat="practice" data-i18n="lib.filter.practice">Практики</button>
-      <button class="ftab" data-cat="audio" data-i18n="lib.filter.audio">Подкасты</button>
+      <button class="ftab active" data-cat="all"      data-i18n="lib.filter.all">Все</button>
+      <button class="ftab" data-cat="book"            data-i18n="lib.filter.book">Книги</button>
+      <button class="ftab" data-cat="article"         data-i18n="lib.filter.article">Статьи</button>
+      <button class="ftab" data-cat="practice"        data-i18n="lib.filter.practice">Практики</button>
+      <button class="ftab" data-cat="audio"           data-i18n="lib.filter.audio">Подкасты</button>
     </div>
 
+    <!-- BOOKS -->
     <div style="margin-bottom:.75rem;">
       <span class="section-tag" data-i18n="lib.sec.books">📚 Книги</span>
     </div>
     <div class="lib-page-grid reveal">
 
+      <!-- lib1 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib1.title">Тело помнит всё</div>
         <div class="lpc-author" data-i18n="lib1.auth">Бессел ван дер Колк</div>
-        <p class="lpc-desc" data-i18n="lib1.desc">Фундаментальный научпоп о психологической травме. Как тело хранит память о пережитом и почему стандартные методы лечения ПТСР часто не работают. Обязательное чтение для всех, кто интересуется травмой.</p>
+        <p class="lpc-desc" data-i18n="lib1.desc">Фундаментальный научпоп о психологической травме. Как тело хранит память о пережитом и почему стандартные методы лечения ПТСР часто не работают.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Бессел ван дер Колк — один из ведущих мировых исследователей травмы. На протяжении десятков лет он работал с ветеранами, выжившими после насилия и катастроф, и пришёл к выводу, который изменил понимание ПТСР: <strong>травма живёт в теле, а не только в воспоминаниях</strong>.</p>
+            <p>Книга объясняет, почему разговорная терапия часто недостаточна при тяжёлой травме, и что работает лучше: EMDR, соматические практики, йога, нейробиологическая перестройка.</p>
+            <h3>Ключевые идеи</h3>
+            <ul>
+              <li>Травматические воспоминания хранятся иначе, чем обычные — они «замораживаются» и не интегрируются</li>
+              <li>Тело продолжает реагировать на давно прошедшую опасность как на актуальную</li>
+              <li>Классический разговорный подход работает плохо, если нет работы с телом</li>
+              <li>Нейропластичность позволяет восстановиться — в любом возрасте</li>
+            </ul>
+            <h3>Кому читать</h3>
+            <p>Всем, кто пережил травматический опыт, специалистам в области психического здоровья и всем, кто хочет понять природу психологической травмы. Написано доступно — не нужна специальная подготовка.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>Bessel van der Kolk to jeden z czołowych światowych badaczy traumy. Przez dziesiątki lat pracował z weteranami, ocalałymi z przemocy i katastrof i doszedł do wniosku, który zmienił rozumienie PTSD: <strong>trauma żyje w ciele, a nie tylko we wspomnieniach</strong>.</p>
+            <p>Książka wyjaśnia, dlaczego terapia rozmową często jest niewystarczająca przy ciężkiej traumie i co działa lepiej: EMDR, praktyki somatyczne, joga, neurobiologiczne przeprogramowanie.</p>
+            <h3>Kluczowe idee</h3>
+            <ul>
+              <li>Wspomnienia traumatyczne są przechowywane inaczej niż zwykłe — zostają «zamrożone» i nie integrują się</li>
+              <li>Ciało nadal reaguje na dawno minioną groźbę jak na aktualną</li>
+              <li>Klasyczne podejście rozmowy działa słabo, jeśli nie ma pracy z ciałem</li>
+              <li>Neuroplastyczność pozwala wyzdrowieć — w każdym wieku</li>
+            </ul>
+            <h3>Dla kogo</h3>
+            <p>Dla wszystkich, którzy przeżyli traumatyczne doświadczenie, specjalistów zdrowia psychicznego i wszystkich chcących zrozumieć naturę traumy psychologicznej. Napisana przystępnie — nie potrzeba specjalnego przygotowania.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib2 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib2.title">Хорошее самочувствие</div>
         <div class="lpc-author" data-i18n="lib2.auth">Дэвид Д. Бёрнс</div>
-        <p class="lpc-desc" data-i18n="lib2.desc">Классика когнитивно-поведенческой терапии. Сотни исследований подтверждают её эффективность. Практические техники работы с депрессивными и тревожными мыслями. Можно читать как самоучитель.</p>
+        <p class="lpc-desc" data-i18n="lib2.desc">Классика когнитивно-поведенческой терапии. Практические техники работы с депрессивными и тревожными мыслями.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Дэвид Бёрнс — один из ключевых популяризаторов когнитивной терапии Аарона Бека. Его книга «Хорошее самочувствие» стала одной из самых популярных книг по психологии всех времён: продано более 5 миллионов копий.</p>
+            <p>Это не просто описание КПТ, а <strong>рабочий инструмент</strong>: книга насыщена упражнениями, таблицами и конкретными техниками, которые можно применять самостоятельно.</p>
+            <h3>Что внутри</h3>
+            <ul>
+              <li>10 когнитивных искажений и как их распознать в своём мышлении</li>
+              <li>Техника «тройной колонки» для изменения мыслей</li>
+              <li>Методы работы с самокритикой и перфекционизмом</li>
+              <li>Поведенческие техники для выхода из депрессии</li>
+              <li>Стратегии работы с прокрастинацией и низкой мотивацией</li>
+            </ul>
+            <h3>Кому читать</h3>
+            <p>Тем, кто хочет понять механизм депрессии и тревоги и научиться с ними работать самостоятельно. Хороший старт перед терапией или в дополнение к ней.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>David Burns to jeden z głównych popularyzatorów terapii poznawczej Aarona Becka. Jego książka «Czuć się dobrze» stała się jedną z najpopularniejszych książek psychologicznych wszech czasów: sprzedano ponad 5 milionów egzemplarzy.</p>
+            <p>To nie tylko opis CBT, ale <strong>narzędzie do pracy</strong>: książka pełna jest ćwiczeń, tabel i konkretnych technik, które można stosować samodzielnie.</p>
+            <h3>Co w środku</h3>
+            <ul>
+              <li>10 zniekształceń poznawczych i jak je rozpoznać w swoim myśleniu</li>
+              <li>Technika «potrójnej kolumny» do zmiany myśli</li>
+              <li>Metody pracy z samokrytyką i perfekcjonizmem</li>
+              <li>Techniki behawioralne wychodzenia z depresji</li>
+              <li>Strategie pracy z prokrastynacją i niską motywacją</li>
+            </ul>
+            <h3>Dla kogo</h3>
+            <p>Dla tych, którzy chcą zrozumieć mechanizm depresji i lęku oraz nauczyć się z nimi pracować samodzielnie. Dobry start przed terapią lub jako jej uzupełnienie.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib3 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib3.title">Когда тело говорит «нет»</div>
         <div class="lpc-author" data-i18n="lib3.auth">Габор Матэ</div>
-        <p class="lpc-desc" data-i18n="lib3.desc">О связи между психологическими паттернами и хроническими заболеваниями. Матэ переосмысляет психосоматику через истории реальных пациентов.</p>
+        <p class="lpc-desc" data-i18n="lib3.desc">О связи между психологическими паттернами и хроническими заболеваниями.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Габор Матэ — канадский врач и исследователь, работавший с пациентами с хроническими заболеваниями. Его тезис: <strong>многие болезни — это «нет», которое тело произносит вместо нас</strong>, потому что психика научилась молчать.</p>
+            <p>Матэ разбирает биографии реальных пациентов с раком, болезнью Крона, рассеянным склерозом и другими заболеваниями и находит общие психологические паттерны: подавление эмоций, неспособность сказать «нет», хроническое угождение другим.</p>
+            <h3>Ключевые идеи</h3>
+            <ul>
+              <li>Длительное подавление эмоций нарушает иммунную и гормональную системы</li>
+              <li>Неспособность устанавливать границы коррелирует с рядом хронических заболеваний</li>
+              <li>Детский опыт формирует паттерны, которые тело «помнит» десятилетиями</li>
+              <li>Исцеление требует работы и с телом, и с психикой</li>
+            </ul>
+            <div class="lpc-highlight">«Стресс — это не то, что с нами происходит, а наша реакция на это, а реакция зависит от того, что мы несём внутри.» — Габор Матэ</div>
+            <h3>Кому читать</h3>
+            <p>Тем, кто страдает хроническими заболеваниями и чувствует, что физическое и психологическое связаны. Также полезна психологам, терапевтам, врачам.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>Gabor Maté to kanadyjski lekarz i badacz pracujący z pacjentami z chorobami przewlekłymi. Jego teza: <strong>wiele chorób to «nie», które ciało wypowiada zamiast nas</strong>, bo psychika nauczyła się milczeć.</p>
+            <p>Maté analizuje biografie prawdziwych pacjentów z rakiem, chorobą Crohna, stwardnieniem rozsianym i innymi schorzeniami i odnajduje wspólne wzorce psychologiczne: tłumienie emocji, niemożność powiedzenia «nie», chroniczne zadowalanie innych.</p>
+            <h3>Kluczowe idee</h3>
+            <ul>
+              <li>Długotrwałe tłumienie emocji zaburza układy odpornościowy i hormonalny</li>
+              <li>Niemożność stawiania granic koreluje z szeregiem chorób przewlekłych</li>
+              <li>Doświadczenia z dzieciństwa tworzą wzorce, które ciało «pamięta» przez dekady</li>
+              <li>Uzdrowienie wymaga pracy zarówno z ciałem, jak i z psychiką</li>
+            </ul>
+            <div class="lpc-highlight">«Stres to nie to, co nam się przydarza, ale nasza reakcja na to, a reakcja zależy od tego, co nosimy w sobie.» — Gabor Maté</div>
+            <h3>Dla kogo</h3>
+            <p>Dla osób cierpiących na choroby przewlekłe i odczuwających, że sfera fizyczna i psychologiczna są ze sobą powiązane. Przydatna też dla psychologów, terapeutów, lekarzy.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib4 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib4.title">Человек в поисках смысла</div>
         <div class="lpc-author" data-i18n="lib4.auth">Виктор Франкл</div>
-        <p class="lpc-desc" data-i18n="lib4.desc">Классика экзистенциальной психологии. Философия выживания и обретения смысла в самых тяжёлых обстоятельствах. Читается за один вечер, остаётся на всю жизнь.</p>
+        <p class="lpc-desc" data-i18n="lib4.desc">Классика экзистенциальной психологии. Философия выживания и обретения смысла в самых тяжёлых обстоятельствах.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Виктор Франкл — австрийский психиатр и создатель логотерапии. Книга состоит из двух частей: автобиографической — о выживании в концентрационных лагерях Второй мировой войны — и теоретической — о логотерапии как методе поиска смысла.</p>
+            <p>Главный тезис: <strong>у человека можно отнять всё, кроме свободы выбирать своё отношение к происходящему</strong>. Именно это давало людям силу выжить в невыносимых условиях.</p>
+            <h3>Ключевые идеи</h3>
+            <ul>
+              <li>Потребность в смысле — базовая человеческая потребность, не менее важная, чем другие</li>
+              <li>Смысл можно найти даже в страдании — если видеть в нём что-то большее, чем просто боль</li>
+              <li>Логотерапия работает не с прошлым, а с будущим и его смыслом</li>
+              <li>Экзистенциальный вакуум — одна из главных причин депрессии современного человека</li>
+            </ul>
+            <div class="lpc-highlight">«Между стимулом и реакцией есть пространство. В этом пространстве — наша свобода выбирать ответ.»</div>
+            <h3>Кому читать</h3>
+            <p>Всем. Особенно — тем, кто переживает кризис смысла, потерю, тяжёлую болезнь или чувствует пустоту несмотря на внешнее благополучие. Читается за 2–3 часа.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>Viktor Frankl to austriacki psychiatra i twórca logoterapii. Książka składa się z dwóch części: autobiograficznej — o przeżyciu w obozach koncentracyjnych II wojny światowej — i teoretycznej — o logoterapii jako metodzie poszukiwania sensu.</p>
+            <p>Główna teza: <strong>można człowiekowi odebrać wszystko, prócz wolności wyboru własnego stosunku do tego, co się dzieje</strong>. To właśnie dawało ludziom siłę przeżycia w nieznośnych warunkach.</p>
+            <h3>Kluczowe idee</h3>
+            <ul>
+              <li>Potrzeba sensu to podstawowa ludzka potrzeba, nie mniej ważna niż inne</li>
+              <li>Sens można znaleźć nawet w cierpieniu — jeśli widzieć w nim coś więcej niż tylko ból</li>
+              <li>Logoterapia pracuje nie z przeszłością, a z przyszłością i jej sensem</li>
+              <li>Egzystencjalna próżnia to jedna z głównych przyczyn depresji współczesnego człowieka</li>
+            </ul>
+            <div class="lpc-highlight">«Między bodźcem a reakcją jest przestrzeń. W tej przestrzeni leży nasza wolność wyboru odpowiedzi.»</div>
+            <h3>Dla kogo</h3>
+            <p>Dla wszystkich. Szczególnie dla przeżywających kryzys sensu, stratę, ciężką chorobę lub odczuwających pustkę pomimo zewnętrznego dobrobytu. Czyta się w 2–3 godziny.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib5 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib5.title">Терапия беспокойства</div>
         <div class="lpc-author" data-i18n="lib5.auth">Edmund Bourne</div>
         <p class="lpc-desc" data-i18n="lib5.desc">Исчерпывающее руководство по работе с тревожными расстройствами. Конкретные техники для панических атак, фобий, ГТР и социальной тревожности.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Эдмунд Борн — клинический психолог, специализирующийся на тревожных расстройствах. Эта книга — один из наиболее полных практических руководств по самопомощи при тревоге. Более 1 миллиона проданных копий.</p>
+            <p>Книга охватывает всё: от биологии тревоги до конкретных упражнений по каждому типу расстройства.</p>
+            <h3>Что внутри</h3>
+            <ul>
+              <li>Подробный разбор паникических атак, ГТР, социальной тревоги, фобий и ОКР</li>
+              <li>Техники релаксации, десенситизации, когнитивной реструктуризации</li>
+              <li>Программы экспозиции для фобий</li>
+              <li>Роль питания, физической нагрузки и сна в управлении тревогой</li>
+              <li>Когда нужна медикаментозная поддержка</li>
+            </ul>
+            <h3>Кому читать</h3>
+            <p>Тем, кто страдает от тревожных расстройств и хочет глубоко разобраться в теме. Хорошо работает в сочетании с терапией. Очень практичная.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>Edmund Bourne to psycholog kliniczny specjalizujący się w zaburzeniach lękowych. Ta książka to jedno z najbardziej kompleksowych praktycznych przewodników po samopomocy przy lęku. Ponad 1 milion sprzedanych egzemplarzy.</p>
+            <p>Książka obejmuje wszystko: od biologii lęku po konkretne ćwiczenia dla każdego rodzaju zaburzenia.</p>
+            <h3>Co w środku</h3>
+            <ul>
+              <li>Szczegółowe omówienie napadów paniki, GAD, lęku społecznego, fobii i OCD</li>
+              <li>Techniki relaksacji, desensytyzacji, restrukturyzacji poznawczej</li>
+              <li>Programy ekspozycji dla fobii</li>
+              <li>Rola diety, aktywności fizycznej i snu w zarządzaniu lękiem</li>
+              <li>Kiedy potrzebne jest wsparcie farmakologiczne</li>
+            </ul>
+            <h3>Dla kogo</h3>
+            <p>Dla cierpiących na zaburzenia lękowe i chcących głęboko zgłębić temat. Dobrze działa w połączeniu z terapią. Bardzo praktyczna.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib6 -->
       <div class="lpc" data-cat="book">
         <div class="lpc-badge book" data-i18n="lib.badge.book">Книга</div>
         <div class="lpc-title" data-i18n="lib6.title">Осознанность</div>
         <div class="lpc-author" data-i18n="lib6.auth">Марк Уильямс, Дэнни Пенман</div>
-        <p class="lpc-desc" data-i18n="lib6.desc">8-недельная программа снижения тревоги, стресса и депрессии. Основана на MBSR. Включает аудиоупражнения для медитации.</p>
+        <p class="lpc-desc" data-i18n="lib6.desc">8-недельная программа снижения тревоги, стресса и депрессии. Основана на MBSR.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <h3>О чём книга</h3>
+            <p>Марк Уильямс и Дэнни Пенман адаптировали программу MBSR (снижение стресса на основе осознанности) Джона Кабат-Зинна для широкой аудитории. Книга — это 8-недельный курс медитации с аудиоупражнениями.</p>
+            <p>Осознанность (mindfulness) — не просто релаксация. Это <strong>тренировка способности наблюдать за своими мыслями и чувствами, не вовлекаясь в них</strong>. Сотни исследований подтверждают её эффективность при депрессии, тревоге и стрессе.</p>
+            <h3>Структура программы</h3>
+            <ul>
+              <li>8 недель, каждая с конкретной темой и практиками</li>
+              <li>Медитации от 10 до 40 минут в день</li>
+              <li>Аудиофайлы с голосовыми инструкциями</li>
+              <li>Постепенное введение: от сканирования тела до медитации на сложные эмоции</li>
+            </ul>
+            <h3>Кому читать</h3>
+            <p>Тем, кто хочет снизить уровень стресса, научиться не «застревать» в тревожных мыслях и развить эмоциональную устойчивость. Подходит для начинающих без опыта медитации.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <h3>O czym jest książka</h3>
+            <p>Mark Williams i Danny Penman zaadaptowali program MBSR (redukcja stresu oparta na uważności) Jona Kabata-Zinna dla szerokiej publiczności. Książka to 8-tygodniowy kurs medytacji z ćwiczeniami audio.</p>
+            <p>Uważność (mindfulness) to nie tylko relaksacja. To <strong>trening zdolności obserwowania własnych myśli i uczuć bez angażowania się w nie</strong>. Setki badań potwierdzają jej skuteczność przy depresji, lęku i stresie.</p>
+            <h3>Struktura programu</h3>
+            <ul>
+              <li>8 tygodni, każdy z konkretnym tematem i praktykami</li>
+              <li>Medytacje od 10 do 40 minut dziennie</li>
+              <li>Pliki audio z prowadzonymi instrukcjami</li>
+              <li>Stopniowe wprowadzanie: od skanowania ciała do medytacji nad trudnymi emocjami</li>
+            </ul>
+            <h3>Dla kogo</h3>
+            <p>Dla chcących obniżyć poziom stresu, nauczyć się nie «utykać» w lękowych myślach i rozwinąć odporność emocjonalną. Odpowiednia dla początkujących bez doświadczenia w medytacji.</p>
+          </div>
+        </div>
       </div>
 
     </div>
 
+    <!-- ARTICLES & PRACTICES -->
     <div style="margin:3.5rem 0 .75rem;">
       <span class="section-tag" data-i18n="lib.sec.articles">📄 Статьи и практики</span>
     </div>
     <div class="lib-page-grid reveal">
 
+      <!-- lib7 -->
       <div class="lpc" data-cat="article">
         <div class="lpc-badge article" data-i18n="lib.badge.article">Статья</div>
         <div class="lpc-title" data-i18n="lib7.title">Самопомощь при панических атаках</div>
         <div class="lpc-author" data-i18n="lib.from.practice">Из личной практики</div>
-        <p class="lpc-desc" data-i18n="lib7.desc">Пошаговое руководство для ситуаций, когда паника накрывает здесь и сейчас. Техники дыхания, когнитивного переключения и работы с телом.</p>
+        <p class="lpc-desc" data-i18n="lib7.desc">Пошаговое руководство для ситуаций, когда паника накрывает здесь и сейчас.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Читать →</span>
+          <span data-lang="pl" style="display:none">Czytaj →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Паническая атака — это интенсивный выброс адреналина. Сердцебиение, нехватка воздуха, онемение, страх смерти или потери контроля. Это неприятно и пугающе, но физически не опасно. Понимание этого — первый шаг.</p>
+            <h3>Шаг 1: признайте, что это паника</h3>
+            <p>Скажите себе вслух или про себя: «Это паническая атака. Она не опасна. Я не умру. Это пройдёт.» Называние снижает активацию миндалевидного тела и включает рациональную часть мозга.</p>
+            <h3>Шаг 2: дыхание по квадрату</h3>
+            <p>Медленное дыхание с удлинённым выдохом активирует парасимпатическую систему:</p>
+            <ul>
+              <li>Вдох носом — 4 секунды</li>
+              <li>Задержка — 4 секунды</li>
+              <li>Выдох ртом — 6 секунд</li>
+              <li>Задержка — 2 секунды</li>
+            </ul>
+            <p>Повторите 6–8 раз. Фокус на счёте не оставляет места катастрофическим мыслям.</p>
+            <h3>Шаг 3: заземление 5-4-3-2-1</h3>
+            <p>Назовите: 5 вещей, которые видите → 4, которые слышите → 3, которые можете потрогать (и трогайте) → 2 запаха → 1 вкус. Это переключает внимание с внутреннего на внешнее.</p>
+            <h3>Шаг 4: не убегайте</h3>
+            <p>Желание немедленно уйти — сильное. Но покинуть ситуацию означает «подтвердить» мозгу, что опасность была реальной. Оставайтесь, если это возможно. Позвольте атаке пройти самой.</p>
+            <div class="lpc-highlight">Паника достигает пика примерно через 10 минут и потом спадает сама. Она не может нарастать бесконечно.</div>
+            <h3>После атаки</h3>
+            <p>Не нужно немедленно анализировать причину. Дайте телу восстановиться: выпейте воды, пройдитесь, лягте. Анализ — позже, когда адреналин схлынет.</p>
+            <p>Если атаки повторяются — обратитесь к специалисту. Паническое расстройство хорошо поддаётся КПТ.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Napad paniki to intensywny wyrzut adrenaliny. Kołatanie serca, brak powietrza, drętwienie, strach przed śmiercią lub utratą kontroli. To nieprzyjemne i przerażające, ale fizycznie niegroźne. Zrozumienie tego to pierwszy krok.</p>
+            <h3>Krok 1: rozpoznaj, że to panika</h3>
+            <p>Powiedz sobie na głos lub w myślach: «To napad paniki. Nie jest niebezpieczny. Nie umrę. To przejdzie.» Nazywanie obniża aktywację ciała migdałowatego i włącza racjonalną część mózgu.</p>
+            <h3>Krok 2: oddychanie po kwadracie</h3>
+            <p>Wolne oddychanie z wydłużonym wydechem aktywuje układ przywspółczulny:</p>
+            <ul>
+              <li>Wdech nosem — 4 sekundy</li>
+              <li>Wstrzymanie — 4 sekundy</li>
+              <li>Wydech ustami — 6 sekund</li>
+              <li>Wstrzymanie — 2 sekundy</li>
+            </ul>
+            <p>Powtórz 6–8 razy. Skupienie na liczeniu nie pozostawia miejsca na katastroficzne myśli.</p>
+            <h3>Krok 3: uziemienie 5-4-3-2-1</h3>
+            <p>Nazwij: 5 rzeczy, które widzisz → 4, które słyszysz → 3, które możesz dotknąć (i dotykaj) → 2 zapachy → 1 smak. To przełącza uwagę z wewnętrznego na zewnętrzne.</p>
+            <h3>Krok 4: nie uciekaj</h3>
+            <p>Pragnienie natychmiastowego wyjścia jest silne. Ale opuszczenie sytuacji oznacza «potwierdzenie» mózgowi, że zagrożenie było realne. Zostań, jeśli to możliwe. Pozwól atakowi przejść samemu.</p>
+            <div class="lpc-highlight">Panika osiąga szczyt po około 10 minutach i potem sama opada. Nie może narastać bez końca.</div>
+            <h3>Po ataku</h3>
+            <p>Nie trzeba od razu analizować przyczyny. Daj ciału wyzdrowieć: wypij wodę, przejdź się, połóż. Analiza — później, gdy adrenalina opadnie.</p>
+            <p>Jeśli ataki się powtarzają — zgłoś się do specjalisty. Zaburzenie paniczne dobrze poddaje się CBT.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib8 -->
       <div class="lpc" data-cat="practice">
         <div class="lpc-badge practice" data-i18n="lib.badge.practice">Практика</div>
         <div class="lpc-title" data-i18n="lib8.title">5 техник заземления при ПТСР</div>
         <div class="lpc-author" data-i18n="lib.from.practice">Из личной практики</div>
-        <p class="lpc-desc" data-i18n="lib8.desc">Техника 5-4-3-2-1, «холодная вода», «корни», дыхание по квадрату и другие методы быстрого возвращения в «здесь и сейчас». С подробными инструкциями.</p>
+        <p class="lpc-desc" data-i18n="lib8.desc">Техника 5-4-3-2-1, «холодная вода», дыхание по квадрату и другие методы возвращения в «здесь и сейчас».</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Читать →</span>
+          <span data-lang="pl" style="display:none">Czytaj →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Заземление — это не расслабление и не медитация. Это быстрый возврат в настоящее, когда флэшбэк, паника или диссоциация уводят вас из «здесь и сейчас».</p>
+            <h3>Техника 1: 5-4-3-2-1</h3>
+            <p>Назовите вслух (или про себя): 5 вещей, которые <strong>видите</strong> → 4, которые <strong>слышите</strong> → 3, которые <strong>чувствуете телом</strong> (пол под ногами, одежда, воздух) → 2 <strong>запаха</strong> → 1 <strong>вкус</strong>. Медленно и осознанно.</p>
+            <h3>Техника 2: холодная вода</h3>
+            <p>Умойтесь очень холодной водой. Подержите в руках кубик льда или приложите холодную бутылку к шее, запястьям, лицу. Холод активирует «рефлекс ныряльщика» — быстро снижает пульс и уровень возбуждения.</p>
+            <h3>Техника 3: давление и заземление</h3>
+            <p>Почувствуйте вес тела: потопайте ногами, почувствуйте пол. Надавите ладонями на стол или стену. Сожмите и разожмите кулаки 10 раз. Накройтесь тяжёлым одеялом.</p>
+            <h3>Техника 4: ориентировка</h3>
+            <p>Назовите: своё имя, дату, место, где вы находитесь. «Меня зовут [имя]. Сейчас [год]. Я нахожусь в [место]. Прямо сейчас я в безопасности.» Повторите несколько раз.</p>
+            <h3>Техника 5: категории</h3>
+            <p>Назовите 10 видов животных, 10 стран, 10 имён, начинающихся на «А»... Это занимает рабочую память и не оставляет места для флэшбэка.</p>
+            <div class="lpc-highlight">Важно: тренируйте эти техники в спокойном состоянии. В момент кризиса мозг не осваивает новое — он применяет уже знакомое.</div>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Uziemienie to nie relaksacja i nie medytacja. To szybki powrót do teraźniejszości, gdy flashback, panika lub dysocjacja odciągają cię od «tu i teraz».</p>
+            <h3>Technika 1: 5-4-3-2-1</h3>
+            <p>Nazwij na głos (lub w myślach): 5 rzeczy, które <strong>widzisz</strong> → 4, które <strong>słyszysz</strong> → 3, które <strong>czujesz ciałem</strong> (podłoga pod stopami, ubranie, powietrze) → 2 <strong>zapachy</strong> → 1 <strong>smak</strong>. Powoli i świadomie.</p>
+            <h3>Technika 2: zimna woda</h3>
+            <p>Umyj twarz bardzo zimną wodą. Potrzymaj w rękach kostkę lodu lub przyłóż zimną butelkę do karku, nadgarstków, twarzy. Zimno aktywuje «odruch nurkowy» — szybko obniża puls i poziom pobudzenia.</p>
+            <h3>Technika 3: nacisk i uziemienie</h3>
+            <p>Poczuj ciężar ciała: tupnij nogami, poczuj podłogę. Naciśnij dłońmi na stół lub ścianę. Zaciśnij i rozluźnij pięści 10 razy. Przykryj się ciężką kołdrą.</p>
+            <h3>Technika 4: orientacja</h3>
+            <p>Nazwij: swoje imię, datę, miejsce, w którym jesteś. «Mam na imię [imię]. Teraz jest [rok]. Jestem w [miejsce]. Właśnie teraz jestem bezpieczny.» Powtórz kilka razy.</p>
+            <h3>Technika 5: kategorie</h3>
+            <p>Nazwij 10 gatunków zwierząt, 10 krajów, 10 imion zaczynających się na «A»... To zajmuje pamięć roboczą i nie pozostawia miejsca na flashback.</p>
+            <div class="lpc-highlight">Ważne: ćwicz te techniki w spokojnym stanie. W momencie kryzysu mózg nie przyswaja nowego — stosuje to, co już zna.</div>
+          </div>
+        </div>
       </div>
 
+      <!-- lib9 -->
       <div class="lpc" data-cat="article">
         <div class="lpc-badge article" data-i18n="lib.badge.article">Статья</div>
         <div class="lpc-title" data-i18n="lib9.title">Как вести дневник настроения</div>
         <div class="lpc-author" data-i18n="lib.from.practice">Из личной практики</div>
-        <p class="lpc-desc" data-i18n="lib9.desc">Дневник настроения: простой, но мощный инструмент КПТ. Объясняю как заполнять, что отслеживать и как анализировать паттерны.</p>
+        <p class="lpc-desc" data-i18n="lib9.desc">Дневник настроения: простой инструмент КПТ. Как заполнять, что отслеживать и как анализировать паттерны.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Читать →</span>
+          <span data-lang="pl" style="display:none">Czytaj →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Дневник настроения — это один из базовых инструментов КПТ. Его главная цель: сделать невидимые паттерны видимыми. Когда вы начинаете записывать, вы начинаете замечать.</p>
+            <h3>Что записывать</h3>
+            <p>Минимальный вариант — три колонки:</p>
+            <ul>
+              <li><strong>Ситуация:</strong> что случилось? Кратко, конкретно</li>
+              <li><strong>Эмоция:</strong> что почувствовали? Назовите точно (тревога, грусть, злость, стыд...) и оцените интенсивность от 1 до 10</li>
+              <li><strong>Мысль:</strong> что пришло в голову в этот момент?</li>
+            </ul>
+            <p>Расширенный вариант добавляет:</p>
+            <ul>
+              <li><strong>Телесные ощущения:</strong> где в теле ощущается эмоция?</li>
+              <li><strong>Поведение:</strong> что вы сделали в ответ?</li>
+              <li><strong>Альтернативная мысль:</strong> какой ещё могла быть интерпретация?</li>
+            </ul>
+            <h3>Когда заполнять</h3>
+            <p>Идеально — сразу после значимого события, пока память свежа. Если не получается сразу — вечером вспомните 2–3 момента дня. Достаточно 5–10 минут.</p>
+            <h3>Как анализировать</h3>
+            <p>Раз в неделю перечитывайте записи. Ищите паттерны: какие ситуации вызывают самые сильные эмоции? Какие мысли повторяются? Есть ли когнитивные искажения?</p>
+            <div class="lpc-highlight">Исследования показывают: один только процесс записи уже снижает интенсивность эмоций. Называние снижает власть чувства.</div>
+            <h3>Практический совет</h3>
+            <p>Не нужно красивого блокнота или специального приложения. Обычный листок или заметки в телефоне. Важна регулярность, а не форма.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Dziennik nastroju to jedno z podstawowych narzędzi CBT. Jego główny cel: sprawić, żeby niewidoczne wzorce stały się widoczne. Kiedy zaczynasz zapisywać, zaczynasz zauważać.</p>
+            <h3>Co zapisywać</h3>
+            <p>Wersja minimalna — trzy kolumny:</p>
+            <ul>
+              <li><strong>Sytuacja:</strong> co się stało? Krótko, konkretnie</li>
+              <li><strong>Emocja:</strong> co poczułeś? Nazwij dokładnie (lęk, smutek, złość, wstyd...) i oceń intensywność od 1 do 10</li>
+              <li><strong>Myśl:</strong> co przyszło ci do głowy w tamtej chwili?</li>
+            </ul>
+            <p>Wersja rozszerzona dodaje:</p>
+            <ul>
+              <li><strong>Odczucia cielesne:</strong> gdzie w ciele odczuwasz emocję?</li>
+              <li><strong>Zachowanie:</strong> co zrobiłeś w odpowiedzi?</li>
+              <li><strong>Alternatywna myśl:</strong> jaka jeszcze mogła być interpretacja?</li>
+            </ul>
+            <h3>Kiedy wypełniać</h3>
+            <p>Idealnie — zaraz po znaczącym wydarzeniu, gdy pamięć jest świeża. Jeśli nie wychodzi od razu — wieczorem przypomnij sobie 2–3 momenty dnia. Wystarczy 5–10 minut.</p>
+            <h3>Jak analizować</h3>
+            <p>Raz w tygodniu przeczytaj ponownie notatki. Szukaj wzorców: jakie sytuacje wywołują najsilniejsze emocje? Jakie myśli się powtarzają? Czy są zniekształcenia poznawcze?</p>
+            <div class="lpc-highlight">Badania pokazują: sam proces zapisywania już obniża intensywność emocji. Nazywanie redukuje siłę odczucia.</div>
+            <h3>Praktyczna wskazówka</h3>
+            <p>Nie potrzeba ładnego notesu ani specjalnej aplikacji. Zwykła kartka lub notatki w telefonie. Liczy się regularność, a nie forma.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib10 -->
       <div class="lpc" data-cat="practice">
         <div class="lpc-badge practice" data-i18n="lib.badge.practice">Практика</div>
         <div class="lpc-title" data-i18n="lib10.title">Прогрессивная мышечная релаксация</div>
         <div class="lpc-author" data-i18n="lib.classic">Классическая техника</div>
-        <p class="lpc-desc" data-i18n="lib10.desc">Проверенная техника глубокого расслабления по Джекобсону. Особенно эффективна при тревоге, нарушениях сна и психосоматических симптомах.</p>
+        <p class="lpc-desc" data-i18n="lib10.desc">Проверенная техника глубокого расслабления по Джекобсону. Эффективна при тревоге, нарушениях сна и психосоматических симптомах.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Читать →</span>
+          <span data-lang="pl" style="display:none">Czytaj →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Прогрессивная мышечная релаксация (ПМР) — это метод, разработанный Эдмундом Джекобсоном в 1929 году. Идея простая: чтобы расслабить мышцу, сначала её нужно напрячь. После напряжения расслабление более глубокое.</p>
+            <p><strong>Время:</strong> 15–20 минут. <strong>Место:</strong> лёжа или сидя в удобном кресле. <strong>Состояние:</strong> закрытые глаза, не сразу после еды.</p>
+            <h3>Инструкция (полная версия)</h3>
+            <p>Напрягайте каждую группу мышц на 5–7 секунд, затем резко расслабляйте и удерживайте расслабление 20–30 секунд. Сосредоточьтесь на разнице между напряжением и расслаблением.</p>
+            <ol>
+              <li><strong>Кисти рук:</strong> сожмите кулаки → расслабьте</li>
+              <li><strong>Предплечья:</strong> согните руки в локтях, напрягите → расслабьте</li>
+              <li><strong>Плечи:</strong> поднимите к ушам → расслабьте</li>
+              <li><strong>Лицо:</strong> зажмурьтесь, наморщите лоб → расслабьте</li>
+              <li><strong>Шея:</strong> прижмите подбородок к груди → расслабьте</li>
+              <li><strong>Грудь:</strong> глубокий вдох, задержите → выдох, расслабьте</li>
+              <li><strong>Живот:</strong> напрягите мышцы живота → расслабьте</li>
+              <li><strong>Ягодицы:</strong> сожмите → расслабьте</li>
+              <li><strong>Бёдра:</strong> напрягите → расслабьте</li>
+              <li><strong>Икры:</strong> потяните стопы на себя → расслабьте</li>
+              <li><strong>Стопы:</strong> согните пальцы вниз → расслабьте</li>
+            </ol>
+            <div class="lpc-highlight">Регулярная практика ПМР (ежедневно 2–4 недели) снижает базовый уровень тревоги и улучшает качество сна. Результаты нарастают постепенно.</div>
+            <h3>Краткая версия (5 минут)</h3>
+            <p>Если нет времени на полную практику: напрягите всё тело сразу на 5 секунд — руки, ноги, лицо, живот — затем резко расслабьте. Повторите 3 раза. Это даёт быстрый эффект снижения напряжения.</p>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Progresywna relaksacja mięśni (PMR) to metoda opracowana przez Edmunda Jacobsona w 1929 roku. Pomysł jest prosty: żeby rozluźnić mięsień, trzeba go najpierw napiąć. Po napięciu rozluźnienie jest głębsze.</p>
+            <p><strong>Czas:</strong> 15–20 minut. <strong>Miejsce:</strong> leżąc lub siedząc w wygodnym fotelu. <strong>Stan:</strong> zamknięte oczy, nie zaraz po jedzeniu.</p>
+            <h3>Instrukcja (pełna wersja)</h3>
+            <p>Napinaj każdą grupę mięśni przez 5–7 sekund, następnie gwałtownie rozluźnij i utrzymuj rozluźnienie przez 20–30 sekund. Skup się na różnicy między napięciem a rozluźnieniem.</p>
+            <ol>
+              <li><strong>Dłonie:</strong> zaciśnij pięści → rozluźnij</li>
+              <li><strong>Przedramiona:</strong> zegnij ręce w łokciach, napnij → rozluźnij</li>
+              <li><strong>Ramiona:</strong> unieś do uszu → rozluźnij</li>
+              <li><strong>Twarz:</strong> zmruż oczy, zmarszcz czoło → rozluźnij</li>
+              <li><strong>Szyja:</strong> przyciśnij brodę do klatki → rozluźnij</li>
+              <li><strong>Klatka piersiowa:</strong> głęboki wdech, wstrzymaj → wydech, rozluźnij</li>
+              <li><strong>Brzuch:</strong> napnij mięśnie brzucha → rozluźnij</li>
+              <li><strong>Pośladki:</strong> zaciśnij → rozluźnij</li>
+              <li><strong>Uda:</strong> napnij → rozluźnij</li>
+              <li><strong>Łydki:</strong> przyciągnij stopy do siebie → rozluźnij</li>
+              <li><strong>Stopy:</strong> zegnij palce w dół → rozluźnij</li>
+            </ol>
+            <div class="lpc-highlight">Regularna praktyka PMR (codziennie przez 2–4 tygodnie) obniża bazowy poziom lęku i poprawia jakość snu. Wyniki narastają stopniowo.</div>
+            <h3>Wersja skrócona (5 minut)</h3>
+            <p>Jeśli nie ma czasu na pełną praktykę: napnij całe ciało naraz przez 5 sekund — ręce, nogi, twarz, brzuch — następnie gwałtownie rozluźnij. Powtórz 3 razy. To daje szybki efekt obniżenia napięcia.</p>
+          </div>
+        </div>
       </div>
 
+      <!-- lib11 -->
       <div class="lpc" data-cat="article">
         <div class="lpc-badge article" data-i18n="lib.badge.article">Статья</div>
         <div class="lpc-title" data-i18n="lib11.title">Адаптация в новой стране: почему это так тяжело</div>
         <div class="lpc-author" data-i18n="lib.from.practice">Из личной практики</div>
-        <p class="lpc-desc" data-i18n="lib11.desc">Переезд воспринимается как утрата. Grief of migration. Разбираю стадии адаптации и конкретные стратегии для тех, кто живёт между двумя культурами.</p>
+        <p class="lpc-desc" data-i18n="lib11.desc">Переезд воспринимается как утрата. Разбираю стадии адаптации и стратегии для тех, кто живёт между двумя культурами.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Читать →</span>
+          <span data-lang="pl" style="display:none">Czytaj →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Переезд в другую страну — это не просто смена адреса. Это потеря привычной среды, социальных связей, языка общения, культурного контекста, иногда профессионального статуса. Психологи называют это <strong>культурным горем</strong>.</p>
+            <h3>Стадии адаптации</h3>
+            <p>Большинство людей проходит через узнаваемые стадии:</p>
+            <ul>
+              <li><strong>Медовый месяц (1–3 месяца):</strong> всё новое и интересное, эйфория от перемен</li>
+              <li><strong>Фрустрация (3–12 месяцев):</strong> языковой барьер, культурные недопонимания, тоска по дому, усталость</li>
+              <li><strong>Адаптация (1–2 года):</strong> постепенное принятие, формирование новых связей</li>
+              <li><strong>Интеграция:</strong> ощущение «своего» в новом контексте при сохранении связи со своим происхождением</li>
+            </ul>
+            <h3>Почему так тяжело</h3>
+            <p>Несколько факторов делают миграцию особенно нагрузочной для психики:</p>
+            <ul>
+              <li><strong>Потеря идентичности.</strong> Дома мы знаем, кто мы есть. Там — нужно строить заново</li>
+              <li><strong>Языковая усталость.</strong> Постоянная работа на иностранном языке исчерпывает ресурсы</li>
+              <li><strong>Невидимое горе.</strong> «Ты же сам уехал — зачем жаловаться?» Горе от переезда часто не признаётся окружением</li>
+              <li><strong>Двойное одиночество.</strong> Не вполне здесь, не вполне там</li>
+            </ul>
+            <h3>Что помогает</h3>
+            <ul>
+              <li>Принять, что адаптация — это длинный процесс, а не разовое событие</li>
+              <li>Разрешить себе скучать по прошлому, не считая это слабостью</li>
+              <li>Создавать маленькие ритуалы, связывающие со своей культурой</li>
+              <li>Искать не «своих», а близких по духу — они могут быть другой национальности</li>
+              <li>Работать с психологом, который понимает миграционный опыт</li>
+            </ul>
+            <div class="lpc-highlight">Тоска по дому — это не слабость. Это признак того, что вы умеете привязываться и любить место. Это ресурс, а не проблема.</div>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Przeprowadzka do innego kraju to nie tylko zmiana adresu. To utrata znajomego środowiska, więzi społecznych, języka komunikacji, kontekstu kulturowego, czasem statusu zawodowego. Psycholodzy nazywają to <strong>żałobą kulturową</strong>.</p>
+            <h3>Etapy adaptacji</h3>
+            <p>Większość ludzi przechodzi przez rozpoznawalne etapy:</p>
+            <ul>
+              <li><strong>Miesiąc miodowy (1–3 miesiące):</strong> wszystko nowe i interesujące, euforia ze zmian</li>
+              <li><strong>Frustracja (3–12 miesięcy):</strong> bariera językowa, nieporozumienia kulturowe, tęsknota za domem, zmęczenie</li>
+              <li><strong>Adaptacja (1–2 lata):</strong> stopniowa akceptacja, tworzenie nowych więzi</li>
+              <li><strong>Integracja:</strong> poczucie «bycia u siebie» w nowym kontekście przy zachowaniu związku z własnym pochodzeniem</li>
+            </ul>
+            <h3>Dlaczego tak ciężko</h3>
+            <p>Kilka czynników sprawia, że migracja jest szczególnie obciążająca dla psychiki:</p>
+            <ul>
+              <li><strong>Utrata tożsamości.</strong> W domu wiemy, kim jesteśmy. Tam — trzeba budować od nowa</li>
+              <li><strong>Zmęczenie językowe.</strong> Ciągła praca w obcym języku wyczerpuje zasoby</li>
+              <li><strong>Niewidzialna żałoba.</strong> «Sam wyjechałeś — po co narzekasz?» Żałoba po wyjeździe często nie jest uznawana przez otoczenie</li>
+              <li><strong>Podwójna samotność.</strong> Nie do końca tu, nie do końca tam</li>
+            </ul>
+            <h3>Co pomaga</h3>
+            <ul>
+              <li>Zaakceptować, że adaptacja to długi proces, a nie jednorazowe wydarzenie</li>
+              <li>Pozwolić sobie tęsknić za przeszłością, nie uznając tego za słabość</li>
+              <li>Tworzyć małe rytuały łączące z własną kulturą</li>
+              <li>Szukać nie «swoich», a bliskich duchem — mogą być innej narodowości</li>
+              <li>Pracować z psychologiem rozumiejącym doświadczenie migracyjne</li>
+            </ul>
+            <div class="lpc-highlight">Tęsknota za domem to nie słabość. To znak, że potrafisz się przywiązywać i kochać miejsca. To zasób, nie problem.</div>
+          </div>
+        </div>
       </div>
 
+      <!-- lib12 -->
       <div class="lpc" data-cat="audio">
         <div class="lpc-badge audio" data-i18n="lib.badge.audio">Подкаст</div>
         <div class="lpc-title" data-i18n="lib12.title">Therapist Uncensored</div>
         <div class="lpc-author">Dr. Ann Kelley &amp; Sue Marriott</div>
-        <p class="lpc-desc" data-i18n="lib12.desc">Один из лучших подкастов о нейронауках и психотерапии. Разбирают теорию привязанности, травму, EMDR и КПТ. На английском, но понятно для широкой аудитории.</p>
+        <p class="lpc-desc" data-i18n="lib12.desc">Один из лучших подкастов о нейронауках и психотерапии. На английском, но понятно для широкой аудитории.</p>
+        <button class="lpc-read-btn">
+          <span data-lang="ru">Подробнее →</span>
+          <span data-lang="pl" style="display:none">Więcej →</span>
+        </button>
+        <div class="lpc-expand">
+          <div data-lang="ru">
+            <p>Therapist Uncensored — один из самых популярных психологических подкастов на английском языке. Ведут два клинических психолога: Энн Келли и Сью Маррьотт.</p>
+            <h3>О чём</h3>
+            <p>Подкаст переводит сложные нейронаучные и психотерапевтические концепции на понятный язык. Особое внимание уделяется:</p>
+            <ul>
+              <li>Теории привязанности (attachment theory) и её влиянию на взрослые отношения</li>
+              <li>Нейробиологии травмы и эмоциональной регуляции</li>
+              <li>EMDR, соматическим подходам, КПТ</li>
+              <li>Полифагальной теории Стивена Поргеса</li>
+            </ul>
+            <h3>Почему рекомендую</h3>
+            <p>Авторы умеют объяснять сложное просто. Каждый эпизод — это сочетание теории и практики: что происходит в мозге, почему мы реагируем именно так, и что с этим делать.</p>
+            <p>Подкаст бесплатный, доступен на Spotify, Apple Podcasts и на сайте therapistuncensored.com.</p>
+            <div class="lpc-highlight">Рекомендую начать с эпизодов о теории привязанности (attachment theory) — это фундамент для понимания большинства паттернов в отношениях.</div>
+          </div>
+          <div data-lang="pl" style="display:none">
+            <p>Therapist Uncensored to jeden z najpopularniejszych podcastów psychologicznych w języku angielskim. Prowadzą go dwie psycholożki kliniczne: Ann Kelley i Sue Marriott.</p>
+            <h3>O czym</h3>
+            <p>Podcast przekłada złożone koncepcje neurobiologiczne i psychoterapeutyczne na zrozumiały język. Szczególna uwaga poświęcona jest:</p>
+            <ul>
+              <li>Teorii przywiązania i jej wpływowi na dorosłe relacje</li>
+              <li>Neurobiologii traumy i regulacji emocjonalnej</li>
+              <li>EMDR, podejściom somatycznym, CBT</li>
+              <li>Teorii poliwagalnej Stephena Porgesa</li>
+            </ul>
+            <h3>Dlaczego polecam</h3>
+            <p>Autorki potrafią wyjaśniać trudne rzeczy w prosty sposób. Każdy odcinek to połączenie teorii i praktyki: co się dzieje w mózgu, dlaczego reagujemy właśnie tak i co z tym zrobić.</p>
+            <p>Podcast jest bezpłatny, dostępny na Spotify, Apple Podcasts i na stronie therapistuncensored.com.</p>
+            <div class="lpc-highlight">Polecam zacząć od odcinków o teorii przywiązania (attachment theory) — to fundament zrozumienia większości wzorców w relacjach.</div>
+          </div>
+        </div>
       </div>
 
     </div>
-
   </div>
 </section>
 
@@ -215,6 +724,7 @@
 <script src="js/translations.js"></script>
 <script src="js/main.js"></script>
 <script>
+  // Filter
   const filterBtns = document.querySelectorAll('.ftab');
   const items = document.querySelectorAll('.lpc[data-cat]');
   filterBtns.forEach(btn => {
@@ -225,6 +735,33 @@
       items.forEach(item => {
         item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
       });
+    });
+  });
+
+  // Accordion expand/collapse
+  document.querySelectorAll('.lpc-read-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const card = this.closest('.lpc');
+      const isOpen = card.classList.toggle('open');
+      const lang = localStorage.getItem('lang') || 'ru';
+      const spans = this.querySelectorAll('[data-lang]');
+      spans.forEach(s => {
+        s.style.display = s.dataset.lang === lang ? '' : 'none';
+      });
+      const openText  = lang === 'pl' ? 'Zwiń ↑'   : 'Свернуть ↑';
+      const closeText = lang === 'pl' ? 'Więcej →' : 'Подробнее →';
+      const readText  = lang === 'pl' ? 'Czytaj →' : 'Читать →';
+      // detect which button type by checking original text
+      const isRead = this.querySelector('[data-lang="ru"]')?.textContent.includes('Читать');
+      const closedLabel = isRead ? (lang === 'pl' ? 'Czytaj →' : 'Читать →')
+                                 : (lang === 'pl' ? 'Więcej →' : 'Подробнее →');
+      this.querySelector('[data-lang="ru"]').textContent = isOpen
+        ? 'Свернуть ↑'
+        : (isRead ? 'Читать →' : 'Подробнее →');
+      this.querySelector('[data-lang="pl"]').textContent = isOpen
+        ? 'Zwiń ↑'
+        : (isRead ? 'Czytaj →' : 'Więcej →');
     });
   });
 </script>

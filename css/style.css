@@ -836,6 +836,29 @@ ul { list-style: none; }
 .lpc-title { font-family: var(--font-d); font-size: .98rem; font-weight: 500; color: var(--text-primary); line-height: 1.3; margin-bottom: .35rem; }
 .lpc-author { font-size: .76rem; color: var(--text-muted); font-family: var(--font-m); margin-bottom: .7rem; }
 .lpc-desc { font-size: .84rem; color: var(--text-secondary); line-height: 1.65; }
+.lpc-read-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 1rem; font-size: .78rem; font-family: var(--font-m);
+  color: var(--accent-light); background: none; border: none;
+  cursor: pointer; padding: 0; letter-spacing: .04em; transition: opacity var(--trans);
+}
+.lpc-read-btn:hover { opacity: .75; }
+.lpc-expand {
+  display: none; margin-top: 1.25rem;
+  padding-top: 1.25rem; border-top: 1px solid var(--border);
+}
+.lpc.open .lpc-expand { display: block; }
+.lpc-expand h3 { font-size: .92rem; font-weight: 600; color: var(--text-primary); margin: 1.1rem 0 .4rem; }
+.lpc-expand h3:first-child { margin-top: 0; }
+.lpc-expand p { font-size: .84rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: .6rem; }
+.lpc-expand ul, .lpc-expand ol { font-size: .84rem; color: var(--text-secondary); line-height: 1.7; padding-left: 1.4rem; margin-bottom: .6rem; }
+.lpc-expand li { margin-bottom: .3rem; }
+.lpc-expand strong { color: var(--text-primary); }
+.lpc-expand .lpc-highlight {
+  background: rgba(67,97,238,.08); border-left: 3px solid var(--accent);
+  padding: .7rem 1rem; border-radius: 0 6px 6px 0; margin: .8rem 0;
+  font-size: .84rem; color: var(--text-secondary); line-height: 1.65;
+}
 
 /* ------ RESPONSIVE ------ */
 @media (max-width: 1024px) {
