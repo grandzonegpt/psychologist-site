@@ -1,5 +1,5 @@
 /* ================================================
-   САЙТ ПСИХОЛОГА — DARK BLUE MINIMALIST
+   САЙТ ПСИХОЛОГА - DARK BLUE MINIMALIST
    ================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400&display=swap');
@@ -18,7 +18,7 @@
   --accent-glow:    rgba(67, 97, 238, 0.14);
   --accent-glow-s:  rgba(67, 97, 238, 0.32);
 
-  /* Warm amber — for main CTAs and human touches */
+  /* Warm amber - for main CTAs and human touches */
   --warm:           #e8a050;
   --warm-dark:      #c4853d;
   --warm-glow:      rgba(232, 160, 80, 0.14);
@@ -92,7 +92,7 @@ ul { list-style: none; }
   max-width: 540px; line-height: 1.75; margin-top: 0.75rem;
 }
 
-/* Reveal — slow breathing fade, no vertical jump */
+/* Reveal - slow breathing fade, no vertical jump */
 .reveal {
   opacity: 0;
   transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -127,7 +127,7 @@ ul { list-style: none; }
   color: var(--accent-light);
   background: var(--accent-glow);
 }
-/* Warm CTA — used for hero and contact buttons */
+/* Warm CTA - used for hero and contact buttons */
 .btn-warm {
   background: var(--warm); color: #0a0a14;
   font-weight: 600;

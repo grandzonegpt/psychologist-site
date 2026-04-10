@@ -1,5 +1,5 @@
 /* ================================================
-   calendar.js — Interactive Booking Calendar
+   calendar.js - Interactive Booking Calendar
    ================================================ */
 
 (function () {

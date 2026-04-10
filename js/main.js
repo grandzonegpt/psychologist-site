@@ -1,5 +1,5 @@
 /* ================================================
-   main.js — Navigation, Scroll Reveal, Interactions
+   main.js - Navigation, Scroll Reveal, Interactions
    ================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
