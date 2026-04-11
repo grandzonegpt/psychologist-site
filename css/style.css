@@ -512,6 +512,51 @@ section.alt { background: var(--bg-secondary); }
 }
 .form-thanks.visible { display: block; }
 
+/* Booking split (calendar + form side by side) */
+.booking-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  max-width: 1040px;
+  margin: 0 auto;
+  align-items: start;
+}
+.booking-col { text-align: left; }
+.booking-col .price-strip { display: inline-block; margin-bottom: 24px; }
+.booking-col .gcal-host { display: block; margin: 4px 0 20px; }
+.booking-col .booking-note { margin: 0 0 32px; max-width: none; }
+.booking-col .refund-box { margin-bottom: 0; }
+.booking-col-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+.booking-col-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+.booking-form-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 32px;
+}
+.booking-form-card .contact-form input,
+.booking-form-card .contact-form textarea {
+  background: var(--bg-primary);
+}
+.booking-form-card .contact-form input:focus,
+.booking-form-card .contact-form textarea:focus { border-color: var(--accent-gold); }
+.booking-form-card .contact-form textarea { min-height: 110px; }
+.booking-form-card .form-thanks { margin-top: 0; }
+@media (max-width: 820px) {
+  .booking-split { grid-template-columns: 1fr; gap: 40px; }
+  .booking-form-card { padding: 24px; }
+}
+
 /* Posts */
 .post-card {
   background: var(--bg-elevated);

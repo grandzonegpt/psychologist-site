@@ -309,50 +309,54 @@
   <div class="container">
     <div class="eyebrow reveal">Запись</div>
     <h2 class="reveal">Запись на консультацию</h2>
-    <div class="booking-wrap reveal">
-      <div class="price-strip">
-        Сессия 50 минут <span class="gold">·</span> <span class="gold">180 PLN</span> <span class="gold">·</span> Карта или BLIK через Stripe
+    <div class="booking-split reveal">
+      <div class="booking-col">
+        <h3 class="booking-col-title">Записаться через календарь</h3>
+        <div class="price-strip">
+          Сессия 50 минут <span class="gold">·</span> <span class="gold">180 PLN</span>
+        </div>
+        <div class="gcal-host">
+          <a href="https://calendar.app.google/GkG9sYG7PmyUrukq6?hl=ru" target="_blank" rel="noopener noreferrer" class="gcal-fallback">Выбрать время</a>
+        </div>
+        <p class="booking-note">Доступные слоты обновляются автоматически. После выбора времени вы получите подтверждение на email.</p>
+        <div class="refund-box">
+          <h3>Гибкость и возврат</h3>
+          <p>Сессию можно отменить без оплаты за 24 часа до начала. При более поздней отмене оплата сохраняется. Если отмену делаю я, полный возврат или новое удобное время. В исключительных случаях, болезнь или форс-мажор, решаю индивидуально.</p>
+        </div>
       </div>
 
-      <div class="gcal-host">
-        <a href="https://calendar.app.google/GkG9sYG7PmyUrukq6?hl=ru" target="_blank" rel="noopener noreferrer" class="gcal-fallback">Выбрать время</a>
+      <div class="booking-col">
+        <div class="booking-form-card">
+          <h3 class="booking-col-title">Или напишите мне</h3>
+          <p class="booking-col-sub">Если хотите сначала задать вопрос</p>
+          <form class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Форма ещё не подключена к Formspree.">
+            <div class="field">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" required placeholder="Ваше имя">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="phone">Телефон (опционально)</label>
+              <input type="tel" id="phone" name="phone" placeholder="+48 ...">
+            </div>
+            <div class="field">
+              <label for="message">Кратко о ситуации</label>
+              <textarea id="message" name="message" rows="4" maxlength="1000" required placeholder="Несколько строк о том, с чем хотите прийти"></textarea>
+            </div>
+            <label class="consent">
+              <input type="checkbox" name="consent_privacy" required>
+              <span>Я согласен на обработку моих персональных данных согласно <a href="/privacy.html">политике конфиденциальности</a>.</span>
+            </label>
+            <div>
+              <button type="submit" class="btn btn-ghost">Отправить вопрос</button>
+            </div>
+          </form>
+          <div class="form-thanks">Спасибо. Отвечу на ваш email в течение 24 часов в будние дни.</div>
+        </div>
       </div>
-      <p class="booking-note">Доступные слоты обновляются автоматически. После выбора времени вы получите подтверждение на email.</p>
-
-      <div class="refund-box">
-        <h3>Гибкость и возврат</h3>
-        <p>Сессию можно отменить без оплаты за 24 часа до начала. При более поздней отмене оплата сохраняется. Если отмену делаю я, полный возврат или новое удобное время. В исключительных случаях, болезнь или форс-мажор, решаю индивидуально.</p>
-      </div>
-
-      <h3 style="margin-top:48px;">Есть вопрос перед записью?</h3>
-      <p class="muted">Напишите коротко, отвечу в течение 24 часов в будние дни.</p>
-
-      <form class="contact-form" action="FORMSPREE_ENDPOINT" method="POST" data-lang-alert="Форма ещё не подключена к Formspree.">
-        <div class="field">
-          <label for="name">Имя</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="field">
-          <label for="message">Кратко о ситуации</label>
-          <textarea id="message" name="message" maxlength="1000"></textarea>
-        </div>
-        <label class="consent">
-          <input type="checkbox" name="consent_rules" required>
-          <span>Принимаю <a href="/regulamin.html">регламент</a> и <a href="/privacy.html">политику конфиденциальности</a>.</span>
-        </label>
-        <label class="consent">
-          <input type="checkbox" name="consent_health" required>
-          <span>Согласен на обработку данных о здоровье для оказания психологических услуг (art. 9 ust. 2 lit. a RODO).</span>
-        </label>
-        <div>
-          <button type="submit" class="btn">Отправить вопрос</button>
-        </div>
-      </form>
-      <div class="form-thanks">Спасибо. Отвечу в течение 24 часов в будние дни на ваш email.</div>
     </div>
   </div>
 </section>
