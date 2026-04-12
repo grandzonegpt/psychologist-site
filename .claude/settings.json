@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip -p \"обо мне.docx\" word/document.xml)"
+    ]
+  }
+}
