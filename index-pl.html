@@ -328,7 +328,7 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Lub napisz do mnie</h3>
           <p class="booking-col-sub">Jeśli chcesz najpierw zadać pytanie</p>
-          <form class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Formularz nie jest jeszcze podpięty do Formspree.">
+          <form id="contact-form" class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Formularz nie jest jeszcze podpięty do Formspree.">
             <div class="field">
               <label for="name">Imię</label>
               <input type="text" id="name" name="name" required placeholder="Twoje imię">
@@ -353,7 +353,7 @@
               <button type="submit" class="btn btn-ghost">Wyślij zapytanie</button>
             </div>
           </form>
-          <div class="form-thanks">Dziękuję. Odpowiedź wyślę na podany email w ciągu 24 godzin roboczych.</div>
+          <div id="form-success" class="form-thanks" hidden>Dziękuję. Odpowiedź wyślę na podany email w ciągu 24 godzin roboczych.</div>
         </div>
       </div>
     </div>

@@ -77,9 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          form.style.display = 'none';
+          form.hidden = true;
           const thanks = form.parentElement.querySelector('.form-thanks');
-          if (thanks) thanks.classList.add('visible');
+          if (thanks) {
+            thanks.hidden = false;
+            thanks.classList.add('visible');
+          }
         }
       } catch (err) {
         console.error(err);

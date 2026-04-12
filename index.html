@@ -329,7 +329,7 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Или напишите мне</h3>
           <p class="booking-col-sub">Если хотите сначала задать вопрос</p>
-          <form class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Форма ещё не подключена к Formspree.">
+          <form id="contact-form" class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Форма ещё не подключена к Formspree.">
             <div class="field">
               <label for="name">Имя</label>
               <input type="text" id="name" name="name" required placeholder="Ваше имя">
@@ -354,7 +354,7 @@
               <button type="submit" class="btn btn-ghost">Отправить вопрос</button>
             </div>
           </form>
-          <div class="form-thanks">Спасибо. Отвечу на ваш email в течение 24 часов в будние дни.</div>
+          <div id="form-success" class="form-thanks" hidden>Спасибо. Отвечу на ваш email в течение 24 часов в будние дни.</div>
         </div>
       </div>
     </div>
