@@ -20,6 +20,16 @@ app.use('/js', express.static(path.join(__dirname, 'js'), {
   immutable: true
 }));
 
+// Sitemap and robots - explicit routes
+app.get('/sitemap.xml', (req, res) => {
+  res.setHeader('Content-Type', 'application/xml');
+  res.sendFile(path.join(__dirname, 'sitemap.xml'));
+});
+app.get('/robots.txt', (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+  res.sendFile(path.join(__dirname, 'robots.txt'));
+});
+
 // HTML and other files with no cache
 app.use(express.static(path.join(__dirname), {
   maxAge: 0
