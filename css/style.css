@@ -211,7 +211,7 @@ section.alt { background: var(--bg-secondary); }
 .hero-name {
   font-family: var(--font-serif);
   font-size: 26px;
-  color: var(--accent-gold);
+  color: var(--text-primary);
   margin-bottom: 8px;
 }
 .hero-creds {
