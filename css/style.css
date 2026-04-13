@@ -258,7 +258,7 @@ section.alt { background: var(--bg-secondary); }
 @media (max-width: 860px) {
   .hero { padding: 140px 0 80px; }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-  .hero-photo { max-width: 360px; margin: 0 auto; }
+  .hero-photo { max-width: 360px; margin: 0 auto; order: -1; }
 }
 
 /* Qualifications */
