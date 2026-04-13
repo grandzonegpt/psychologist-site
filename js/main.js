@@ -3,9 +3,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Fixed nav scrolled state
   const nav = document.querySelector('.site-nav');
+  const floatingCta = document.getElementById('floating-cta');
+  const bookingSection = document.getElementById('booking');
   const onScroll = () => {
-    if (!nav) return;
-    nav.classList.toggle('scrolled', window.scrollY > 20);
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+    if (floatingCta) {
+      const pastHero = window.scrollY > 600;
+      const nearBooking = bookingSection && bookingSection.getBoundingClientRect().top < window.innerHeight;
+      floatingCta.classList.toggle('visible', pastHero && !nearBooking);
+    }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();

@@ -907,5 +907,42 @@ select:focus-visible {
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 .reveal.d1 { transition-delay: .1s; }
+
+/* Floating CTA */
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 900;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity .3s, transform .3s;
+}
+.floating-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.floating-cta a {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 28px;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid var(--text-primary);
+  transition: background .25s, color .25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+}
+.floating-cta a:hover {
+  background: transparent;
+  color: var(--text-primary);
+}
 .reveal.d2 { transition-delay: .2s; }
 .reveal.d3 { transition-delay: .3s; }
