@@ -317,7 +317,9 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Или напишите мне</h3>
           <p class="booking-col-sub">Если хотите сначала задать вопрос</p>
-          <form id="contact-form" class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Форма ещё не подключена к Formspree.">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwvwgqkb" method="POST">
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_subject" value="Новая заявка с levashou.pl">
             <div class="field">
               <label for="name">Имя</label>
               <input type="text" id="name" name="name" required placeholder="Ваше имя">
@@ -341,6 +343,7 @@
             <div>
               <button type="submit" class="btn btn-ghost">Отправить вопрос</button>
             </div>
+            <div class="form-error" hidden>Ошибка отправки. Попробуйте ещё раз.</div>
           </form>
           <div id="form-success" class="form-thanks" hidden>Спасибо. Отвечу на ваш email в течение 24 часов в будние дни.</div>
         </div>
@@ -403,7 +406,9 @@
 <div class="cookie-banner" role="dialog" aria-label="Cookies">
   <p>Мы используем необходимые cookies для работы сайта. Подробнее в <a href="/privacy.html">политике конфиденциальности</a>.</p>
   <div class="cookie-actions">
-    <button type="button" class="accept-all" data-cookie="all">ОК</button>
+    <button type="button" class="accept-all" data-cookie="all">Принять все</button>
+    <button type="button" data-cookie="necessary">Только необходимые</button>
+    <button type="button" data-cookie="rejected">Отклонить</button>
   </div>
 </div>
 

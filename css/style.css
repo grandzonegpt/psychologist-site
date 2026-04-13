@@ -30,6 +30,7 @@ body {
   line-height: 1.7;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 img { max-width: 100%; display: block; }
@@ -187,7 +188,7 @@ section.alt { background: var(--bg-secondary); }
   align-items: center;
 }
 .hero-title {
-  font-size: clamp(36px, 5.2vw, 60px);
+  font-size: clamp(1.75rem, 6vw, 3.5rem);
   line-height: 1.1;
   margin-bottom: 36px;
 }
@@ -511,6 +512,7 @@ section.alt { background: var(--bg-secondary); }
   margin-top: 16px;
 }
 .form-thanks.visible { display: block; }
+.form-error { color: #e05555; font-size: 14px; margin-top: 8px; }
 
 /* Booking split (calendar + form side by side) */
 .booking-split {

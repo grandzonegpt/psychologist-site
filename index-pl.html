@@ -317,7 +317,9 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Lub proszę napisać do mnie</h3>
           <p class="booking-col-sub">Jeśli chcą Państwo najpierw zadać pytanie</p>
-          <form id="contact-form" class="contact-form" action="FORMSPREE_ENDPOINT_PLACEHOLDER" method="POST" data-lang-alert="Formularz nie jest jeszcze podpięty do Formspree.">
+          <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwvwgqkb" method="POST">
+            <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="_subject" value="Nowe zapytanie z levashou.pl">
             <div class="field">
               <label for="name">Imię</label>
               <input type="text" id="name" name="name" required placeholder="Twoje imię">
@@ -332,7 +334,7 @@
             </div>
             <div class="field">
               <label for="message">Krótko o sytuacji</label>
-              <textarea id="message" name="message" rows="4" maxlength="1000" required placeholder="Kilka zdań o tym, z czym chciałbyś przyjść"></textarea>
+              <textarea id="message" name="message" rows="4" maxlength="1000" required placeholder="Kilka zdań o tym, z czym chcesz przyjść"></textarea>
             </div>
             <label class="consent">
               <input type="checkbox" name="consent_privacy" required>
@@ -341,6 +343,7 @@
             <div>
               <button type="submit" class="btn btn-ghost">Wyślij zapytanie</button>
             </div>
+            <div class="form-error" hidden>Błąd wysyłki. Spróbuj ponownie.</div>
           </form>
           <div id="form-success" class="form-thanks" hidden>Dziękuję. Odpowiedź wyślę na podany email w ciągu 24 godzin roboczych.</div>
         </div>
@@ -403,7 +406,9 @@
 <div class="cookie-banner" role="dialog" aria-label="Cookies">
   <p>Używamy niezbędnych plików cookies do działania strony. Więcej w <a href="/privacy-pl.html">polityce prywatności</a>.</p>
   <div class="cookie-actions">
-    <button type="button" class="accept-all" data-cookie="all">OK</button>
+    <button type="button" class="accept-all" data-cookie="all">Akceptuj wszystkie</button>
+    <button type="button" data-cookie="necessary">Tylko niezbędne</button>
+    <button type="button" data-cookie="rejected">Odrzuć</button>
   </div>
 </div>
 

@@ -14,10 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
   if (toggle && links) {
-    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      links.classList.toggle('open');
+    });
     links.querySelectorAll('a').forEach(a =>
       a.addEventListener('click', () => links.classList.remove('open'))
     );
+    document.addEventListener('click', (e) => {
+      if (links.classList.contains('open') && !links.contains(e.target) && e.target !== toggle) {
+        links.classList.remove('open');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        links.classList.remove('open');
+      }
+    });
   }
 
   // Reveal on scroll
@@ -33,13 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cookie banner
   const banner = document.querySelector('.cookie-banner');
-  const CKEY = 'cookie_consent_v1';
+  const CKEY = 'cookie-consent';
   const stored = localStorage.getItem(CKEY);
   if (banner && !stored) banner.classList.add('visible');
 
   const saveConsent = (val) => {
-    const payload = { value: val, ts: Date.now() };
-    localStorage.setItem(CKEY, JSON.stringify(payload));
+    localStorage.setItem(CKEY, val);
     if (banner) banner.classList.remove('visible');
     if (val === 'all') loadAnalytics();
   };
@@ -49,16 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-cookie="necessary"]').forEach(b =>
     b.addEventListener('click', () => saveConsent('necessary'))
   );
+  document.querySelectorAll('[data-cookie="rejected"]').forEach(b =>
+    b.addEventListener('click', () => saveConsent('rejected'))
+  );
   document.querySelectorAll('[data-cookie="open"]').forEach(b =>
     b.addEventListener('click', () => banner && banner.classList.add('visible'))
   );
-  if (stored) {
-    try {
-      if (JSON.parse(stored).value === 'all') loadAnalytics();
-    } catch (e) {}
-  }
+  if (stored === 'all') loadAnalytics();
   function loadAnalytics() {
-    // Analytics would load here only after explicit consent.
+    // Analytics/tracking scripts load here only after explicit "all" consent.
   }
 
   // Contact form submit
@@ -66,10 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const endpoint = form.getAttribute('action');
-      if (!endpoint || endpoint.includes('FORMSPREE_ENDPOINT')) {
-        alert(form.dataset.langAlert || 'FORMSPREE_ENDPOINT не настроен');
-        return;
-      }
+      if (!endpoint) return;
+      const btn = form.querySelector('button[type="submit"]');
+      const errEl = form.querySelector('.form-error');
+      if (btn) btn.disabled = true;
+      if (errEl) errEl.hidden = true;
       try {
         const res = await fetch(endpoint, {
           method: 'POST',
@@ -83,9 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
             thanks.hidden = false;
             thanks.classList.add('visible');
           }
+        } else {
+          if (errEl) errEl.hidden = false;
+          if (btn) btn.disabled = false;
         }
       } catch (err) {
         console.error(err);
+        if (errEl) errEl.hidden = false;
+        if (btn) btn.disabled = false;
       }
     });
   });
