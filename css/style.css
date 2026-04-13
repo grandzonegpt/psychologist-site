@@ -467,7 +467,8 @@ section.alt { background: var(--bg-secondary); }
   transition: background .25s, color .25s;
 }
 .gcal-fallback:hover { background: transparent; color: var(--accent-gold); }
-.booking-note { font-size: 13px; color: var(--text-muted); margin: 0 auto 40px; max-width: 560px; }
+.booking-note { font-size: 13px; color: var(--text-muted); margin: 0 auto 12px; max-width: 560px; }
+.booking-note:last-of-type { margin-bottom: 32px; }
 
 .refund-box {
   text-align: left;
