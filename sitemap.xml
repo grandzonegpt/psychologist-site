@@ -2,43 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.levashou.pl/index.html</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.levashou.pl/index.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://www.levashou.pl/index-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.levashou.pl/index.html"/>
+    <loc>https://PLACEHOLDER_DOMAIN/index.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://PLACEHOLDER_DOMAIN/index.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://PLACEHOLDER_DOMAIN/index-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PLACEHOLDER_DOMAIN/index.html"/>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.levashou.pl/index-pl.html</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.levashou.pl/index.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://www.levashou.pl/index-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.levashou.pl/index.html"/>
+    <loc>https://PLACEHOLDER_DOMAIN/index-pl.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://PLACEHOLDER_DOMAIN/index.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://PLACEHOLDER_DOMAIN/index-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://PLACEHOLDER_DOMAIN/index.html"/>
     <priority>1.0</priority>
   </url>
-  <url><loc>https://www.levashou.pl/blog.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.levashou.pl/library.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.levashou.pl/library-pl.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.levashou.pl/privacy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.levashou.pl/privacy-pl.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.levashou.pl/regulamin.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.levashou.pl/regulamin-pl.html</loc><priority>0.3</priority></url>
-  <url><loc>https://www.levashou.pl/blog/anxiety-disorder.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/panic-attacks.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/ptsd.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/cbt.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/cognitive-distortions.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/grounding.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/sleep.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/burnout.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog/coaching-vs-psychology.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/anxiety-disorder.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/panic-attacks.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/ptsd.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/cbt.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/cognitive-distortions.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/grounding.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/sleep.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/burnout.html</loc><priority>0.6</priority></url>
-  <url><loc>https://www.levashou.pl/blog-pl/coaching-vs-psychology.html</loc><priority>0.6</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/library.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/library-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/privacy.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/privacy-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/regulamin.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/regulamin-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/anxiety-disorder.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/panic-attacks.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/ptsd.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/cbt.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/cognitive-distortions.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/grounding.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/sleep.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/burnout.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog/coaching-vs-psychology.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/anxiety-disorder.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/panic-attacks.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/ptsd.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/cbt.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/cognitive-distortions.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/grounding.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/sleep.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/burnout.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+  <url><loc>https://PLACEHOLDER_DOMAIN/blog-pl/coaching-vs-psychology.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
 </urlset>
