@@ -171,21 +171,23 @@ section.alt { background: var(--bg-secondary); }
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: transparent;
-  color: var(--text-secondary);
+  background: linear-gradient(180deg, #8fb0a0, #6a8e7e);
+  color: var(--bg-primary);
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border: 1px solid var(--text-muted);
-  border-radius: 2px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background .25s, color .25s, border-color .25s;
+  transition: transform .2s, box-shadow .2s, background .25s;
+  box-shadow: 0 2px 8px rgba(122, 158, 142, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
 }
-.btn:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
-.btn-ghost { background: transparent; color: var(--text-secondary); border-color: var(--text-muted); }
-.btn-ghost:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(122, 158, 142, 0.4), inset 0 1px 0 rgba(255,255,255,0.15); }
+.btn:active { transform: translateY(0); box-shadow: 0 1px 4px rgba(122, 158, 142, 0.3), inset 0 2px 4px rgba(0,0,0,0.2); }
+.btn-ghost { background: transparent; color: var(--accent); border: 1px solid var(--accent); box-shadow: none; }
+.btn-ghost:hover { background: linear-gradient(180deg, #8fb0a0, #6a8e7e); color: var(--bg-primary); border-color: transparent; box-shadow: 0 2px 8px rgba(122, 158, 142, 0.3); }
 
 /* Hero */
 .hero {
@@ -461,16 +463,17 @@ section.alt { background: var(--bg-secondary); }
 .gcal-fallback {
   display: inline-block;
   padding: 16px 32px;
-  background: transparent;
-  color: var(--text-secondary);
+  background: linear-gradient(180deg, #8fb0a0, #6a8e7e);
+  color: var(--bg-primary);
   font-size: 12px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border-radius: 2px;
-  border: 1px solid var(--text-muted);
-  transition: background .25s, color .25s, border-color .25s;
+  border-radius: 6px;
+  border: none;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(122, 158, 142, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
 }
-.gcal-fallback:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+.gcal-fallback:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(122, 158, 142, 0.4), inset 0 1px 0 rgba(255,255,255,0.15); }
 .booking-note { font-size: 13px; color: var(--text-muted); margin: 0 auto 12px; max-width: 560px; }
 .booking-note:last-of-type { margin-bottom: 32px; }
 
@@ -708,11 +711,13 @@ section.alt { background: var(--bg-secondary); }
 }
 .cookie-actions button:hover { border-color: var(--accent); color: var(--accent); }
 .cookie-actions .accept-all {
-  background: var(--accent);
+  background: linear-gradient(180deg, #8fb0a0, #6a8e7e);
   color: var(--bg-primary);
-  border-color: var(--accent);
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(122, 158, 142, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
 }
-.cookie-actions .accept-all:hover { background: transparent; color: var(--accent); }
+.cookie-actions .accept-all:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(122, 158, 142, 0.4); }
 
 /* Legal pages */
 .legal { padding: 160px 0 120px; max-width: 820px; margin: 0 auto; }
@@ -928,20 +933,20 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   padding: 14px 28px;
-  background: var(--accent);
+  background: linear-gradient(180deg, #8fb0a0, #6a8e7e);
   color: var(--bg-primary);
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border-radius: 2px;
-  border: 1px solid var(--accent);
-  transition: background .25s, color .25s;
-  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  border-radius: 6px;
+  border: none;
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 4px 20px rgba(122, 158, 142, 0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 .floating-cta a:hover {
-  background: transparent;
+  transform: translateY(-1px); box-shadow: 0 6px 24px rgba(122, 158, 142, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
   color: var(--accent);
 }
 .reveal.d2 { transition-delay: .2s; }
