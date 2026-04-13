@@ -1,0 +1,2 @@
+class s{constructor(){this.instances=void 0,this.instances=new Map}register(s){this.instances.set(s.boxName,s)}showEduTip(s){const e=this.instances.get(s);e&&e.showEduTipByAPI()}}window.opbox.services.register({serviceName:"opbox-edu-tip-service"},s);export{s as EduTipService};
+//# sourceMappingURL=index.es6_6345b889.js.map

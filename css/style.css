@@ -167,21 +167,21 @@ section.alt { background: var(--bg-secondary); }
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  background: var(--accent-gold);
-  color: var(--bg-primary);
+  background: transparent;
+  color: var(--text-secondary);
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  border: 1px solid var(--accent-gold);
+  border: 1px solid var(--text-muted);
   border-radius: 2px;
   cursor: pointer;
-  transition: background .25s, color .25s;
+  transition: background .25s, color .25s, border-color .25s;
 }
-.btn:hover { background: transparent; color: var(--accent-gold); }
-.btn-ghost { background: transparent; color: var(--accent-gold); }
-.btn-ghost:hover { background: var(--accent-gold); color: var(--bg-primary); }
+.btn:hover { background: var(--accent-gold); color: var(--bg-primary); border-color: var(--accent-gold); }
+.btn-ghost { background: transparent; color: var(--text-secondary); border-color: var(--text-muted); }
+.btn-ghost:hover { background: var(--accent-gold); color: var(--bg-primary); border-color: var(--accent-gold); }
 
 /* Hero */
 .hero {
@@ -228,7 +228,7 @@ section.alt { background: var(--bg-secondary); }
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent-gold-soft);
+  color: var(--text-muted);
   margin-bottom: 40px;
 }
 .hero-cta { margin-top: 12px; }
