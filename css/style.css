@@ -329,10 +329,7 @@ section.alt { background: var(--bg-secondary); }
 
 /* About */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 64px;
-  align-items: start;
+  max-width: 720px;
 }
 .about-photo {
   aspect-ratio: 4/5;
