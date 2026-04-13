@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=14">
+<link rel="stylesheet" href="/css/style.css?v=15">
 
 <script type="application/ld+json">
 {
@@ -139,8 +139,8 @@
 <header class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <h1 class="hero-title">Serce wali bez powodu. Głowa nie wyłącza się w nocy. Zasypiasz nad ranem, wstajesz bez sił. I tak codziennie.</h1>
-      <p class="hero-lead">Psychotraumatolog. Konsultacje po polsku, rosyjsku i białorusku.</p>
+      <h1 class="hero-title">Lęk, bezsenność, poczucie że wszystko się sypie. To można zmienić.</h1>
+      <p class="hero-lead">Psychotraumatolog. Pomagam zrozumieć i odzyskać grunt pod nogami. Konsultacje po polsku, rosyjsku i białorusku.</p>
       <div class="hero-name">Aliaksei Levashou</div>
       <div class="hero-creds">Psychotraumatolog · Psycholog · Podejście CBT</div>
       <div class="hero-schools">SWPS · INTEREGO · Superwizja</div>
@@ -404,6 +404,10 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Lub proszę napisać do mnie</h3>
           <p class="booking-col-sub">Jeśli chcesz najpierw zadać pytanie</p>
+          <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" class="telegram-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="18" height="18"><path d="M21 4L3 11l6 2 2 6 3-4 5 4 2-15z"/></svg>
+            Napisz na Telegram
+          </a>
           <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwvwgqkb" method="POST">
             <input type="text" name="_gotcha" style="display:none">
             <input type="hidden" name="_subject" value="Nowe zapytanie z levashou.pl">
@@ -412,16 +416,12 @@
               <input type="text" id="name" name="name" required placeholder="Twoje imię">
             </div>
             <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required placeholder="you@example.com">
+              <label for="email">Email lub telefon</label>
+              <input type="text" id="email" name="email" required placeholder="email lub +48...">
             </div>
             <div class="field">
-              <label for="phone">Telefon (opcjonalnie)</label>
-              <input type="tel" id="phone" name="phone" placeholder="+48 ...">
-            </div>
-            <div class="field">
-              <label for="message">Krótko o sytuacji</label>
-              <textarea id="message" name="message" rows="4" maxlength="1000" required placeholder="Kilka zdań o tym, z czym chcesz przyjść"></textarea>
+              <label for="message">O sytuacji (opcjonalnie)</label>
+              <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Możesz napisać parę słów, a możesz zostawić puste"></textarea>
             </div>
             <label class="consent">
               <input type="checkbox" name="consent_privacy" required>

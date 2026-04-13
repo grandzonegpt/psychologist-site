@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=14">
+<link rel="stylesheet" href="/css/style.css?v=15">
 
 <script type="application/ld+json">
 {
@@ -137,8 +137,8 @@
 <header class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <h1 class="hero-title">Сердце колотится без причины. Голова не выключается ночью. Засыпаете под утро, встаёте без сил. И так каждый день.</h1>
-      <p class="hero-lead">Психотравматолог. Консультации на польском, русском и белорусском.</p>
+      <h1 class="hero-title">Тревога, бессонница, ощущение что всё рушится. Это можно изменить.</h1>
+      <p class="hero-lead">Психотравматолог. Помогаю разобраться и вернуть опору. Консультации на русском, польском и белорусском.</p>
       <div class="hero-name">Алексей Левашев</div>
       <div class="hero-creds">Психотравматолог · Психолог · Подход КПТ</div>
       <div class="hero-schools">SWPS · INTEREGO · Супервизия</div>
@@ -401,6 +401,10 @@
         <div class="booking-form-card">
           <h3 class="booking-col-title">Или напишите мне</h3>
           <p class="booking-col-sub">Если хотите сначала задать вопрос</p>
+          <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" class="telegram-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="18" height="18"><path d="M21 4L3 11l6 2 2 6 3-4 5 4 2-15z"/></svg>
+            Написать в Telegram
+          </a>
           <form id="contact-form" class="contact-form" action="https://formspree.io/f/mwvwgqkb" method="POST">
             <input type="text" name="_gotcha" style="display:none">
             <input type="hidden" name="_subject" value="Новая заявка с levashou.pl">
@@ -409,16 +413,12 @@
               <input type="text" id="name" name="name" required placeholder="Твоё имя">
             </div>
             <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required placeholder="you@example.com">
+              <label for="email">Email или телефон</label>
+              <input type="text" id="email" name="email" required placeholder="email или +48...">
             </div>
             <div class="field">
-              <label for="phone">Телефон (опционально)</label>
-              <input type="tel" id="phone" name="phone" placeholder="+48 ...">
-            </div>
-            <div class="field">
-              <label for="message">Кратко о ситуации</label>
-              <textarea id="message" name="message" rows="4" maxlength="1000" required placeholder="Несколько строк о том, с чем хотите прийти"></textarea>
+              <label for="message">О ситуации (по желанию)</label>
+              <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Можешь написать пару слов, а можешь оставить пустым"></textarea>
             </div>
             <label class="consent">
               <input type="checkbox" name="consent_privacy" required>
