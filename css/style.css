@@ -404,9 +404,59 @@ section.alt { background: var(--bg-secondary); }
 .not-for li::before { content: '·'; color: var(--accent); margin-right: 14px; font-size: 20px; }
 .not-for .note { color: var(--text-muted); font-size: 13px; margin: 0; font-style: italic; }
 
+/* Reviews */
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+.review {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 32px;
+  margin: 0;
+  position: relative;
+}
+.review::before {
+  content: '\201C';
+  font-family: var(--font-serif);
+  font-size: 64px;
+  color: var(--accent);
+  line-height: 1;
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  opacity: 0.4;
+}
+.review p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 12px 0 20px;
+  padding-top: 24px;
+}
+.review cite {
+  font-style: normal;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+@media (max-width: 860px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+}
+
 /* FAQ */
 .faq { max-width: 800px; margin: 0 auto; }
 .faq details { border-bottom: 1px solid var(--border-subtle); padding: 24px 0; }
+.faq details .faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.faq details[open] .faq-content {
+  grid-template-rows: 1fr;
+}
+.faq details .faq-inner {
+  overflow: hidden;
+}
 .faq summary {
   cursor: pointer;
   list-style: none;
