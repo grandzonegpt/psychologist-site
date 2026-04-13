@@ -4,7 +4,26 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname)));
+app.disable('x-powered-by');
+
+// Static assets with long cache
+app.use('/assets', express.static(path.join(__dirname, 'assets'), {
+  maxAge: '1y',
+  immutable: true
+}));
+app.use('/css', express.static(path.join(__dirname, 'css'), {
+  maxAge: '1y',
+  immutable: true
+}));
+app.use('/js', express.static(path.join(__dirname, 'js'), {
+  maxAge: '1y',
+  immutable: true
+}));
+
+// HTML and other files with no cache
+app.use(express.static(path.join(__dirname), {
+  maxAge: 0
+}));
 
 // SPA fallback - serve index.html for unknown routes
 app.get('*', (req, res) => {
