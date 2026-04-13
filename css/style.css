@@ -360,7 +360,7 @@ section.alt { background: var(--bg-secondary); }
   padding: 36px 28px;
   transition: border-color .25s, transform .25s;
 }
-.card:hover { border-color: var(--accent-gold-soft); transform: translateY(-2px); }
+.card:hover { border-color: var(--border-subtle); transform: translateY(-2px); }
 .card-icon {
   width: 36px; height: 36px;
   color: var(--accent-gold);
@@ -374,7 +374,7 @@ section.alt { background: var(--bg-secondary); }
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
 @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
-.step { border-top: 1px solid var(--accent-gold-soft); padding-top: 28px; }
+.step { border-top: 1px solid var(--border-subtle); padding-top: 28px; }
 .step-num {
   font-family: var(--font-serif);
   font-size: 48px;
@@ -430,7 +430,7 @@ section.alt { background: var(--bg-secondary); }
 /* CBT facts */
 .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 @media (max-width: 900px) { .facts { grid-template-columns: 1fr; } }
-.fact { border-left: 1px solid var(--accent-gold-soft); padding-left: 28px; }
+.fact { border-left: 1px solid var(--border-subtle); padding-left: 28px; }
 .fact-label {
   font-size: 11px;
   text-transform: uppercase;
@@ -451,7 +451,7 @@ section.alt { background: var(--bg-secondary); }
 .price-strip {
   display: inline-block;
   padding: 14px 28px;
-  border: 1px solid var(--accent-gold-soft);
+  border: 1px solid var(--border-subtle);
   border-radius: 2px;
   font-size: 13px;
   letter-spacing: 0.05em;
@@ -509,7 +509,7 @@ section.alt { background: var(--bg-secondary); }
   transition: border-color .2s;
 }
 .contact-form input:focus,
-.contact-form textarea:focus { outline: none; border-color: var(--accent-gold-soft); }
+.contact-form textarea:focus { outline: none; border-color: var(--border-subtle); }
 .contact-form textarea { min-height: 120px; resize: vertical; }
 .consent {
   display: flex;
@@ -528,7 +528,7 @@ section.alt { background: var(--bg-secondary); }
 .form-thanks {
   display: none;
   padding: 32px;
-  border: 1px solid var(--accent-gold-soft);
+  border: 1px solid var(--border-subtle);
   border-radius: 4px;
   text-align: center;
   color: var(--text-primary);
@@ -593,7 +593,7 @@ section.alt { background: var(--bg-secondary); }
   gap: 14px;
   transition: border-color .25s, transform .25s;
 }
-.post-card:hover { border-color: var(--accent-gold-soft); transform: translateY(-2px); }
+.post-card:hover { border-color: var(--border-subtle); transform: translateY(-2px); }
 .post-card h3 { margin: 0; font-size: 22px; }
 .post-card p { color: var(--text-muted); font-size: 14px; margin: 0; }
 .post-card .read-more {
@@ -831,7 +831,7 @@ section.alt { background: var(--bg-secondary); }
   gap: 14px;
   transition: border-color .25s, transform .25s;
 }
-.blog-card:hover { border-color: var(--accent-gold-soft); transform: translateY(-2px); }
+.blog-card:hover { border-color: var(--border-subtle); transform: translateY(-2px); }
 .blog-card .card-cat {
   font-size: 11px;
   text-transform: uppercase;
