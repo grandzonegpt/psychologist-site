@@ -97,6 +97,8 @@ section.alt { background: var(--bg-secondary); }
   font-weight: 500;
   color: var(--text-primary);
   letter-spacing: 0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-brand .dot { color: var(--accent); }
 .nav-links {
