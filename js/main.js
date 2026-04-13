@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (floatingCta) {
       const pastHero = window.scrollY > 600;
       const nearBooking = bookingSection && bookingSection.getBoundingClientRect().top < window.innerHeight;
-      floatingCta.classList.toggle('visible', pastHero && !nearBooking);
+      const cookieBanner = document.querySelector('.cookie-banner');
+      const cookieVisible = cookieBanner && cookieBanner.classList.contains('visible');
+      floatingCta.classList.toggle('visible', pastHero && !nearBooking && !cookieVisible);
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
