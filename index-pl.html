@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=13">
+<link rel="stylesheet" href="/css/style.css?v=14">
 
 <script type="application/ld+json">
 {
@@ -181,17 +181,35 @@
     <div class="eyebrow reveal">O mnie</div>
     <div class="about-grid">
       <div class="about-photo reveal">
-        <!-- ZAMIEŃ NA MOJE PRAWDZIWE ZDJĘCIE -->
-        <!-- <img src="/assets/photo.jpg" alt="Aliaksei Levashou, psychotraumatolog, Warszawa" loading="lazy"> -->
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-          <div>/assets/photo.jpg</div>
-        </div>
+        <img src="/assets/photo.jpg" alt="Aliaksei Levashou, psychotraumatolog, Warszawa" loading="lazy">
       </div>
       <div class="about-body reveal d1">
         <h2>O mnie</h2>
         <p>Jestem psychotraumatologiem. Studiowałem na Uniwersytecie SWPS w Warszawie, specjalność: psychologia kliniczna i zdrowia. Psychotraumatologia jest tam osobną specjalizacją podyplomową, w Polsce to wciąż rzadkość. Równolegle uczę się w czteroletniej szkole terapii poznawczo-behawioralnej akredytowanej przez PTTPB.</p>
         <p>Przyjmuję dorosłych. Pracuję po polsku, po rosyjsku i po białorusku.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">przeprowadzonych sesji</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">CBT</span>
+        <span class="stat-label">podejście oparte na dowodach</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">PL / RU</span>
+        <span class="stat-label">języki konsultacji</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">Online</span>
+        <span class="stat-label">z dowolnego miejsca</span>
       </div>
     </div>
   </div>
@@ -246,21 +264,6 @@
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="eyebrow reveal">Granice pracy</div>
-    <h2 class="reveal">Z czym nie pracuję</h2>
-    <div class="not-for reveal">
-      <ul>
-        <li>Ostre stany psychotyczne</li>
-        <li>Czynne uzależnienia bez równoległej opieki specjalisty</li>
-        <li>Dzieci i młodzież</li>
-        <li>Ekspertyzy sądowe</li>
-      </ul>
-      <p class="note">W takich przypadkach polecę kolegę o odpowiedniej specjalizacji.</p>
-    </div>
-  </div>
-</section>
 
 <section id="process" class="alt">
   <div class="container">
@@ -318,18 +321,19 @@
     <h2 class="reveal">Co mówią klienci</h2>
     <div class="reviews-grid">
       <blockquote class="review reveal">
-        <p>Przyszłam z atakami paniki. W trzy miesiące nauczyłam się z nimi radzić. Aliaksei tłumaczył prosto i bez nacisku. Po raz pierwszy czuję, że rozumiem, co się ze mną dzieje.</p>
-        <cite>Anna, 32 lata</cite>
+        <p>Przyszłam z atakami paniki. W trzy miesiące nauczyłam się z nimi radzić. Aliaksei tłumaczył prosto i bez nacisku.</p>
+        <cite>Klientka, zaburzenia lękowe</cite>
       </blockquote>
       <blockquote class="review reveal d1">
-        <p>Po przeprowadzce do Polski nie mogłem spać, ciągły lęk. Myślałem, że tak mają wszyscy. Okazało się, że można żyć inaczej. Dziękuję za cierpliwość i spokojne podejście.</p>
-        <cite>Dmitrij, 28 lat</cite>
+        <p>Po przeprowadzce nie mogłem spać, ciągły lęk. Myślałem, że tak mają wszyscy. Okazało się, że można żyć inaczej.</p>
+        <cite>Klient, adaptacja po przeprowadzce</cite>
       </blockquote>
       <blockquote class="review reveal d2">
-        <p>Pracowaliśmy nad skutkami toksycznego związku. Po raz pierwszy ktoś nie zbagatelizował moich uczuć, a pomógł się w nich rozeznać. Teraz bardziej sobie ufam.</p>
-        <cite>Maria, 35 lat</cite>
+        <p>Pracowaliśmy nad skutkami toksycznego związku. Po raz pierwszy ktoś nie zbagatelizował moich uczuć, a pomógł się w nich rozeznać.</p>
+        <cite>Klientka, trauma relacyjna</cite>
       </blockquote>
     </div>
+    <p class="reveal" style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:14px;">Imiona zmienione. Opinie publikowane za zgodą klientów.</p>
   </div>
 </section>
 
@@ -367,6 +371,11 @@
       <details>
         <summary>W jakim języku odbywają się sesje?</summary>
         <div class="faq-content"><div class="faq-inner"><p>Konsultacje prowadzę po polsku i rosyjsku. Wybierz ten, w którym łatwiej mówić o trudnych sprawach.</p></div></div>
+      </details>
+      <details>
+        <summary>Z czym nie pracujesz?</summary>
+        <div class="faq-content"><div class="faq-inner"><p>Nie pracuję z ostrymi stanami psychotycznymi, z czynnymi uzależnieniami bez równoległej opieki specjalisty, z dziećmi i młodzieżą oraz nie sporządzam ekspertyz sądowych.</p>
+        <p>W takich przypadkach polecę kolegę o odpowiedniej specjalizacji.</p></div></div>
       </details>
     </div>
   </div>

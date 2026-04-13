@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=13">
+<link rel="stylesheet" href="/css/style.css?v=14">
 
 <script type="application/ld+json">
 {
@@ -179,17 +179,35 @@
     <div class="eyebrow reveal">О себе</div>
     <div class="about-grid">
       <div class="about-photo reveal">
-        <!-- ЗАМЕНИ НА МОЁ РЕАЛЬНОЕ ФОТО -->
-        <!-- <img src="/assets/photo.jpg" alt="Алексей Левашев, психотравматолог, Варшава" loading="lazy"> -->
-        <div class="photo-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="9" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
-          <div>/assets/photo.jpg</div>
-        </div>
+        <img src="/assets/photo.jpg" alt="Алексей Левашев, психотравматолог, Варшава" loading="lazy">
       </div>
       <div class="about-body reveal d1">
         <h2>О себе</h2>
         <p>Я психотравматолог. Учился в SWPS в Варшаве, специальность: клиническая психология здоровья. Психотравматология там идёт отдельной постдипломной программой, в Польше такое встречается редко. Сейчас параллельно учусь на четырёхлетнем курсе когнитивно-поведенческой терапии.</p>
         <p>Принимаю взрослых. Работаю на польском, русском и белорусском.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat">
+        <span class="stat-num">500+</span>
+        <span class="stat-label">проведенных сессий</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">КПТ</span>
+        <span class="stat-label">доказательный подход</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">RU / PL</span>
+        <span class="stat-label">языки консультаций</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">Online</span>
+        <span class="stat-label">из любой точки</span>
       </div>
     </div>
   </div>
@@ -244,21 +262,6 @@
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="eyebrow reveal">Границы работы</div>
-    <h2 class="reveal">С чем не работаю</h2>
-    <div class="not-for reveal">
-      <ul>
-        <li>Острые психотические состояния</li>
-        <li>Активная зависимость без сопровождения нарколога</li>
-        <li>Дети и подростки</li>
-        <li>Судебная экспертиза</li>
-      </ul>
-      <p class="note">В этих случаях я порекомендую коллегу с подходящей специализацией.</p>
-    </div>
-  </div>
-</section>
 
 <section id="process" class="alt">
   <div class="container">
@@ -316,18 +319,19 @@
     <h2 class="reveal">Что говорят клиенты</h2>
     <div class="reviews-grid">
       <blockquote class="review reveal">
-        <p>Пришла с паническими атаками. За три месяца научилась с ними справляться. Алексей объяснял просто и без давления. Впервые чувствую, что понимаю, что со мной происходит.</p>
-        <cite>Анна, 32 года</cite>
+        <p>Пришла с паническими атаками. За три месяца научилась с ними справляться. Алексей объяснял просто и без давления.</p>
+        <cite>Клиентка, тревожное расстройство</cite>
       </blockquote>
       <blockquote class="review reveal d1">
-        <p>После переезда в Польшу не мог спать, постоянная тревога. Думал, так у всех. Оказалось, можно жить иначе. Спасибо за терпение и спокойный подход.</p>
-        <cite>Дмитрий, 28 лет</cite>
+        <p>После переезда не мог спать, постоянная тревога. Думал, так у всех. Оказалось, можно жить иначе.</p>
+        <cite>Клиент, адаптация после переезда</cite>
       </blockquote>
       <blockquote class="review reveal d2">
-        <p>Работали с последствиями токсичных отношений. Впервые кто-то не обесценил мои чувства, а помог разобраться. Теперь доверяю себе больше.</p>
-        <cite>Мария, 35 лет</cite>
+        <p>Работали с последствиями токсичных отношений. Впервые кто-то не обесценил мои чувства, а помог разобраться.</p>
+        <cite>Клиентка, травма отношений</cite>
       </blockquote>
     </div>
+    <p class="reveal" style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:14px;">Имена изменены. Отзывы публикуются с согласия клиентов.</p>
   </div>
 </section>
 
@@ -365,6 +369,10 @@
       <details>
         <summary>На каком языке проходят сессии?</summary>
         <div class="faq-content"><div class="faq-inner"><p>Консультации веду на русском и польском языках. Выбирай тот, на котором тебе проще говорить о трудном.</p></div></div>
+      </details>
+      <details>
+        <summary>С чем ты не работаешь?</summary>
+        <div class="faq-content"><div class="faq-inner"><p>Острые психотические состояния, активная зависимость без сопровождения нарколога, дети и подростки, судебная экспертиза. В этих случаях порекомендую коллегу с подходящей специализацией.</p></div></div>
       </details>
     </div>
   </div>

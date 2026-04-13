@@ -404,6 +404,12 @@ section.alt { background: var(--bg-secondary); }
 .not-for li::before { content: '·'; color: var(--accent); margin-right: 14px; font-size: 20px; }
 .not-for .note { color: var(--text-muted); font-size: 13px; margin: 0; font-style: italic; }
 
+/* Stats strip */
+.stats-strip { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+.stat-num { display: block; font-family: Georgia, serif; font-size: 28px; color: var(--accent); font-weight: 600; }
+.stat-label { display: block; font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+
 /* Reviews */
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
 .review {
@@ -440,6 +446,7 @@ section.alt { background: var(--bg-secondary); }
   letter-spacing: 0.05em;
 }
 @media (max-width: 860px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .reviews-grid { grid-template-columns: 1fr; }
 }
 
