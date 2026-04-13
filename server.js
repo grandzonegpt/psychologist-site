@@ -5,6 +5,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', 'upgrade-insecure-requests');
+  next();
+});
 
 // Static assets with long cache
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {
