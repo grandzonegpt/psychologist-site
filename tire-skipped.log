@@ -1,0 +1,4 @@
+# tire-skipped.log
+# Cases where " - " was NOT replaced (intentionally kept):
+# All instances of "GoalCoach - Aliaksei Levashou" in footer company data — company name, not a dash-as-tire.
+# No other ambiguous cases found.
