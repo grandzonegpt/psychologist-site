@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const onScroll = () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
     if (floatingCta) {
-      const pastHero = window.scrollY > 600;
-      const nearBooking = bookingSection && bookingSection.getBoundingClientRect().top < window.innerHeight;
+      const pastHero = window.scrollY > 400;
+      const atBooking = bookingSection && bookingSection.getBoundingClientRect().top < window.innerHeight * 0.5;
       const cookieBanner = document.querySelector('.cookie-banner');
       const cookieVisible = cookieBanner && cookieBanner.classList.contains('visible');
-      floatingCta.classList.toggle('visible', pastHero && !nearBooking && !cookieVisible);
+      floatingCta.classList.toggle('visible', pastHero && !atBooking && !cookieVisible);
     }
   };
   window.addEventListener('scroll', onScroll, { passive: true });
