@@ -271,7 +271,7 @@ section.alt { background: var(--bg-secondary); }
 .quals-main {
   font-family: var(--font-serif);
   font-size: clamp(44px, 6vw, 64px);
-  color: var(--accent-gold);
+  color: var(--text-primary);
   margin: 0 0 14px;
   font-weight: 400;
   line-height: 1.1;
@@ -286,7 +286,7 @@ section.alt { background: var(--bg-secondary); }
 .quals-divider {
   width: 60%;
   height: 1px;
-  background: var(--accent-gold-soft);
+  background: var(--border-subtle);
   margin: 48px auto;
   border: none;
 }
@@ -298,7 +298,7 @@ section.alt { background: var(--bg-secondary); }
 }
 .quals-item {
   padding: 0 48px;
-  border-right: 1px solid var(--accent-gold-soft);
+  border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -308,7 +308,7 @@ section.alt { background: var(--bg-secondary); }
 .quals-name {
   font-family: var(--font-serif);
   font-size: clamp(26px, 3vw, 32px);
-  color: var(--accent-gold);
+  color: var(--text-primary);
   margin-bottom: 10px;
   font-weight: 400;
 }
