@@ -358,7 +358,7 @@ section.alt { background: var(--bg-secondary); }
   padding: 36px 28px;
   transition: border-color .25s, transform .25s;
 }
-.card:hover { border-color: var(--border-subtle); transform: translateY(-2px); }
+.card:hover { border-color: rgba(245, 241, 232, 0.3); transform: translateY(-2px); }
 .card-icon {
   width: 36px; height: 36px;
   color: var(--accent);
