@@ -12,8 +12,11 @@
 <link rel="alternate" hreflang="x-default" href="https://levashou.pl/burnout-page.html">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://levashou.pl/burnout-page.html">
 <meta property="og:title" content="Выгорание. Психолог в Варшаве">
 <meta property="og:description" content="Помощь при выгорании. КПТ с доказанной эффективностью.">
+<meta property="og:image" content="https://levashou.pl/assets/og.jpg">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +29,7 @@
 
 <nav class="site-nav" aria-label="Главная навигация">
   <div class="nav-inner">
-    <a href="/index.html" class="nav-brand">Алексей Левашев<span class="dot">.</span></a>
+    <a href="/" class="nav-brand">Алексей Левашев<span class="dot">.</span></a>
     <div class="lang-mobile" aria-label="Язык"><a href="/burnout-page.html" class="active">RU</a>
         <span class="sep">|</span>
         <a href="/burnout-page-pl.html">PL</a></div>
@@ -34,13 +37,13 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <div class="nav-links" id="nav-links">
-      <a href="/index.html#about">О себе</a>
-      <a href="/index.html#services">Направления</a>
-      <a href="/index.html#process">Как работаем</a>
-      <a href="/index.html#faq">Вопросы</a>
+      <a href="/#about">О себе</a>
+      <a href="/#services">Направления</a>
+      <a href="/#process">Как работаем</a>
+      <a href="/#faq">Вопросы</a>
       <a href="/blog.html">Блог</a>
       <a href="/library.html">Библиотека</a>
-      <a href="/index.html#booking">Записаться</a>
+      <a href="/#booking">Записаться</a>
       <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
       <div class="lang-switch" aria-label="Язык">
         <a href="/burnout-page.html" class="active">RU</a>
@@ -143,11 +146,17 @@
   </div>
 </section>
 
+<section style="padding:40px 0 0;">
+  <div class="container" style="max-width:720px;text-align:center;">
+    <p style="color:var(--text-muted);font-size:14px;">Похожие темы: <a href="/anxiety.html">Тревога</a> · <a href="/panic.html">Паника</a> · <a href="/not-sure.html">Не знаю, что со мной</a></p>
+  </div>
+</section>
+
 <div class="not-sure-cta">
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Выгорание не проходит от ещё одного отпуска. Но с ним можно разобраться за несколько месяцев.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/index.html#booking" class="btn">Записаться на консультацию</a>
+      <a href="/#booking" class="btn">Записаться на консультацию</a>
       <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Бесплатное знакомство 15 мин</a>
     </div>
   </div>
@@ -164,9 +173,9 @@
       </div>
       <div>
         <h4>Навигация</h4>
-        <a href="/index.html#about">О себе</a>
-        <a href="/index.html#services">Направления</a>
-        <a href="/index.html#booking">Записаться</a>
+        <a href="/#about">О себе</a>
+        <a href="/#services">Направления</a>
+        <a href="/#booking">Записаться</a>
       </div>
       <div>
         <h4>Материалы</h4>
@@ -196,6 +205,13 @@
   </div>
 </div>
 
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Выгорание — это вообще к психологу?","acceptedAnswer":{"@type":"Answer","text":"Иногда надо сменить работу. Но если сменишь, не разобравшись, почему выгорел, есть риск повторить то же самое на новом месте."}},
+{"@type":"Question","name":"Получится работать параллельно с терапией?","acceptedAnswer":{"@type":"Answer","text":"Да, большинство моих клиентов с выгоранием работают параллельно. Сессия раз в неделю, 50 минут. Этого достаточно."}},
+{"@type":"Question","name":"Сколько сессий нужно?","acceptedAnswer":{"@type":"Answer","text":"Обычно 8-14 сессий. Если это в основном рабочие привычки — быстрее. Если глубже (тревога, перфекционизм) — чуть дольше."}}
+]}
+</script>
 <script src="/js/main.js?v=9"></script>
 </body>
 </html>

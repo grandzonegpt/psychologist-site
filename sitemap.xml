@@ -1,46 +1,324 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Main pages -->
   <url>
-    <loc>https://levashou.pl/index.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/index.html"/>
+    <loc>https://levashou.pl/</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/index-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/"/>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://levashou.pl/index-pl.html</loc>
-    <lastmod>2026-04-13</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/index.html"/>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/index-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/index.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/"/>
     <priority>1.0</priority>
   </url>
-  <url><loc>https://levashou.pl/blog.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/library.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/library-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/privacy.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
-  <url><loc>https://levashou.pl/privacy-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
-  <url><loc>https://levashou.pl/regulamin.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
-  <url><loc>https://levashou.pl/regulamin-pl.html</loc><lastmod>2026-04-13</lastmod><priority>0.5</priority></url>
-  <url><loc>https://levashou.pl/blog/anxiety-disorder.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/panic-attacks.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/ptsd.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/cbt.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/cognitive-distortions.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/grounding.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/sleep.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/burnout.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog/coaching-vs-psychology.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/anxiety-disorder.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/panic-attacks.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/ptsd.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/cbt.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/cognitive-distortions.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/grounding.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/sleep.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/burnout.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
-  <url><loc>https://levashou.pl/blog-pl/coaching-vs-psychology.html</loc><lastmod>2026-04-13</lastmod><priority>0.8</priority></url>
+
+  <!-- Landing pages: panic -->
+  <url>
+    <loc>https://levashou.pl/panic.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/panic.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/panic-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/panic.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/panic-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/panic.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/panic-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/panic.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing pages: anxiety -->
+  <url>
+    <loc>https://levashou.pl/anxiety.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/anxiety-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/anxiety.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/anxiety-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/anxiety-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/anxiety.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing pages: burnout -->
+  <url>
+    <loc>https://levashou.pl/burnout-page.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/burnout-page.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/burnout-page-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/burnout-page.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/burnout-page-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/burnout-page.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/burnout-page-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/burnout-page.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing pages: not-sure -->
+  <url>
+    <loc>https://levashou.pl/not-sure.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/not-sure.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/not-sure-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/not-sure.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/not-sure-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/not-sure.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/not-sure-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/not-sure.html"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Landing pages: for-loved-ones -->
+  <url>
+    <loc>https://levashou.pl/for-loved-ones.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/for-loved-ones.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/for-loved-ones-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/for-loved-ones.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/for-loved-ones-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/for-loved-ones.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/for-loved-ones-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/for-loved-ones.html"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Glossary -->
+  <url>
+    <loc>https://levashou.pl/glossary.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/glossary-pl.html</loc>
+    <lastmod>2026-04-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary.html"/>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog / Library -->
+  <url>
+    <loc>https://levashou.pl/blog.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/blog.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/blog.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/library.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/library.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/library-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/library.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/library-pl.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/library.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/library-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/library.html"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://levashou.pl/privacy.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/privacy-pl.html"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/privacy-pl.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/privacy-pl.html"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/regulamin.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/regulamin-pl.html"/>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/regulamin-pl.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/regulamin.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/regulamin-pl.html"/>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Blog articles RU -->
+  <url>
+    <loc>https://levashou.pl/blog/anxiety-disorder.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/anxiety-disorder.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/anxiety-disorder.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/panic-attacks.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/panic-attacks.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/panic-attacks.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/ptsd.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/ptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/ptsd.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/cbt.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/cbt.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/cbt.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/cognitive-distortions.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/cognitive-distortions.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/cognitive-distortions.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/grounding.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/grounding.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/grounding.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/sleep.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/sleep.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/sleep.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/burnout.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/burnout.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/burnout.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/coaching-vs-psychology.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/coaching-vs-psychology.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/coaching-vs-psychology.html"/>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog articles PL -->
+  <url>
+    <loc>https://levashou.pl/blog-pl/anxiety-disorder.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/anxiety-disorder.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/anxiety-disorder.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/panic-attacks.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/panic-attacks.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/panic-attacks.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/ptsd.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/ptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/ptsd.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/cbt.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/cbt.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/cbt.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/cognitive-distortions.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/cognitive-distortions.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/cognitive-distortions.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/grounding.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/grounding.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/grounding.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/sleep.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/sleep.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/sleep.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/burnout.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/burnout.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/burnout.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/coaching-vs-psychology.html</loc>
+    <lastmod>2026-04-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/coaching-vs-psychology.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/coaching-vs-psychology.html"/>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -34,6 +34,15 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'robots.txt'));
 });
 
+// Redirect /index.html → / and /index-pl.html → /pl (avoid duplicate content)
+app.get('/index.html', (req, res) => {
+  res.redirect(301, '/');
+});
+// Serve index.html at /
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 // HTML and other files with no cache
 app.use(express.static(path.join(__dirname), {
   maxAge: 0
