@@ -242,6 +242,13 @@ section.alt { background: var(--bg-secondary); }
   margin-bottom: 40px;
 }
 .hero-cta { margin-top: 12px; }
+.hero-trust {
+  margin-top: 20px; font-size: 13px; color: var(--text-muted);
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+}
+.hero-trust a { color: var(--text-muted); border-bottom: 1px dotted var(--text-muted); }
+.hero-trust a:hover { color: var(--accent); border-color: var(--accent); }
+.hero-trust .sep { opacity: 0.5; }
 
 .hero-photo {
   position: relative;
