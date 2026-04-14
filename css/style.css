@@ -1589,9 +1589,15 @@ select:focus-visible {
   }
 }
 
-/* Reveal */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* Reveal: progressive enhancement.
+   Default = visible. JS (if present and supported) adds .js-reveal-ready to <html>,
+   which hides .reveal until it gets .visible. No JS = all visible, always. */
+.reveal { transition: opacity .9s ease, transform .9s ease; }
+.js-reveal-ready .reveal { opacity: 0; transform: translateY(24px); }
+.js-reveal-ready .reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
+}
 .reveal.d1 { transition-delay: .1s; }
 
 /* Floating CTA */

@@ -41,16 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // Reveal on scroll (progressive enhancement)
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length) {
+    document.documentElement.classList.add('js-reveal-ready');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+    // Safety net: if anything is still hidden after 2s (e.g. inside initially
+    // hidden tabs, collapsed details, off-screen layouts), force it visible.
+    setTimeout(() => {
+      reveals.forEach(el => el.classList.add('visible'));
+    }, 2000);
+  }
 
   // Counter animation for 500+
   const counterEl = document.querySelector('.stat-num[data-count]');
@@ -318,29 +327,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Anxiety journal
-  const journalBtn = document.querySelector('.journal-btn');
-  if (journalBtn) {
-    const lang = document.documentElement.lang;
-    const responses = lang === 'pl' ? [
-      'To, co napisałeś, jest ważne. Samo nazwanie tego, co czujesz, już zmniejsza napięcie.',
-      'Wiele osób czuje podobnie. Nie musisz z tym radzić sobie sam.',
-      'Zwróć uwagę, gdzie w ciele czujesz to napięcie. Spróbuj oddychać w to miejsce.',
-      'Myśli krążą, bo mózg próbuje znaleźć rozwiązanie. Czasem wystarczy je po prostu wypisać.',
-      'To, co czujesz, ma sens. Nawet jeśli teraz trudno to ogarnąć.'
-    ] : [
-      'То, что ты написал, важно. Само по себе называние того, что чувствуешь, уже снижает напряжение.',
-      'Многие чувствуют похоже. Не обязательно справляться с этим в одиночку.',
-      'Обрати внимание, где в теле ты чувствуешь это напряжение. Попробуй дышать в это место.',
-      'Мысли крутятся, потому что мозг ищет решение. Иногда достаточно просто их выписать.',
-      'То, что ты чувствуешь, имеет смысл. Даже если сейчас трудно это разложить по полочкам.'
-    ];
-    journalBtn.addEventListener('click', () => {
-      const textarea = document.querySelector('.journal-textarea');
-      const responseEl = document.querySelector('.journal-response');
-      if (!textarea || !responseEl || !textarea.value.trim()) return;
-      responseEl.textContent = responses[Math.floor(Math.random() * responses.length)];
-      responseEl.classList.add('visible');
-    });
-  }
 });
