@@ -737,6 +737,7 @@ section.alt { background: var(--bg-secondary); }
 
 /* Exit popup */
 .exit-popup { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+.exit-popup[hidden] { display: none; }
 .exit-popup-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); }
 .exit-popup-content {
   position: relative;
