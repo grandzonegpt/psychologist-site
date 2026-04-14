@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=33">
+<link rel="stylesheet" href="/css/style.css?v=34">
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -70,6 +70,65 @@
     <div class="eyebrow">Разобраться</div>
     <h1>Не уверен, что тебе нужен психолог?</h1>
     <p class="muted" style="max-width:600px;margin:0 auto;">Это нормально. Большинство людей сомневаются. Вот несколько вещей, на которые стоит обратить внимание.</p>
+  </div>
+</section>
+
+<section class="self-check-section" id="self-check">
+  <div class="container" style="max-width:680px;">
+    <div class="eyebrow reveal">Проверь себя</div>
+    <h2 class="reveal">5 вопросов, 2 минуты</h2>
+    <p class="muted reveal" style="margin-bottom:32px;">Без регистрации. Результат видишь только ты.</p>
+
+    <form class="self-check reveal" id="self-check-form" data-lang="ru">
+      <div class="sc-question">
+        <p class="sc-q">1. За последние две недели, часто ли плохо спал по ночам или вставал разбитым?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q1" value="0" required><span>Почти никогда</span></label>
+          <label><input type="radio" name="q1" value="1"><span>Иногда</span></label>
+          <label><input type="radio" name="q1" value="2"><span>Часто</span></label>
+          <label><input type="radio" name="q1" value="3"><span>Почти каждый день</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">2. Бывает ли внутри тревога без понятной причины?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q2" value="0" required><span>Почти никогда</span></label>
+          <label><input type="radio" name="q2" value="1"><span>Иногда</span></label>
+          <label><input type="radio" name="q2" value="2"><span>Часто</span></label>
+          <label><input type="radio" name="q2" value="3"><span>Почти каждый день</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">3. Радуют ли вещи, которые раньше радовали?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q3" value="0" required><span>Почти всегда</span></label>
+          <label><input type="radio" name="q3" value="1"><span>Часто</span></label>
+          <label><input type="radio" name="q3" value="2"><span>Редко</span></label>
+          <label><input type="radio" name="q3" value="3"><span>Почти никогда</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">4. Крутятся ли одни и те же мысли, от которых трудно уйти?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q4" value="0" required><span>Почти никогда</span></label>
+          <label><input type="radio" name="q4" value="1"><span>Иногда</span></label>
+          <label><input type="radio" name="q4" value="2"><span>Часто</span></label>
+          <label><input type="radio" name="q4" value="3"><span>Почти каждый день</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">5. Чувствуешь, что устал тянуть всё на себе?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q5" value="0" required><span>Почти никогда</span></label>
+          <label><input type="radio" name="q5" value="1"><span>Иногда</span></label>
+          <label><input type="radio" name="q5" value="2"><span>Часто</span></label>
+          <label><input type="radio" name="q5" value="3"><span>Почти каждый день</span></label>
+        </div>
+      </div>
+      <button type="submit" class="btn">Показать результат</button>
+    </form>
+
+    <div class="sc-result" id="sc-result" hidden></div>
   </div>
 </section>
 
@@ -131,10 +190,6 @@
     <h2>Что можно сделать прямо сейчас</h2>
     <div class="not-sure-signals">
       <div class="signal">
-        <div class="signal-icon">📋</div>
-        <p><strong>Пройти короткий тест.</strong> 5 вопросов, 2 минуты. Результат видишь только ты. <a href="/#self-check" style="color:var(--accent);">Пройти</a></p>
-      </div>
-      <div class="signal">
         <div class="signal-icon">📖</div>
         <p><strong>Почитать блог.</strong> Статьи про тревогу, панику, выгорание. Может, в какой-то из них узнаешь себя. <a href="/blog.html" style="color:var(--accent);">Открыть</a></p>
       </div>
@@ -156,8 +211,8 @@
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Ты не обязан решать прямо сейчас. Но если читаешь эту страницу, значит что-то уже зацепило.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/#booking" class="btn">Записаться на консультацию</a>
-      <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Бесплатное знакомство 15 мин</a>
+      <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" class="btn">Бесплатное знакомство 15 мин</a>
+      <a href="/#booking" class="btn-ghost btn">Записаться на сессию</a>
     </div>
   </div>
 </div>
@@ -207,6 +262,6 @@
   </div>
 </div>
 
-<script src="/js/main.js?v=14"></script>
+<script src="/js/main.js?v=15"></script>
 </body>
 </html>

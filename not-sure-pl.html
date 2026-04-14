@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=33">
+<link rel="stylesheet" href="/css/style.css?v=34">
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -70,6 +70,65 @@
     <div class="eyebrow">Rozeznać się</div>
     <h1>Nie wiesz, czy potrzebujesz psychologa?</h1>
     <p class="muted" style="max-width:600px;margin:0 auto;">To normalne. Większość ludzi ma wątpliwości. Oto kilka rzeczy, na które warto zwrócić uwagę.</p>
+  </div>
+</section>
+
+<section class="self-check-section" id="self-check">
+  <div class="container" style="max-width:680px;">
+    <div class="eyebrow reveal">Sprawdź się</div>
+    <h2 class="reveal">5 pytań, 2 minuty</h2>
+    <p class="muted reveal" style="margin-bottom:32px;">Bez rejestracji. Wynik widzisz tylko ty.</p>
+
+    <form class="self-check reveal" id="self-check-form" data-lang="pl">
+      <div class="sc-question">
+        <p class="sc-q">1. W ostatnich dwóch tygodniach, często źle spałeś w nocy albo wstawałeś rozbity?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q1" value="0" required><span>Prawie nigdy</span></label>
+          <label><input type="radio" name="q1" value="1"><span>Czasem</span></label>
+          <label><input type="radio" name="q1" value="2"><span>Często</span></label>
+          <label><input type="radio" name="q1" value="3"><span>Prawie codziennie</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">2. Bywa w tobie lęk bez wyraźnego powodu?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q2" value="0" required><span>Prawie nigdy</span></label>
+          <label><input type="radio" name="q2" value="1"><span>Czasem</span></label>
+          <label><input type="radio" name="q2" value="2"><span>Często</span></label>
+          <label><input type="radio" name="q2" value="3"><span>Prawie codziennie</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">3. Cieszą cię rzeczy, które wcześniej cieszyły?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q3" value="0" required><span>Prawie zawsze</span></label>
+          <label><input type="radio" name="q3" value="1"><span>Często</span></label>
+          <label><input type="radio" name="q3" value="2"><span>Rzadko</span></label>
+          <label><input type="radio" name="q3" value="3"><span>Prawie nigdy</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">4. Kręcą ci się te same myśli, od których trudno uciec?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q4" value="0" required><span>Prawie nigdy</span></label>
+          <label><input type="radio" name="q4" value="1"><span>Czasem</span></label>
+          <label><input type="radio" name="q4" value="2"><span>Często</span></label>
+          <label><input type="radio" name="q4" value="3"><span>Prawie codziennie</span></label>
+        </div>
+      </div>
+      <div class="sc-question">
+        <p class="sc-q">5. Czujesz, że jesteś zmęczony ciągnięciem wszystkiego na sobie?</p>
+        <div class="sc-options">
+          <label><input type="radio" name="q5" value="0" required><span>Prawie nigdy</span></label>
+          <label><input type="radio" name="q5" value="1"><span>Czasem</span></label>
+          <label><input type="radio" name="q5" value="2"><span>Często</span></label>
+          <label><input type="radio" name="q5" value="3"><span>Prawie codziennie</span></label>
+        </div>
+      </div>
+      <button type="submit" class="btn">Pokaż wynik</button>
+    </form>
+
+    <div class="sc-result" id="sc-result" hidden></div>
   </div>
 </section>
 
@@ -131,10 +190,6 @@
     <h2>Co możesz zrobić teraz</h2>
     <div class="not-sure-signals">
       <div class="signal">
-        <div class="signal-icon">📋</div>
-        <p><strong>Zrób krótki test.</strong> 5 pytań, 2 minuty. Wynik widzisz tylko ty. <a href="/index-pl.html#self-check" style="color:var(--accent);">Przejdź</a></p>
-      </div>
-      <div class="signal">
         <div class="signal-icon">📖</div>
         <p><strong>Poczytaj blog.</strong> Artykuły o lęku, panice, wypaleniu. Może w którymś rozpoznasz siebie. <a href="/blog-pl.html" style="color:var(--accent);">Otwórz</a></p>
       </div>
@@ -156,8 +211,8 @@
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Nie musisz decydować teraz. Ale skoro czytasz tę stronę, coś już cię zaczęło niepokoić.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/index-pl.html#booking" class="btn">Zapisz się na konsultację</a>
-      <a href="https://cal.com/levashou/intro-pl" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Bezpłatna rozmowa 15 min</a>
+      <a href="https://cal.com/levashou/intro-pl" target="_blank" rel="noopener noreferrer" class="btn">Bezpłatna rozmowa 15 min</a>
+      <a href="/index-pl.html#booking" class="btn-ghost btn">Umów sesję</a>
     </div>
   </div>
 </div>
@@ -207,6 +262,6 @@
   </div>
 </div>
 
-<script src="/js/main.js?v=14"></script>
+<script src="/js/main.js?v=15"></script>
 </body>
 </html>

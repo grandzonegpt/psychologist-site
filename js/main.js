@@ -345,4 +345,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Self-check quiz
+  const scForm = document.getElementById('self-check-form');
+  if (scForm) {
+    const resultEl = document.getElementById('sc-result');
+    const lang = scForm.dataset.lang || 'ru';
+    const bands = {
+      ru: {
+        low: {
+          title: 'Похоже, сейчас держишься.',
+          body: 'Сигналов мало. Возьми страницу в закладки и пройди тест ещё раз через пару недель, если что-то изменится. Если хочется спокойно поговорить, есть бесплатные 15 минут.',
+          cta: 'Познакомиться бесплатно',
+          url: 'https://cal.com/levashou/intro-ru'
+        },
+        mid: {
+          title: 'Несколько сигналов совпали.',
+          body: 'Это повод остановиться и разобраться. Начать можно с бесплатного 15-минутного разговора. Без обязательств, поймёшь подхожу ли я и как работаем.',
+          cta: 'Записаться на 15 минут',
+          url: 'https://cal.com/levashou/intro-ru'
+        },
+        high: {
+          title: 'Сигналов много и они устойчивые.',
+          body: 'Одному выбираться из этого долго и изматывающе. Начни с 15-минутного разговора без оплаты, там решим куда дальше.',
+          cta: 'Записаться на 15 минут',
+          url: 'https://cal.com/levashou/intro-ru'
+        },
+        retake: 'Пройти ещё раз'
+      },
+      pl: {
+        low: {
+          title: 'Wygląda na to, że dajesz radę.',
+          body: 'Sygnałów jest mało. Zapisz stronę i zrób test znów za parę tygodni, jeśli coś się zmieni. Gdybyś chciał spokojnie pogadać, są bezpłatne 15 minut.',
+          cta: 'Umów bezpłatną rozmowę',
+          url: 'https://cal.com/levashou/intro-pl'
+        },
+        mid: {
+          title: 'Kilka sygnałów się zgadza.',
+          body: 'To powód, żeby się zatrzymać. Dobrym startem jest bezpłatna 15-minutowa rozmowa. Bez zobowiązań, zobaczysz czy ci pasuję i jak pracuję.',
+          cta: 'Umów 15 minut',
+          url: 'https://cal.com/levashou/intro-pl'
+        },
+        high: {
+          title: 'Sygnałów jest dużo i trzymają się od dawna.',
+          body: 'Samemu wyjść z tego bywa długo i wyczerpująco. Zacznij od 15 minut bez opłaty, tam ustalimy co dalej.',
+          cta: 'Umów 15 minut',
+          url: 'https://cal.com/levashou/intro-pl'
+        },
+        retake: 'Zrób jeszcze raz'
+      }
+    };
+    const t = bands[lang] || bands.ru;
+    scForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = new FormData(scForm);
+      let score = 0;
+      for (const v of data.values()) score += parseInt(v, 10) || 0;
+      let b;
+      if (score <= 4) b = t.low;
+      else if (score <= 9) b = t.mid;
+      else b = t.high;
+      resultEl.innerHTML =
+        '<h3>' + b.title + '</h3>' +
+        '<p>' + b.body + '</p>' +
+        '<a href="' + b.url + '" target="_blank" rel="noopener noreferrer" class="btn">' + b.cta + '</a>' +
+        '<button type="button" class="btn-ghost btn" id="sc-retake">' + t.retake + '</button>';
+      resultEl.hidden = false;
+      scForm.hidden = true;
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const retake = document.getElementById('sc-retake');
+      if (retake) {
+        retake.addEventListener('click', () => {
+          scForm.reset();
+          scForm.hidden = false;
+          resultEl.hidden = true;
+          resultEl.innerHTML = '';
+          scForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    });
+  }
+
 });
