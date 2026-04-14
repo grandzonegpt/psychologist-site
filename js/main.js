@@ -90,14 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
       { text: 'Ten, kto ma po co żyć, zniesie niemal każde jak.', author: 'Viktor Frankl, "Człowiek w poszukiwaniu sensu"' },
       { text: 'Ludzie, którzy latami nie potrafią powiedzieć nie i stawiają cudze potrzeby ponad swoje, płacą za to ciałem.', author: 'Gabor Maté, "Kiedy ciało mówi nie"' },
       { text: 'Mózg nie jest w stanie jednocześnie panikować i uważnie liczyć odcienie przedmiotów wokół.', author: 'Technika uziemienia 5-4-3-2-1' },
-      { text: 'Depresja to nie lenistwo i nie słabość. To sposób, w jaki psychika mówi, że jest przeciążona.', author: 'David Burns, "Radość życia"' }
+      { text: 'Kiedy człowiek jest w depresji, widzi świat przez filtr zniekształceń. Usuń filtr, a świat stanie się inny.', author: 'David Burns, "Radość życia"' }
     ] : [
       { text: 'Травматические воспоминания живут не в словах, а в теле: в мышечном напряжении, в реакциях нервной системы, в способе дышать.', author: 'Бессел ван дер Колк, "Тело помнит всё"' },
       { text: 'Чем больше вы боретесь с тревожными мыслями, тем сильнее они становятся. Не спорить с тревогой, а менять отношение к ней.', author: 'Дэвид Карбонелл, "Когда ничего не помогает"' },
       { text: 'Тот, кто знает зачем жить, вынесет почти любое как.', author: 'Виктор Франкл, "Человек в поисках смысла"' },
       { text: 'Люди, которые годами не могут сказать нет и ставят чужие потребности выше своих, платят за это телом.', author: 'Габор Матэ, "Когда тело говорит нет"' },
       { text: 'Мозг не может одновременно паниковать и внимательно считать оттенки предметов вокруг.', author: 'Техника заземления 5-4-3-2-1' },
-      { text: 'Депрессия это не лень и не слабость. Это способ, которым психика говорит, что она перегружена.', author: 'Дэвид Бёрнс, "Хорошее самочувствие"' }
+      { text: 'Когда человек в депрессии, он видит мир через фильтр искажений. Уберите фильтр, и мир станет другим.', author: 'Дэвид Бёрнс, "Хорошее самочувствие"' }
     ];
     const q = quotes[Math.floor(Math.random() * quotes.length)];
     quoteEl.querySelector('p').textContent = q.text;
