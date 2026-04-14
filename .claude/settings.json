@@ -29,7 +29,24 @@
       "Bash(cp /tmp/pdfgen/breathing-pl.pdf assets/breathing-4-7-8-pl.pdf)",
       "Bash(cp /tmp/pdfgen/thought-ru.pdf assets/thought-record-ru.pdf)",
       "Bash(cp /tmp/pdfgen/thought-pl.pdf assets/thought-record-pl.pdf)",
-      "Bash(ls assets/*.pdf)"
+      "Bash(ls assets/*.pdf)",
+      "Bash(xargs -0 sed -i '' -e 's/style\\\\.css?v=28/style.css?v=29/g' -e 's/main\\\\.js?v=12/main.js?v=13/g')",
+      "WebFetch(domain:www.znanylekarz.pl)",
+      "Bash(grep -rl 'strefa-psychoterapeuty-mapa-terapeutow' *.html)",
+      "Read(//Users/apple/Downloads/**)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(python3 -c \"from PIL import Image, ImageDraw, ImageFont; print\\('ok'\\)\")",
+      "Bash(cp ~/Downloads/\"IMG_3611 \\(3\\).jpg\" \"/Users/apple/Documents/сайт для психолога/assets/credentials/raw/psychotraumatologia.jpg\")",
+      "Bash(cp ~/Downloads/\"DYPLOM \\(1\\) \\(1\\).pdf\" \"/Users/apple/Documents/сайт для психолога/assets/credentials/raw/magister.pdf\")",
+      "Bash(sips -s format jpeg magister.pdf --out magister.jpg)",
+      "Bash(ls -la *.jpg)",
+      "Bash(python3 -c 'from PIL import Image;:*)",
+      "Bash(sips -s format jpeg -s dpiHeight 200 -s dpiWidth 200 --resampleWidth 1700 magister.pdf --out magister.jpg)",
+      "Bash(python3 -c \"from PIL import Image; print\\(Image.open\\('magister.jpg'\\).size\\)\")",
+      "Bash(python3 /tmp/redact_diplomas.py)",
+      "Bash(python3)",
+      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' 's/style\\\\.css?v=32/style.css?v=33/g' {} +)",
+      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' -e 's/style\\\\.css?v=33/style.css?v=34/g' -e 's/main\\\\.js?v=14/main.js?v=15/g' {} +)"
     ]
   }
 }

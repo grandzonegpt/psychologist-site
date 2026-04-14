@@ -1703,10 +1703,14 @@ select:focus-visible {
 /* Self-check quiz */
 .self-check-section { padding: 60px 0 40px; }
 .self-check {
-  background: var(--bg-alt, rgba(0,0,0,0.02));
+  background: var(--bg-secondary);
   padding: 32px;
   border-radius: 10px;
-  border: 1px solid var(--border, rgba(0,0,0,0.06));
+  border: 1px solid var(--border-subtle);
+}
+.light-theme .self-check {
+  background: rgba(0,0,0,0.02);
+  border-color: rgba(0,0,0,0.06);
 }
 .self-check .sc-question { margin-bottom: 28px; }
 .self-check .sc-q { font-weight: 500; margin: 0 0 14px; line-height: 1.5; font-size: 16px; }
@@ -1714,12 +1718,18 @@ select:focus-visible {
 .self-check .sc-options label {
   display: flex; align-items: center; gap: 12px;
   padding: 12px 16px;
-  border: 1px solid var(--border, rgba(0,0,0,0.12));
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
+  color: var(--text-primary);
   transition: background .15s, border-color .15s;
-  background: var(--bg, #fff);
+  background: var(--bg-secondary);
+}
+.light-theme .self-check .sc-options label {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.12);
+  color: #1c1c1e;
 }
 .self-check .sc-options label:hover { border-color: var(--accent); }
 .self-check .sc-options label:has(input:checked) {
