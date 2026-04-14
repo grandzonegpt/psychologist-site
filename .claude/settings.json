@@ -24,7 +24,12 @@
       "Bash(grep -l 'og:image' blog/*.html blog-pl/*.html)",
       "Bash(grep -rn '[Вв]ы [а-я]\\\\|[Вв]аш\\\\|Запишитесь\\\\|напишите\\\\|[Вв]ам ' blog/*.html)",
       "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' 's|main\\\\.js?v=9|main.js?v=10|g' {} \\\\;)",
-      "Bash(find . -maxdepth 3 -name \"*.html\" -not -path \"./обложки*\" -exec sed -i '' -e 's|style\\\\.css?v=27|style.css?v=28|g' -e 's|main\\\\.js?v=10|main.js?v=11|g' {} \\\\;)"
+      "Bash(find . -maxdepth 3 -name \"*.html\" -not -path \"./обложки*\" -exec sed -i '' -e 's|style\\\\.css?v=27|style.css?v=28|g' -e 's|main\\\\.js?v=10|main.js?v=11|g' {} \\\\;)",
+      "Bash(cp /tmp/pdfgen/breathing-ru.pdf assets/breathing-4-7-8-ru.pdf)",
+      "Bash(cp /tmp/pdfgen/breathing-pl.pdf assets/breathing-4-7-8-pl.pdf)",
+      "Bash(cp /tmp/pdfgen/thought-ru.pdf assets/thought-record-ru.pdf)",
+      "Bash(cp /tmp/pdfgen/thought-pl.pdf assets/thought-record-pl.pdf)",
+      "Bash(ls assets/*.pdf)"
     ]
   }
 }
