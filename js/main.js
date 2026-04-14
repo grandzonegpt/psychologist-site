@@ -311,7 +311,10 @@ document.addEventListener('DOMContentLoaded', () => {
       parent.querySelectorAll('.recommender-results').forEach(r => r.classList.remove('active'));
       tab.classList.add('active');
       const target = parent.querySelector('[data-topic="' + tab.dataset.topic + '"]');
-      if (target) target.classList.add('active');
+      if (target) {
+        target.classList.add('active');
+        target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+      }
     });
   });
 

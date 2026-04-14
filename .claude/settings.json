@@ -1,7 +1,29 @@
 {
   "permissions": {
     "allow": [
-      "Bash(unzip -p \"обо мне.docx\" word/document.xml)"
+      "Bash(unzip -p \"обо мне.docx\" word/document.xml)",
+      "WebFetch(domain:www.highfivedesign.co)",
+      "Bash(curl -sI \"https://levashou.pl/sitemap.xml\")",
+      "Bash(curl -s \"https://levashou.pl/sitemap.xml\")",
+      "Bash(curl -s \"https://levashou.pl/robots.txt\")",
+      "Bash(curl -sI \"https://levashou.pl/\" -o /dev/null -w \"%{http_code} %{redirect_url}\")",
+      "Bash(curl -sI \"https://levashou.pl/index.html/\" -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl -sI \"https://www.levashou.pl/\" -o /dev/null -w \"%{http_code} %{redirect_url}\")",
+      "Bash(curl -sI \"http://levashou.pl/\" -o /dev/null -w \"%{http_code} %{redirect_url}\")",
+      "Bash(curl -sI \"https://levashou.pl/nonexistent-page.html\" -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl -s \"https://levashou.pl/index.html\" -o /dev/null -w \"size: %{size_download} bytes\\\\ntime: %{time_total}s\\\\nttfb: %{time_starttransfer}s\")",
+      "Bash(curl -s \"https://levashou.pl/css/style.css?v=27\" -o /dev/null -w \"css size: %{size_download} bytes\")",
+      "Bash(curl -s \"https://levashou.pl/js/main.js?v=9\" -o /dev/null -w \"js size: %{size_download} bytes\")",
+      "Bash(curl -sI \"https://levashou.pl/css/style.css?v=27\")",
+      "Bash(curl -sI \"https://levashou.pl/js/main.js?v=9\")",
+      "Bash(curl -sI \"https://levashou.pl/assets/photo.jpg\")",
+      "Bash(curl -sI -H \"Accept-Encoding: gzip, br\" \"https://levashou.pl/index.html\")",
+      "Bash(find . -name \"*.html\" -not -path \"./обложки*\" -exec grep -l 'style\\\\.css?v=26' {} \\\\;)",
+      "Bash(find blog:*)",
+      "Bash(python3 -c ':*)",
+      "Bash(grep -l 'og:image' blog/*.html blog-pl/*.html)",
+      "Bash(grep -rn '[Вв]ы [а-я]\\\\|[Вв]аш\\\\|Запишитесь\\\\|напишите\\\\|[Вв]ам ' blog/*.html)",
+      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' 's|main\\\\.js?v=9|main.js?v=10|g' {} \\\\;)"
     ]
   }
 }
