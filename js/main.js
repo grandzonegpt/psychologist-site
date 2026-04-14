@@ -230,24 +230,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Exit-intent popup (desktop only)
+  // Exit-intent popup (desktop only, no touch devices)
   const exitPopup = document.getElementById('exit-popup');
-  if (exitPopup && window.innerWidth > 768) {
-    const EKEY = 'exit-popup-shown';
-    let shown = sessionStorage.getItem(EKEY);
-    const showPopup = () => { exitPopup.hidden = false; sessionStorage.setItem(EKEY, '1'); };
+  if (exitPopup) {
     const hidePopup = () => { exitPopup.hidden = true; };
-
-    if (!shown) {
-      document.addEventListener('mouseout', (e) => {
-        if (e.clientY < 5 && !sessionStorage.getItem(EKEY)) showPopup();
-      });
-    }
-
     exitPopup.querySelector('.exit-popup-overlay').addEventListener('click', hidePopup);
     exitPopup.querySelector('.exit-popup-close').addEventListener('click', hidePopup);
     exitPopup.querySelector('.exit-popup-skip').addEventListener('click', hidePopup);
     const cta = exitPopup.querySelector('#exit-popup-cta');
     if (cta) cta.addEventListener('click', hidePopup);
+
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouch && window.innerWidth > 768) {
+      const EKEY = 'exit-popup-shown';
+      if (!sessionStorage.getItem(EKEY)) {
+        document.addEventListener('mouseout', (e) => {
+          if (e.clientY < 5 && !sessionStorage.getItem(EKEY)) {
+            exitPopup.hidden = false;
+            sessionStorage.setItem(EKEY, '1');
+          }
+        });
+      }
+    }
   }
 });
