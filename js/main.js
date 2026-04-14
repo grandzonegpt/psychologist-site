@@ -52,6 +52,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+  // Counter animation for 500+
+  const counterEl = document.querySelector('.stat-num[data-count]');
+  if (counterEl) {
+    const target = parseInt(counterEl.dataset.count);
+    const suffix = counterEl.dataset.suffix || '';
+    let counted = false;
+    const counterObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        let current = 0;
+        const step = Math.ceil(target / 40);
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          counterEl.textContent = current + suffix;
+        }, 30);
+        counterObs.unobserve(counterEl);
+      }
+    }, { threshold: 0.5 });
+    counterObs.observe(counterEl);
+  }
+
   // Cookie banner
   const banner = document.querySelector('.cookie-banner');
   const CKEY = 'cookie-consent';
@@ -102,6 +127,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const q = quotes[Math.floor(Math.random() * quotes.length)];
     quoteEl.querySelector('p').textContent = q.text;
     quoteEl.querySelector('cite').textContent = q.author;
+  }
+
+  // Self-check quiz
+  const quiz = document.getElementById('quiz');
+  if (quiz) {
+    const lang = document.documentElement.lang;
+    const questions = quiz.querySelectorAll('.quiz-q');
+    const stepEl = document.getElementById('quiz-step');
+    const resultEl = document.getElementById('quiz-result');
+    const resultText = document.getElementById('quiz-result-text');
+    const restartBtn = document.getElementById('quiz-restart');
+    const scores = [];
+    let current = 0;
+
+    const results = lang === 'pl' ? [
+      { max: 4, html: '<h3>Wygląda na to, że sobie radzisz</h3><p>Twoje odpowiedzi nie wskazują na poważne trudności. To dobrze. Jeśli mimo to coś cię niepokoi, zawsze możesz napisać.</p>' },
+      { max: 9, html: '<h3>Jest nad czym się zastanowić</h3><p>Część odpowiedzi sugeruje, że pewne rzeczy zaczynają ci przeszkadzać. Warto porozmawiać, zanim problem się pogłębi.</p>' },
+      { max: 15, html: '<h3>Warto z kimś porozmawiać</h3><p>Kilka twoich odpowiedzi wskazuje na wyraźny dyskomfort. To nie wyrok, ale sygnał. Psycholog pomoże zrozumieć, co się dzieje, i znaleźć sposób na ulgę.</p>' }
+    ] : [
+      { max: 4, html: '<h3>Похоже, ты справляешься</h3><p>Твои ответы не указывают на серьёзные трудности. Это хорошо. Если всё же что-то беспокоит, можешь написать.</p>' },
+      { max: 9, html: '<h3>Есть над чем задуматься</h3><p>Часть ответов говорит о том, что кое-что начинает мешать жить. Стоит поговорить, пока проблема не стала глубже.</p>' },
+      { max: 15, html: '<h3>Стоит поговорить с кем-то</h3><p>Несколько ответов указывают на ощутимый дискомфорт. Это не приговор, а сигнал. Психолог поможет разобраться, что происходит, и найти способ облегчить состояние.</p>' }
+    ];
+
+    quiz.addEventListener('click', (e) => {
+      const btn = e.target.closest('.quiz-options button');
+      if (!btn) return;
+      const q = btn.closest('.quiz-q');
+      q.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      scores[current] = parseInt(btn.dataset.val);
+
+      setTimeout(() => {
+        if (current < questions.length - 1) {
+          questions[current].hidden = true;
+          current++;
+          questions[current].hidden = false;
+          questions[current].style.animation = 'fadeUp 0.4s ease';
+          stepEl.textContent = current + 1;
+        } else {
+          // Show result
+          const total = scores.reduce((a, b) => a + b, 0);
+          const tier = results.find(r => total <= r.max) || results[results.length - 1];
+          quiz.querySelector('.quiz-questions').hidden = true;
+          quiz.querySelector('.quiz-progress').hidden = true;
+          resultText.innerHTML = tier.html;
+          resultEl.hidden = false;
+          resultEl.style.animation = 'fadeUp 0.4s ease';
+        }
+      }, 300);
+    });
+
+    if (restartBtn) {
+      restartBtn.addEventListener('click', () => {
+        scores.length = 0;
+        current = 0;
+        questions.forEach((q, i) => {
+          q.hidden = i !== 0;
+          q.querySelectorAll('button').forEach(b => b.classList.remove('selected'));
+        });
+        stepEl.textContent = '1';
+        quiz.querySelector('.quiz-questions').hidden = false;
+        quiz.querySelector('.quiz-progress').hidden = false;
+        resultEl.hidden = true;
+      });
+    }
   }
 
   // Contact form submit

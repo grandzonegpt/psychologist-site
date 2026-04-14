@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=21">
+<link rel="stylesheet" href="/css/style.css?v=22">
 
 <script type="application/ld+json">
 {
@@ -125,6 +125,7 @@
       <a href="#faq">Pytania</a>
       <a href="/blog-pl.html">Blog</a>
       <a href="/library-pl.html">Biblioteka</a>
+      <a href="/glossary-pl.html">Słownik</a>
       <a href="#booking">Zapisz się</a>
       <div class="lang-switch" aria-label="Język">
         <a href="/index.html">RU</a>
@@ -193,7 +194,7 @@
   <div class="container">
     <div class="stats-grid reveal">
       <div class="stat">
-        <span class="stat-num">500+</span>
+        <span class="stat-num" data-count="500" data-suffix="+">0</span>
         <span class="stat-label">przeprowadzonych sesji</span>
       </div>
       <div class="stat">
@@ -249,7 +250,72 @@
   </div>
 </section>
 
-<section id="services" class="alt">
+<section class="self-check alt" id="self-check">
+  <div class="container">
+    <div class="eyebrow reveal">Mini-test</div>
+    <h2 class="reveal">Czy warto porozmawiać z psychologiem?</h2>
+    <p class="reveal" style="color:var(--text-muted);max-width:600px;margin-bottom:40px;">To nie diagnostyka. Po prostu powód do zastanowienia. Odpowiadaj szczerze, wynik widzisz tylko ty.</p>
+    <div class="quiz-container reveal" id="quiz">
+      <div class="quiz-questions">
+        <div class="quiz-q" data-q="0">
+          <p class="quiz-question">W ostatnim miesiącu trudno mi zasnąć albo budzę się w nocy.</p>
+          <div class="quiz-options">
+            <button data-val="0">Rzadko</button>
+            <button data-val="1">Czasami</button>
+            <button data-val="2">Często</button>
+            <button data-val="3">Prawie codziennie</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-q="1" hidden>
+          <p class="quiz-question">Czuję lęk albo niepokój bez konkretnego powodu.</p>
+          <div class="quiz-options">
+            <button data-val="0">Rzadko</button>
+            <button data-val="1">Czasami</button>
+            <button data-val="2">Często</button>
+            <button data-val="3">Prawie codziennie</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-q="2" hidden>
+          <p class="quiz-question">Trudno mi się cieszyć rzeczami, które kiedyś sprawiały mi przyjemność.</p>
+          <div class="quiz-options">
+            <button data-val="0">Rzadko</button>
+            <button data-val="1">Czasami</button>
+            <button data-val="2">Często</button>
+            <button data-val="3">Prawie codziennie</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-q="3" hidden>
+          <p class="quiz-question">Unikam sytuacji, miejsc lub ludzi z powodu nieprzyjemnych wspomnień albo strachu.</p>
+          <div class="quiz-options">
+            <button data-val="0">Rzadko</button>
+            <button data-val="1">Czasami</button>
+            <button data-val="2">Często</button>
+            <button data-val="3">Prawie codziennie</button>
+          </div>
+        </div>
+        <div class="quiz-q" data-q="4" hidden>
+          <p class="quiz-question">Mam objawy fizyczne (szybkie bicie serca, pocenie się, ścisk w gardle), których lekarze nie potrafią wyjaśnić.</p>
+          <div class="quiz-options">
+            <button data-val="0">Rzadko</button>
+            <button data-val="1">Czasami</button>
+            <button data-val="2">Często</button>
+            <button data-val="3">Prawie codziennie</button>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-progress"><span id="quiz-step">1</span> / 5</div>
+      <div class="quiz-result" id="quiz-result" hidden>
+        <div class="quiz-result-text" id="quiz-result-text"></div>
+        <div style="margin-top:24px;">
+          <a href="#booking" class="btn">Umów się</a>
+          <button class="btn-ghost btn" id="quiz-restart" style="margin-left:12px;">Spróbuj jeszcze raz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
   <div class="container">
     <div class="eyebrow reveal">Zakres</div>
     <h2 class="reveal">Z czym pracuję</h2>
@@ -578,6 +644,7 @@
         <h4>Materiały</h4>
         <a href="/blog-pl.html">Blog</a>
         <a href="/library-pl.html">Biblioteka</a>
+        <a href="/glossary-pl.html">Słownik</a>
       </div>
       <div>
         <h4>Informacje prawne</h4>
@@ -607,6 +674,6 @@
   <a href="#booking">Umów się</a>
 </div>
 
-<script src="/js/main.js?v=4"></script>
+<script src="/js/main.js?v=5"></script>
 </body>
 </html>
