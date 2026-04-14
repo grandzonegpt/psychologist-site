@@ -241,7 +241,14 @@ section.alt { background: var(--bg-secondary); }
   color: var(--text-muted);
   margin-bottom: 40px;
 }
-.hero-cta { margin-top: 12px; }
+.hero-cta { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 600px) { .hero-cta .btn { width: 100%; text-align: center; } }
+
+.recognize-intro {
+  font-family: var(--font-serif); font-size: 20px; line-height: 1.55;
+  color: var(--text-muted); max-width: 720px; margin: 0 0 48px;
+  font-style: italic;
+}
 .hero-trust {
   margin-top: 20px; font-size: 13px; color: var(--text-muted);
   display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
