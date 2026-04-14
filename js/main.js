@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
       parent.querySelectorAll('.recommender-tab').forEach(t => t.classList.remove('active'));
       parent.querySelectorAll('.recommender-results').forEach(r => r.classList.remove('active'));
       tab.classList.add('active');
-      const target = parent.querySelector('[data-topic="' + tab.dataset.topic + '"]');
+      const target = parent.querySelector('.recommender-results[data-topic="' + tab.dataset.topic + '"]');
       if (target) {
         target.classList.add('active');
         target.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));

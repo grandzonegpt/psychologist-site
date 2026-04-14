@@ -816,6 +816,11 @@ section.alt { background: var(--bg-secondary); }
 .case-result { color: var(--text-primary); font-weight: 400; font-size: 15px; }
 .case-meta { color: var(--text-muted); font-size: 13px; font-style: italic; margin-top: 12px; }
 @media (max-width: 700px) { .cases-grid { grid-template-columns: 1fr; } }
+.cases-disclaimer {
+  margin-top: 24px; padding: 18px 22px;
+  background: rgba(245,241,232,0.04); border-left: 3px solid var(--accent);
+  border-radius: 6px; color: var(--text-muted); font-size: 14px; line-height: 1.6;
+}
 
 /* Micro-animations */
 .hero-photo img { transition: transform 6s ease; }
