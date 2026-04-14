@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=25">
+<link rel="stylesheet" href="/css/style.css?v=26">
 
 <script type="application/ld+json">
 {
@@ -109,6 +109,11 @@
 <body>
 <a href="#main" class="skip-link">Перейти к содержимому</a>
 <div class="scroll-progress"></div>
+
+<div class="seasonal-banner">
+  Весной тревога часто усиливается. Это нормально. <a href="/blog/anxiety-disorder.html">Почему так и что с этим делать</a>
+  <button class="seasonal-close" aria-label="Закрыть">&times;</button>
+</div>
 
 <nav class="site-nav" aria-label="Главная навигация">
   <div class="nav-inner">
@@ -596,6 +601,62 @@
     <div class="reveal" style="text-align:center;margin-top:32px;">
       <a href="/blog.html" class="btn-ghost btn">Все статьи</a>
     </div>
+    <div class="reveal" style="margin-top:36px;">
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;">Часто ищут:</p>
+      <div class="tag-cloud">
+        <a href="/blog/panic-attacks.html">панические атаки</a>
+        <a href="/blog/anxiety-disorder.html">тревога без причины</a>
+        <a href="/blog/sleep.html">не могу заснуть</a>
+        <a href="/blog/burnout.html">выгорание</a>
+        <a href="/blog/grounding.html">как успокоиться</a>
+        <a href="/blog/cognitive-distortions.html">мысли по кругу</a>
+        <a href="/blog/ptsd.html">травма</a>
+        <a href="/not-sure.html">нужен ли мне психолог</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recommender-section">
+  <div class="container">
+    <div class="eyebrow reveal">Навигатор</div>
+    <h2 class="reveal">Что почитать, если...</h2>
+    <div class="recommender reveal">
+      <div class="recommender-tabs">
+        <button class="recommender-tab active" data-topic="anxiety">Тревога</button>
+        <button class="recommender-tab" data-topic="panic">Паника</button>
+        <button class="recommender-tab" data-topic="burnout">Выгорание</button>
+        <button class="recommender-tab" data-topic="relations">После отношений</button>
+        <button class="recommender-tab" data-topic="trauma">Травма</button>
+      </div>
+      <div class="recommender-results active" data-topic="anxiety">
+        <a href="/blog/anxiety-disorder.html"><span>Статья</span>Тревожность и тревога: в чём разница</a>
+        <a href="/blog/cognitive-distortions.html"><span>Статья</span>Когнитивные искажения: ловушки мышления</a>
+        <a href="/blog/sleep.html"><span>Статья</span>Не могу заснуть: что делать с бессонницей</a>
+        <a href="/library.html"><span>Книга</span>Дэвид Карбонелл, "Когда ничего не помогает"</a>
+      </div>
+      <div class="recommender-results" data-topic="panic">
+        <a href="/blog/panic-attacks.html"><span>Статья</span>Панические атаки: что происходит в теле</a>
+        <a href="/blog/grounding.html"><span>Статья</span>Техники заземления</a>
+        <a href="/glossary.html#panic-attack"><span>Глоссарий</span>Что такое паническая атака</a>
+      </div>
+      <div class="recommender-results" data-topic="burnout">
+        <a href="/blog/burnout.html"><span>Статья</span>Выгорание: как распознать и что делать</a>
+        <a href="/glossary.html#burnout"><span>Глоссарий</span>Что такое выгорание</a>
+        <a href="/library.html"><span>Книга</span>Габор Матэ, "Когда тело говорит нет"</a>
+      </div>
+      <div class="recommender-results" data-topic="relations">
+        <a href="/glossary.html#gaslighting"><span>Глоссарий</span>Что такое газлайтинг</a>
+        <a href="/glossary.html#codependency"><span>Глоссарий</span>Что такое созависимость</a>
+        <a href="/blog/cognitive-distortions.html"><span>Статья</span>Когнитивные искажения</a>
+      </div>
+      <div class="recommender-results" data-topic="trauma">
+        <a href="/blog/ptsd.html"><span>Статья</span>ПТСР: что это и как лечится</a>
+        <a href="/glossary.html#ptsd"><span>Глоссарий</span>Что такое ПТСР</a>
+        <a href="/glossary.html#flashback"><span>Глоссарий</span>Что такое флешбек</a>
+        <a href="/library.html"><span>Книга</span>Бессел ван дер Колк, "Тело помнит всё"</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -622,6 +683,15 @@
         <h3>Словарь терминов</h3>
         <p>Триггер, флешбек, диссоциация, ПТСР. Что всё это значит простым языком.</p>
         <a href="/glossary.html" class="btn-ghost btn">Открыть</a>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:48px;">
+      <h3 style="text-align:center;margin-bottom:8px;">Дневник тревоги</h3>
+      <p style="text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:20px;">Выпиши то, что крутится в голове. Мы это никуда не сохраняем и не отправляем.</p>
+      <div class="journal-tool">
+        <textarea class="journal-textarea" placeholder="Что тревожит прямо сейчас?"></textarea>
+        <button class="journal-btn">Выписал</button>
+        <div class="journal-response"></div>
       </div>
     </div>
   </div>
@@ -653,6 +723,42 @@
         </div>
       </div>
       <p style="color:var(--text-muted);font-size:14px;margin-top:24px;">Подробнее: <a href="/blog/grounding.html" style="color:var(--accent);text-decoration:underline;">Техники заземления: как успокоиться, когда захлёстывают эмоции</a></p>
+      <div class="audio-exercise" style="margin-top:32px;">
+        <h3>🎧 Дыхание 4-8 с голосовой инструкцией</h3>
+        <p>Включи и следуй за голосом. Две минуты, и станет легче.</p>
+        <audio controls preload="none" src="/assets/breathing-4-8.mp3"></audio>
+        <p style="font-size:12px;margin-top:8px;opacity:0.5;">Аудио скоро появится</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tg-questions-section">
+  <div class="container">
+    <div class="eyebrow reveal">Перед записью</div>
+    <h2 class="reveal">Что спрашивают в Telegram</h2>
+    <p class="muted reveal">Реальные вопросы, которые мне пишут перед первой сессией. Может, твой тут тоже есть.</p>
+    <div class="tg-questions">
+      <div class="tg-q reveal">
+        <div class="tg-q-text">А если я расплачусь на сессии?</div>
+        <div class="tg-a-text">Это случается часто и это нормально. Плакать на терапии не стыдно. Я к этому привык и не буду делать из этого событие.</div>
+      </div>
+      <div class="tg-q reveal d1">
+        <div class="tg-q-text">Можно сначала просто поговорить, без обязательств?</div>
+        <div class="tg-a-text">Первая сессия и есть такой разговор. Ты ни к чему не привязываешься. Если не подойдёт, просто не записываешься дальше.</div>
+      </div>
+      <div class="tg-q reveal d2">
+        <div class="tg-q-text">Вы работаете с теми, кто уже был у других психологов и не помогло?</div>
+        <div class="tg-a-text">Да. Часто дело не в том, что терапия не работает, а в том, что подход не подошёл. КПТ устроена иначе, чем разговорная терапия.</div>
+      </div>
+      <div class="tg-q reveal d3">
+        <div class="tg-q-text">Мне кажется, мои проблемы недостаточно серьёзные.</div>
+        <div class="tg-a-text">Так думает почти каждый, кто пишет. Если что-то мешает жить, это уже достаточно серьёзно.</div>
+      </div>
+      <div class="tg-q reveal d4">
+        <div class="tg-q-text">А вы точно не будете давать советы типа "просто расслабьтесь"?</div>
+        <div class="tg-a-text">Нет. КПТ работает с конкретными мыслями и реакциями. Общих советов не будет.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -703,6 +809,10 @@
     <div class="booking-split reveal">
       <div class="booking-col">
         <h3 class="booking-col-title">Записаться через календарь</h3>
+        <div class="availability">
+          <span class="availability-dot"></span>
+          Ближайшее свободное время: на этой неделе
+        </div>
         <div class="price-strip">
           Сессия 50 минут <span class="gold">·</span> <span class="gold">180 PLN</span>
         </div>
@@ -834,6 +944,6 @@
   </div>
 </div>
 
-<script src="/js/main.js?v=8"></script>
+<script src="/js/main.js?v=9"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=25">
+<link rel="stylesheet" href="/css/style.css?v=26">
 
 <script type="application/ld+json">
 {
@@ -109,6 +109,11 @@
 <body>
 <a href="#main" class="skip-link">Przejdź do treści</a>
 <div class="scroll-progress"></div>
+
+<div class="seasonal-banner">
+  Wiosną lęk często się nasila. To normalne. <a href="/blog-pl/anxiety-disorder.html">Dlaczego tak jest i co z tym zrobić</a>
+  <button class="seasonal-close" aria-label="Zamknij">&times;</button>
+</div>
 
 <nav class="site-nav" aria-label="Nawigacja główna">
   <div class="nav-inner">
@@ -599,6 +604,62 @@
     <div class="reveal" style="text-align:center;margin-top:32px;">
       <a href="/blog-pl.html" class="btn-ghost btn">Wszystkie artykuły</a>
     </div>
+    <div class="reveal" style="margin-top:36px;">
+      <p style="font-size:14px;color:var(--text-muted);margin-bottom:8px;">Często szukane:</p>
+      <div class="tag-cloud">
+        <a href="/blog-pl/panic-attacks.html">napady paniki</a>
+        <a href="/blog-pl/anxiety-disorder.html">lęk bez powodu</a>
+        <a href="/blog-pl/sleep.html">nie mogę zasnąć</a>
+        <a href="/blog-pl/burnout.html">wypalenie</a>
+        <a href="/blog-pl/grounding.html">jak się uspokoić</a>
+        <a href="/blog-pl/cognitive-distortions.html">myśli w kółko</a>
+        <a href="/blog-pl/ptsd.html">trauma</a>
+        <a href="/not-sure-pl.html">czy potrzebuję psychologa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recommender-section">
+  <div class="container">
+    <div class="eyebrow reveal">Nawigator</div>
+    <h2 class="reveal">Co poczytać, jeśli...</h2>
+    <div class="recommender reveal">
+      <div class="recommender-tabs">
+        <button class="recommender-tab active" data-topic="anxiety">Lęk</button>
+        <button class="recommender-tab" data-topic="panic">Panika</button>
+        <button class="recommender-tab" data-topic="burnout">Wypalenie</button>
+        <button class="recommender-tab" data-topic="relations">Po związku</button>
+        <button class="recommender-tab" data-topic="trauma">Trauma</button>
+      </div>
+      <div class="recommender-results active" data-topic="anxiety">
+        <a href="/blog-pl/anxiety-disorder.html"><span>Artykuł</span>Lęk i zaburzenia lękowe: jaka jest różnica</a>
+        <a href="/blog-pl/cognitive-distortions.html"><span>Artykuł</span>Zniekształcenia poznawcze: pułapki myślenia</a>
+        <a href="/blog-pl/sleep.html"><span>Artykuł</span>Nie mogę zasnąć: co robić z bezsennością</a>
+        <a href="/library-pl.html"><span>Książka</span>David Carbonell, "The Worry Trick"</a>
+      </div>
+      <div class="recommender-results" data-topic="panic">
+        <a href="/blog-pl/panic-attacks.html"><span>Artykuł</span>Napady paniki: co dzieje się w ciele</a>
+        <a href="/blog-pl/grounding.html"><span>Artykuł</span>Techniki uziemienia</a>
+        <a href="/glossary-pl.html#panic-attack"><span>Słownik</span>Co to jest napad paniki</a>
+      </div>
+      <div class="recommender-results" data-topic="burnout">
+        <a href="/blog-pl/burnout.html"><span>Artykuł</span>Wypalenie: jak rozpoznać i co robić</a>
+        <a href="/glossary-pl.html#burnout"><span>Słownik</span>Co to jest wypalenie</a>
+        <a href="/library-pl.html"><span>Książka</span>Gabor Maté, "Kiedy ciało mówi nie"</a>
+      </div>
+      <div class="recommender-results" data-topic="relations">
+        <a href="/glossary-pl.html#gaslighting"><span>Słownik</span>Co to jest gaslighting</a>
+        <a href="/glossary-pl.html#codependency"><span>Słownik</span>Co to jest współuzależnienie</a>
+        <a href="/blog-pl/cognitive-distortions.html"><span>Artykuł</span>Zniekształcenia poznawcze</a>
+      </div>
+      <div class="recommender-results" data-topic="trauma">
+        <a href="/blog-pl/ptsd.html"><span>Artykuł</span>PTSD: co to jest i jak się leczy</a>
+        <a href="/glossary-pl.html#ptsd"><span>Słownik</span>Co to jest PTSD</a>
+        <a href="/glossary-pl.html#flashback"><span>Słownik</span>Co to jest flashback</a>
+        <a href="/library-pl.html"><span>Książka</span>Bessel van der Kolk, "Strach ucieleśniony"</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -625,6 +686,15 @@
         <h3>Słownik terminów</h3>
         <p>Wyzwalacz, flashback, dysocjacja, PTSD. Co to wszystko znaczy prostym językiem.</p>
         <a href="/glossary-pl.html" class="btn-ghost btn">Otwórz</a>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:48px;">
+      <h3 style="text-align:center;margin-bottom:8px;">Dziennik lęku</h3>
+      <p style="text-align:center;color:var(--text-muted);font-size:14px;margin-bottom:20px;">Wypisz to, co kręci się w głowie. Niczego nie zapisujemy i nie wysyłamy.</p>
+      <div class="journal-tool">
+        <textarea class="journal-textarea" placeholder="Co cię teraz niepokoi?"></textarea>
+        <button class="journal-btn">Gotowe</button>
+        <div class="journal-response"></div>
       </div>
     </div>
   </div>
@@ -656,6 +726,42 @@
         </div>
       </div>
       <p style="color:var(--text-muted);font-size:14px;margin-top:24px;">Więcej: <a href="/blog-pl/grounding.html" style="color:var(--accent);text-decoration:underline;">Techniki uziemienia: jak się uspokoić, gdy zalewają emocje</a></p>
+      <div class="audio-exercise" style="margin-top:32px;">
+        <h3>🎧 Oddech 4-8 z instrukcją głosową</h3>
+        <p>Włącz i podążaj za głosem. Dwie minuty i poczujesz się lepiej.</p>
+        <audio controls preload="none" src="/assets/breathing-4-8.mp3"></audio>
+        <p style="font-size:12px;margin-top:8px;opacity:0.5;">Audio wkrótce</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tg-questions-section">
+  <div class="container">
+    <div class="eyebrow reveal">Przed zapisem</div>
+    <h2 class="reveal">Co pytają na Telegramie</h2>
+    <p class="muted reveal">Prawdziwe pytania, które dostaję przed pierwszą sesją. Może twoje też tu jest.</p>
+    <div class="tg-questions">
+      <div class="tg-q reveal">
+        <div class="tg-q-text">A jeśli się rozpłaczę na sesji?</div>
+        <div class="tg-a-text">To się zdarza często i to normalne. Płakać na terapii nie jest wstyd. Jestem do tego przyzwyczajony i nie będę z tego robił wydarzenia.</div>
+      </div>
+      <div class="tg-q reveal d1">
+        <div class="tg-q-text">Czy można najpierw po prostu porozmawiać, bez zobowiązań?</div>
+        <div class="tg-a-text">Pierwsza sesja właśnie taka jest. Nic cię nie wiąże. Jeśli nie pasuje, po prostu nie umawiasz się dalej.</div>
+      </div>
+      <div class="tg-q reveal d2">
+        <div class="tg-q-text">Pracuje pan z osobami, które były u innych psychologów i nie pomogło?</div>
+        <div class="tg-a-text">Tak. Często chodzi nie o to, że terapia nie działa, ale o to, że podejście nie pasowało. CBT jest inaczej zbudowane niż terapia rozmową.</div>
+      </div>
+      <div class="tg-q reveal d3">
+        <div class="tg-q-text">Wydaje mi się, że moje problemy nie są wystarczająco poważne.</div>
+        <div class="tg-a-text">Tak myśli prawie każdy, kto pisze. Jeśli coś przeszkadza ci żyć, to jest wystarczająco poważne.</div>
+      </div>
+      <div class="tg-q reveal d4">
+        <div class="tg-q-text">Na pewno nie będzie rad typu "proszę się zrelaksować"?</div>
+        <div class="tg-a-text">Nie. CBT pracuje z konkretnymi myślami i reakcjami. Ogólnych rad nie będzie.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -706,6 +812,10 @@
     <div class="booking-split reveal">
       <div class="booking-col">
         <h3 class="booking-col-title">Umów przez kalendarz</h3>
+        <div class="availability">
+          <span class="availability-dot"></span>
+          Najbliższy wolny termin: w tym tygodniu
+        </div>
         <div class="price-strip">
           Sesja 50 minut <span class="gold">·</span> <span class="gold">180 PLN</span>
         </div>
@@ -837,6 +947,6 @@
   </div>
 </div>
 
-<script src="/js/main.js?v=8"></script>
+<script src="/js/main.js?v=9"></script>
 </body>
 </html>

@@ -293,4 +293,51 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // Seasonal banner dismiss
+  const sBanner = document.querySelector('.seasonal-banner');
+  if (sBanner) {
+    const sKey = 'seasonal-dismissed';
+    if (sessionStorage.getItem(sKey)) sBanner.remove();
+    const closeBtn = sBanner.querySelector('.seasonal-close');
+    if (closeBtn) closeBtn.addEventListener('click', () => { sBanner.remove(); sessionStorage.setItem(sKey, '1'); });
+  }
+
+  // Article recommender tabs
+  document.querySelectorAll('.recommender-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const parent = tab.closest('.recommender');
+      parent.querySelectorAll('.recommender-tab').forEach(t => t.classList.remove('active'));
+      parent.querySelectorAll('.recommender-results').forEach(r => r.classList.remove('active'));
+      tab.classList.add('active');
+      const target = parent.querySelector('[data-topic="' + tab.dataset.topic + '"]');
+      if (target) target.classList.add('active');
+    });
+  });
+
+  // Anxiety journal
+  const journalBtn = document.querySelector('.journal-btn');
+  if (journalBtn) {
+    const lang = document.documentElement.lang;
+    const responses = lang === 'pl' ? [
+      'To, co napisałeś, jest ważne. Samo nazwanie tego, co czujesz, już zmniejsza napięcie.',
+      'Wiele osób czuje podobnie. Nie musisz z tym radzić sobie sam.',
+      'Zwróć uwagę, gdzie w ciele czujesz to napięcie. Spróbuj oddychać w to miejsce.',
+      'Myśli krążą, bo mózg próbuje znaleźć rozwiązanie. Czasem wystarczy je po prostu wypisać.',
+      'To, co czujesz, ma sens. Nawet jeśli teraz trudno to ogarnąć.'
+    ] : [
+      'То, что ты написал, важно. Само по себе называние того, что чувствуешь, уже снижает напряжение.',
+      'Многие чувствуют похоже. Не обязательно справляться с этим в одиночку.',
+      'Обрати внимание, где в теле ты чувствуешь это напряжение. Попробуй дышать в это место.',
+      'Мысли крутятся, потому что мозг ищет решение. Иногда достаточно просто их выписать.',
+      'То, что ты чувствуешь, имеет смысл. Даже если сейчас трудно это разложить по полочкам.'
+    ];
+    journalBtn.addEventListener('click', () => {
+      const textarea = document.querySelector('.journal-textarea');
+      const responseEl = document.querySelector('.journal-response');
+      if (!textarea || !responseEl || !textarea.value.trim()) return;
+      responseEl.textContent = responses[Math.floor(Math.random() * responses.length)];
+      responseEl.classList.add('visible');
+    });
+  }
 });
