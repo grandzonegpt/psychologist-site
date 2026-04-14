@@ -253,4 +253,44 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
+  // Scroll progress bar
+  const progressBar = document.querySelector('.scroll-progress');
+  if (progressBar) {
+    const updateProgress = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // Theme toggle
+  const themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.documentElement.classList.add('light-theme');
+    const update = () => {
+      const isLight = document.documentElement.classList.contains('light-theme');
+      themeBtn.textContent = isLight ? '🌙' : '☀️';
+    };
+    update();
+    themeBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light-theme');
+      const isLight = document.documentElement.classList.contains('light-theme');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      update();
+    });
+  }
+
+  // Share button
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        const msg = btn.nextElementSibling;
+        if (msg) { msg.classList.add('show'); setTimeout(() => msg.classList.remove('show'), 2000); }
+      });
+    });
+  });
 });

@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=24">
+<link rel="stylesheet" href="/css/style.css?v=25">
 
 <script type="application/ld+json">
 {
@@ -108,6 +108,7 @@
 </head>
 <body>
 <a href="#main" class="skip-link">Przejdź do treści</a>
+<div class="scroll-progress"></div>
 
 <nav class="site-nav" aria-label="Nawigacja główna">
   <div class="nav-inner">
@@ -127,6 +128,7 @@
       <a href="/library-pl.html">Biblioteka</a>
       <a href="/glossary-pl.html">Słownik</a>
       <a href="#booking">Zapisz się</a>
+      <button class="theme-toggle" aria-label="Zmień motyw">☀️</button>
       <div class="lang-switch" aria-label="Język">
         <a href="/index.html">RU</a>
         <span class="sep">|</span>
@@ -481,6 +483,39 @@
   </div>
 </section>
 
+<section class="cases">
+  <div class="container">
+    <div class="eyebrow reveal">Przykłady z praktyki</div>
+    <h2 class="reveal">Jak to wygląda w życiu</h2>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-tag">Zaburzenie lękowe</div>
+        <p>Przyszła z bezsennością. Osiem miesięcy nie mogła normalnie zasnąć, lekarze niczego nie znaleźli. Okazało się, że ciało nie odpuszczało sytuacji z pracy. Po 6 sesjach sen wrócił.</p>
+        <div class="case-result">Teraz zasypia w 15 minut.</div>
+        <div class="case-meta">K., 34 lata</div>
+      </div>
+      <div class="case-card reveal d1">
+        <div class="case-tag">Napady paniki</div>
+        <p>Przeprowadził się do Polski, pierwszy rok był na fali. Potem nagle się załamał: panika w metrze, ręce się trzęsą, serce wali. Lekarz w przychodni powiedział "proszę więcej odpoczywać". Pracowaliśmy 10 sesji.</p>
+        <div class="case-result">Od czterech miesięcy bez napadów paniki.</div>
+        <div class="case-meta">M., 29 lat</div>
+      </div>
+      <div class="case-card reveal d2">
+        <div class="case-tag">Skutki gaslightingu</div>
+        <p>Po rozwodzie nie mogła ufać własnym decyzjom. Sprawdzała każdy krok, pytała przyjaciółki, czy dobrze zrobiła. Były mąż latami mówił, że wszystko sobie wyobraża. Po 12 sesjach przestała wątpić w to, co czuje.</p>
+        <div class="case-meta">A., 37 lat</div>
+      </div>
+      <div class="case-card reveal d3">
+        <div class="case-tag">Wypalenie + lęk</div>
+        <p>Pracował w IT, wypalił się do stanu "nie mogę otworzyć laptopa". Myślał, że to lenistwo. Okazało się, że za wypaleniem stał lęk, którego nie zauważał od pięciu lat. 8 sesji.</p>
+        <div class="case-result">Zmienił pracę świadomie, a nie w panice.</div>
+        <div class="case-meta">D., 31 lat</div>
+      </div>
+    </div>
+    <p class="reveal" style="text-align:center;margin-top:20px;color:var(--text-muted);font-size:14px;">Imiona i szczegóły zmienione. Sens zachowany.</p>
+  </div>
+</section>
+
 <section class="after-first alt">
   <div class="container">
     <div class="eyebrow reveal">Po pierwszej sesji</div>
@@ -802,6 +837,6 @@
   </div>
 </div>
 
-<script src="/js/main.js?v=7"></script>
+<script src="/js/main.js?v=8"></script>
 </body>
 </html>
