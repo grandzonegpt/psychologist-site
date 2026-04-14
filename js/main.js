@@ -312,6 +312,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) closeBtn.addEventListener('click', () => { sBanner.remove(); sessionStorage.setItem(sKey, '1'); });
   }
 
+  // Lightbox for diploma thumbnails
+  const lightboxLinks = document.querySelectorAll('[data-lightbox]');
+  if (lightboxLinks.length) {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.innerHTML = '<button class="lightbox-close" aria-label="Закрыть">×</button><img alt="">';
+    document.body.appendChild(lb);
+    const lbImg = lb.querySelector('img');
+    const close = () => lb.classList.remove('open');
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lightbox-close')) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    lightboxLinks.forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      lbImg.src = a.href;
+      lb.classList.add('open');
+    }));
+  }
+
   // Article recommender tabs
   document.querySelectorAll('.recommender-tab').forEach(tab => {
     tab.addEventListener('click', () => {
