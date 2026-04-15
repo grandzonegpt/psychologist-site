@@ -50,7 +50,10 @@
       "Bash(grep -c \"related-articles\" blog/*.html)",
       "Bash(grep -c \"related-articles\" blog-pl/*.html)",
       "Bash(perl -i -pe 's|style\\\\.css\\\\?v=44|style.css?v=45|g' blog/*.html blog-pl/*.html *.html)",
-      "Bash(perl -i -pe 's|main\\\\.js\\\\?v=15|main.js?v=16|g' blog/*.html blog-pl/*.html *.html)"
+      "Bash(perl -i -pe 's|main\\\\.js\\\\?v=15|main.js?v=16|g' blog/*.html blog-pl/*.html *.html)",
+      "Bash(grep -h \"fonts.googleapis\" *.html blog/*.html blog-pl/*.html)",
+      "Bash(grep -l \"Source+Serif+Pro\" *.html blog/*.html blog-pl/*.html)",
+      "Bash(grep -h \"Source Serif\" css/style.css *.html)"
     ]
   }
 }

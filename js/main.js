@@ -342,10 +342,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Seasonal banner dismiss
   const sBanner = document.querySelector('.seasonal-banner');
   if (sBanner) {
-    const sKey = 'seasonal-dismissed';
-    if (sessionStorage.getItem(sKey)) sBanner.remove();
-    const closeBtn = sBanner.querySelector('.seasonal-close');
-    if (closeBtn) closeBtn.addEventListener('click', () => { sBanner.remove(); sessionStorage.setItem(sKey, '1'); });
+    const sKey = 'seasonal-dismissed-until';
+    const dismissedUntil = parseInt(localStorage.getItem(sKey) || '0', 10);
+    if (dismissedUntil > Date.now()) {
+      sBanner.remove();
+    } else {
+      const closeBtn = sBanner.querySelector('.seasonal-close');
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        sBanner.remove();
+        localStorage.setItem(sKey, String(Date.now() + 7 * 24 * 60 * 60 * 1000));
+      });
+    }
   }
 
   // Lightbox for diploma thumbnails
