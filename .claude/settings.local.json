@@ -39,7 +39,12 @@
       "Bash(grep -c '<small class=\"authority\">' blog/*.html)",
       "Bash(grep -c '<small class=\"authority\">' blog-pl/*.html)",
       "Bash(perl -i -pe 's|style\\\\.css\\\\?v=42|style.css?v=43|g' blog/*.html blog-pl/*.html *.html)",
-      "Bash(grep -rc \"style.css?v=43\" blog/*.html blog-pl/*.html *.html)"
+      "Bash(grep -rc \"style.css?v=43\" blog/*.html blog-pl/*.html *.html)",
+      "Bash(ls assets/checklist*)",
+      "Bash(perl -i -pe 's|<a href=\"/#about\" class=\"secondary\">Про меня</a>|<a href=\"/assets/checklist-7-signs-ru.pdf\" class=\"secondary\" target=\"_blank\" rel=\"noopener\" download>Чеклист: 7 признаков</a>|g' blog/*.html)",
+      "Bash(perl -i -pe 's|<a href=\"/index-pl.html#about\" class=\"secondary\">O mnie</a>|<a href=\"/assets/checklist-7-signs-pl.pdf\" class=\"secondary\" target=\"_blank\" rel=\"noopener\" download>Lista: 7 oznak</a>|g' blog-pl/*.html)",
+      "Bash(grep -c \"checklist-7-signs-ru.pdf\" blog/*.html)",
+      "Bash(grep -c \"checklist-7-signs-pl.pdf\" blog-pl/*.html)"
     ]
   }
 }
