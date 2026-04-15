@@ -46,7 +46,8 @@
       "Bash(python3 /tmp/redact_diplomas.py)",
       "Bash(python3)",
       "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' 's/style\\\\.css?v=32/style.css?v=33/g' {} +)",
-      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' -e 's/style\\\\.css?v=33/style.css?v=34/g' -e 's/main\\\\.js?v=14/main.js?v=15/g' {} +)"
+      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec sed -i '' -e 's/style\\\\.css?v=33/style.css?v=34/g' -e 's/main\\\\.js?v=14/main.js?v=15/g' {} +)",
+      "Bash(ls -la *.xml *.txt robots* sitemap*)"
     ]
   }
 }
