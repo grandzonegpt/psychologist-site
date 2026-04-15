@@ -59,7 +59,11 @@
       "Bash(perl -i -pe 's|#2d2419|#4a3d2a|g; s|#1a1410|#2d2419|g' css/style.css)",
       "Bash(perl -i -pe 's/style\\\\.css\\\\?v=59/style.css?v=60/g' blog/*.html blog-pl/*.html index.html index-pl.html)",
       "Bash(grep -l \"v=59\" blog/*.html blog-pl/*.html index.html index-pl.html)",
-      "Bash(perl -i -pe 's/style\\\\.css\\\\?v=\\\\d+/style.css?v=60/g' blog/*.html blog-pl/*.html)"
+      "Bash(perl -i -pe 's/style\\\\.css\\\\?v=\\\\d+/style.css?v=60/g' blog/*.html blog-pl/*.html)",
+      "Bash(grep -c \"—\" *.html blog/*.html blog-pl/*.html)",
+      "Bash(grep -h \"—\" *.html blog/*.html blog-pl/*.html)",
+      "Bash(perl -i -pe ' *)",
+      "Bash(grep -rn \"—\" *.html blog/*.html blog-pl/*.html)"
     ]
   }
 }
