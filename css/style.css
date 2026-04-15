@@ -2218,3 +2218,20 @@ body::before {
 }
 .light-theme body::before,
 body.light-theme::before { opacity: 0.05; }
+
+/* Minimal ornament above the first H2 in a blog post: line - circle - line */
+.post-page .post-content > h2:first-of-type {
+  position: relative;
+  margin-top: 56px;
+}
+.post-page .post-content > h2:first-of-type::before {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 14px;
+  margin: 0 auto 36px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 14' fill='none' stroke='%234a3d2a' stroke-width='1' stroke-linecap='round'><line x1='0' y1='7' x2='58' y2='7' opacity='0.4'/><circle cx='70' cy='7' r='3.5' opacity='0.7'/><line x1='82' y1='7' x2='140' y2='7' opacity='0.4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+}
