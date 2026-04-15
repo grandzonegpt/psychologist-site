@@ -2173,7 +2173,7 @@ select:focus-visible {
 .hero-wave path {
   stroke-dasharray: 1400;
   stroke-dashoffset: 1400;
-  animation: wave-breathe 10s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation: wave-breathe 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 @keyframes wave-breathe {
   0%   { stroke-dashoffset: 1400; opacity: 0.6; }
