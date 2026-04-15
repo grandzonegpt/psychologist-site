@@ -2173,13 +2173,13 @@ select:focus-visible {
 .hero-wave path {
   stroke-dasharray: 1400;
   stroke-dashoffset: 1400;
-  animation: wave-breathe 12s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+  animation: wave-breathe 20s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
 @keyframes wave-breathe {
-  0%   { stroke-dashoffset: 1400; opacity: 0.6; }
-  42%  { stroke-dashoffset: 0;    opacity: 1;   }
-  58%  { stroke-dashoffset: 0;    opacity: 1;   }
-  100% { stroke-dashoffset: 1400; opacity: 0.6; }
+  0%   { stroke-dashoffset: 1400; opacity: 0.55; }
+  45%  { stroke-dashoffset: 0;    opacity: 1;    }
+  65%  { stroke-dashoffset: 0;    opacity: 1;    }
+  100% { stroke-dashoffset: 1400; opacity: 0.55; }
 }
 
 /* Section divider: small centered ornament (line - dot - line) */
