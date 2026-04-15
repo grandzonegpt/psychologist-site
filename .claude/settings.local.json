@@ -17,7 +17,29 @@
       "Read(//opt/homebrew/bin/**)",
       "Bash(bash --version)",
       "Bash(grep -l 'class=\"author-card\"' blog-pl/*.html)",
-      "Bash(perl -i -0pe 'my $n=0; my $m=$ENV{MID}; my $a=$ENV{AUTHOR}; s{\\(<h2[^>]*>\\)}{ \\($n++==1\\) ? \"$m\\\\n$1\" : $1 }ge; s{\\(  </article>\\)}{$a\\\\n$1}' blog-pl/cbt.html)"
+      "Bash(perl -i -0pe 'my $n=0; my $m=$ENV{MID}; my $a=$ENV{AUTHOR}; s{\\(<h2[^>]*>\\)}{ \\($n++==1\\) ? \"$m\\\\n$1\" : $1 }ge; s{\\(  </article>\\)}{$a\\\\n$1}' blog-pl/cbt.html)",
+      "Read(//Users/apple/**)",
+      "Read(//Users/apple/Documents/**)",
+      "Bash(unzip -p \"Убирает признаки ИИ текста.docx\" word/document.xml)",
+      "Bash(python3 -c ' *)",
+      "Bash(grep -h \"mid-cta\" blog/*.html -A 2)",
+      "Bash(grep -h \"mid-cta\" blog-pl/*.html -A 1)",
+      "Bash(perl -i -pe 's|>Познакомиться 15 минут</a>|>Рассказать, что беспокоит</a>|g' blog/*.html)",
+      "Bash(perl -i -pe 's|>Poznać się 15 minut</a>|>Opowiedzieć, co niepokoi</a>|g' blog-pl/*.html)",
+      "Bash(grep -l \"Познакомиться 15 минут\\\\|Poznać się 15 minut\" blog/*.html blog-pl/*.html)",
+      "Bash(grep -c \"Рассказать, что беспокоит\" blog/*.html)",
+      "Bash(grep -c \"Opowiedzieć, co niepokoi\" blog-pl/*.html)",
+      "Bash(perl -i -pe 's|>Poznać się, 15 minut</a>|>Opowiedzieć, co niepokoi</a>|g' blog-pl/*.html)",
+      "Bash(perl -i -pe 's|\\(<p>Первая встреча: 15 минут\\)|<p class=\"authority\">КПТ входит в рекомендации NICE и APA. Это метод с самой большой доказательной базой при тревоге и травме.</p>\\\\n            $1|' blog/*.html)",
+      "Bash(perl -i -pe 's|\\(<p>Pierwsze spotkanie: 15 minut\\)|<p class=\"authority\">CBT jest w rekomendacjach NICE i APA. To metoda z najszerszą bazą dowodową przy lęku i traumie.</p>\\\\n            $1|' blog-pl/*.html)",
+      "Bash(grep -c \"КПТ входит в рекомендации NICE\" blog/*.html)",
+      "Bash(grep -c \"CBT jest w rekomendacjach NICE\" blog-pl/*.html)",
+      "Bash(perl -i -pe 's|\\(<a href=\"https://cal.com/levashou/intro-ru\\\\?utm_source=blog&utm_medium=mid_cta[^\"]*\"[^>]*>Рассказать, что беспокоит</a>\\)|<small class=\"authority\">КПТ: в рекомендациях NICE и APA.</small>\\\\n          $1|' blog/*.html)",
+      "Bash(perl -i -pe 's|\\(<a href=\"https://cal.com/levashou/intro-pl\\\\?utm_source=blog&utm_medium=mid_cta[^\"]*\"[^>]*>Opowiedzieć, co niepokoi</a>\\)|<small class=\"authority\">CBT: w rekomendacjach NICE i APA.</small>\\\\n          $1|' blog-pl/*.html)",
+      "Bash(grep -c '<small class=\"authority\">' blog/*.html)",
+      "Bash(grep -c '<small class=\"authority\">' blog-pl/*.html)",
+      "Bash(perl -i -pe 's|style\\\\.css\\\\?v=42|style.css?v=43|g' blog/*.html blog-pl/*.html *.html)",
+      "Bash(grep -rc \"style.css?v=43\" blog/*.html blog-pl/*.html *.html)"
     ]
   }
 }

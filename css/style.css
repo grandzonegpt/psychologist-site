@@ -1649,6 +1649,20 @@ section.alt { background: var(--bg-secondary); }
   margin: 0 0 16px;
   color: var(--text-muted);
 }
+.post-content .author-card .bio p.authority {
+  font-size: 14px;
+  color: var(--text-secondary, var(--text-muted));
+  padding-left: 12px;
+  border-left: 1px solid var(--border-subtle);
+}
+.post-content .mid-cta small.authority {
+  display: block;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  font-style: italic;
+  font-family: var(--font-sans);
+}
 .post-content .author-card .author-actions {
   display: flex;
   gap: 10px;
