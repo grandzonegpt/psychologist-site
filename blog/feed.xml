@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Блог Алексея Левашева — психолог, КПТ, травма</title>
+    <link>https://levashou.pl/blog.html</link>
+    <description>Статьи о КПТ, тревоге, травме, отношениях и ментальном здоровье. Алексей Левашев — психолог, психотравматолог.</description>
+    <language>ru</language>
+    <atom:link href="https://levashou.pl/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Tue, 14 Apr 2026 12:00:00 +0200</lastBuildDate>
+
+    <item>
+      <title>Как выбрать психолога и не разочароваться</title>
+      <link>https://levashou.pl/blog/choosing-therapist.html</link>
+      <guid>https://levashou.pl/blog/choosing-therapist.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0200</pubDate>
+      <description>На что обращать внимание при выборе психолога. Образование, метод, первая встреча.</description>
+    </item>
+    <item>
+      <title>Созависимость: когда чужая жизнь важнее своей</title>
+      <link>https://levashou.pl/blog/codependency.html</link>
+      <guid>https://levashou.pl/blog/codependency.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0200</pubDate>
+      <description>Что такое созависимость, откуда она берётся и как перестать жить чужой жизнью.</description>
+    </item>
+    <item>
+      <title>Флешбеки: почему прошлое возвращается</title>
+      <link>https://levashou.pl/blog/flashbacks.html</link>
+      <guid>https://levashou.pl/blog/flashbacks.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0200</pubDate>
+      <description>Что такое флешбеки, почему они происходят и что делать в момент, когда прошлое врывается в настоящее.</description>
+    </item>
+    <item>
+      <title>Газлайтинг: как понять, что тебя обесценивают</title>
+      <link>https://levashou.pl/blog/gaslighting.html</link>
+      <guid>https://levashou.pl/blog/gaslighting.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0200</pubDate>
+      <description>Что такое газлайтинг, как распознать его в отношениях и почему жертва начинает сомневаться в себе.</description>
+    </item>
+    <item>
+      <title>Психологическая травма: что это на самом деле</title>
+      <link>https://levashou.pl/blog/trauma.html</link>
+      <guid>https://levashou.pl/blog/trauma.html</guid>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0200</pubDate>
+      <description>Что такое психологическая травма, чем она отличается от стресса и почему не проходит сама.</description>
+    </item>
+    <item>
+      <title>Панические атаки: что происходит в теле и как справиться прямо сейчас</title>
+      <link>https://levashou.pl/blog/panic-attacks.html</link>
+      <guid>https://levashou.pl/blog/panic-attacks.html</guid>
+      <pubDate>Wed, 12 Mar 2025 00:00:00 +0100</pubDate>
+      <description>Паническая атака не опасна, хотя именно так ощущается. Физиология, когнитивные ловушки и практика.</description>
+    </item>
+    <item>
+      <title>Что такое когнитивно-поведенческая терапия и почему она работает</title>
+      <link>https://levashou.pl/blog/cbt.html</link>
+      <guid>https://levashou.pl/blog/cbt.html</guid>
+      <pubDate>Mon, 03 Feb 2025 00:00:00 +0100</pubDate>
+      <description>КПТ — наиболее изученный метод в психотерапии. Принципы, структура сессий и почему это работает.</description>
+    </item>
+    <item>
+      <title>ПТСР: когда травма не уходит</title>
+      <link>https://levashou.pl/blog/ptsd.html</link>
+      <guid>https://levashou.pl/blog/ptsd.html</guid>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0100</pubDate>
+      <description>Посттравматическое расстройство касается не только войны. Признаки ПТСР, которые часто пропускают.</description>
+    </item>
+    <item>
+      <title>Тревожность и тревога: в чём разница и когда пора обратиться за помощью</title>
+      <link>https://levashou.pl/blog/anxiety-disorder.html</link>
+      <guid>https://levashou.pl/blog/anxiety-disorder.html</guid>
+      <pubDate>Thu, 05 Dec 2024 00:00:00 +0100</pubDate>
+      <description>Тревога нормальна. Тревожное расстройство — уже нет. Где проходит граница.</description>
+    </item>
+    <item>
+      <title>Выгорание: 7 признаков и первые шаги к восстановлению</title>
+      <link>https://levashou.pl/blog/burnout.html</link>
+      <guid>https://levashou.pl/blog/burnout.html</guid>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0100</pubDate>
+      <description>Выгорание — не слабость и не лень. Это исчерпание ресурсов. Как отличить и как восстанавливаться.</description>
+    </item>
+    <item>
+      <title>Психология и коучинг: что выбрать и чем они отличаются</title>
+      <link>https://levashou.pl/blog/coaching-vs-psychology.html</link>
+      <guid>https://levashou.pl/blog/coaching-vs-psychology.html</guid>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 +0200</pubDate>
+      <description>Оба варианта помогают измениться, но работают с разным. Принципиальная разница.</description>
+    </item>
+    <item>
+      <title>Техники заземления: как успокоиться, когда захлёстывают эмоции</title>
+      <link>https://levashou.pl/blog/grounding.html</link>
+      <guid>https://levashou.pl/blog/grounding.html</guid>
+      <pubDate>Sat, 14 Sep 2024 00:00:00 +0200</pubDate>
+      <description>Заземление — набор техник для возвращения в «здесь и сейчас». Тревога, флэшбэки, эмоциональные бури.</description>
+    </item>
+    <item>
+      <title>Нарушения сна и психика: как разорвать порочный круг</title>
+      <link>https://levashou.pl/blog/sleep.html</link>
+      <guid>https://levashou.pl/blog/sleep.html</guid>
+      <pubDate>Fri, 30 Aug 2024 00:00:00 +0200</pubDate>
+      <description>Депрессия нарушает сон, плохой сон усугубляет депрессию. КПТ-I — единственный метод с доказанной эффективностью.</description>
+    </item>
+    <item>
+      <title>Когнитивные искажения: 10 ловушек мышления</title>
+      <link>https://levashou.pl/blog/cognitive-distortions.html</link>
+      <guid>https://levashou.pl/blog/cognitive-distortions.html</guid>
+      <pubDate>Wed, 10 Jul 2024 00:00:00 +0200</pubDate>
+      <description>Катастрофизация, чтение мыслей, персонализация. 10 самых распространённых паттернов.</description>
+    </item>
+  </channel>
+</rss>

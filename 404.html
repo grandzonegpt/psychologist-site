@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Страница не найдена — Алексей Левашев</title>
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Страница не найдена. Вернитесь на главную или найдите нужный раздел.">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=39">
+<script>
+  // Language autodetect: if browser is PL, show PL content
+  (function(){
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (lang.indexOf('pl') === 0) {
+      document.documentElement.lang = 'pl';
+      document.addEventListener('DOMContentLoaded', function(){
+        document.querySelectorAll('[data-lang="ru"]').forEach(function(el){ el.hidden = true; });
+        document.querySelectorAll('[data-lang="pl"]').forEach(function(el){ el.hidden = false; });
+        document.title = 'Strona nie znaleziona — Aliaksei Levashou';
+      });
+    }
+  })();
+</script>
+<style>
+  .error-page { min-height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 24px; }
+  .error-page .code { font-family: var(--font-serif); font-size: 96px; color: var(--accent); margin: 0 0 16px; letter-spacing: -0.02em; }
+  .error-page h1 { font-family: var(--font-serif); font-size: 32px; margin: 0 0 16px; }
+  .error-page p { color: var(--text-muted); max-width: 520px; margin: 0 auto 32px; line-height: 1.6; }
+  .error-page .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .error-page .actions a { padding: 14px 28px; border: 1px solid var(--border-subtle); border-radius: 2px; text-decoration: none; color: var(--text-primary); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .error-page .actions a:hover { border-color: var(--accent); color: var(--accent); }
+  .error-page .actions a.primary { background: linear-gradient(180deg, #f5f1e8, #d9d2c7); color: var(--bg-primary); border: none; border-radius: 6px; }
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Навигация">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" data-lang="ru">Алексей Левашев<span class="dot">.</span></a>
+    <a href="/index-pl.html" class="nav-brand" data-lang="pl" hidden>Aliaksei Levashou<span class="dot">.</span></a>
+  </div>
+</nav>
+
+<main class="error-page">
+  <div>
+    <div class="code">404</div>
+    <div data-lang="ru">
+      <h1>Страница не найдена</h1>
+      <p>Возможно, ссылка устарела или вы ошиблись в адресе. Вернитесь на главную или поищите нужный раздел в блоге.</p>
+      <div class="actions">
+        <a href="/" class="primary">На главную</a>
+        <a href="/blog.html">Блог</a>
+        <a href="/#booking">Записаться</a>
+      </div>
+    </div>
+    <div data-lang="pl" hidden>
+      <h1>Strona nie znaleziona</h1>
+      <p>Link mógł być nieaktualny lub wystąpił błąd w adresie. Wróć na stronę główną albo poszukaj w blogu.</p>
+      <div class="actions">
+        <a href="/index-pl.html" class="primary">Strona główna</a>
+        <a href="/blog-pl.html">Blog</a>
+        <a href="/index-pl.html#booking">Zapisz się</a>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

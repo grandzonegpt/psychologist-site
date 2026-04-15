@@ -48,9 +48,9 @@ app.use(express.static(path.join(__dirname), {
   maxAge: 0
 }));
 
-// SPA fallback - serve index.html for unknown routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+// 404 for unknown routes (proper status, not silent rewrite to index)
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
 });
 
 app.listen(PORT, () => {
