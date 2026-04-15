@@ -44,7 +44,13 @@
       "Bash(perl -i -pe 's|<a href=\"/#about\" class=\"secondary\">Про меня</a>|<a href=\"/assets/checklist-7-signs-ru.pdf\" class=\"secondary\" target=\"_blank\" rel=\"noopener\" download>Чеклист: 7 признаков</a>|g' blog/*.html)",
       "Bash(perl -i -pe 's|<a href=\"/index-pl.html#about\" class=\"secondary\">O mnie</a>|<a href=\"/assets/checklist-7-signs-pl.pdf\" class=\"secondary\" target=\"_blank\" rel=\"noopener\" download>Lista: 7 oznak</a>|g' blog-pl/*.html)",
       "Bash(grep -c \"checklist-7-signs-ru.pdf\" blog/*.html)",
-      "Bash(grep -c \"checklist-7-signs-pl.pdf\" blog-pl/*.html)"
+      "Bash(grep -c \"checklist-7-signs-pl.pdf\" blog-pl/*.html)",
+      "Bash(grep -oE '<h1[^>]*>[^<]+</h1>' blog/*.html)",
+      "Bash(grep -oE '<h1[^>]*>[^<]+</h1>' blog-pl/*.html)",
+      "Bash(grep -c \"related-articles\" blog/*.html)",
+      "Bash(grep -c \"related-articles\" blog-pl/*.html)",
+      "Bash(perl -i -pe 's|style\\\\.css\\\\?v=44|style.css?v=45|g' blog/*.html blog-pl/*.html *.html)",
+      "Bash(perl -i -pe 's|main\\\\.js\\\\?v=15|main.js?v=16|g' blog/*.html blog-pl/*.html *.html)"
     ]
   }
 }

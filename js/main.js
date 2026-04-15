@@ -461,4 +461,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Sticky mobile CTA on blog articles
+  (function(){
+    var path = window.location.pathname;
+    var isBlog = path.indexOf('/blog/') === 0 || path.indexOf('/blog-pl/') === 0;
+    if (!isBlog) return;
+    if (window.innerWidth > 720) return;
+    if (sessionStorage.getItem('stickyCtaDismissed') === '1') return;
+
+    var isPl = path.indexOf('/blog-pl/') === 0;
+    var url = isPl
+      ? 'https://cal.com/levashou/intro-pl?utm_source=blog&utm_medium=sticky_mobile'
+      : 'https://cal.com/levashou/intro-ru?utm_source=blog&utm_medium=sticky_mobile';
+    var label = isPl ? 'Opowiedzieć, co niepokoi' : 'Рассказать, что беспокоит';
+    var closeLabel = isPl ? 'Zamknij' : 'Закрыть';
+
+    var bar = document.createElement('div');
+    bar.className = 'sticky-cta-mobile';
+    bar.innerHTML =
+      '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>' +
+      '<button type="button" aria-label="' + closeLabel + '">&times;</button>';
+    document.body.appendChild(bar);
+
+    var shown = false;
+    function onScroll(){
+      if (shown) return;
+      var h = document.documentElement;
+      var scrolled = (h.scrollTop + window.innerHeight) / h.scrollHeight;
+      if (scrolled > 0.4) {
+        bar.classList.add('visible');
+        shown = true;
+        window.removeEventListener('scroll', onScroll);
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    bar.querySelector('button').addEventListener('click', function(){
+      bar.classList.remove('visible');
+      sessionStorage.setItem('stickyCtaDismissed', '1');
+      setTimeout(function(){ bar.remove(); }, 300);
+    });
+  })();
+
 });
