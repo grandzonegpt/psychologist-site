@@ -50,7 +50,11 @@
       "Bash(ls -la *.xml *.txt robots* sitemap*)",
       "Bash(railway --version)",
       "Bash(node -e \"require\\('http'\\)\")",
-      "Bash(bash)"
+      "Bash(bash)",
+      "Bash(grep -n 'style.css?v=' *.html blog/*.html blog-pl/*.html)",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(find . -name \"*.html\" -not -path \"./node_modules/*\" -exec perl -i -pe 's/style\\\\.css\\\\?v=38/style.css?v=39/g' {} \\\\; grep -l 'style.css?v=38' *.html blog/*.html blog-pl/*.html)",
+      "Bash(wc -l echo \"^^ should be 0 \\(no stale refs\\)\" grep -l 'style.css?v=39' *.html blog/*.html blog-pl/*.html)"
     ]
   }
 }

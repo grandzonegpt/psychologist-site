@@ -1432,9 +1432,21 @@ section.alt { background: var(--bg-secondary); }
   padding: 24px 28px;
   max-width: 640px;
   margin-left: auto;
-  display: none;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
 }
-.cookie-banner.visible { display: block; }
+.cookie-banner.visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s;
+}
+@media (max-width: 640px) {
+  .cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px 20px; }
+}
 .cookie-banner p { font-size: 13px; color: var(--text-muted); margin: 0 0 16px; }
 .cookie-banner a { color: var(--accent); text-decoration: underline; }
 .cookie-actions { display: flex; gap: 12px; flex-wrap: wrap; }
