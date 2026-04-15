@@ -1541,13 +1541,20 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 /* Article pages are always cream; scope internal blocks to a light palette */
 .post-page .post-content .related-articles .related-grid a,
 .post-page .post-content .author-card,
-.post-page .post-content .mid-cta,
 .post-page .post-content .post-cta {
-  background: rgba(0, 0, 0, 0.035) !important;
+  background: #fbf8f1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  color: #1a1a1a !important;
+}
+.post-page .post-content .mid-cta {
+  background: #fbf8f1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.09) !important;
+  border-left: 3px solid #1a1a1b !important;
   color: #1a1a1a !important;
 }
 .post-page .post-content .related-articles .related-grid a:hover {
-  background: rgba(0, 0, 0, 0.06) !important;
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.18) !important;
 }
 .post-page .post-content .mid-cta p,
 .post-page .post-content .author-card .bio strong,
@@ -1557,10 +1564,10 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 .post-page .post-content .author-card .bio .role,
 .post-page .post-content .author-card .bio p.authority,
 .post-page .post-content .mid-cta small.authority {
-  color: #5a5650 !important;
+  color: #3d3a33 !important;
 }
 .post-page .post-content .author-card .bio p.authority {
-  border-left: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-left: 2px solid rgba(0, 0, 0, 0.18) !important;
 }
 .post-page .post-content .mid-cta a,
 .post-page .post-content .author-card .author-actions a.primary {
