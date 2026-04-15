@@ -1567,33 +1567,35 @@ section.alt { background: var(--bg-secondary); }
 
 /* Mid-article CTA (conversational) */
 .post-content .mid-cta {
-  margin: 48px -20px;
+  margin: 48px 0;
   padding: 28px 32px;
-  border-left: 3px solid #b8860b;
-  background: rgba(184, 134, 11, 0.04);
+  border-left: 2px solid var(--border-subtle);
+  background: var(--bg-elevated);
   font-family: var(--font-serif);
+  border-radius: 0 4px 4px 0;
 }
 .post-content .mid-cta p {
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.55;
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   color: var(--text-primary);
   font-style: italic;
 }
 .post-content .mid-cta a {
   display: inline-block;
   padding: 12px 24px;
-  background: #b8860b;
-  color: #fff;
+  background: linear-gradient(180deg, #f5f1e8, #d9d2c7);
+  color: var(--bg-primary);
   text-decoration: none;
   font-family: var(--font-sans);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border-radius: 2px;
-  transition: background 0.2s;
+  border-radius: 6px;
+  border: none;
+  transition: opacity 0.2s;
 }
-.post-content .mid-cta a:hover { background: #9a710a; }
+.post-content .mid-cta a:hover { opacity: 0.85; }
 
 /* Author card at end of article */
 .post-content .author-card {
@@ -1628,10 +1630,10 @@ section.alt { background: var(--bg-secondary); }
 }
 .post-content .author-card .bio .role {
   font-family: var(--font-sans);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8a7548;
+  color: var(--text-muted);
   margin-bottom: 14px;
 }
 .post-content .author-card .bio p {
@@ -1655,17 +1657,18 @@ section.alt { background: var(--bg-secondary); }
   transition: all 0.2s;
 }
 .post-content .author-card .author-actions a.primary {
-  background: #b8860b;
-  color: #fff;
-  border: 1px solid #b8860b;
+  background: linear-gradient(180deg, #f5f1e8, #d9d2c7);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 6px;
 }
-.post-content .author-card .author-actions a.primary:hover { background: #9a710a; border-color: #9a710a; }
+.post-content .author-card .author-actions a.primary:hover { opacity: 0.85; }
 .post-content .author-card .author-actions a.secondary {
   background: transparent;
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
 }
-.post-content .author-card .author-actions a.secondary:hover { border-color: #b8860b; color: #b8860b; }
+.post-content .author-card .author-actions a.secondary:hover { border-color: var(--text-primary); }
 
 @media (max-width: 640px) {
   .post-content .author-card {
