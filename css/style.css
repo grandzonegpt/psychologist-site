@@ -858,7 +858,10 @@ body.light-theme .post-content .mid-cta a,
 body.light-theme .post-content .author-card .author-actions a.primary,
 body.light-theme .sticky-cta-mobile a,
 body.light-theme .exit-popup-content .btn,
-body.light-theme #exit-popup-cta {
+body.light-theme #exit-popup-cta,
+body.light-theme .gcal-fallback,
+body.light-theme .cookie-actions .accept-all,
+body.light-theme .floating-cta a {
   background: #1a1a1b !important;
   color: #f5f1e8 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
@@ -869,7 +872,10 @@ body.light-theme .post-content .post-cta .btn:hover,
 body.light-theme .post-content .mid-cta a:hover,
 body.light-theme .post-content .author-card .author-actions a.primary:hover,
 body.light-theme .sticky-cta-mobile a:hover,
-body.light-theme #exit-popup-cta:hover {
+body.light-theme #exit-popup-cta:hover,
+body.light-theme .gcal-fallback:hover,
+body.light-theme .cookie-actions .accept-all:hover,
+body.light-theme .floating-cta a:hover {
   background: #000 !important;
   color: #f5f1e8 !important;
   opacity: 1 !important;

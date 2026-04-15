@@ -53,7 +53,8 @@
       "Bash(perl -i -pe 's|main\\\\.js\\\\?v=15|main.js?v=16|g' blog/*.html blog-pl/*.html *.html)",
       "Bash(grep -h \"fonts.googleapis\" *.html blog/*.html blog-pl/*.html)",
       "Bash(grep -l \"Source+Serif+Pro\" *.html blog/*.html blog-pl/*.html)",
-      "Bash(grep -h \"Source Serif\" css/style.css *.html)"
+      "Bash(grep -h \"Source Serif\" css/style.css *.html)",
+      "Bash(grep -nE \"background: \\(rgba\\\\\\(0,0,0|#[0-9a-f]{3,6}\\)\" css/style.css)"
     ]
   }
 }
