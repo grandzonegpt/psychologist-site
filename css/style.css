@@ -1579,6 +1579,26 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
   color: #1a1a1b !important;
   border: 1px solid #1a1a1b !important;
 }
+.post-page .post-content .post-cta .btn {
+  background: #1a1a1b !important;
+  color: #f5f1e8 !important;
+  border: none !important;
+}
+.post-page .post-content .post-cta .btn:hover {
+  background: #000 !important;
+  color: #f5f1e8 !important;
+  opacity: 1 !important;
+}
+.post-page .post-content .post-cta .btn-ghost,
+.post-page .post-content .post-cta .btn.btn-ghost {
+  background: transparent !important;
+  color: #1a1a1b !important;
+  border: 1px solid #1a1a1b !important;
+}
+.post-page .post-content .post-cta .btn-ghost:hover {
+  background: #1a1a1b !important;
+  color: #f5f1e8 !important;
+}
 .post-page .sticky-cta-mobile {
   background: #f5f1e8 !important;
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
