@@ -12,7 +12,12 @@
       "Bash(curl -s -X POST https://backboard.railway.app/graphql/v2 -H 'Authorization: Bearer 7d627f48-2636-426a-8690-2975315869db' -H 'Content-Type: application/json' -d '{\"query\":\"{ project\\(id: \\\\\"7f250f77-fcc7-45e9-90d5-56408a7bfbe3\\\\\"\\) { services { edges { node { id name serviceInstances { edges { node { id buildCommand startCommand source { __typename ... on GitSource { repo branch } } } } } } } } } }\"}')",
       "Bash(curl -s -X POST https://backboard.railway.app/graphql/v2 -H 'Authorization: Bearer 7d627f48-2636-426a-8690-2975315869db' -H 'Content-Type: application/json' -d '{\"query\":\"{ project\\(id: \\\\\"7f250f77-fcc7-45e9-90d5-56408a7bfbe3\\\\\"\\) { services { edges { node { id name serviceInstances { edges { node { id buildCommand startCommand } } } } } } } }\"}')",
       "Bash(curl -s -X POST https://backboard.railway.app/graphql/v2 -H 'Authorization: Bearer 7d627f48-2636-426a-8690-2975315869db' -H 'Content-Type: application/json' -d '{\"query\":\"mutation { serviceInstanceDeployV2\\(serviceId: \\\\\"0e590523-145a-43d8-a4f0-f345cb5f0fa5\\\\\", environmentId: \\\\\"7e98c5a3-46e0-42ca-a23b-77017490ca0c\\\\\", commitHash: \\\\\"942d3a231b87502bc832bd53fd1f0949515e0ab7\\\\\"\\) { id status } }\"}')",
-      "Bash(curl -s -X POST https://backboard.railway.app/graphql/v2 -H 'Authorization: Bearer 7d627f48-2636-426a-8690-2975315869db' -H 'Content-Type: application/json' -d '{\"query\":\"mutation { serviceInstanceDeployV2\\(serviceId: \\\\\"0e590523-145a-43d8-a4f0-f345cb5f0fa5\\\\\", environmentId: \\\\\"7e98c5a3-46e0-42ca-a23b-77017490ca0c\\\\\", commitSha: \\\\\"942d3a231b87502bc832bd53fd1f0949515e0ab7\\\\\"\\) }\"}')"
+      "Bash(curl -s -X POST https://backboard.railway.app/graphql/v2 -H 'Authorization: Bearer 7d627f48-2636-426a-8690-2975315869db' -H 'Content-Type: application/json' -d '{\"query\":\"mutation { serviceInstanceDeployV2\\(serviceId: \\\\\"0e590523-145a-43d8-a4f0-f345cb5f0fa5\\\\\", environmentId: \\\\\"7e98c5a3-46e0-42ca-a23b-77017490ca0c\\\\\", commitSha: \\\\\"942d3a231b87502bc832bd53fd1f0949515e0ab7\\\\\"\\) }\"}')",
+      "Bash(bash /tmp/apply_author.sh)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(bash --version)",
+      "Bash(grep -l 'class=\"author-card\"' blog-pl/*.html)",
+      "Bash(perl -i -0pe 'my $n=0; my $m=$ENV{MID}; my $a=$ENV{AUTHOR}; s{\\(<h2[^>]*>\\)}{ \\($n++==1\\) ? \"$m\\\\n$1\" : $1 }ge; s{\\(  </article>\\)}{$a\\\\n$1}' blog-pl/cbt.html)"
     ]
   }
 }
