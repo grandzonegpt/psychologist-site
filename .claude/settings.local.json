@@ -55,7 +55,8 @@
       "Bash(grep -l \"Source+Serif+Pro\" *.html blog/*.html blog-pl/*.html)",
       "Bash(grep -h \"Source Serif\" css/style.css *.html)",
       "Bash(grep -nE \"background: \\(rgba\\\\\\(0,0,0|#[0-9a-f]{3,6}\\)\" css/style.css)",
-      "Bash(perl -i -pe 's|background: #1a1a1b !important;\\\\n color: #f5f1e8 !important;|background: #2d2419 !important;\\\\n color: #f5f1e8 !important;|g' css/style.css)"
+      "Bash(perl -i -pe 's|background: #1a1a1b !important;\\\\n color: #f5f1e8 !important;|background: #2d2419 !important;\\\\n color: #f5f1e8 !important;|g' css/style.css)",
+      "Bash(perl -i -pe 's|#2d2419|#4a3d2a|g; s|#1a1410|#2d2419|g' css/style.css)"
     ]
   }
 }
