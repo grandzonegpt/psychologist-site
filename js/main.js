@@ -86,15 +86,45 @@ document.addEventListener('DOMContentLoaded', () => {
     counterObs.observe(counterEl);
   }
 
-  // Cookie banner
+  // Cookie banner + Google Consent Mode v2
   const banner = document.querySelector('.cookie-banner');
   const CKEY = 'cookie-consent';
   const stored = localStorage.getItem(CKEY);
   if (banner && !stored) banner.classList.add('visible');
 
+  const CONSENT_MAP = {
+    all: {
+      ad_storage: 'granted',
+      ad_user_data: 'granted',
+      ad_personalization: 'granted',
+      analytics_storage: 'granted'
+    },
+    necessary: {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    },
+    rejected: {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    }
+  };
+
+  const updateGtagConsent = (val) => {
+    if (typeof gtag === 'function' && CONSENT_MAP[val]) {
+      gtag('consent', 'update', CONSENT_MAP[val]);
+    }
+  };
+
+  if (stored && CONSENT_MAP[stored]) updateGtagConsent(stored);
+
   const saveConsent = (val) => {
     localStorage.setItem(CKEY, val);
     if (banner) banner.classList.remove('visible');
+    updateGtagConsent(val);
     if (val === 'all') loadAnalytics();
   };
   document.querySelectorAll('[data-cookie="all"]').forEach(b =>
@@ -111,7 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
   );
   if (stored === 'all') loadAnalytics();
   function loadAnalytics() {
-    // Analytics/tracking scripts load here only after explicit "all" consent.
+    if (window.__clarityLoaded) return;
+    window.__clarityLoaded = true;
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wbo8sg8woh");
   }
 
   // Rotating quotes
