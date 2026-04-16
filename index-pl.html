@@ -202,29 +202,6 @@
 </script>
 <!-- End MailerLite Universal -->
 
-<!-- SimplyBook widget overrides -->
-<style>
-  .sb-btn-primary, button.primary, .sb-book-button {
-    background: #C9A961 !important;
-    color: #1a1a1a !important;
-    border: none !important;
-    font-weight: 600 !important;
-  }
-  .sb-btn-primary:hover, button.primary:hover, .sb-book-button:hover {
-    background: #B89550 !important;
-  }
-  .sb-time-slot.selected, .sb-calendar-day.selected {
-    background: #C9A961 !important;
-    color: #1a1a1a !important;
-  }
-  .sb-calendar-day.available:hover {
-    background: rgba(201, 169, 97, 0.15) !important;
-  }
-  #sb-widget-ru iframe, #sb-widget-pl iframe {
-    border: none;
-    border-radius: 12px;
-  }
-</style>
 </head>
 
 <body>
@@ -854,38 +831,38 @@
           Sesja 50 minut <span class="gold">·</span> <span class="gold">180 PLN</span>
         </div>
         <!-- SimplyBook Widget — PL -->
-        <div id="sb-widget-pl" style="min-height:400px;"></div>
-        <script src="https://widget.simplybook.it/v2/widget/widget.js"></script>
+        <div id="sb-widget-pl"></div>
+        <script src="//widget.simplybook.it/v2/widget/widget.js"></script>
         <script>
-          var widget_pl = new SimplybookWidget({
-            "widget_type": "iframe",
-            "url": "https://levashou.simplybook.it",
-            "theme": "minimal",
-            "theme_settings": {
-              "timeline_show_end_time": "0",
-              "timeline_modern_display": "as_slots",
-              "sb_base_color": "#C9A961",
-              "display_item_mode": "block",
-              "booking_nav_bg_color": "#1a1a1a",
-              "body_bg_color": "#ffffff",
-              "sb_review_image": "",
-              "dark_font_color": "#1a1a1a",
-              "light_font_color": "#ffffff",
-              "btn_color_1": "#C9A961",
-              "sb_company_label_color": "#ffffff",
-              "hide_img_mode": "0",
-              "sb_busy": "#c7b3b3",
-              "sb_available": "#d6e3f3"
+          var widgetPl = new SimplyBook.Widget({
+            widget_type: "iframe",
+            url: "https://levashou.simplybook.it",
+            theme: "dark",
+            theme_settings: {
+              timeline_hide_unavailable: "1",
+              hide_past_days: "0",
+              timeline_show_end_time: "0",
+              timeline_modern_display: "as_slots",
+              sb_base_color: "#C9A961",
+              display_item_mode: "block",
+              booking_nav_bg_color: "#141416",
+              body_bg_color: "#0A0A0B",
+              sb_review_image: "",
+              dark_font_color: "#E8E0D4",
+              light_font_color: "#E8E0D4",
+              btn_color_1: "#C9A961",
+              btn_color_2: "#B89550",
+              sb_company_label_color: "#C9A961",
+              hide_img_mode: "0",
+              sb_busy: "#3a2525",
+              sb_available: "#1f2a38"
             },
-            "timeline": "modern",
-            "datepicker": "top_calendar",
-            "is_rtl": false,
-            "app_config": {
-              "predefined": {
-                "locale": "pl"
-              }
-            },
-            "container_id": "sb-widget-pl"
+            timeline: "modern",
+            datepicker: "top_calendar",
+            is_rtl: false,
+            app_config: { clear_session: 0, allow_switch_to_ada: 0, predefined: [] },
+            container_id: "sb-widget-pl",
+            locale: "pl"
           });
         </script>
         <p class="booking-note" style="margin-bottom:20px;">Lub <a href="https://cal.com/levashou/intro-pl" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">umów się na bezpłatną rozmowę (15 min)</a>, jeśli chcesz najpierw porozmawiać.</p>
