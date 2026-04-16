@@ -251,7 +251,14 @@ section.alt { background: var(--bg-secondary); }
 }
 .hero-trust {
   margin-top: 20px; font-size: 13px; color: var(--text-muted);
-  display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  display: flex; flex-direction: column; flex-wrap: wrap; gap: 8px; align-items: flex-start;
+}
+.hero-trust p {
+  font-size: 15px;
+  color: var(--text);
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+  max-width: 480px;
 }
 .hero-trust a { color: var(--text-muted); border-bottom: 1px dotted var(--text-muted); }
 .hero-trust a:hover { color: var(--accent); border-color: var(--accent); }
