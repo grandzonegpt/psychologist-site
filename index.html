@@ -201,6 +201,30 @@
     ml('account', '2268375');
 </script>
 <!-- End MailerLite Universal -->
+
+<!-- SimplyBook widget overrides -->
+<style>
+  .sb-btn-primary, button.primary, .sb-book-button {
+    background: #C9A961 !important;
+    color: #1a1a1a !important;
+    border: none !important;
+    font-weight: 600 !important;
+  }
+  .sb-btn-primary:hover, button.primary:hover, .sb-book-button:hover {
+    background: #B89550 !important;
+  }
+  .sb-time-slot.selected, .sb-calendar-day.selected {
+    background: #C9A961 !important;
+    color: #1a1a1a !important;
+  }
+  .sb-calendar-day.available:hover {
+    background: rgba(201, 169, 97, 0.15) !important;
+  }
+  #sb-widget-ru iframe, #sb-widget-pl iframe {
+    border: none;
+    border-radius: 12px;
+  }
+</style>
 </head>
 
 <body>
@@ -826,9 +850,41 @@
         <div class="price-strip">
           Сессия 50 минут <span class="gold">·</span> <span class="gold">180 PLN</span>
         </div>
-        <div class="gcal-host">
-          <a href="https://cal.com/levashou/consultation" target="_blank" rel="noopener noreferrer" class="gcal-fallback">Выбрать время</a>
-        </div>
+        <!-- SimplyBook Widget — RU -->
+        <div id="sb-widget-ru" style="min-height:400px;"></div>
+        <script src="https://widget.simplybook.it/v2/widget/widget.js"></script>
+        <script>
+          var widget_ru = new SimplybookWidget({
+            "widget_type": "iframe",
+            "url": "https://levashou.simplybook.it",
+            "theme": "minimal",
+            "theme_settings": {
+              "timeline_show_end_time": "0",
+              "timeline_modern_display": "as_slots",
+              "sb_base_color": "#C9A961",
+              "display_item_mode": "block",
+              "booking_nav_bg_color": "#1a1a1a",
+              "body_bg_color": "#ffffff",
+              "sb_review_image": "",
+              "dark_font_color": "#1a1a1a",
+              "light_font_color": "#ffffff",
+              "btn_color_1": "#C9A961",
+              "sb_company_label_color": "#ffffff",
+              "hide_img_mode": "0",
+              "sb_busy": "#c7b3b3",
+              "sb_available": "#d6e3f3"
+            },
+            "timeline": "modern",
+            "datepicker": "top_calendar",
+            "is_rtl": false,
+            "app_config": {
+              "predefined": {
+                "locale": "ru"
+              }
+            },
+            "container_id": "sb-widget-ru"
+          });
+        </script>
         <p class="booking-note" style="margin-bottom:20px;">Или <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">запишись на бесплатное знакомство (15 мин)</a>, если хочешь сначала поговорить.</p>
         <p class="booking-note">Доступные слоты обновляются автоматически. После выбора времени получишь подтверждение на email.</p>
         <p class="booking-note">Отменить или перенести сессию без потери оплаты можно за 24 часа до её начала. Если отменяешь позже, оплата сохраняется: это время уже было зарезервировано для тебя.</p>
