@@ -51,7 +51,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=62">
+<link rel="stylesheet" href="/css/style.css?v=63">
 
 <script type="application/ld+json">
 {
@@ -827,40 +827,9 @@
         <div class="price-strip">
           Сессия 50 минут <span class="gold">·</span> <span class="gold">180 PLN</span>
         </div>
-        <!-- SimplyBook Widget — RU -->
-        <div id="sb-widget-ru"></div>
-        <script src="//widget.simplybook.it/v2/widget/widget.js"></script>
-        <script>
-          var widget = new SimplybookWidget({
-            widget_type: "iframe",
-            url: "https://levashou.simplybook.it",
-            theme: "dark",
-            theme_settings: {
-              timeline_hide_unavailable: "1",
-              hide_past_days: "0",
-              timeline_show_end_time: "0",
-              timeline_modern_display: "as_slots",
-              sb_base_color: "#C9A961",
-              display_item_mode: "block",
-              booking_nav_bg_color: "#141416",
-              body_bg_color: "#0A0A0B",
-              sb_review_image: "",
-              dark_font_color: "#E8E0D4",
-              light_font_color: "#E8E0D4",
-              btn_color_1: "#C9A961",
-              btn_color_2: "#B89550",
-              sb_company_label_color: "#C9A961",
-              hide_img_mode: "0",
-              sb_busy: "#3a2525",
-              sb_available: "#1f2a38"
-            },
-            timeline: "modern",
-            datepicker: "top_calendar",
-            is_rtl: false,
-            app_config: { clear_session: 0, allow_switch_to_ada: 0, predefined: { locale: "ru" } },
-            container_id: "sb-widget-ru"
-          });
-        </script>
+        <div id="booking-widget-ru"></div>
+        <script src="js/booking-widget.js?v=62"></script>
+        <script>BookingWidget.init('booking-widget-ru', 'ru');</script>
         <p class="booking-note" style="margin-bottom:20px;">Или <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">запишись на бесплатное знакомство (15 мин)</a>, если хочешь сначала поговорить.</p>
         <p class="booking-note">Доступные слоты обновляются автоматически. После выбора времени получишь подтверждение на email.</p>
         <p class="booking-note">Отменить или перенести сессию без потери оплаты можно за 24 часа до её начала. Если отменяешь позже, оплата сохраняется: это время уже было зарезервировано для тебя.</p>
