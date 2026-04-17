@@ -66,22 +66,13 @@ async function createCalendarEvent({ name, email, date, time, locale }) {
         description: `Email: ${email}\nLocale: ${locale || 'ru'}\n\n🔗 Google Meet: https://meet.google.com/mbs-kkqi-kpp`,
         start: { dateTime: start.toISOString(), timeZone: config.timezone },
         end: { dateTime: end.toISOString(), timeZone: config.timezone },
-        attendees: [{ email }],
-        conferenceData: {
-          createRequest: {
-            requestId: `${date}-${time}-${Date.now()}`,
-            conferenceSolutionKey: { type: 'hangoutsMeet' }
-          }
-        },
         reminders: {
           useDefault: false,
           overrides: [
-            { method: 'email', minutes: 60 },
             { method: 'popup', minutes: 30 }
           ]
         }
-      },
-      sendUpdates: 'all'
+      }
     });
     return event.data.id;
   }

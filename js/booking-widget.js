@@ -10,7 +10,8 @@
       name: 'Имя',
       email: 'Email',
       book: 'Записаться',
-      booked: 'Готово. Проверь почту.',
+      booked: 'Оплата прошла! Ссылка на встречу:',
+      meetLink: 'Подключиться через Google Meet',
       noSlots: 'Нет свободных слотов',
       loading: 'Загрузка...',
       error: 'Ошибка. Попробуй ещё раз.',
@@ -25,7 +26,8 @@
       name: 'Imię',
       email: 'Email',
       book: 'Umów sesję',
-      booked: 'Gotowe. Sprawdź email.',
+      booked: 'Płatność przeszła! Link do spotkania:',
+      meetLink: 'Dołącz przez Google Meet',
       noSlots: 'Brak wolnych terminów',
       loading: 'Ładowanie...',
       error: 'Błąd. Spróbuj ponownie.',
@@ -236,6 +238,14 @@
     }
 
     loadSlots();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('booking') === 'success') {
+      $message.innerHTML = `${t.booked}<br><a href="https://meet.google.com/mbs-kkqi-kpp" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#C9A961;color:#0a0a0b;border-radius:8px;text-decoration:none;font-weight:500;">${t.meetLink}</a>`;
+      $message.className = 'bw-message bw-success';
+      $message.style.display = 'block';
+      window.history.replaceState({}, '', window.location.pathname);
+    }
   }
 
   window.BookingWidget = { init };
