@@ -1,20 +1,9 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const config = require('./config');
 
 const MEET_LINK = 'https://meet.google.com/mbs-kkqi-kpp';
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD
-  }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const templates = {
   ru: ({ name, date, time }) => ({
@@ -58,15 +47,15 @@ const templates = {
 };
 
 async function sendConfirmation({ name, email, date, time, locale }) {
-  if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-    console.log('Mailer: no credentials, skipping');
+  if (!process.env.RESEND_API_KEY) {
+    console.log('Mailer: no Resend key, skipping');
     return;
   }
 
   const template = (templates[locale] || templates.ru)({ name, date, time });
 
-  await transporter.sendMail({
-    from: `"Aliaksei Levashou" <${process.env.GMAIL_USER}>`,
+  await resend.emails.send({
+    from: 'Aliaksei Levashou <onboarding@resend.dev>',
     to: email,
     subject: template.subject,
     html: template.html
