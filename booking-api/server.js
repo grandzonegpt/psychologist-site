@@ -60,12 +60,19 @@ async function createCalendarEvent({ name, email, date, time, locale }) {
   if (calendar) {
     await calendar.events.insert({
       calendarId: config.calendarId,
+      conferenceDataVersion: 1,
       requestBody: {
         summary: `${serviceName}: ${name}`,
         description: `Email: ${email}\nLocale: ${locale || 'ru'}`,
         start: { dateTime: start.toISOString(), timeZone: config.timezone },
         end: { dateTime: end.toISOString(), timeZone: config.timezone },
         attendees: [{ email }],
+        conferenceData: {
+          createRequest: {
+            requestId: `${date}-${time}-${Date.now()}`,
+            conferenceSolutionKey: { type: 'hangoutsMeet' }
+          }
+        },
         reminders: {
           useDefault: false,
           overrides: [
