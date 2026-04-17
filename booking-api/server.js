@@ -1,10 +1,38 @@
 const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
+const Stripe = require('stripe');
 const config = require('./config');
 
 const app = express();
-app.use(cors({ origin: ['https://levashou.pl', 'https://www.levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'] }));
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
+const allowedOrigins = ['https://levashou.pl', 'https://www.levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'];
+
+app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  const sig = req.headers['stripe-signature'];
+  let event;
+  try {
+    event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+  } catch (e) {
+    console.error('Webhook signature failed:', e.message);
+    return res.status(400).send('Invalid signature');
+  }
+
+  if (event.type === 'checkout.session.completed') {
+    const session = event.data.object;
+    const { name, email, date, time, locale } = session.metadata;
+    try {
+      await createCalendarEvent({ name, email, date, time, locale });
+      console.log(`Booking confirmed: ${name} on ${date} at ${time}`);
+    } catch (e) {
+      console.error('Calendar event failed after payment:', e.message);
+    }
+  }
+  res.json({ received: true });
+});
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 let calendar;
@@ -17,6 +45,34 @@ try {
   calendar = google.calendar({ version: 'v3', auth });
 } catch (e) {
   console.error('Google auth error:', e.message);
+}
+
+async function createCalendarEvent({ name, email, date, time, locale }) {
+  const startDateTime = `${date}T${time}:00`;
+  const start = new Date(startDateTime);
+  const end = new Date(start.getTime() + config.slotDuration * 60000);
+  const serviceName = config.serviceName[locale] || config.serviceName.ru;
+
+  if (calendar) {
+    await calendar.events.insert({
+      calendarId: config.calendarId,
+      requestBody: {
+        summary: `${serviceName}: ${name}`,
+        description: `Email: ${email}\nLocale: ${locale || 'ru'}`,
+        start: { dateTime: start.toISOString(), timeZone: config.timezone },
+        end: { dateTime: end.toISOString(), timeZone: config.timezone },
+        attendees: [{ email }],
+        reminders: {
+          useDefault: false,
+          overrides: [
+            { method: 'email', minutes: 60 },
+            { method: 'popup', minutes: 30 }
+          ]
+        }
+      },
+      sendUpdates: 'all'
+    });
+  }
 }
 
 function generateSlots(daySchedule) {
@@ -69,7 +125,6 @@ app.get('/api/slots', async (req, res) => {
       const available = allSlots.filter(time => {
         const slotStart = new Date(`${dateStr}T${time}:00`);
         const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
-        const slotStartUTC = new Date(slotStart.toLocaleString('en-US', { timeZone: 'UTC' }));
 
         if (slotStart < now) return false;
 
@@ -105,34 +160,28 @@ app.post('/api/book', async (req, res) => {
       return res.status(400).json({ error: 'Missing fields' });
     }
 
-    const startDateTime = `${date}T${time}:00`;
-    const start = new Date(startDateTime);
-    const end = new Date(start.getTime() + config.slotDuration * 60000);
-
     const serviceName = config.serviceName[locale] || config.serviceName.ru;
+    const origin = req.headers.origin || 'https://levashou.pl';
+    const returnPage = locale === 'pl' ? '/index-pl.html' : '/';
 
-    if (calendar) {
-      await calendar.events.insert({
-        calendarId: config.calendarId,
-        requestBody: {
-          summary: `${serviceName}: ${name}`,
-          description: `Email: ${email}\nLocale: ${locale || 'ru'}`,
-          start: { dateTime: start.toISOString(), timeZone: config.timezone },
-          end: { dateTime: end.toISOString(), timeZone: config.timezone },
-          attendees: [{ email }],
-          reminders: {
-            useDefault: false,
-            overrides: [
-              { method: 'email', minutes: 60 },
-              { method: 'popup', minutes: 30 }
-            ]
-          }
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card', 'p24', 'blik'],
+      mode: 'payment',
+      line_items: [{
+        price_data: {
+          currency: 'pln',
+          product_data: { name: serviceName },
+          unit_amount: config.price * 100
         },
-        sendUpdates: 'all'
-      });
-    }
+        quantity: 1
+      }],
+      customer_email: email,
+      metadata: { name, email, date, time, locale: locale || 'ru' },
+      success_url: `${origin}${returnPage}?booking=success`,
+      cancel_url: `${origin}${returnPage}?booking=cancelled`
+    });
 
-    res.json({ ok: true });
+    res.json({ ok: true, url: session.url });
   } catch (e) {
     console.error('Book error:', e.message);
     res.status(500).json({ error: 'Booking failed' });

@@ -181,17 +181,10 @@
           body: JSON.stringify({ name, email, date: selectedDate, time: selectedTime, locale })
         });
         const data = await resp.json();
-        if (data.ok) {
-          $formSection.style.display = 'none';
-          $slotsSection.style.display = 'none';
-          $message.textContent = t.booked;
-          $message.className = 'bw-message bw-success';
-          $message.style.display = 'block';
-          if (slotsData[selectedDate]) {
-            slotsData[selectedDate] = slotsData[selectedDate].filter(s => s !== selectedTime);
-          }
-          renderCalendar();
-        } else {
+        if (data.ok && data.url) {
+          window.location.href = data.url;
+          return;
+        } else if (!data.ok) {
           throw new Error(data.error);
         }
       } catch (err) {
