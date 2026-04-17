@@ -4,6 +4,7 @@ const { google } = require('googleapis');
 const Stripe = require('stripe');
 const config = require('./config');
 const telegramBot = require('./bot');
+const mailer = require('./mailer');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -26,6 +27,7 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     try {
       const eventId = await createCalendarEvent({ name, email, date, time, locale });
       telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId });
+      mailer.sendConfirmation({ name, email, date, time, locale }).catch(e => console.error('Email error:', e.message));
       console.log(`Booking confirmed: ${name} on ${date} at ${time}`);
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
