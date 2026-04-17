@@ -13,6 +13,21 @@ const MONTH_NAMES = [
   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
 ];
 
+function generateSlots(daySchedule) {
+  const slots = [];
+  const [startH, startM] = daySchedule.start.split(':').map(Number);
+  const [endH, endM] = daySchedule.end.split(':').map(Number);
+  const startMin = startH * 60 + startM;
+  const endMin = endH * 60 + endM;
+  const step = config.slotDuration + config.breakDuration;
+  for (let m = startMin; m + config.slotDuration <= endMin; m += step) {
+    const h = Math.floor(m / 60);
+    const mm = m % 60;
+    slots.push(`${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`);
+  }
+  return slots;
+}
+
 function init(calendar) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   if (!token) {
@@ -26,12 +41,8 @@ function init(calendar) {
   bot.onText(/\/start/, (msg) => {
     ownerChatId = msg.chat.id;
     bot.sendMessage(msg.chat.id,
-      '👋 *Привет! Я твой бот для управления записями.*\n\n' +
-      'Вот что я умею:',
-      {
-        parse_mode: 'Markdown',
-        reply_markup: mainMenu()
-      }
+      '👋 *Привет! Я твой бот для управления записями.*\n\nВот что я умею:',
+      { parse_mode: 'Markdown', reply_markup: mainMenu() }
     );
   });
 
@@ -41,21 +52,27 @@ function init(calendar) {
 
     try {
       if (data === 'schedule') {
-        await showSchedule(chatId, calendar);
+        await showSchedule(chatId);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
       } else if (data === 'block_day') {
-        await showBlockDayPicker(chatId);
-      } else if (data.startsWith('block_')) {
-        await blockDay(chatId, data.replace('block_', ''), calendar);
-      } else if (data === 'unblock_day') {
-        await showUnblockDayPicker(chatId, calendar);
+        await showBlockDayPicker(chatId, 'blockday');
+      } else if (data.startsWith('blockday_')) {
+        await blockDay(chatId, data.replace('blockday_', ''), calendar);
+      } else if (data === 'block_hour') {
+        await showBlockDayPicker(chatId, 'blockhourday');
+      } else if (data.startsWith('blockhourday_')) {
+        await showBlockHourPicker(chatId, data.replace('blockhourday_', ''), calendar);
+      } else if (data.startsWith('blockhour_')) {
+        const parts = data.replace('blockhour_', '').split('_');
+        await blockHour(chatId, parts[0], parts[1], calendar);
+      } else if (data === 'unblock') {
+        await showUnblockPicker(chatId, calendar);
       } else if (data.startsWith('unblock_')) {
-        await unblockDay(chatId, data.replace('unblock_', ''), calendar);
+        await unblockEvent(chatId, data.replace('unblock_', ''), calendar);
       } else if (data === 'menu') {
         await bot.sendMessage(chatId, '📋 *Главное меню*', {
-          parse_mode: 'Markdown',
-          reply_markup: mainMenu()
+          parse_mode: 'Markdown', reply_markup: mainMenu()
         });
       }
     } catch (e) {
@@ -71,13 +88,20 @@ function mainMenu() {
   return {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи на неделю', callback_data: 'week' }],
-      [{ text: '🚫 Заблокировать день', callback_data: 'block_day' }, { text: '✅ Разблокировать день', callback_data: 'unblock_day' }]
+      [{ text: '🚫 Заблокировать день', callback_data: 'block_day' }],
+      [{ text: '🕐 Заблокировать час', callback_data: 'block_hour' }],
+      [{ text: '✅ Разблокировать', callback_data: 'unblock' }]
     ]
   };
 }
 
 function backButton() {
   return [[{ text: '◀️ Меню', callback_data: 'menu' }]];
+}
+
+function formatDate(dateStr) {
+  const d = new Date(`${dateStr}T00:00:00`);
+  return `${d.getDate()} ${MONTH_NAMES[d.getMonth()]}, ${DAY_NAMES[d.getDay()]}`;
 }
 
 async function showSchedule(chatId) {
@@ -87,8 +111,7 @@ async function showSchedule(chatId) {
     .join('\n');
 
   await bot.sendMessage(chatId,
-    '📅 *Твоё расписание:*\n\n' +
-    days + '\n\n' +
+    '📅 *Твоё расписание:*\n\n' + days + '\n\n' +
     `⏱ Сессия: ${config.slotDuration} мин + ${config.breakDuration} мин перерыв\n` +
     `💰 Цена: ${config.price} ${config.currency}`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
@@ -134,9 +157,7 @@ async function showWeekBookings(chatId, calendar) {
 
     const isBlocked = ev.summary && ev.summary.toLowerCase().includes('block');
     const icon = isBlocked ? '🚫' : '👤';
-
-    text += `${icon} *${day} ${month}, ${dow}* ${time}\n`;
-    text += `    ${ev.summary || 'Без названия'}\n\n`;
+    text += `${icon} *${day} ${month}, ${dow}* ${time}\n    ${ev.summary || 'Без названия'}\n\n`;
   });
 
   await bot.sendMessage(chatId, text,
@@ -144,7 +165,7 @@ async function showWeekBookings(chatId, calendar) {
   );
 }
 
-async function showBlockDayPicker(chatId) {
+async function showBlockDayPicker(chatId, prefix) {
   const buttons = [];
   const now = new Date();
   for (let i = 0; i < 14; i++) {
@@ -152,32 +173,22 @@ async function showBlockDayPicker(chatId) {
     date.setDate(date.getDate() + i);
     const dow = date.getDay();
     if (!config.schedule[dow]) continue;
-
-    const day = date.getDate();
-    const month = MONTH_NAMES[date.getMonth()];
     const dateStr = date.toISOString().split('T')[0];
-
-    buttons.push([{
-      text: `${DAY_NAMES[dow]} ${day} ${month}`,
-      callback_data: `block_${dateStr}`
-    }]);
+    buttons.push([{ text: `${DAY_NAMES[dow]} ${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`, callback_data: `${prefix}_${dateStr}` }]);
   }
   buttons.push(...backButton());
 
-  await bot.sendMessage(chatId, '🚫 *Выбери день для блокировки:*', {
-    parse_mode: 'Markdown',
-    reply_markup: { inline_keyboard: buttons }
+  const title = prefix === 'blockday'
+    ? '🚫 *Выбери день для блокировки:*'
+    : '🕐 *Выбери день, чтобы заблокировать час:*';
+
+  await bot.sendMessage(chatId, title, {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
   });
 }
 
 async function blockDay(chatId, dateStr, calendar) {
-  if (!calendar) {
-    await bot.sendMessage(chatId, '❌ Google Calendar не подключён');
-    return;
-  }
-
-  const start = new Date(`${dateStr}T00:00:00`);
-  const end = new Date(`${dateStr}T23:59:59`);
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
 
   await calendar.events.insert({
     calendarId: config.calendarId,
@@ -189,21 +200,97 @@ async function blockDay(chatId, dateStr, calendar) {
     }
   });
 
-  const d = new Date(`${dateStr}T00:00:00`);
-  const day = d.getDate();
-  const month = MONTH_NAMES[d.getMonth()];
-
   await bot.sendMessage(chatId,
-    `✅ *${day} ${month}* заблокирован.\nСлоты на этот день больше не будут показываться.`,
+    `✅ *${formatDate(dateStr)}* заблокирован.\nСлоты на этот день больше не будут показываться.`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
   );
 }
 
-async function showUnblockDayPicker(chatId, calendar) {
-  if (!calendar) {
-    await bot.sendMessage(chatId, '❌ Google Calendar не подключён');
+async function showBlockHourPicker(chatId, dateStr, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const dow = new Date(`${dateStr}T00:00:00`).getDay();
+  const daySchedule = config.schedule[dow];
+  if (!daySchedule) {
+    await bot.sendMessage(chatId, '❌ Нет расписания на этот день');
     return;
   }
+
+  const allSlots = generateSlots(daySchedule);
+
+  const now = new Date();
+  const timeMax = new Date(`${dateStr}T23:59:59`);
+  const events = await calendar.events.list({
+    calendarId: config.calendarId,
+    timeMin: new Date(`${dateStr}T00:00:00`).toISOString(),
+    timeMax: timeMax.toISOString(),
+    singleEvents: true,
+    timeZone: config.timezone
+  });
+  const busyItems = events.data.items || [];
+
+  const buttons = [];
+  const row = [];
+  for (const time of allSlots) {
+    const slotStart = new Date(`${dateStr}T${time}:00`);
+    const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
+
+    const isBusy = busyItems.some(ev => {
+      const evStart = new Date(ev.start.dateTime || ev.start.date);
+      const evEnd = new Date(ev.end.dateTime || ev.end.date);
+      return slotStart < evEnd && slotEnd > evStart;
+    });
+
+    const isPast = slotStart < now;
+    const label = isBusy ? `${time} ❌` : isPast ? `${time} ⏳` : time;
+
+    if (!isBusy && !isPast) {
+      row.push({ text: label, callback_data: `blockhour_${dateStr}_${time}` });
+      if (row.length === 2) {
+        buttons.push([...row]);
+        row.length = 0;
+      }
+    }
+  }
+  if (row.length > 0) buttons.push([...row]);
+  buttons.push(...backButton());
+
+  if (buttons.length === 1) {
+    await bot.sendMessage(chatId, `🕐 *${formatDate(dateStr)}*\n\nНет свободных слотов для блокировки.`,
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+
+  await bot.sendMessage(chatId, `🕐 *${formatDate(dateStr)}*\nВыбери время для блокировки:`, {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
+  });
+}
+
+async function blockHour(chatId, dateStr, time, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const start = new Date(`${dateStr}T${time}:00`);
+  const end = new Date(start.getTime() + config.slotDuration * 60000);
+
+  await calendar.events.insert({
+    calendarId: config.calendarId,
+    requestBody: {
+      summary: `Blocked ${time}`,
+      start: { dateTime: start.toISOString(), timeZone: config.timezone },
+      end: { dateTime: end.toISOString(), timeZone: config.timezone },
+      transparency: 'opaque'
+    }
+  });
+
+  await bot.sendMessage(chatId,
+    `✅ *${formatDate(dateStr)}, ${time}* заблокирован.\nЭтот слот больше не будет показываться на сайте.`,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+  );
+}
+
+async function showUnblockPicker(chatId, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
 
   const now = new Date();
   const future = new Date(now);
@@ -223,7 +310,7 @@ async function showUnblockDayPicker(chatId, calendar) {
   );
 
   if (items.length === 0) {
-    await bot.sendMessage(chatId, '✅ Нет заблокированных дней.',
+    await bot.sendMessage(chatId, '✅ Нет заблокированных дней или часов.',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
     return;
@@ -231,35 +318,30 @@ async function showUnblockDayPicker(chatId, calendar) {
 
   const buttons = items.map(ev => {
     const dateStr = ev.start.date || ev.start.dateTime.split('T')[0];
-    const d = new Date(`${dateStr}T00:00:00`);
-    const day = d.getDate();
-    const month = MONTH_NAMES[d.getMonth()];
-    const dow = DAY_NAMES[d.getDay()];
-    return [{
-      text: `${dow} ${day} ${month}`,
-      callback_data: `unblock_${ev.id}`
-    }];
+    const isAllDay = !!ev.start.date;
+    let label;
+    if (isAllDay) {
+      label = `🚫 ${formatDate(dateStr)} (весь день)`;
+    } else {
+      const start = new Date(ev.start.dateTime);
+      const time = `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`;
+      label = `🕐 ${formatDate(dateStr)}, ${time}`;
+    }
+    return [{ text: label, callback_data: `unblock_${ev.id}` }];
   });
   buttons.push(...backButton());
 
-  await bot.sendMessage(chatId, '✅ *Выбери день для разблокировки:*', {
-    parse_mode: 'Markdown',
-    reply_markup: { inline_keyboard: buttons }
+  await bot.sendMessage(chatId, '✅ *Выбери что разблокировать:*', {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
   });
 }
 
-async function unblockDay(chatId, eventId, calendar) {
-  if (!calendar) {
-    await bot.sendMessage(chatId, '❌ Google Calendar не подключён');
-    return;
-  }
+async function unblockEvent(chatId, eventId, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
 
   try {
-    await calendar.events.delete({
-      calendarId: config.calendarId,
-      eventId: eventId
-    });
-    await bot.sendMessage(chatId, '✅ День разблокирован. Слоты снова доступны.',
+    await calendar.events.delete({ calendarId: config.calendarId, eventId });
+    await bot.sendMessage(chatId, '✅ Разблокировано. Слоты снова доступны.',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
   } catch (e) {
@@ -270,16 +352,11 @@ async function unblockDay(chatId, eventId, calendar) {
 function notifyNewBooking({ name, email, date, time, locale }) {
   if (!bot || !ownerChatId) return;
 
-  const d = new Date(`${date}T00:00:00`);
-  const day = d.getDate();
-  const month = MONTH_NAMES[d.getMonth()];
-  const dow = DAY_NAMES[d.getDay()];
-
   bot.sendMessage(ownerChatId,
     '🔔 *Новая запись!*\n\n' +
     `👤 ${name}\n` +
     `📧 ${email}\n` +
-    `📅 ${day} ${month}, ${dow}\n` +
+    `📅 ${formatDate(date)}\n` +
     `🕐 ${time}\n` +
     `🌐 ${locale === 'pl' ? 'Польский' : 'Русский'}`,
     { parse_mode: 'Markdown' }
