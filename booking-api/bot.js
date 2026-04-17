@@ -3,6 +3,9 @@ const config = require('./config');
 
 let bot;
 let ownerChatId = null;
+let calendarRef = null;
+const pendingLinks = new Map();
+const bookingEvents = new Map();
 
 const DAY_NAMES = {
   0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'
@@ -36,6 +39,7 @@ function init(calendar) {
   }
 
   bot = new TelegramBot(token, { polling: true });
+  calendarRef = calendar;
   console.log('Telegram bot started');
 
   bot.onText(/\/start/, (msg) => {
@@ -70,6 +74,16 @@ function init(calendar) {
         await showUnblockPicker(chatId, calendar);
       } else if (data.startsWith('unblock_')) {
         await unblockEvent(chatId, data.replace('unblock_', ''), calendar);
+      } else if (data.startsWith('sendlink_')) {
+        const bookingId = data.replace('sendlink_', '');
+        const booking = bookingEvents.get(bookingId);
+        if (booking) {
+          pendingLinks.set(chatId, booking);
+          await bot.sendMessage(chatId,
+            `📎 *Отправить ссылку клиенту ${booking.name}*\n\nВставь ссылку на Google Meet:`,
+            { parse_mode: 'Markdown' }
+          );
+        }
       } else if (data === 'menu') {
         await bot.sendMessage(chatId, '📋 *Главное меню*', {
           parse_mode: 'Markdown', reply_markup: mainMenu()
@@ -81,6 +95,50 @@ function init(calendar) {
     }
 
     bot.answerCallbackQuery(query.id);
+  });
+
+  bot.on('message', async (msg) => {
+    if (!msg.text || msg.text.startsWith('/')) return;
+    const chatId = msg.chat.id;
+    const pending = pendingLinks.get(chatId);
+    if (!pending) return;
+
+    const link = msg.text.trim();
+    if (!link.includes('meet.google.com') && !link.includes('zoom.') && !link.startsWith('http')) {
+      await bot.sendMessage(chatId, '❌ Это не похоже на ссылку. Попробуй ещё раз или нажми ◀️ Меню.',
+        { reply_markup: { inline_keyboard: backButton() } }
+      );
+      return;
+    }
+
+    pendingLinks.delete(chatId);
+
+    try {
+      if (calendarRef && pending.eventId) {
+        const event = await calendarRef.events.get({
+          calendarId: config.calendarId,
+          eventId: pending.eventId
+        });
+        const desc = (event.data.description || '') + `\n\n🔗 Meet: ${link}`;
+        await calendarRef.events.patch({
+          calendarId: config.calendarId,
+          eventId: pending.eventId,
+          requestBody: { description: desc },
+          sendUpdates: 'all'
+        });
+        await bot.sendMessage(chatId,
+          `✅ Ссылка отправлена!\n\n👤 ${pending.name}\n📧 ${pending.email}\n🔗 ${link}\n\nКлиент получит обновлённое приглашение на email.`,
+          { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+        );
+      } else {
+        await bot.sendMessage(chatId, '❌ Не удалось найти событие в календаре.',
+          { reply_markup: { inline_keyboard: backButton() } }
+        );
+      }
+    } catch (e) {
+      console.error('Send link error:', e.message);
+      await bot.sendMessage(chatId, '❌ Ошибка: ' + e.message);
+    }
   });
 }
 
@@ -349,8 +407,11 @@ async function unblockEvent(chatId, eventId, calendar) {
   }
 }
 
-function notifyNewBooking({ name, email, date, time, locale }) {
+function notifyNewBooking({ name, email, date, time, locale, eventId }) {
   if (!bot || !ownerChatId) return;
+
+  const bookingId = `${date}_${time}_${Date.now()}`;
+  bookingEvents.set(bookingId, { name, email, date, time, locale, eventId });
 
   bot.sendMessage(ownerChatId,
     '🔔 *Новая запись!*\n\n' +
@@ -359,7 +420,14 @@ function notifyNewBooking({ name, email, date, time, locale }) {
     `📅 ${formatDate(date)}\n` +
     `🕐 ${time}\n` +
     `🌐 ${locale === 'pl' ? 'Польский' : 'Русский'}`,
-    { parse_mode: 'Markdown' }
+    {
+      parse_mode: 'Markdown',
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '📎 Отправить ссылку на Meet', callback_data: `sendlink_${bookingId}` }]
+        ]
+      }
+    }
   );
 }
 

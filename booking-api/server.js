@@ -24,8 +24,8 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     const session = event.data.object;
     const { name, email, date, time, locale } = session.metadata;
     try {
-      await createCalendarEvent({ name, email, date, time, locale });
-      telegramBot.notifyNewBooking({ name, email, date, time, locale });
+      const eventId = await createCalendarEvent({ name, email, date, time, locale });
+      telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId });
       console.log(`Booking confirmed: ${name} on ${date} at ${time}`);
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
@@ -58,7 +58,7 @@ async function createCalendarEvent({ name, email, date, time, locale }) {
   const serviceName = config.serviceName[locale] || config.serviceName.ru;
 
   if (calendar) {
-    await calendar.events.insert({
+    const event = await calendar.events.insert({
       calendarId: config.calendarId,
       conferenceDataVersion: 1,
       requestBody: {
@@ -83,7 +83,9 @@ async function createCalendarEvent({ name, email, date, time, locale }) {
       },
       sendUpdates: 'all'
     });
+    return event.data.id;
   }
+  return null;
 }
 
 function generateSlots(daySchedule) {
