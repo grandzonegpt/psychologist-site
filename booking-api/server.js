@@ -3,6 +3,7 @@ const cors = require('cors');
 const { google } = require('googleapis');
 const Stripe = require('stripe');
 const config = require('./config');
+const telegramBot = require('./bot');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -24,6 +25,7 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     const { name, email, date, time, locale } = session.metadata;
     try {
       await createCalendarEvent({ name, email, date, time, locale });
+      telegramBot.notifyNewBooking({ name, email, date, time, locale });
       console.log(`Booking confirmed: ${name} on ${date} at ${time}`);
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
@@ -46,6 +48,8 @@ try {
 } catch (e) {
   console.error('Google auth error:', e.message);
 }
+
+telegramBot.init(calendar);
 
 async function createCalendarEvent({ name, email, date, time, locale }) {
   const startDateTime = `${date}T${time}:00`;
