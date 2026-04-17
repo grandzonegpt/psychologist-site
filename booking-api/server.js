@@ -5,6 +5,7 @@ const Stripe = require('stripe');
 const config = require('./config');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
+const reminders = require('./reminders');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -52,6 +53,7 @@ try {
 }
 
 telegramBot.init(calendar);
+reminders.start(calendar);
 
 async function createCalendarEvent({ name, email, date, time, locale }) {
   const startDateTime = `${date}T${time}:00`;
