@@ -212,6 +212,20 @@
       renderCalendar();
     });
 
+    function generateDemoSlots() {
+      const demo = {};
+      const now = new Date();
+      for (let d = 1; d <= 28; d++) {
+        const date = new Date(now);
+        date.setDate(date.getDate() + d);
+        const dow = date.getDay();
+        if (dow !== 3 && dow !== 4) continue;
+        const dateStr = date.toISOString().split('T')[0];
+        demo[dateStr] = ['12:00','13:00','14:00','15:00','16:00'];
+      }
+      return demo;
+    }
+
     async function loadSlots() {
       $loading.style.display = 'block';
       try {
@@ -219,10 +233,11 @@
         const data = await resp.json();
         slotsData = data.slots || {};
         serviceInfo = { duration: data.duration, price: data.price };
-        renderCalendar();
       } catch (e) {
-        renderCalendar();
+        slotsData = generateDemoSlots();
+        serviceInfo = { duration: 50, price: 180 };
       }
+      renderCalendar();
       $loading.style.display = 'none';
     }
 
