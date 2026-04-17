@@ -157,17 +157,6 @@ app.get('/api/slots', async (req, res) => {
   }
 });
 
-app.post('/api/test-book', async (req, res) => {
-  try {
-    const { name, email, date, time, locale } = req.body;
-    const eventId = await createCalendarEvent({ name, email, date, time, locale });
-    telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId });
-    res.json({ ok: true, eventId });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
 app.post('/api/book', async (req, res) => {
   try {
     const { name, email, date, time, locale } = req.body;
