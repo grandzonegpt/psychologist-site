@@ -6,6 +6,7 @@ let ownerChatId = null;
 let calendarRef = null;
 const pendingLinks = new Map();
 const bookingEvents = new Map();
+const unblockMap = new Map();
 
 const DAY_NAMES = {
   0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'
@@ -73,7 +74,9 @@ function init(calendar) {
       } else if (data === 'unblock') {
         await showUnblockPicker(chatId, calendar);
       } else if (data.startsWith('unblock_')) {
-        await unblockEvent(chatId, data.replace('unblock_', ''), calendar);
+        const shortId = data.replace('unblock_', '');
+        const realEventId = unblockMap.get(shortId) || shortId;
+        await unblockEvent(chatId, realEventId, calendar);
       } else if (data.startsWith('sendlink_')) {
         const bookingId = data.replace('sendlink_', '');
         const booking = bookingEvents.get(bookingId);
@@ -385,7 +388,9 @@ async function showUnblockPicker(chatId, calendar) {
       const time = `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`;
       label = `🕐 ${formatDate(dateStr)}, ${time}`;
     }
-    return [{ text: label, callback_data: `unblock_${ev.id}` }];
+    const shortId = `u${unblockMap.size}`;
+    unblockMap.set(shortId, ev.id);
+    return [{ text: label, callback_data: `unblock_${shortId}` }];
   });
   buttons.push(...backButton());
 
