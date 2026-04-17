@@ -97,18 +97,6 @@ function generateSlots(daySchedule) {
   return slots;
 }
 
-app.post('/api/test-book', async (req, res) => {
-  try {
-    const { name, email, date, time, locale } = req.body;
-    const eventId = await createCalendarEvent({ name, email, date, time, locale });
-    telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId });
-    mailer.sendConfirmation({ name, email, date, time, locale }).catch(e => console.error('Test email error:', e.message));
-    res.json({ ok: true, eventId });
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-});
-
 app.get('/api/slots', async (req, res) => {
   try {
     const now = new Date();
