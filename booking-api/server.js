@@ -4,7 +4,7 @@ const { google } = require('googleapis');
 const config = require('./config');
 
 const app = express();
-app.use(cors({ origin: ['https://levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'] }));
+app.use(cors({ origin: ['https://levashou.pl', 'https://www.levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'] }));
 app.use(express.json());
 
 let calendar;

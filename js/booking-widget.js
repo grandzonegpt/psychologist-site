@@ -1,5 +1,5 @@
 (function() {
-  const API_URL = 'https://booking-api-production.up.railway.app';
+  const API_URL = 'https://booking-api-production-c2ca.up.railway.app';
 
   const i18n = {
     ru: {
