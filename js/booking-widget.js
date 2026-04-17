@@ -219,9 +219,10 @@
         const date = new Date(now);
         date.setDate(date.getDate() + d);
         const dow = date.getDay();
-        if (dow !== 3 && dow !== 4) continue;
         const dateStr = date.toISOString().split('T')[0];
-        demo[dateStr] = ['12:00','13:00','14:00','15:00','16:00'];
+        if (dow === 2 || dow === 4) demo[dateStr] = ['12:00','13:00','14:00','15:00'];
+        else if (dow === 3) demo[dateStr] = ['10:00','11:00','12:00','13:00'];
+        else continue;
       }
       return demo;
     }
