@@ -2001,7 +2001,13 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 }
 @media (max-width: 768px) {
   .post-hero { max-width: 280px; margin-bottom: 28px; }
-  .blog-card .card-cover { aspect-ratio: 2 / 1; max-height: 160px; }
+  .blog-card .card-cover {
+    width: 120px;
+    margin: 16px auto 0;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+  }
+  .blog-card.has-cover { padding-top: 0; }
 }
 
 /* Skip link */
