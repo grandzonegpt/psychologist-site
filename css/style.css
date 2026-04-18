@@ -2001,13 +2001,25 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 }
 @media (max-width: 768px) {
   .post-hero { max-width: 280px; margin-bottom: 28px; }
-  .blog-card .card-cover {
-    width: 120px;
-    margin: 16px auto 0;
-    border-radius: 8px;
-    aspect-ratio: 1 / 1;
+  .blog-card.has-cover {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
   }
-  .blog-card.has-cover { padding-top: 0; }
+  .blog-card .card-cover {
+    width: 90px;
+    min-width: 90px;
+    aspect-ratio: 1 / 1;
+    margin: 0;
+    border-radius: 8px;
+  }
+  .blog-card.has-cover .card-body {
+    padding: 0;
+    gap: 8px;
+  }
+  .blog-card.has-cover .card-body h3 { font-size: 17px; }
+  .blog-card.has-cover .card-body p { display: none; }
 }
 
 /* Skip link */
