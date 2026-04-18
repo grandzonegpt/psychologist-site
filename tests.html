@@ -27,16 +27,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a0a0b">
-<title>Тесты самодиагностики: тревога, депрессия. Алексей Левашев</title>
-<meta name="description" content="Бесплатные научно обоснованные тесты: GAD-7 (тревога), PHQ-9 (депрессия). Результат сразу, без регистрации. Только для самооценки.">
+<title>Тесты самодиагностики: тревога, депрессия, ПТСР. Алексей Левашев</title>
+<meta name="description" content="Бесплатные научно обоснованные тесты: GAD-7 (тревога), PHQ-9 (депрессия), PCL-5 (ПТСР). Результат сразу, без регистрации. Только для самооценки.">
 <link rel="canonical" href="https://levashou.pl/tests.html">
 <link rel="alternate" hreflang="ru" href="https://levashou.pl/tests.html">
 <link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl.html">
 <link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://levashou.pl/tests.html">
-<meta property="og:title" content="Тесты самодиагностики: тревога, депрессия">
-<meta property="og:description" content="Научно обоснованные опросники GAD-7, PHQ-9. Бесплатно, анонимно, результат сразу.">
+<meta property="og:title" content="Тесты самодиагностики: тревога, депрессия, ПТСР">
+<meta property="og:description" content="Научно обоснованные опросники GAD-7, PHQ-9, PCL-5. Бесплатно, анонимно, результат сразу.">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:locale:alternate" content="pl_PL">
 <meta property="og:image" content="https://levashou.pl/assets/og.jpg">
@@ -73,6 +73,8 @@
 .test-again{background:none;border:1px solid var(--border);color:var(--text-muted);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;margin-top:12px;font-family:'Inter',sans-serif;transition:all .2s}
 .test-again:hover{border-color:var(--accent);color:var(--text)}
 .test-disclaimer{max-width:640px;margin:48px auto 0;padding:20px 24px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:13px;color:var(--text-muted);line-height:1.7;text-align:center}
+.test-legal-notice{max-width:640px;margin:0 auto 40px;padding:16px 20px 16px 24px;border-left:3px solid #b8975a;background:var(--surface);border-radius:0 8px 8px 0;font-size:13px;color:var(--text-muted);line-height:1.7}
+.test-attribution{max-width:640px;margin:32px auto 0;padding:20px 24px;font-size:12px;color:var(--text-muted);line-height:1.8;opacity:.7}
 </style>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
@@ -134,6 +136,7 @@
     <div class="test-tabs">
       <button class="test-tab active" data-test="gad7">Тревога (GAD-7)</button>
       <button class="test-tab" data-test="phq9">Депрессия (PHQ-9)</button>
+      <button class="test-tab" data-test="pcl5">ПТСР (PCL-5)</button>
     </div>
 
     <!-- ===== GAD-7 ===== -->
@@ -310,6 +313,46 @@
       <div class="test-result" id="result-phq9" hidden></div>
     </div>
 
+    <!-- ===== PCL-5 ===== -->
+    <div class="test-panel" id="panel-pcl5">
+      <div class="test-intro">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Шкала ПТСР (PCL-5)</h2>
+        <p>20 вопросов о реакциях на стрессовые события за последний месяц. Разработана Национальным центром ПТСР (США). Weathers et al. (2013).</p>
+      </div>
+      <div class="test-legal-notice">Это скрининговый инструмент. Он не заменяет клинический диагноз, поставленный психиатром или психотерапевтом. Результат служит только для предварительной оценки и разговора со специалистом. Заполнение добровольное и анонимное, ответы не сохраняются и не передаются.</div>
+      <form class="test-form" id="form-pcl5">
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Ниже приведён список проблем, которые иногда возникают у людей в ответ на очень стрессовый опыт. Укажите, насколько вас беспокоила каждая из этих проблем за последний месяц.</p>
+
+        <div class="tq"><p class="tq-text">1. Повторяющиеся, нежелательные, тревожные воспоминания о стрессовом событии</p><div class="tq-opts"><label><input type="radio" name="c1" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c1" value="1"><span>Немного</span></label><label><input type="radio" name="c1" value="2"><span>Умеренно</span></label><label><input type="radio" name="c1" value="3"><span>Сильно</span></label><label><input type="radio" name="c1" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">2. Повторяющиеся тревожные сны о стрессовом событии</p><div class="tq-opts"><label><input type="radio" name="c2" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c2" value="1"><span>Немного</span></label><label><input type="radio" name="c2" value="2"><span>Умеренно</span></label><label><input type="radio" name="c2" value="3"><span>Сильно</span></label><label><input type="radio" name="c2" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">3. Внезапное чувство или действия, как будто стрессовое событие происходит снова (как будто вы переживаете его заново)</p><div class="tq-opts"><label><input type="radio" name="c3" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c3" value="1"><span>Немного</span></label><label><input type="radio" name="c3" value="2"><span>Умеренно</span></label><label><input type="radio" name="c3" value="3"><span>Сильно</span></label><label><input type="radio" name="c3" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">4. Сильная эмоциональная реакция при напоминании о стрессовом событии (страх, гнев, вина, стыд)</p><div class="tq-opts"><label><input type="radio" name="c4" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c4" value="1"><span>Немного</span></label><label><input type="radio" name="c4" value="2"><span>Умеренно</span></label><label><input type="radio" name="c4" value="3"><span>Сильно</span></label><label><input type="radio" name="c4" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">5. Сильные физические реакции при напоминании о стрессовом событии (учащённое сердцебиение, затруднённое дыхание, потливость)</p><div class="tq-opts"><label><input type="radio" name="c5" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c5" value="1"><span>Немного</span></label><label><input type="radio" name="c5" value="2"><span>Умеренно</span></label><label><input type="radio" name="c5" value="3"><span>Сильно</span></label><label><input type="radio" name="c5" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">6. Стараетесь избегать воспоминаний, мыслей или чувств, связанных со стрессовым событием</p><div class="tq-opts"><label><input type="radio" name="c6" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c6" value="1"><span>Немного</span></label><label><input type="radio" name="c6" value="2"><span>Умеренно</span></label><label><input type="radio" name="c6" value="3"><span>Сильно</span></label><label><input type="radio" name="c6" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">7. Стараетесь избегать внешних напоминаний о стрессовом событии (людей, мест, разговоров, занятий, предметов, ситуаций)</p><div class="tq-opts"><label><input type="radio" name="c7" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c7" value="1"><span>Немного</span></label><label><input type="radio" name="c7" value="2"><span>Умеренно</span></label><label><input type="radio" name="c7" value="3"><span>Сильно</span></label><label><input type="radio" name="c7" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">8. Трудности с воспоминанием важных частей стрессового события</p><div class="tq-opts"><label><input type="radio" name="c8" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c8" value="1"><span>Немного</span></label><label><input type="radio" name="c8" value="2"><span>Умеренно</span></label><label><input type="radio" name="c8" value="3"><span>Сильно</span></label><label><input type="radio" name="c8" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">9. Устойчивые негативные убеждения о себе, других или мире (например: «Я плохой», «Никому нельзя доверять», «Мир полностью опасен»)</p><div class="tq-opts"><label><input type="radio" name="c9" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c9" value="1"><span>Немного</span></label><label><input type="radio" name="c9" value="2"><span>Умеренно</span></label><label><input type="radio" name="c9" value="3"><span>Сильно</span></label><label><input type="radio" name="c9" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">10. Обвинение себя или других в стрессовом событии или в том, что произошло после него</p><div class="tq-opts"><label><input type="radio" name="c10" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c10" value="1"><span>Немного</span></label><label><input type="radio" name="c10" value="2"><span>Умеренно</span></label><label><input type="radio" name="c10" value="3"><span>Сильно</span></label><label><input type="radio" name="c10" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">11. Устойчивые негативные эмоции (страх, ужас, гнев, вина, стыд)</p><div class="tq-opts"><label><input type="radio" name="c11" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c11" value="1"><span>Немного</span></label><label><input type="radio" name="c11" value="2"><span>Умеренно</span></label><label><input type="radio" name="c11" value="3"><span>Сильно</span></label><label><input type="radio" name="c11" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">12. Потеря интереса к занятиям, которые раньше нравились</p><div class="tq-opts"><label><input type="radio" name="c12" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c12" value="1"><span>Немного</span></label><label><input type="radio" name="c12" value="2"><span>Умеренно</span></label><label><input type="radio" name="c12" value="3"><span>Сильно</span></label><label><input type="radio" name="c12" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">13. Чувство отстранённости или отчуждённости от других людей</p><div class="tq-opts"><label><input type="radio" name="c13" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c13" value="1"><span>Немного</span></label><label><input type="radio" name="c13" value="2"><span>Умеренно</span></label><label><input type="radio" name="c13" value="3"><span>Сильно</span></label><label><input type="radio" name="c13" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">14. Трудно испытывать положительные эмоции (радость, любовь, нежность)</p><div class="tq-opts"><label><input type="radio" name="c14" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c14" value="1"><span>Немного</span></label><label><input type="radio" name="c14" value="2"><span>Умеренно</span></label><label><input type="radio" name="c14" value="3"><span>Сильно</span></label><label><input type="radio" name="c14" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">15. Раздражительность, вспышки гнева, агрессивное поведение</p><div class="tq-opts"><label><input type="radio" name="c15" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c15" value="1"><span>Немного</span></label><label><input type="radio" name="c15" value="2"><span>Умеренно</span></label><label><input type="radio" name="c15" value="3"><span>Сильно</span></label><label><input type="radio" name="c15" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">16. Чрезмерно рискованное или саморазрушительное поведение</p><div class="tq-opts"><label><input type="radio" name="c16" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c16" value="1"><span>Немного</span></label><label><input type="radio" name="c16" value="2"><span>Умеренно</span></label><label><input type="radio" name="c16" value="3"><span>Сильно</span></label><label><input type="radio" name="c16" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">17. Повышенная бдительность, настороженность, ожидание опасности</p><div class="tq-opts"><label><input type="radio" name="c17" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c17" value="1"><span>Немного</span></label><label><input type="radio" name="c17" value="2"><span>Умеренно</span></label><label><input type="radio" name="c17" value="3"><span>Сильно</span></label><label><input type="radio" name="c17" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">18. Чрезмерная пугливость (вздрагиваете от неожиданных звуков)</p><div class="tq-opts"><label><input type="radio" name="c18" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c18" value="1"><span>Немного</span></label><label><input type="radio" name="c18" value="2"><span>Умеренно</span></label><label><input type="radio" name="c18" value="3"><span>Сильно</span></label><label><input type="radio" name="c18" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">19. Трудности с концентрацией внимания</p><div class="tq-opts"><label><input type="radio" name="c19" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c19" value="1"><span>Немного</span></label><label><input type="radio" name="c19" value="2"><span>Умеренно</span></label><label><input type="radio" name="c19" value="3"><span>Сильно</span></label><label><input type="radio" name="c19" value="4"><span>Очень сильно</span></label></div></div>
+        <div class="tq"><p class="tq-text">20. Проблемы с засыпанием или сном</p><div class="tq-opts"><label><input type="radio" name="c20" value="0" required><span>Совсем не беспокоило</span></label><label><input type="radio" name="c20" value="1"><span>Немного</span></label><label><input type="radio" name="c20" value="2"><span>Умеренно</span></label><label><input type="radio" name="c20" value="3"><span>Сильно</span></label><label><input type="radio" name="c20" value="4"><span>Очень сильно</span></label></div></div>
+
+        <button type="submit" class="test-submit">Показать результат</button>
+      </form>
+      <div class="test-result" id="result-pcl5" hidden></div>
+      <div class="test-attribution">
+        Оригинальный инструмент: Weathers F.W., Litz B.T., Keane T.M., Palmieri P.A., Marx B.P., Schnurr P.P. (2013). The PTSD Checklist for DSM-5 (PCL-5). National Center for PTSD, USA.<br>
+        Опросник предоставляется бесплатно National Center for PTSD для клинического и исследовательского применения квалифицированными специалистами в области психического здоровья. Содержание вопросов не было изменено.
+      </div>
+    </div>
+
     <div class="test-disclaimer">
       Эти опросники предназначены только для самооценки и не заменяют консультацию специалиста. Результат не является диагнозом. Если вы набрали высокий балл или вас что-то беспокоит, обратитесь к психологу.
     </div>
@@ -403,6 +446,11 @@
       {max: 19, level: 'Умеренно-выраженная депрессия', desc: 'Существенное влияние на повседневную жизнь. Рекомендуется обратиться к психологу.'},
       {max: 27, level: 'Выраженная депрессия', desc: 'Высокий уровень депрессивных проявлений. Настоятельно рекомендуется обратиться за профессиональной помощью.'}
     ],
+    pcl5: [
+      {max: 19, level: 'Ниже порогового значения', desc: 'Симптомы ПТСР не достигают клинического уровня. Однако если вас что-то беспокоит, консультация не будет лишней.'},
+      {max: 32, level: 'Пограничный уровень', desc: 'Есть признаки посттравматических реакций. Рекомендуется обсудить результат со специалистом.'},
+      {max: 80, level: 'Выше порогового значения', desc: 'Результат указывает на вероятное наличие ПТСР. Рекомендуется обратиться к психотравматологу для детальной оценки.'}
+    ]
   };
 
   function setupForm(testId, prefix, count) {
@@ -418,7 +466,7 @@
         total += parseInt(selected.value);
       }
 
-      const maxScore = testId === 'phq9' ? 27 : 21;
+      const maxScore = testId === 'pcl5' ? 80 : (testId === 'phq9' ? 27 : 21);
       const levels = interpretations[testId];
       let interp = levels[levels.length - 1];
       for (let l of levels) {
@@ -430,7 +478,7 @@
       resultDiv.innerHTML =
         '<h3>Ваш результат</h3>' +
         '<div class="test-score">' + total + ' <span style="font-size:20px;color:var(--text-muted)">/ ' + maxScore + '</span></div>' +
-        '<div class="test-score-label">' + (testId === 'phq9' ? 'PHQ-9' : 'GAD-7') + '</div>' +
+        '<div class="test-score-label">' + (testId === 'pcl5' ? 'PCL-5' : (testId === 'phq9' ? 'PHQ-9' : 'GAD-7')) + '</div>' +
         '<div class="test-severity">' + interp.level + '</div>' +
         '<p class="test-desc">' + interp.desc + '</p>' +
         '<a href="/#booking" class="btn" style="display:inline-block;margin-bottom:16px;">Записаться на консультацию</a><br>' +
@@ -451,6 +499,7 @@
 
   setupForm('gad7', 'g', 7);
   setupForm('phq9', 'p', 9);
+  setupForm('pcl5', 'c', 20);
 })();
 </script>
 </body>
