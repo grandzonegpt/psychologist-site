@@ -1971,15 +1971,6 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 }
 .blog-card .card-link:hover { border-bottom-color: var(--accent); }
 
-/* Blog card icon */
-.blog-card .card-icon {
-  width: 40px;
-  height: 40px;
-  color: var(--accent, #c9a96e);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-
 /* Post hero image on article pages */
 .post-hero {
   display: block;
