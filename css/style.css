@@ -1999,9 +1999,9 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
   border-radius: 8px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .post-hero { max-width: 280px; margin-bottom: 28px; }
-  .blog-card .card-cover { aspect-ratio: 3 / 2; }
+  .blog-card .card-cover { aspect-ratio: 2 / 1; max-height: 160px; }
 }
 
 /* Skip link */
