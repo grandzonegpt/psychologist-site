@@ -2001,7 +2001,7 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 }
 @media (max-width: 600px) {
   .post-hero { max-width: 280px; margin-bottom: 28px; }
-  .blog-card .card-cover { aspect-ratio: 1 / 1; }
+  .blog-card .card-cover { aspect-ratio: 3 / 2; }
 }
 
 /* Skip link */
