@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Google Consent Mode v2 (DEFAULT: denied) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500,
+    'region': ['EEA', 'PL']
+  });
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-48BN8FG5NG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-48BN8FG5NG');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Тесты самодиагностики: тревога, депрессия, ПТСР. Алексей Левашев</title>
+<meta name="description" content="Бесплатные научно обоснованные тесты: GAD-7 (тревога), PHQ-9 (депрессия), PCL-5 (ПТСР). Результат сразу, без регистрации. Только для самооценки.">
+<link rel="canonical" href="https://levashou.pl/tests.html">
+<link rel="alternate" hreflang="ru" href="https://levashou.pl/tests.html">
+<link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl.html">
+<link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://levashou.pl/tests.html">
+<meta property="og:title" content="Тесты самодиагностики: тревога, депрессия, ПТСР">
+<meta property="og:description" content="Научно обоснованные опросники GAD-7, PHQ-9, PCL-5. Бесплатно, анонимно, результат сразу.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:image" content="https://levashou.pl/assets/og.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.min.css?v=74">
+<style>
+.test-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.test-tab{padding:12px 24px;border-radius:8px;background:var(--surface);color:var(--text-muted);cursor:pointer;border:1px solid var(--border);transition:all .2s;font-size:15px;font-family:'Inter',sans-serif}
+.test-tab:hover{border-color:var(--accent);color:var(--text)}
+.test-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.test-panel{display:none}
+.test-panel.active{display:block}
+.test-intro{max-width:640px;margin:0 auto 40px;text-align:center}
+.test-intro p{color:var(--text-muted);line-height:1.7}
+.test-form{max-width:640px;margin:0 auto}
+.tq{margin-bottom:28px;padding:20px 24px;background:var(--surface);border-radius:12px;border:1px solid var(--border)}
+.tq-text{font-size:15px;line-height:1.6;margin-bottom:14px;color:var(--text)}
+.tq-opts{display:flex;flex-direction:column;gap:8px}
+.tq-opts label{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;cursor:pointer;transition:background .15s;font-size:14px;color:var(--text-muted)}
+.tq-opts label:hover{background:var(--border)}
+.tq-opts input[type="radio"]{accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
+.test-submit{display:block;margin:32px auto 0;padding:14px 48px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .2s}
+.test-submit:hover{opacity:.85}
+.test-submit:disabled{opacity:.4;cursor:not-allowed}
+.test-result{max-width:640px;margin:0 auto;text-align:center;padding:40px 32px;background:var(--surface);border-radius:16px;border:1px solid var(--border)}
+.test-result h3{font-family:'Cormorant Garamond',serif;font-size:28px;margin-bottom:8px}
+.test-score{font-size:48px;font-weight:500;color:var(--accent);font-family:'Cormorant Garamond',serif}
+.test-score-label{color:var(--text-muted);font-size:14px;margin-bottom:24px}
+.test-severity{font-size:20px;margin-bottom:16px;font-weight:400}
+.test-desc{color:var(--text-muted);line-height:1.7;font-size:15px;margin-bottom:32px}
+.test-again{background:none;border:1px solid var(--border);color:var(--text-muted);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;margin-top:12px;font-family:'Inter',sans-serif;transition:all .2s}
+.test-again:hover{border-color:var(--accent);color:var(--text)}
+.test-disclaimer{max-width:640px;margin:48px auto 0;padding:20px 24px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:13px;color:var(--text-muted);line-height:1.7;text-align:center}
+</style>
+<!-- Microsoft Clarity (gated by consent) -->
+<script type="text/javascript">
+    if (localStorage.getItem('cookie-consent') === 'all') {
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wbo8sg8woh");
+    }
+</script>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+<div class="scroll-progress"></div>
+
+<nav class="site-nav" aria-label="Главная навигация">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Алексей Левашев<span class="dot">.</span></a>
+    <div class="lang-mobile" aria-label="Язык"><a href="/tests.html" class="active">RU</a>
+        <span class="sep">|</span>
+        <a href="/tests-pl.html">PL</a></div>
+    <button class="nav-toggle" aria-label="Открыть меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/#about">О себе</a>
+      <a href="/#services">Направления</a>
+      <a href="/#process">Как работаем</a>
+      <a href="/#faq">Вопросы</a>
+      <a href="/blog.html">Блог</a>
+      <a href="/library.html">Библиотека</a>
+      <a href="/#booking">Записаться</a>
+      <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
+      <div class="lang-switch" aria-label="Язык">
+        <a href="/tests.html" class="active">RU</a>
+        <span class="sep">|</span>
+        <a href="/tests-pl.html">PL</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<section class="not-sure-hero">
+  <div class="container">
+    <div class="eyebrow">Самодиагностика</div>
+    <h1>Проверь себя</h1>
+    <p class="muted" style="max-width:620px;margin:0 auto;">Научно обоснованные опросники, которые используют психологи по всему миру. Без регистрации. Результат видишь только ты.</p>
+  </div>
+</section>
+
+<section style="padding:48px 0 80px;">
+  <div class="container">
+
+    <div class="test-tabs">
+      <button class="test-tab active" data-test="gad7">Тревога (GAD-7)</button>
+      <button class="test-tab" data-test="phq9">Депрессия (PHQ-9)</button>
+      <button class="test-tab" data-test="pcl5">ПТСР (PCL-5)</button>
+    </div>
+
+    <!-- ===== GAD-7 ===== -->
+    <div class="test-panel active" id="panel-gad7">
+      <div class="test-intro">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Шкала тревоги GAD-7</h2>
+        <p>7 вопросов о последних двух неделях. Используется в клинической практике для оценки уровня тревожности. Разработана Spitzer, Kroenke, Williams & Löwe (2006).</p>
+      </div>
+      <form class="test-form" id="form-gad7">
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Как часто за последние 2 недели вас беспокоили следующие проблемы?</p>
+
+        <div class="tq">
+          <p class="tq-text">1. Нервозность, тревога или ощущение, что вы «на взводе»</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g1" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g1" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g1" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g1" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">2. Невозможность прекратить или контролировать беспокойство</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g2" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g2" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g2" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g2" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">3. Чрезмерное беспокойство по разным поводам</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g3" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g3" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g3" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g3" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">4. Трудности с расслаблением</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g4" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g4" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g4" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g4" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">5. Такое сильное беспокойство, что трудно усидеть на месте</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g5" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g5" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g5" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g5" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">6. Легко раздражаетесь или становитесь нетерпеливым</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g6" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g6" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g6" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g6" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">7. Чувство страха, как будто может произойти что-то ужасное</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="g7" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="g7" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="g7" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="g7" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="test-submit">Показать результат</button>
+      </form>
+      <div class="test-result" id="result-gad7" hidden></div>
+    </div>
+
+    <!-- ===== PHQ-9 ===== -->
+    <div class="test-panel" id="panel-phq9">
+      <div class="test-intro">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Шкала депрессии PHQ-9</h2>
+        <p>9 вопросов о последних двух неделях. Самый распространённый скрининговый инструмент для депрессии в мире. Разработана Kroenke, Spitzer & Williams (2001).</p>
+      </div>
+      <form class="test-form" id="form-phq9">
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Как часто за последние 2 недели вас беспокоили следующие проблемы?</p>
+
+        <div class="tq">
+          <p class="tq-text">1. Мало интереса или удовольствия от того, чем занимаетесь</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p1" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p1" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p1" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p1" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">2. Подавленное настроение, чувство безнадёжности</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p2" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p2" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p2" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p2" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">3. Проблемы с засыпанием, прерывистый сон или слишком долгий сон</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p3" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p3" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p3" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p3" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">4. Чувство усталости или упадка сил</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p4" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p4" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p4" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p4" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">5. Плохой аппетит или переедание</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p5" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p5" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p5" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p5" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">6. Плохое мнение о себе: ощущение, что вы неудачник или подвели себя и семью</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p6" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p6" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p6" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p6" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">7. Трудности сосредоточиться, например, при чтении или просмотре телевизора</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p7" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p7" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p7" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p7" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">8. Замедленные движения или речь (заметные окружающим). Или наоборот: суетливость, беспокойство, невозможность усидеть на месте</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p8" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p8" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p8" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p8" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">9. Мысли о том, что лучше бы вам умереть, или о том, чтобы причинить себе вред</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="p9" value="0" required><span>Совсем не беспокоили</span></label>
+            <label><input type="radio" name="p9" value="1"><span>Несколько дней</span></label>
+            <label><input type="radio" name="p9" value="2"><span>Более половины дней</span></label>
+            <label><input type="radio" name="p9" value="3"><span>Почти каждый день</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="test-submit">Показать результат</button>
+      </form>
+      <div class="test-result" id="result-phq9" hidden></div>
+    </div>
+
+    <!-- ===== PCL-5 ===== -->
+    <div class="test-panel" id="panel-pcl5">
+      <div class="test-intro">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Шкала ПТСР (PCL-5)</h2>
+        <p>20 вопросов о реакциях на стрессовые события. Разработана Национальным центром ПТСР (США). Используется для скрининга посттравматического стрессового расстройства. Weathers et al. (2013).</p>
+      </div>
+      <form class="test-form" id="form-pcl5">
+        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Ниже приведён список проблем, которые иногда возникают у людей в ответ на очень стрессовый опыт. Укажите, насколько вас беспокоила каждая из этих проблем за последний месяц.</p>
+
+        <div class="tq">
+          <p class="tq-text">1. Повторяющиеся, нежелательные, тревожные воспоминания о стрессовом событии</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c1" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c1" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c1" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c1" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c1" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">2. Повторяющиеся тревожные сны о стрессовом событии</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c2" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c2" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c2" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c2" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c2" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">3. Внезапное чувство или действия, как будто стрессовое событие происходит снова (как будто вы переживаете его заново)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c3" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c3" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c3" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c3" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c3" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">4. Сильная эмоциональная реакция при напоминании о стрессовом событии (страх, гнев, вина, стыд)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c4" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c4" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c4" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c4" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c4" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">5. Сильные физические реакции при напоминании о стрессовом событии (учащённое сердцебиение, затруднённое дыхание, потливость)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c5" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c5" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c5" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c5" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c5" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">6. Стараетесь избегать воспоминаний, мыслей или чувств, связанных со стрессовым событием</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c6" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c6" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c6" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c6" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c6" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">7. Стараетесь избегать внешних напоминаний о стрессовом событии (людей, мест, разговоров, занятий, предметов, ситуаций)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c7" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c7" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c7" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c7" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c7" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">8. Трудности с воспоминанием важных частей стрессового события</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c8" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c8" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c8" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c8" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c8" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">9. Устойчивые негативные убеждения о себе, других или мире (например: «Я плохой», «Никому нельзя доверять», «Мир полностью опасен»)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c9" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c9" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c9" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c9" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c9" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">10. Обвинение себя или других в стрессовом событии или в том, что произошло после него</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c10" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c10" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c10" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c10" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c10" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">11. Устойчивые негативные эмоции (страх, ужас, гнев, вина, стыд)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c11" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c11" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c11" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c11" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c11" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">12. Потеря интереса к занятиям, которые раньше нравились</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c12" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c12" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c12" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c12" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c12" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">13. Чувство отстранённости или отчуждённости от других людей</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c13" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c13" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c13" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c13" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c13" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">14. Трудно испытывать положительные эмоции (радость, любовь, нежность)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c14" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c14" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c14" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c14" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c14" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">15. Раздражительность, вспышки гнева, агрессивное поведение</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c15" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c15" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c15" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c15" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c15" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">16. Чрезмерно рискованное или саморазрушительное поведение</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c16" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c16" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c16" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c16" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c16" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">17. Повышенная бдительность, настороженность, ожидание опасности</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c17" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c17" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c17" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c17" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c17" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">18. Чрезмерная пугливость (вздрагиваете от неожиданных звуков)</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c18" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c18" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c18" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c18" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c18" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">19. Трудности с концентрацией внимания</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c19" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c19" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c19" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c19" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c19" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+        <div class="tq">
+          <p class="tq-text">20. Проблемы с засыпанием или сном</p>
+          <div class="tq-opts">
+            <label><input type="radio" name="c20" value="0" required><span>Совсем не беспокоило</span></label>
+            <label><input type="radio" name="c20" value="1"><span>Немного</span></label>
+            <label><input type="radio" name="c20" value="2"><span>Умеренно</span></label>
+            <label><input type="radio" name="c20" value="3"><span>Сильно</span></label>
+            <label><input type="radio" name="c20" value="4"><span>Очень сильно</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="test-submit">Показать результат</button>
+      </form>
+      <div class="test-result" id="result-pcl5" hidden></div>
+    </div>
+
+    <div class="test-disclaimer">
+      Эти опросники предназначены только для самооценки и не заменяют консультацию специалиста. Результат не является диагнозом. Если вы набрали высокий балл или вас что-то беспокоит, обратитесь к психологу.
+    </div>
+
+  </div>
+</section>
+
+<div class="not-sure-cta">
+  <div class="container">
+    <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Высокий результат не приговор. Это сигнал, что стоит разобраться с помощью специалиста.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://cal.com/levashou/intro-ru" target="_blank" rel="noopener noreferrer" class="btn">Бесплатное знакомство 15 мин</a>
+      <a href="/#booking" class="btn-ghost btn">Записаться на сессию</a>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Алексей Левашев<span class="dot">.</span></div>
+        <p class="footer-tagline">Психотравматолог · Варшава</p>
+      </div>
+      <div>
+        <h4>Навигация</h4>
+        <a href="/#about">О себе</a>
+        <a href="/#services">Направления</a>
+        <a href="/#process">Как работаем</a>
+        <a href="/#faq">Вопросы</a>
+        <a href="/#booking">Записаться</a>
+      </div>
+      <div>
+        <h4>Материалы</h4>
+        <a href="/blog.html">Блог</a>
+        <a href="/library.html">Библиотека</a>
+        <a href="/glossary.html">Глоссарий</a>
+        <a href="/tests.html">Тесты</a>
+      </div>
+      <div>
+        <h4>Правовая информация</h4>
+        <a href="/privacy.html">Политика конфиденциальности</a>
+        <a href="/regulamin.html">Регламент</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Алексей Левашев · Psychotraumatolog</div>
+      <div><button type="button" data-cookie="open">Настройки cookies</button></div>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" role="dialog" aria-label="Cookies">
+  <p>Мы используем необходимые cookies для работы сайта. Подробнее в <a href="/privacy.html">политике конфиденциальности</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" class="accept-all" data-cookie="all">Принять все</button>
+    <button type="button" data-cookie="necessary">Только необходимые</button>
+    <button type="button" data-cookie="rejected">Отклонить</button>
+  </div>
+</div>
+
+<script src="/js/main.min.js?v=17"></script>
+<script>
+(function(){
+  const tabs = document.querySelectorAll('.test-tab');
+  const panels = document.querySelectorAll('.test-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.test).classList.add('active');
+    });
+  });
+
+  const interpretations = {
+    gad7: [
+      {max: 4, level: 'Минимальная тревожность', desc: 'Ваш уровень тревоги в пределах нормы. Это хорошие показатели.'},
+      {max: 9, level: 'Лёгкая тревожность', desc: 'Есть некоторые проявления тревоги, но они пока не критичны. Стоит обратить внимание на сон, отдых и уровень стресса.'},
+      {max: 14, level: 'Умеренная тревожность', desc: 'Тревога заметно влияет на повседневную жизнь. Рекомендуется консультация специалиста.'},
+      {max: 21, level: 'Выраженная тревожность', desc: 'Высокий уровень тревоги. Настоятельно рекомендуется обратиться к психологу или психотерапевту.'}
+    ],
+    phq9: [
+      {max: 4, level: 'Минимальные проявления', desc: 'Признаки депрессии минимальны или отсутствуют. Это хороший результат.'},
+      {max: 9, level: 'Лёгкая депрессия', desc: 'Есть лёгкие проявления. Обратите внимание на режим, физическую активность и социальные контакты.'},
+      {max: 14, level: 'Умеренная депрессия', desc: 'Симптомы депрессии выражены. Рекомендуется консультация специалиста.'},
+      {max: 19, level: 'Умеренно-выраженная депрессия', desc: 'Существенное влияние на повседневную жизнь. Рекомендуется обратиться к психологу.'},
+      {max: 27, level: 'Выраженная депрессия', desc: 'Высокий уровень депрессивных проявлений. Настоятельно рекомендуется обратиться за профессиональной помощью.'}
+    ],
+    pcl5: [
+      {max: 19, level: 'Ниже порогового значения', desc: 'Симптомы ПТСР не достигают клинического уровня. Однако если вас что-то беспокоит, консультация не будет лишней.'},
+      {max: 32, level: 'Пограничный уровень', desc: 'Есть признаки посттравматических реакций. Рекомендуется обсудить результат со специалистом.'},
+      {max: 80, level: 'Выше порогового значения', desc: 'Результат указывает на вероятное наличие ПТСР. Рекомендуется обратиться к психотравматологу для детальной оценки.'}
+    ]
+  };
+
+  function setupForm(testId, prefix, count) {
+    const form = document.getElementById('form-' + testId);
+    const resultDiv = document.getElementById('result-' + testId);
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let total = 0;
+      for (let i = 1; i <= count; i++) {
+        const selected = form.querySelector('input[name="' + prefix + i + '"]:checked');
+        if (!selected) return;
+        total += parseInt(selected.value);
+      }
+
+      const maxScore = testId === 'pcl5' ? 80 : (testId === 'phq9' ? 27 : 21);
+      const levels = interpretations[testId];
+      let interp = levels[levels.length - 1];
+      for (let l of levels) {
+        if (total <= l.max) { interp = l; break; }
+      }
+
+      form.style.display = 'none';
+      resultDiv.hidden = false;
+      resultDiv.innerHTML =
+        '<h3>Ваш результат</h3>' +
+        '<div class="test-score">' + total + ' <span style="font-size:20px;color:var(--text-muted)">/ ' + maxScore + '</span></div>' +
+        '<div class="test-score-label">' + (testId === 'pcl5' ? 'PCL-5' : (testId === 'phq9' ? 'PHQ-9' : 'GAD-7')) + '</div>' +
+        '<div class="test-severity">' + interp.level + '</div>' +
+        '<p class="test-desc">' + interp.desc + '</p>' +
+        '<a href="/#booking" class="btn" style="display:inline-block;margin-bottom:16px;">Записаться на консультацию</a><br>' +
+        '<button class="test-again" onclick="resetTest(\'' + testId + '\')">Пройти ещё раз</button>';
+
+      resultDiv.scrollIntoView({behavior: 'smooth', block: 'center'});
+    });
+  }
+
+  window.resetTest = function(testId) {
+    const form = document.getElementById('form-' + testId);
+    const resultDiv = document.getElementById('result-' + testId);
+    form.reset();
+    form.style.display = 'block';
+    resultDiv.hidden = true;
+    form.scrollIntoView({behavior: 'smooth', block: 'start'});
+  };
+
+  setupForm('gad7', 'g', 7);
+  setupForm('phq9', 'p', 9);
+  setupForm('pcl5', 'c', 20);
+})();
+</script>
+</body>
+</html>
