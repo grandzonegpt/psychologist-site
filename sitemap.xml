@@ -391,4 +391,48 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/choosing-therapist.html"/>
     <priority>0.8</priority>
   </url>
+
+  <!-- New blog articles 2026-04-18 -->
+  <url>
+    <loc>https://levashou.pl/blog/emigration-anxiety.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/emigration-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/emigration-anxiety.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/night-panic.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/night-panic.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/night-panic.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/intrusive-thoughts.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/intrusive-thoughts.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/intrusive-thoughts.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/it-burnout.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/it-burnout.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/it-burnout.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/breakup.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/breakup.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/breakup.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog/social-anxiety.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/social-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/social-anxiety.html"/>
+    <priority>0.8</priority>
+  </url>
 </urlset>
