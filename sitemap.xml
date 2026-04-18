@@ -249,13 +249,6 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/burnout.html"/>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://levashou.pl/blog/coaching-vs-psychology.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/coaching-vs-psychology.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/coaching-vs-psychology.html"/>
-    <priority>0.8</priority>
-  </url>
 
   <!-- Blog articles PL -->
   <url>
@@ -315,13 +308,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://levashou.pl/blog-pl/coaching-vs-psychology.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/coaching-vs-psychology.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/coaching-vs-psychology.html"/>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://levashou.pl/blog/codependency.html</loc>
     <lastmod>2026-04-15</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/codependency.html"/>
@@ -347,20 +333,6 @@
     <lastmod>2026-04-15</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/gaslighting.html"/>
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/gaslighting.html"/>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://levashou.pl/blog/trauma.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/trauma.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/trauma.html"/>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://levashou.pl/blog-pl/trauma.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/trauma.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/trauma.html"/>
     <priority>0.8</priority>
   </url>
   <url>
