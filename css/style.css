@@ -1971,6 +1971,40 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
 }
 .blog-card .card-link:hover { border-bottom-color: var(--accent); }
 
+/* Blog card cover image */
+.blog-card .card-cover {
+  width: calc(100% + 56px);
+  margin: -32px -28px 0;
+  border-radius: 6px 6px 0 0;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+.blog-card.has-cover {
+  padding-top: 0;
+  gap: 0;
+}
+.blog-card.has-cover .card-body {
+  padding: 24px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Post hero image on article pages */
+.post-hero {
+  display: block;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto 40px;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+@media (max-width: 600px) {
+  .post-hero { max-width: 280px; margin-bottom: 28px; }
+  .blog-card .card-cover { aspect-ratio: 16 / 9; }
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;
