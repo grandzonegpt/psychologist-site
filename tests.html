@@ -453,6 +453,29 @@
     ]
   };
 
+  function crossLinks(testId) {
+    var links = {
+      gad7: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
+        'Тревога и депрессия часто идут вместе.<br><a href="#" onclick="switchTo(\'phq9\');return false;" style="color:var(--accent);">Пройти тест на депрессию (PHQ-9)</a></div>',
+      phq9: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
+        'Депрессия часто сопровождается тревогой.<br><a href="#" onclick="switchTo(\'gad7\');return false;" style="color:var(--accent);">Пройти тест на тревогу (GAD-7)</a></div>',
+      pcl5: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
+        'Травма редко приходит одна. Проверьте также:<br>' +
+        '<a href="#" onclick="switchTo(\'phq9\');return false;" style="color:var(--accent);">Тест на депрессию (PHQ-9)</a><br>' +
+        '<a href="#" onclick="switchTo(\'gad7\');return false;" style="color:var(--accent);">Тест на тревогу (GAD-7)</a></div>'
+    };
+    return links[testId] || '';
+  }
+
+  window.switchTo = function(testId) {
+    document.querySelectorAll('.test-tab').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.test-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelector('[data-test="' + testId + '"]').classList.add('active');
+    document.getElementById('panel-' + testId).classList.add('active');
+    resetTest(testId);
+    document.getElementById('panel-' + testId).scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
   function setupForm(testId, prefix, count) {
     const form = document.getElementById('form-' + testId);
     const resultDiv = document.getElementById('result-' + testId);
@@ -482,7 +505,8 @@
         '<div class="test-severity">' + interp.level + '</div>' +
         '<p class="test-desc">' + interp.desc + '</p>' +
         '<a href="/#booking" class="btn" style="display:inline-block;margin-bottom:16px;">Записаться на консультацию</a><br>' +
-        '<button class="test-again" onclick="resetTest(\'' + testId + '\')">Пройти ещё раз</button>';
+        '<button class="test-again" onclick="resetTest(\'' + testId + '\')">Пройти ещё раз</button>' +
+        crossLinks(testId);
 
       resultDiv.scrollIntoView({behavior: 'smooth', block: 'center'});
     });
