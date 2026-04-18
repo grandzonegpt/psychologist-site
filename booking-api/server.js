@@ -1,13 +1,17 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const { google } = require('googleapis');
 const Stripe = require('stripe');
 const config = require('./config');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
 const reminders = require('./reminders');
+const { validateBooking } = require('./sanitize');
 
 const app = express();
+app.use(helmet());
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const allowedOrigins = ['https://levashou.pl', 'https://www.levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'];
@@ -38,7 +42,11 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
 });
 
 app.use(cors({ origin: allowedOrigins }));
-app.use(express.json());
+app.use(express.json({ limit: '16kb' }));
+
+const apiLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 30, standardHeaders: true, legacyHeaders: false });
+app.use('/api/book', apiLimiter);
+app.use('/api/slots', rateLimit({ windowMs: 60 * 1000, max: 20, standardHeaders: true, legacyHeaders: false }));
 
 let calendar;
 try {
@@ -164,8 +172,9 @@ app.get('/api/slots', async (req, res) => {
 app.post('/api/book', async (req, res) => {
   try {
     const { name, email, date, time, locale } = req.body;
-    if (!name || !email || !date || !time) {
-      return res.status(400).json({ error: 'Missing fields' });
+    const validationError = validateBooking({ name, email, date, time, locale });
+    if (validationError) {
+      return res.status(400).json({ error: validationError });
     }
 
     const serviceName = config.serviceName[locale] || config.serviceName.ru;

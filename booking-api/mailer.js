@@ -1,9 +1,10 @@
 const { Resend } = require('resend');
 const config = require('./config');
+const { escapeHtml } = require('./sanitize');
 
 const MEET_LINK = 'https://meet.google.com/mbs-kkqi-kpp';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend;
 
 const templates = {
   ru: ({ name, date, time }) => ({
@@ -11,7 +12,7 @@ const templates = {
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">Запись подтверждена</h2>
-        <p style="margin:0 0 8px;">Привет, ${name}!</p>
+        <p style="margin:0 0 8px;">Привет, ${escapeHtml(name)}!</p>
         <p style="margin:0 0 20px;color:#a8a39a;">Твоя сессия забронирована.</p>
         <div style="background:#131316;border:1px solid #2a2a30;border-radius:8px;padding:20px;margin-bottom:24px;">
           <p style="margin:0 0 8px;">📅 <strong>${date}</strong></p>
@@ -30,7 +31,7 @@ const templates = {
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">Wizyta potwierdzona</h2>
-        <p style="margin:0 0 8px;">Cześć, ${name}!</p>
+        <p style="margin:0 0 8px;">Cześć, ${escapeHtml(name)}!</p>
         <p style="margin:0 0 20px;color:#a8a39a;">Twoja sesja została zarezerwowana.</p>
         <div style="background:#131316;border:1px solid #2a2a30;border-radius:8px;padding:20px;margin-bottom:24px;">
           <p style="margin:0 0 8px;">📅 <strong>${date}</strong></p>
@@ -51,6 +52,7 @@ async function sendConfirmation({ name, email, date, time, locale }) {
     console.log('Mailer: no Resend key, skipping');
     return;
   }
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
 
   const template = (templates[locale] || templates.ru)({ name, date, time });
 

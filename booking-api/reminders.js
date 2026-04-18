@@ -1,5 +1,6 @@
 const config = require('./config');
 const { Resend } = require('resend');
+const { escapeHtml } = require('./sanitize');
 
 const MEET_LINK = 'https://meet.google.com/mbs-kkqi-kpp';
 const CHECK_INTERVAL = 5 * 60 * 1000;
@@ -14,7 +15,7 @@ const templates = {
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">⏰ Напоминание</h2>
-        <p style="margin:0 0 8px;">${name}, через час твоя сессия.</p>
+        <p style="margin:0 0 8px;">${escapeHtml(name)}, через час твоя сессия.</p>
         <p style="margin:0 0 20px;color:#a8a39a;">Начало в <strong>${time}</strong></p>
         <a href="${MEET_LINK}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Подключиться через Google Meet</a>
         <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${MEET_LINK}</p>
@@ -28,7 +29,7 @@ const templates = {
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">⏰ Przypomnienie</h2>
-        <p style="margin:0 0 8px;">${name}, za godzinę Twoja sesja.</p>
+        <p style="margin:0 0 8px;">${escapeHtml(name)}, za godzinę Twoja sesja.</p>
         <p style="margin:0 0 20px;color:#a8a39a;">Początek o <strong>${time}</strong></p>
         <a href="${MEET_LINK}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Dołącz przez Google Meet</a>
         <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${MEET_LINK}</p>
