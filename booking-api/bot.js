@@ -1,5 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
+const fs = require('fs');
+const path = require('path');
 const config = require('./config');
+
+const SCHEDULE_FILE = path.join(__dirname, 'schedule.json');
 
 let bot;
 let ownerChatId = null;
@@ -7,6 +11,30 @@ let calendarRef = null;
 const pendingLinks = new Map();
 const bookingEvents = new Map();
 const unblockMap = new Map();
+const pendingTime = new Map();
+
+function loadSchedule() {
+  try {
+    if (fs.existsSync(SCHEDULE_FILE)) {
+      const data = JSON.parse(fs.readFileSync(SCHEDULE_FILE, 'utf8'));
+      Object.keys(data).forEach(k => { config.schedule[k] = data[k]; });
+      const toDelete = Object.keys(config.schedule).filter(k => !data[k]);
+      toDelete.forEach(k => delete config.schedule[k]);
+    }
+  } catch (e) {
+    console.error('Failed to load schedule:', e.message);
+  }
+}
+
+function saveSchedule() {
+  try {
+    fs.writeFileSync(SCHEDULE_FILE, JSON.stringify(config.schedule, null, 2));
+  } catch (e) {
+    console.error('Failed to save schedule:', e.message);
+  }
+}
+
+loadSchedule();
 
 const DAY_NAMES = {
   0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'
@@ -73,6 +101,13 @@ function init(calendar) {
         await blockHour(chatId, parts[0], parts[1], calendar);
       } else if (data === 'unblock') {
         await showUnblockPicker(chatId, calendar);
+      } else if (data === 'edit_schedule') {
+        await showEditSchedule(chatId);
+      } else if (data.startsWith('toggleday_')) {
+        await toggleDay(chatId, parseInt(data.replace('toggleday_', '')));
+      } else if (data.startsWith('settime_')) {
+        const dow = parseInt(data.replace('settime_', ''));
+        await promptSetTime(chatId, dow);
       } else if (data.startsWith('unblock_')) {
         const shortId = data.replace('unblock_', '');
         const realEventId = unblockMap.get(shortId) || shortId;
@@ -103,6 +138,14 @@ function init(calendar) {
   bot.on('message', async (msg) => {
     if (!msg.text || msg.text.startsWith('/')) return;
     const chatId = msg.chat.id;
+
+    const timeInput = pendingTime.get(chatId);
+    if (timeInput) {
+      pendingTime.delete(chatId);
+      await handleSetTime(chatId, timeInput.dow, msg.text.trim());
+      return;
+    }
+
     const pending = pendingLinks.get(chatId);
     if (!pending) return;
 
@@ -149,9 +192,9 @@ function mainMenu() {
   return {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи на неделю', callback_data: 'week' }],
-      [{ text: '🚫 Заблокировать день', callback_data: 'block_day' }],
-      [{ text: '🕐 Заблокировать час', callback_data: 'block_hour' }],
-      [{ text: '✅ Разблокировать', callback_data: 'unblock' }]
+      [{ text: '🚫 Заблокировать день', callback_data: 'block_day' }, { text: '🕐 Заблокировать час', callback_data: 'block_hour' }],
+      [{ text: '✅ Разблокировать', callback_data: 'unblock' }],
+      [{ text: '⚙️ Настроить расписание', callback_data: 'edit_schedule' }]
     ]
   };
 }
@@ -438,6 +481,68 @@ function notifyNewBooking({ name, email, date, time, locale, eventId }) {
       }
     }
   );
+}
+
+const FULL_DAY_NAMES = {
+  0: 'Воскресенье', 1: 'Понедельник', 2: 'Вторник', 3: 'Среда',
+  4: 'Четверг', 5: 'Пятница', 6: 'Суббота'
+};
+
+async function showEditSchedule(chatId) {
+  const buttons = [];
+  for (let dow = 1; dow <= 7; dow++) {
+    const d = dow % 7;
+    const active = !!config.schedule[d];
+    const label = active
+      ? `✅ ${FULL_DAY_NAMES[d]}  ${config.schedule[d].start}–${config.schedule[d].end}`
+      : `❌ ${FULL_DAY_NAMES[d]}`;
+    buttons.push([
+      { text: label, callback_data: `toggleday_${d}` },
+      ...(active ? [{ text: '🕐 Часы', callback_data: `settime_${d}` }] : [])
+    ]);
+  }
+  buttons.push(...backButton());
+
+  await bot.sendMessage(chatId,
+    '⚙️ *Расписание*\n\nНажми на день, чтобы включить/выключить.\nНажми 🕐 чтобы изменить часы.',
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+async function toggleDay(chatId, dow) {
+  if (config.schedule[dow]) {
+    delete config.schedule[dow];
+  } else {
+    config.schedule[dow] = { start: '10:00', end: '16:00' };
+  }
+  saveSchedule();
+  await showEditSchedule(chatId);
+}
+
+async function promptSetTime(chatId, dow) {
+  pendingTime.set(chatId, { dow });
+  await bot.sendMessage(chatId,
+    `🕐 *${FULL_DAY_NAMES[dow]}*\n\nВведи время в формате:\n\`10:00-16:00\``,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+  );
+}
+
+async function handleSetTime(chatId, dow, text) {
+  const match = text.match(/^(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})$/);
+  if (!match) {
+    await bot.sendMessage(chatId,
+      '❌ Неправильный формат. Напиши так: `10:00-16:00`',
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+  config.schedule[dow] = { start: match[1], end: match[2] };
+  saveSchedule();
+  await bot.sendMessage(chatId,
+    `✅ *${FULL_DAY_NAMES[dow]}*: ${match[1]}–${match[2]}`,
+    { parse_mode: 'Markdown' }
+  );
+  await showEditSchedule(chatId);
 }
 
 module.exports = { init, notifyNewBooking };
