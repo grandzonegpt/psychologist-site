@@ -251,12 +251,16 @@ async function showBlockDayPicker(chatId, prefix) {
 async function blockDay(chatId, dateStr, calendar) {
   if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
 
+  const nextDay = new Date(dateStr + 'T00:00:00');
+  nextDay.setDate(nextDay.getDate() + 1);
+  const endStr = nextDay.toISOString().split('T')[0];
+
   await calendar.events.insert({
     calendarId: config.calendarId,
     requestBody: {
       summary: 'Blocked / Заблокировано',
-      start: { date: dateStr, timeZone: config.timezone },
-      end: { date: dateStr, timeZone: config.timezone },
+      start: { date: dateStr },
+      end: { date: endStr },
       transparency: 'opaque'
     }
   });
