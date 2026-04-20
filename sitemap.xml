@@ -468,21 +468,21 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- SOS self-help tools 2026-04-19 -->
+  <!-- Interactive self-help practices 2026-04-20 -->
   <url>
-    <loc>https://levashou.pl/sos.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/sos.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/sos-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/sos.html"/>
+    <loc>https://levashou.pl/practices.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/practices.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/practices-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/practices.html"/>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://levashou.pl/sos-pl.html</loc>
-    <lastmod>2026-04-19</lastmod>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/sos.html"/>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/sos-pl.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/sos.html"/>
+    <loc>https://levashou.pl/practices-pl.html</loc>
+    <lastmod>2026-04-20</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/practices.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/practices-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/practices.html"/>
     <priority>0.9</priority>
   </url>
   <url>
