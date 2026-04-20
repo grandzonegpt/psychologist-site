@@ -467,4 +467,70 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/social-anxiety.html"/>
     <priority>0.8</priority>
   </url>
+
+  <!-- SOS self-help tools 2026-04-19 -->
+  <url>
+    <loc>https://levashou.pl/sos.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/sos.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/sos-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/sos.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/sos-pl.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/sos.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/sos-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/sos.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/breathing-4-7-8.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/breathing-4-7-8.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/breathing-4-7-8-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/breathing-4-7-8.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/breathing-4-7-8-pl.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/breathing-4-7-8.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/breathing-4-7-8-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/breathing-4-7-8.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/box-breathing.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/box-breathing.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/box-breathing-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/box-breathing.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/box-breathing-pl.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/box-breathing.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/box-breathing-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/box-breathing.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/grounding-5-4-3-2-1.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/grounding-5-4-3-2-1.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/grounding-5-4-3-2-1-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/grounding-5-4-3-2-1.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/grounding-5-4-3-2-1-pl.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/grounding-5-4-3-2-1.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/grounding-5-4-3-2-1-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/grounding-5-4-3-2-1.html"/>
+    <priority>0.8</priority>
+  </url>
 </urlset>

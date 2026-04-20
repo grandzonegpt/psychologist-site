@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<!-- Google Consent Mode v2 (DEFAULT: denied) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500,
+    'region': ['EEA', 'PL']
+  });
+</script>
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-48BN8FG5NG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-48BN8FG5NG');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0b">
+<title>Скорая помощь себе: техники при панике, тревоге и флешбэках | Алексей Левашев</title>
+<meta name="description" content="Интерактивные техники самопомощи при панической атаке, тревоге и флешбэках. Дыхание 4-7-8, коробочное дыхание, заземление 5-4-3-2-1. Работают прямо в браузере.">
+<link rel="canonical" href="https://levashou.pl/sos.html">
+<link rel="alternate" hreflang="ru" href="https://levashou.pl/sos.html">
+<link rel="alternate" hreflang="pl" href="https://levashou.pl/sos-pl.html">
+<link rel="alternate" hreflang="x-default" href="https://levashou.pl/sos.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://levashou.pl/sos.html">
+<meta property="og:title" content="Скорая помощь себе: техники при панике, тревоге и флешбэках">
+<meta property="og:description" content="Интерактивные техники самопомощи. Дыхание 4-7-8, коробочное дыхание, заземление 5-4-3-2-1.">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:image" content="https://levashou.pl/assets/og.jpg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Скорая помощь себе",
+  "description": "Интерактивные техники самопомощи при панической атаке, тревоге и флешбэках.",
+  "url": "https://levashou.pl/sos.html",
+  "inLanguage": "ru",
+  "author": {
+    "@type": "Person",
+    "name": "Aliaksei Levashou",
+    "jobTitle": "Psychotraumatolog, psycholog CBT"
+  },
+  "hasPart": [
+    {"@type": "MedicalWebPage", "name": "Дыхание 4-7-8", "url": "https://levashou.pl/breathing-4-7-8.html"},
+    {"@type": "MedicalWebPage", "name": "Коробочное дыхание", "url": "https://levashou.pl/box-breathing.html"},
+    {"@type": "MedicalWebPage", "name": "Заземление 5-4-3-2-1", "url": "https://levashou.pl/grounding-5-4-3-2-1.html"}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.min.css?v=74">
+<style>
+:root{
+  --bg-primary:#0a0a0b;
+  --bg-secondary:#131316;
+  --bg-elevated:#1a1a1f;
+  --text-primary:#f5f1e8;
+  --text-muted:#a8a39a;
+  --accent:#f5f1e8;
+  --border-subtle:#2a2a30;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-sans:'Inter',-apple-system,system-ui,sans-serif;
+  --maxw:1120px;
+}
+body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);font-weight:300;line-height:1.7;font-size:16px}
+.sos-wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+.sos-hero{padding:140px 0 40px;text-align:center}
+.sos-hero .eyebrow{font-size:13px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;display:block}
+.sos-hero h1{font-family:var(--font-serif);font-size:clamp(38px,6vw,62px);font-weight:500;letter-spacing:-0.01em;margin:0 0 20px;color:var(--text-primary)}
+.sos-hero .lead{max-width:640px;margin:0 auto;color:var(--text-muted);font-size:17px;line-height:1.65}
+
+.sos-section{padding:48px 0}
+.sos-section.alt{background:var(--bg-secondary)}
+
+.sos-choose{max-width:880px;margin:0 auto 48px;padding:26px 30px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:16px}
+.sos-choose h2{font-family:var(--font-serif);font-size:24px;font-weight:500;margin:0 0 18px;color:var(--text-primary)}
+.sos-choose-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:720px){.sos-choose-list{grid-template-columns:1fr 1fr}}
+.sos-choose-item{padding:14px 18px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:10px;color:var(--text-muted);font-size:14.5px;line-height:1.55}
+.sos-choose-item b{color:var(--text-primary);font-weight:500;display:block;margin-bottom:4px;font-size:14px}
+.sos-choose-item a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(245,241,232,.25);transition:border-color .2s}
+.sos-choose-item a:hover{border-color:var(--accent)}
+
+.sos-tools{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:720px){.sos-tools{grid-template-columns:1fr 1fr 1fr}}
+.sos-tool{display:block;padding:32px 28px 30px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:18px;text-decoration:none;color:var(--text-primary);transition:all .3s;position:relative;overflow:hidden}
+.sos-tool::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}
+.sos-tool:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.sos-tool:hover::before{opacity:.5}
+.sos-tool .icon{width:54px;height:54px;border-radius:14px;background:var(--bg-secondary);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:all .3s}
+.sos-tool:hover .icon{border-color:var(--accent)}
+.sos-tool .icon svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.2}
+.sos-tool .eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;display:block}
+.sos-tool h3{font-family:var(--font-serif);font-size:26px;margin:0 0 10px;font-weight:500;color:var(--text-primary);letter-spacing:-.005em}
+.sos-tool p{color:var(--text-muted);font-size:14.5px;line-height:1.6;margin:0 0 20px}
+.sos-tool .meta{display:flex;gap:14px;font-size:12px;color:var(--text-muted);padding-top:14px;border-top:1px solid var(--border-subtle)}
+.sos-tool .meta span{display:flex;align-items:center;gap:5px}
+.sos-tool .meta b{color:var(--text-primary);font-weight:500}
+
+.sos-crisis{max-width:880px;margin:72px auto 0;padding:32px 36px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:16px;border-left:2px solid #d4766a}
+.sos-crisis h2{font-family:var(--font-serif);font-size:26px;margin:0 0 10px;font-weight:500;color:var(--text-primary)}
+.sos-crisis .crisis-lead{color:var(--text-muted);font-size:15px;line-height:1.7;margin:0 0 22px}
+.sos-crisis-list{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:620px){.sos-crisis-list{grid-template-columns:1fr 1fr}}
+.sos-crisis-item{padding:14px 18px;background:var(--bg-secondary);border:1px solid var(--border-subtle);border-radius:10px}
+.sos-crisis-item b{color:var(--text-primary);font-weight:500;font-size:14px;display:block;margin-bottom:4px}
+.sos-crisis-item .num{color:var(--accent);font-size:20px;font-family:var(--font-serif);letter-spacing:.02em;display:block;margin-bottom:2px}
+.sos-crisis-item .note{color:var(--text-muted);font-size:13px;line-height:1.5}
+
+.sos-how{max-width:760px;margin:72px auto 0;padding:0 16px}
+.sos-how h2{font-family:var(--font-serif);font-size:32px;text-align:center;margin:0 0 28px;font-weight:400;color:var(--text-primary)}
+.sos-how p{color:var(--text-muted);line-height:1.85;font-size:16px;margin-bottom:18px}
+.sos-how p:last-child{margin-bottom:0}
+
+.sos-cta{max-width:720px;margin:64px auto 0;padding:32px 36px;border-left:2px solid var(--accent);background:var(--bg-elevated);border-radius:0 14px 14px 0}
+.sos-cta p{color:var(--text-primary);line-height:1.75;font-size:16px;margin:0 0 20px;font-weight:300}
+.sos-cta-btn{display:inline-block;padding:13px 32px;border-radius:8px;background:linear-gradient(180deg,#f5f1e8,#d9d2c7);color:#1a1a1a;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:all .25s}
+.sos-cta-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(210,200,185,.4)}
+
+.sos-disclaimer{max-width:680px;margin:36px auto 0;padding:18px 24px;font-size:13px;color:var(--text-muted);line-height:1.7;text-align:center;opacity:.75;font-style:italic}
+</style>
+<!-- Microsoft Clarity (gated by consent) -->
+<script type="text/javascript">
+    if (localStorage.getItem('cookie-consent') === 'all') {
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wbo8sg8woh");
+    }
+</script>
+</head>
+
+<body>
+<a href="#main" class="skip-link">Перейти к содержимому</a>
+<div class="scroll-progress"></div>
+
+<nav class="site-nav" aria-label="Главная навигация">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Алексей Левашев<span class="dot">.</span></a>
+    <div class="lang-mobile" aria-label="Язык"><a href="/sos.html" class="active">RU</a>
+        <span class="sep">|</span>
+        <a href="/sos-pl.html">PL</a></div>
+    <button class="nav-toggle" aria-label="Открыть меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="/#about">О себе</a>
+      <a href="/#services">Направления</a>
+      <a href="/#process">Как работаем</a>
+      <a href="/#faq">Вопросы</a>
+      <a href="/blog.html">Блог</a>
+      <a href="/library.html">Библиотека</a>
+      <a href="/tests.html">Тесты</a>
+      <a href="/#booking">Записаться</a>
+      <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
+      <div class="lang-switch" aria-label="Язык">
+        <a href="/sos.html" class="active">RU</a>
+        <span class="sep">|</span>
+        <a href="/sos-pl.html">PL</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<section class="sos-hero">
+  <div class="sos-wrap">
+    <span class="eyebrow">Скорая помощь себе</span>
+    <h1>Когда нужно прямо сейчас</h1>
+    <p class="lead">Три интерактивные техники для моментов, когда тело захлёстывает тревога, паника или флешбэк. Работают в браузере, без установки, бесплатно.</p>
+  </div>
+</section>
+
+<section class="sos-section">
+  <div class="sos-wrap">
+
+    <div class="sos-choose">
+      <h2>С чем именно сейчас?</h2>
+      <div class="sos-choose-list">
+        <div class="sos-choose-item">
+          <b>Паническая атака</b>
+          <a href="/breathing-4-7-8.html">Дыхание 4-7-8</a> или <a href="/grounding-5-4-3-2-1.html">заземление 5-4-3-2-1</a>
+        </div>
+        <div class="sos-choose-item">
+          <b>Острая тревога</b>
+          <a href="/box-breathing.html">Коробочное дыхание</a> или <a href="/breathing-4-7-8.html">дыхание 4-7-8</a>
+        </div>
+        <div class="sos-choose-item">
+          <b>Флешбэк или диссоциация</b>
+          <a href="/grounding-5-4-3-2-1.html">Заземление 5-4-3-2-1</a>
+        </div>
+        <div class="sos-choose-item">
+          <b>Мысли по кругу, не могу уснуть</b>
+          <a href="/breathing-4-7-8.html">Дыхание 4-7-8</a>
+        </div>
+        <div class="sos-choose-item">
+          <b>Перед важным разговором</b>
+          <a href="/box-breathing.html">Коробочное дыхание</a>
+        </div>
+        <div class="sos-choose-item">
+          <b>Нужно собраться и сфокусироваться</b>
+          <a href="/box-breathing.html">Коробочное дыхание</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sos-tools">
+      <a href="/breathing-4-7-8.html" class="sos-tool">
+        <div class="icon">
+          <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="6"/><circle cx="16" cy="16" r="11" opacity=".5"/><circle cx="16" cy="16" r="14" opacity=".25"/></svg>
+        </div>
+        <span class="eyebrow">Дыхание</span>
+        <h3>4-7-8</h3>
+        <p>Техника доктора Вейла. Быстро активирует парасимпатическую систему, снижает ЧСС и тревогу. При панике, перед сном, при мыслях по кругу.</p>
+        <div class="meta">
+          <span><b>3</b> мин</span>
+          <span><b>4</b> цикла</span>
+          <span>Визуально</span>
+        </div>
+      </a>
+
+      <a href="/box-breathing.html" class="sos-tool">
+        <div class="icon">
+          <svg viewBox="0 0 32 32"><rect x="6" y="6" width="20" height="20" rx="1"/><circle cx="6" cy="6" r="2" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <span class="eyebrow">Дыхание</span>
+        <h3>Коробочное 4-4-4-4</h3>
+        <p>Техника морских котиков. Ровные четыре фазы по четыре секунды. Для концентрации, ясности и быстрого возврата в баланс перед задачей.</p>
+        <div class="meta">
+          <span><b>2-4</b> мин</span>
+          <span><b>8</b> циклов</span>
+          <span>Точка по углам</span>
+        </div>
+      </a>
+
+      <a href="/grounding-5-4-3-2-1.html" class="sos-tool">
+        <div class="icon">
+          <svg viewBox="0 0 32 32"><path d="M4 24c0-5 4-8 12-8s12 3 12 8"/><circle cx="16" cy="11" r="5"/></svg>
+        </div>
+        <span class="eyebrow">Заземление</span>
+        <h3>5-4-3-2-1</h3>
+        <p>Пошаговое упражнение через зрение, осязание, слух, обоняние и вкус. Возвращает в настоящий момент при флешбэке, диссоциации, панической атаке.</p>
+        <div class="meta">
+          <span><b>3</b> мин</span>
+          <span><b>5</b> шагов</span>
+          <span>Поля ввода</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="sos-crisis">
+      <h2>Если сейчас угроза жизни</h2>
+      <p class="crisis-lead">Эти техники не заменяют экстренную помощь. Если есть мысли о самоубийстве, самоповреждении или угроза жизни, позвони сейчас.</p>
+      <div class="sos-crisis-list">
+        <div class="sos-crisis-item">
+          <b>Кризисная линия (Польша)</b>
+          <span class="num">116 123</span>
+          <span class="note">Бесплатно, круглосуточно, на польском языке</span>
+        </div>
+        <div class="sos-crisis-item">
+          <b>Экстренная служба</b>
+          <span class="num">112</span>
+          <span class="note">Скорая, полиция, пожарная. ЕС, 24/7</span>
+        </div>
+        <div class="sos-crisis-item">
+          <b>Детский телефон доверия</b>
+          <span class="num">116 111</span>
+          <span class="note">Для детей и подростков, бесплатно</span>
+        </div>
+        <div class="sos-crisis-item">
+          <b>Антикризисный центр для взрослых</b>
+          <span class="num">22 837 55 59</span>
+          <span class="note">Варшава, с понедельника по пятницу</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="sos-section alt">
+  <div class="sos-wrap">
+    <div class="sos-how">
+      <h2>Как пользоваться</h2>
+      <p>Любая из техник работает как скорая помощь нервной системе. Их задача: быстро сбавить обороты, вернуть тело и внимание в настоящий момент, дать префронтальной коре снова взять управление. Не «вылечить», а снять волну.</p>
+      <p>Выбери технику по состоянию. Дыхание лучше при остром возбуждении тела, когда сердце колотится и не хватает воздуха. Заземление лучше при флешбэке, диссоциации или ощущении «я не здесь». Коробочное дыхание хорошо работает, когда нужна ясность перед задачей или разговором.</p>
+      <p>Если техника не помогла с первого раза, повтори её. Если повторяющиеся панические атаки, флешбэки или тревога возвращаются регулярно, значит причина глубже. Тут уже нужна не скорая помощь, а системная работа. Об этом ниже.</p>
+    </div>
+
+    <div class="sos-cta">
+      <p>Если тревога, паника или флешбэки стали частью повседневной жизни, это не слабость и не характер. Это реакция нервной системы, которую можно изменить. Я работаю с тревожными расстройствами, ПТСР и паническими атаками в подходе CBT и EMDR. Первая сессия: знакомство и план.</p>
+      <a href="/#booking" class="sos-cta-btn">Записаться на сессию</a>
+    </div>
+
+    <div class="sos-disclaimer">
+      Эти упражнения не заменяют психологическую помощь или медицинскую консультацию. При повторяющихся симптомах обратись к специалисту. В экстренной ситуации звони 112 или 116 123.
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Алексей Левашев<span class="dot">.</span></div>
+        <p class="footer-tagline">Психотравматолог · Варшава</p>
+      </div>
+      <div>
+        <h4>Навигация</h4>
+        <a href="/#about">О себе</a>
+        <a href="/#services">Направления</a>
+        <a href="/#process">Как работаем</a>
+        <a href="/#faq">Вопросы</a>
+        <a href="/#booking">Записаться</a>
+      </div>
+      <div>
+        <h4>Материалы</h4>
+        <a href="/blog.html">Блог</a>
+        <a href="/library.html">Библиотека</a>
+        <a href="/tests.html">Тесты</a>
+        <a href="/glossary.html">Глоссарий</a>
+      </div>
+      <div>
+        <h4>Правовая информация</h4>
+        <a href="/privacy.html">Политика конфиденциальности</a>
+        <a href="/regulamin.html">Регламент</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Алексей Левашев · Psychotraumatolog</div>
+      <div><button type="button" data-cookie="open">Настройки cookies</button></div>
+    </div>
+  </div>
+</footer>
+
+<div class="cookie-banner" role="dialog" aria-label="Cookies">
+  <p>Мы используем необходимые cookies для работы сайта. Подробнее в <a href="/privacy.html">политике конфиденциальности</a>.</p>
+  <div class="cookie-actions">
+    <button type="button" class="accept-all" data-cookie="all">Принять все</button>
+    <button type="button" data-cookie="necessary">Только необходимые</button>
+    <button type="button" data-cookie="rejected">Отклонить</button>
+  </div>
+</div>
+
+<script src="/js/main.min.js?v=17"></script>
+</body>
+</html>
