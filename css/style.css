@@ -471,6 +471,7 @@ section.alt { background: var(--bg-secondary); }
 /* Stats strip */
 .stats-strip { padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+.stats-grid-3 { grid-template-columns: repeat(3, 1fr); max-width: 720px; margin: 0 auto; }
 .stat-num { display: block; font-family: Georgia, serif; font-size: 28px; color: var(--accent); font-weight: 600; }
 .stat-label { display: block; font-size: 14px; color: var(--text-muted); margin-top: 6px; }
 
