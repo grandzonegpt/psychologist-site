@@ -870,6 +870,7 @@ body.light-theme .exit-popup-content .btn,
 body.light-theme #exit-popup-cta,
 body.light-theme .gcal-fallback,
 body.light-theme .cookie-actions .accept-all,
+body.light-theme .cookie-actions .reject-all,
 body.light-theme .floating-cta a {
   background: #4a3d2a !important;
   color: #f5f1e8 !important;
@@ -884,6 +885,7 @@ body.light-theme .sticky-cta-mobile a:hover,
 body.light-theme #exit-popup-cta:hover,
 body.light-theme .gcal-fallback:hover,
 body.light-theme .cookie-actions .accept-all:hover,
+body.light-theme .cookie-actions .reject-all:hover,
 body.light-theme .floating-cta a:hover {
   background: #2d2419 !important;
   color: #f5f1e8 !important;
@@ -1510,14 +1512,16 @@ body.light-theme .post-content .author-card .author-actions a.secondary {
   transition: border-color .2s, color .2s;
 }
 .cookie-actions button:hover { border-color: var(--accent); color: var(--accent); }
-.cookie-actions .accept-all {
+.cookie-actions .accept-all,
+.cookie-actions .reject-all {
   background: linear-gradient(180deg, #f5f1e8, #d9d2c7);
   color: var(--bg-primary);
   border: none;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(210, 200, 185, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
 }
-.cookie-actions .accept-all:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(210, 200, 185, 0.4); }
+.cookie-actions .accept-all:hover,
+.cookie-actions .reject-all:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(210, 200, 185, 0.4); color: var(--bg-primary); border: none; }
 
 /* Legal pages */
 .legal { padding: 160px 0 120px; max-width: 820px; margin: 0 auto; }
