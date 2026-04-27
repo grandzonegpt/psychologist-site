@@ -181,6 +181,15 @@ app.post('/api/book', async (req, res) => {
     const origin = req.headers.origin || 'https://levashou.pl';
     const returnPage = locale === 'pl' ? '/index-pl.html' : '/';
 
+    const truncate = (v) => (typeof v === 'string' ? v.slice(0, 200) : '');
+    const attribution = {
+      utm_source: truncate(req.body.utm_source),
+      utm_medium: truncate(req.body.utm_medium),
+      utm_campaign: truncate(req.body.utm_campaign),
+      utm_content: truncate(req.body.utm_content),
+      referrer_page: truncate(req.body.referrer_page)
+    };
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card', 'p24', 'blik'],
       mode: 'payment',
@@ -193,7 +202,7 @@ app.post('/api/book', async (req, res) => {
         quantity: 1
       }],
       customer_email: email,
-      metadata: { name, email, date, time, locale: locale || 'ru' },
+      metadata: { name, email, date, time, locale: locale || 'ru', ...attribution },
       success_url: `${origin}${returnPage}?booking=success`,
       cancel_url: `${origin}${returnPage}?booking=cancelled`
     });
