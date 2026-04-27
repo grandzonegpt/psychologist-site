@@ -36,6 +36,29 @@
     }
   };
 
+  function getAttribution() {
+    const params = new URLSearchParams(window.location.search);
+    ['utm_source','utm_medium','utm_content','utm_campaign'].forEach(function(k) {
+      var v = params.get(k);
+      if (v && !sessionStorage.getItem('attr_' + k)) {
+        sessionStorage.setItem('attr_' + k, v);
+      }
+    });
+    return {
+      utm_source: sessionStorage.getItem('attr_utm_source') || '',
+      utm_medium: sessionStorage.getItem('attr_utm_medium') || '',
+      utm_content: sessionStorage.getItem('attr_utm_content') || '',
+      utm_campaign: sessionStorage.getItem('attr_utm_campaign') || '',
+      referrer_page: document.referrer || ''
+    };
+  }
+
+  function trackEvent(name, params) {
+    if (typeof gtag === 'function') {
+      gtag('event', name, params || {});
+    }
+  }
+
   function init(containerId, locale) {
     const t = i18n[locale] || i18n.ru;
     const container = document.getElementById(containerId);
@@ -162,9 +185,10 @@
       const d = new Date(selectedDate + 'T00:00:00');
       const dayNum = d.getDate();
       const monthName = t.months[d.getMonth()];
-      $formTitle.textContent = `${dayNum} ${monthName}, ${time} — ${serviceInfo.duration || 50} ${t.duration}, ${serviceInfo.price || 180} ${t.price}`;
+      $formTitle.textContent = `${dayNum} ${monthName}, ${time}, ${serviceInfo.duration || 50} ${t.duration}, ${serviceInfo.price || 180} ${t.price}`;
       $formSection.style.display = 'block';
       $message.style.display = 'none';
+      trackEvent('slot_selected', { locale: locale, date: selectedDate, time: selectedTime });
     }
 
     $form.addEventListener('submit', async (e) => {
@@ -177,10 +201,12 @@
       $form.querySelector('.bw-submit').textContent = t.loading;
 
       try {
+        trackEvent('begin_checkout', { currency: 'PLN', value: 180, locale: locale });
+        const attr = getAttribution();
         const resp = await fetch(`${API_URL}/api/book`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, date: selectedDate, time: selectedTime, locale })
+          body: JSON.stringify(Object.assign({ name, email, date: selectedDate, time: selectedTime, locale }, attr))
         });
         const data = await resp.json();
         if (data.ok && data.url) {
@@ -241,9 +267,13 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('booking') === 'success') {
+      trackEvent('purchase', { currency: 'PLN', value: 180, transaction_id: 'pending_' + Date.now() });
       $message.innerHTML = `${t.booked}<br><a href="https://meet.google.com/mbs-kkqi-kpp" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#C9A961;color:#0a0a0b;border-radius:8px;text-decoration:none;font-weight:500;">${t.meetLink}</a>`;
       $message.className = 'bw-message bw-success';
       $message.style.display = 'block';
+      window.history.replaceState({}, '', window.location.pathname);
+    } else if (urlParams.get('booking') === 'cancelled') {
+      trackEvent('checkout_abandoned', { currency: 'PLN', value: 180 });
       window.history.replaceState({}, '', window.location.pathname);
     }
   }

@@ -257,6 +257,14 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
+          if (typeof gtag === 'function') {
+            var path = window.location.pathname;
+            var slug = path.split('/').pop().replace('-pl.html', '').replace('.html', '') || 'home';
+            gtag('event', 'generate_lead', {
+              page_slug: slug,
+              position: 'contact_form'
+            });
+          }
           form.hidden = true;
           const thanks = form.parentElement.querySelector('.form-thanks');
           if (thanks) {
