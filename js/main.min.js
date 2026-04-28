@@ -299,6 +299,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Newsletter form — honest fallback until provider is wired up.
+  // Prevents silent submit (form had only onsubmit="return false") and
+  // shows alternative subscription path.
+  document.querySelectorAll('form.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const lang = form.getAttribute('data-newsletter') || 'ru';
+      const tgUrl = 'https://t.me/aliaksei_therapist';
+      const msg = lang === 'pl'
+        ? 'Newsletter zaraz wystartuje. Tymczasem napisz na <a href="' + tgUrl + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">Telegramie</a>, dam znać po starcie.'
+        : 'Рассылка скоро откроется. Пока напиши в <a href="' + tgUrl + '" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;">Telegram</a>, позову как запустим.';
+      form.style.display = 'none';
+      const note = document.createElement('p');
+      note.style.cssText = 'margin:0;color:var(--text-muted);font-size:14px;line-height:1.6;';
+      note.innerHTML = msg;
+      form.parentElement.appendChild(note);
+    });
+  });
+
   // Exit-intent popup (desktop only, no touch devices)
   const exitPopup = document.getElementById('exit-popup');
   if (exitPopup) {
