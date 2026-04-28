@@ -178,7 +178,9 @@ app.post('/api/book', async (req, res) => {
     }
 
     const serviceName = config.serviceName[locale] || config.serviceName.ru;
-    const origin = req.headers.origin || 'https://levashou.pl';
+    // SECURITY: never trust req.headers.origin — client-controlled, used in
+    // Stripe redirect URLs (open-redirect / phishing risk). Hardcoded.
+    const origin = 'https://levashou.pl';
     const returnPage = locale === 'pl' ? '/index-pl.html' : '/';
 
     const truncate = (v) => (typeof v === 'string' ? v.slice(0, 200) : '');
