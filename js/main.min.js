@@ -41,6 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Materials dropdown — sync aria-expanded with [open]; close on outside click and Esc
+  document.querySelectorAll('.nav-dropdown').forEach((d) => {
+    const summary = d.querySelector('summary');
+    if (!summary) return;
+    summary.setAttribute('aria-expanded', d.open ? 'true' : 'false');
+    d.addEventListener('toggle', () => {
+      summary.setAttribute('aria-expanded', d.open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (d.open && !d.contains(e.target)) d.open = false;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && d.open) d.open = false;
+    });
+  });
+
   // Reveal on scroll (progressive enhancement)
   const reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
