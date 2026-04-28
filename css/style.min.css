@@ -948,44 +948,77 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .light-theme .exit-popup-overlay { background: rgba(255,255,255,0.7); }
 .light-theme .scroll-progress { background: #1a1a1b; }
 
-/* Light-theme button contrast: dark fill on cream page background */
-body.light-theme .btn,
-body.light-theme .btn-ghost:hover,
-body.light-theme .post-content .post-cta .btn,
-body.light-theme .post-content .post-cta .btn:hover,
-body.light-theme .post-content .mid-cta a,
-body.light-theme .post-content .author-card .author-actions a.primary,
-body.light-theme .sticky-cta-mobile a,
-body.light-theme .exit-popup-content .btn,
-body.light-theme #exit-popup-cta,
-body.light-theme .gcal-fallback,
-body.light-theme .cookie-actions .accept-all,
-body.light-theme .cookie-actions .reject-all,
-body.light-theme .floating-cta a {
+/* Light-theme button contrast: dark fill on cream page background.
+   NOTE: class is set on <html> (documentElement), not <body>, so use .light-theme,
+   not body.light-theme. The latter never matches and rules become dead code. */
+.light-theme .btn,
+.light-theme .btn-ghost:hover,
+.light-theme .post-content .post-cta .btn,
+.light-theme .post-content .post-cta .btn:hover,
+.light-theme .post-content .mid-cta a,
+.light-theme .post-content .author-card .author-actions a.primary,
+.light-theme .sticky-cta-mobile a,
+.light-theme .exit-popup-content .btn,
+.light-theme #exit-popup-cta,
+.light-theme .gcal-fallback,
+.light-theme .cookie-actions .accept-all,
+.light-theme .cookie-actions .reject-all,
+.light-theme .floating-cta a,
+.light-theme .bw-submit,
+.light-theme .quiz-options button.selected,
+.light-theme .self-check button[type="submit"] {
   background: #4a3d2a !important;
   color: #f5f1e8 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.18) !important;
   border: none !important;
 }
-body.light-theme .btn:hover,
-body.light-theme .post-content .post-cta .btn:hover,
-body.light-theme .post-content .mid-cta a:hover,
-body.light-theme .post-content .author-card .author-actions a.primary:hover,
-body.light-theme .sticky-cta-mobile a:hover,
-body.light-theme #exit-popup-cta:hover,
-body.light-theme .gcal-fallback:hover,
-body.light-theme .cookie-actions .accept-all:hover,
-body.light-theme .cookie-actions .reject-all:hover,
-body.light-theme .floating-cta a:hover {
+.light-theme .btn:hover,
+.light-theme .post-content .post-cta .btn:hover,
+.light-theme .post-content .mid-cta a:hover,
+.light-theme .post-content .author-card .author-actions a.primary:hover,
+.light-theme .sticky-cta-mobile a:hover,
+.light-theme #exit-popup-cta:hover,
+.light-theme .gcal-fallback:hover,
+.light-theme .cookie-actions .accept-all:hover,
+.light-theme .cookie-actions .reject-all:hover,
+.light-theme .floating-cta a:hover,
+.light-theme .bw-submit:hover,
+.light-theme .self-check button[type="submit"]:hover {
   background: #2d2419 !important;
   color: #f5f1e8 !important;
   opacity: 1 !important;
 }
-body.light-theme .btn-ghost { color: #4a3d2a; border: 1px solid #4a3d2a; background: transparent; }
-body.light-theme .post-content .author-card .author-actions a.secondary {
+.light-theme .btn-ghost { color: #4a3d2a; border: 1px solid #4a3d2a; background: transparent; }
+.light-theme .post-content .author-card .author-actions a.secondary {
   color: #4a3d2a;
   border-color: #4a3d2a;
 }
+.light-theme .telegram-btn {
+  background: rgba(74, 61, 42, 0.06);
+  border-color: #4a3d2a;
+  color: #4a3d2a;
+}
+.light-theme .telegram-btn:hover { background: #4a3d2a; color: #f5f1e8; }
+.light-theme .bw-success {
+  background: rgba(74, 61, 42, 0.08);
+  color: #2d2419;
+  border-color: rgba(74, 61, 42, 0.3);
+}
+.light-theme .bw-error {
+  background: rgba(180, 60, 60, 0.08);
+  color: #8a2929;
+  border-color: rgba(180, 60, 60, 0.4);
+}
+.light-theme .bw-available { background: #ffffff; border-color: rgba(0, 0, 0, 0.12); }
+.light-theme .bw-slot { background: #ffffff; border-color: rgba(0, 0, 0, 0.12); }
+.light-theme .bw-available:hover,
+.light-theme .bw-slot:hover { border-color: #4a3d2a; color: #4a3d2a; }
+.light-theme .bw-selected,
+.light-theme .bw-slot-selected { background: #4a3d2a !important; color: #f5f1e8 !important; border-color: #4a3d2a !important; }
+.light-theme .bw-nav { background: #ffffff; border-color: rgba(0, 0, 0, 0.15); color: #4a3d2a; }
+.light-theme .bw-nav:hover { border-color: #4a3d2a; color: #2d2419; }
+.light-theme .bw-form input { background: #ffffff; border-color: rgba(0, 0, 0, 0.15); color: #1a1a1b; }
+.light-theme .bw-form input:focus { border-color: #4a3d2a; }
 .theme-toggle {
   background: none; border: 1px solid var(--border-subtle); border-radius: 8px;
   color: var(--text-muted); cursor: pointer; padding: 6px 8px; line-height: 1;
@@ -2330,8 +2363,7 @@ body::before {
   opacity: 0.035;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
-.light-theme body::before,
-body.light-theme::before { opacity: 0.05; }
+.light-theme body::before { opacity: 0.05; }
 
 /* Minimal ornament above the first H2 in a blog post: line - circle - line */
 .post-page .post-content > h2:first-of-type {
