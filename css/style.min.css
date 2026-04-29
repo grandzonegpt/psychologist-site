@@ -2394,15 +2394,15 @@ body::after {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 32px;
+  left: 40px;
   width: 1px;
   background: var(--accent);
-  opacity: 0.14;
+  opacity: 0.45;
   pointer-events: none;
-  z-index: 1;
+  z-index: 49;
 }
-.light-theme body::after { opacity: 0.22; }
-@media (max-width: 720px) { body::after { display: none; } }
+.light-theme body::after { opacity: 0.5; }
+@media (max-width: 900px) { body::after { display: none; } }
 
 /* Minimal ornament above the first H2 in a blog post: line - circle - line */
 .post-page .post-content > h2:first-of-type {
