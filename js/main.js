@@ -318,6 +318,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Auto-inject exit popup on topic landings (lead magnet PDF)
+  if (document.body.classList.contains('topic-landing') && !document.getElementById('exit-popup')) {
+    const _locale = document.body.dataset.landingLocale || 'ru';
+    const _t = _locale === 'pl' ? {
+      closeLabel: 'Zamknij',
+      eyebrow: 'Weź ze sobą',
+      title: '7 sygnałów, kiedy warto iść do psychologa',
+      desc: 'Krótki PDF na jedną stronę. Możesz zapisać, pokazać bliskiej osobie albo wrócić za parę tygodni i porównać.',
+      cta: 'Pobierz PDF',
+      skip: 'Nie teraz',
+      pdf: '/assets/checklist-7-signs-pl.pdf'
+    } : {
+      closeLabel: 'Закрыть',
+      eyebrow: 'Забери с собой',
+      title: '7 признаков, когда пора к психологу',
+      desc: 'Короткий PDF на одну страницу. Можно сохранить, показать близкому человеку или вернуться через пару недель и сравнить.',
+      cta: 'Скачать PDF',
+      skip: 'Не сейчас',
+      pdf: '/assets/checklist-7-signs-ru.pdf'
+    };
+    const _popup = document.createElement('div');
+    _popup.className = 'exit-popup';
+    _popup.id = 'exit-popup';
+    _popup.hidden = true;
+    _popup.innerHTML = '<div class="exit-popup-overlay"></div>' +
+      '<div class="exit-popup-content">' +
+      '<button class="exit-popup-close" aria-label="' + _t.closeLabel + '">&times;</button>' +
+      '<div class="eyebrow" style="margin-bottom:8px;">' + _t.eyebrow + '</div>' +
+      '<h3>' + _t.title + '</h3>' +
+      '<p>' + _t.desc + '</p>' +
+      '<a href="' + _t.pdf + '" target="_blank" rel="noopener" class="btn" id="exit-popup-cta" download>' + _t.cta + '</a>' +
+      '<button class="exit-popup-skip">' + _t.skip + '</button>' +
+      '</div>';
+    document.body.appendChild(_popup);
+  }
+
   // Exit-intent popup (desktop only, no touch devices)
   const exitPopup = document.getElementById('exit-popup');
   if (exitPopup) {
@@ -511,18 +547,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Sticky mobile CTA on blog articles
+  // Sticky mobile CTA on blog articles and topic landings
   (function(){
     var path = window.location.pathname;
     var isBlog = path.indexOf('/blog/') === 0 || path.indexOf('/blog-pl/') === 0;
-    if (!isBlog) return;
+    var isLanding = document.body.classList.contains('topic-landing');
+    if (!isBlog && !isLanding) return;
     if (window.innerWidth > 720) return;
     if (sessionStorage.getItem('stickyCtaDismissed') === '1') return;
 
-    var isPl = path.indexOf('/blog-pl/') === 0;
+    var isPl = isLanding
+      ? (document.body.dataset.landingLocale === 'pl')
+      : path.indexOf('/blog-pl/') === 0;
+    var slug = document.body.dataset.landingSlug || '';
+    var utmSource = isBlog ? 'blog' : 'landing';
+    var utmContent = (isLanding && slug) ? ('&utm_content=' + slug) : '';
     var url = isPl
-      ? 'https://cal.com/levashou/intro-pl?utm_source=blog&utm_medium=sticky_mobile'
-      : 'https://cal.com/levashou/intro-ru?utm_source=blog&utm_medium=sticky_mobile';
+      ? ('https://cal.com/levashou/intro-pl?utm_source=' + utmSource + '&utm_medium=sticky_mobile' + utmContent)
+      : ('https://cal.com/levashou/intro-ru?utm_source=' + utmSource + '&utm_medium=sticky_mobile' + utmContent);
     var label = isPl ? 'Opowiedzieć, co niepokoi' : 'Рассказать, что беспокоит';
     var closeLabel = isPl ? 'Zamknij' : 'Закрыть';
 
