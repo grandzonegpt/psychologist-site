@@ -1305,41 +1305,48 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .booking-note { font-size: 13px; color: var(--text-muted); margin: 0 auto 12px; max-width: 560px; }
 .booking-note:last-of-type { margin-bottom: 32px; }
 
-/* Free intro block */
+/* Free intro block: full-bleed editorial band, breaks the section rhythm */
 .free-intro {
   text-align: center;
-  padding: 64px 0;
+  padding: 120px 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 .free-intro-inner {
-  max-width: 620px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 48px 40px;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
+  padding: 0 24px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
 }
 .free-intro-badge {
   display: inline-block;
   font-size: 11px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--bg-primary);
-  background: var(--accent);
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
   padding: 4px 14px;
-  border-radius: 2px;
-  margin-bottom: 20px;
+  border-radius: 0;
+  margin-bottom: 32px;
 }
 .free-intro-inner h2 {
   font-family: var(--font-serif);
-  font-size: 32px;
-  font-weight: 500;
-  margin: 0 0 12px;
+  font-size: clamp(36px, 5.5vw, 56px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
 }
 .free-intro-inner p {
   color: var(--text-muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.7;
-  margin: 0 0 28px;
+  margin: 0 auto 40px;
+  max-width: 540px;
 }
 .free-intro-steps {
   display: grid;
@@ -1369,9 +1376,9 @@ nav.breadcrumbs + section { padding-top: 32px; }
   background: rgba(245, 241, 232, 0.08);
 }
 @media (max-width: 600px) {
-  .free-intro-inner { padding: 32px 24px; }
+  .free-intro { padding: 80px 0; }
+  .free-intro-inner { padding: 0 20px; }
   .free-intro-steps { grid-template-columns: 1fr; gap: 16px; }
-  .free-intro-inner h2 { font-size: 26px; }
 }
 
 .refund-box {
