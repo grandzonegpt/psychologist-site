@@ -4,7 +4,9 @@
   const i18n = {
     ru: {
       months: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+      monthsGen: ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
       weekdays: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
+      weekdaysFull: ['понедельник','вторник','среду','четверг','пятницу','субботу','воскресенье'],
       selectDate: 'Выбери дату',
       selectTime: 'Выбери время',
       name: 'Имя',
@@ -16,11 +18,18 @@
       loading: 'Загрузка...',
       error: 'Ошибка. Попробуй ещё раз.',
       duration: 'мин',
-      price: 'PLN'
+      price: 'PLN',
+      availPrefix: 'Ближайшее свободное время:',
+      availToday: 'сегодня в',
+      availTomorrow: 'завтра в',
+      availThisWeek: 'в',
+      availNone: 'свободных слотов на этой неделе нет, посмотри даты ниже'
     },
     pl: {
       months: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+      monthsGen: ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'],
       weekdays: ['Pn','Wt','Śr','Cz','Pt','Sb','Nd'],
+      weekdaysFull: ['poniedziałek','wtorek','środę','czwartek','piątek','sobotę','niedzielę'],
       selectDate: 'Wybierz datę',
       selectTime: 'Wybierz godzinę',
       name: 'Imię',
@@ -32,7 +41,12 @@
       loading: 'Ładowanie...',
       error: 'Błąd. Spróbuj ponownie.',
       duration: 'min',
-      price: 'PLN'
+      price: 'PLN',
+      availPrefix: 'Najbliższy wolny termin:',
+      availToday: 'dziś o',
+      availTomorrow: 'jutro o',
+      availThisWeek: 'w',
+      availNone: 'brak wolnych terminów w tym tygodniu, sprawdź daty poniżej'
     }
   };
 
@@ -248,6 +262,40 @@
       return demo;
     }
 
+    function updateAvailabilityIndicator() {
+      const indicators = document.querySelectorAll('.availability[data-availability-locale="' + locale + '"] .availability-text');
+      if (!indicators.length) return;
+
+      const dates = Object.keys(slotsData).filter(d => slotsData[d] && slotsData[d].length).sort();
+      if (!dates.length) {
+        indicators.forEach(el => { el.textContent = t.availPrefix + ' ' + t.availNone; });
+        return;
+      }
+
+      const firstDate = dates[0];
+      const firstTime = slotsData[firstDate][0];
+      const slotDate = new Date(firstDate + 'T00:00:00');
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
+      const dayDiff = Math.round((slotDate - today) / 86400000);
+
+      let phrase;
+      if (dayDiff === 0) {
+        phrase = t.availToday + ' ' + firstTime;
+      } else if (dayDiff === 1) {
+        phrase = t.availTomorrow + ' ' + firstTime;
+      } else if (dayDiff > 1 && dayDiff < 7) {
+        const wd = t.weekdaysFull[(slotDate.getDay() + 6) % 7];
+        phrase = t.availThisWeek + ' ' + wd + ' ' + firstTime;
+      } else {
+        const day = slotDate.getDate();
+        const monthGen = t.monthsGen[slotDate.getMonth()];
+        phrase = day + ' ' + monthGen + ', ' + firstTime;
+      }
+      indicators.forEach(el => { el.textContent = t.availPrefix + ' ' + phrase; });
+    }
+
     async function loadSlots() {
       $loading.style.display = 'block';
       try {
@@ -260,6 +308,7 @@
         serviceInfo = { duration: 50, price: 180 };
       }
       renderCalendar();
+      updateAvailabilityIndicator();
       $loading.style.display = 'none';
     }
 
