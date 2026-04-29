@@ -1,4 +1,36 @@
-/* Site interactions: nav, reveal, cookies, form */
+/* Site interactions: nav, reveal, cookies, form
+ *
+ * UTM convention for outbound CTAs (cal.com, lead-magnet PDFs, external links)
+ * ============================================================================
+ * Source identifies WHERE the user came from on the site:
+ *   utm_source=blog         user clicked from a blog article (/blog/*)
+ *   utm_source=landing      user clicked from a topic landing (cptsd, ocd, ...)
+ *   utm_source=home         user clicked from index.html or index-pl.html
+ *
+ * Medium identifies the PLACEMENT of the CTA on the page:
+ *   utm_medium=hero          first visible CTA in the page hero
+ *   utm_medium=mid_cta       inline CTA mid-article or mid-landing
+ *   utm_medium=post_cta      end-of-post CTA box
+ *   utm_medium=footer_cta    CTA near the page footer
+ *   utm_medium=author_card   CTA inside the author card (blog posts)
+ *   utm_medium=sticky_mobile sticky bottom bar on mobile (auto-injected)
+ *   utm_medium=floating_cta  floating circular button (home only)
+ *   utm_medium=exit_popup    exit-intent lead-magnet popup
+ *   utm_medium=booking_section CTA inside the main booking section
+ *
+ * Content (optional) identifies the topic/slug for landings or blog posts:
+ *   utm_content=cptsd, ocd, panic, anxiety, gaslighting, psychosomatics,
+ *               burnout, emigration, for-loved-ones, home, cennik, ...
+ *
+ * Campaign (optional) identifies a coordinated push:
+ *   utm_campaign=intro_15min  free intro consultation drive (default)
+ *
+ * Rule: never override an existing utm_* on a link if it was already
+ * specifically chosen. The auto-attribution in booking-widget.js reads
+ * URL params then sessionStorage, so first touch wins per session.
+ *
+ * Marketing pixel IDs live in window.MARKETING_IDS (see loadAnalytics below).
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
   // Fixed nav scrolled state
@@ -155,6 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-cookie="open"]').forEach(b =>
     b.addEventListener('click', () => banner && banner.classList.add('visible'))
   );
+  // ==========================================================================
+  // Marketing pixel IDs. Set values here to activate; leave empty to disable.
+  // All pixels are gated by `cookie-consent === 'all'` (Consent Mode v2).
+  //   metaPixel:                Business Manager > Events Manager > Pixel ID
+  //                             (15 to 16 digit number)
+  //   googleAdsTag:             AW-XXXXXXXXXX from Google Ads Conversions UI
+  //   googleAdsConversionLabel: alphanumeric label of a single conversion
+  //                             action (paired with googleAdsTag for purchase)
+  //   linkedInPartnerId:        numeric Partner ID from LinkedIn Campaign
+  //                             Manager Insight Tag setup
+  // ==========================================================================
+  window.MARKETING_IDS = window.MARKETING_IDS || {
+    metaPixel: '',
+    googleAdsTag: '',
+    googleAdsConversionLabel: '',
+    linkedInPartnerId: ''
+  };
+
   if (stored === 'all') loadAnalytics();
   function loadAnalytics() {
     if (window.__clarityLoaded) return;
@@ -164,6 +214,32 @@ document.addEventListener('DOMContentLoaded', () => {
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wbo8sg8woh");
+
+    var ids = window.MARKETING_IDS || {};
+
+    if (ids.metaPixel && !window.fbq) {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', ids.metaPixel);
+      window.fbq('track', 'PageView');
+    }
+
+    if (ids.googleAdsTag && typeof window.gtag === 'function') {
+      window.gtag('config', ids.googleAdsTag);
+    }
+
+    if (ids.linkedInPartnerId && !window._linkedin_data_partner_ids) {
+      window._linkedin_data_partner_ids = [];
+      window._linkedin_data_partner_ids.push(ids.linkedInPartnerId);
+      window.lintrk = function(a, b) { (window.lintrk.q = window.lintrk.q || []).push([a, b]); };
+      var li = document.createElement('script');
+      li.type = 'text/javascript'; li.async = true;
+      li.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+      document.head.appendChild(li);
+    }
   }
 
   // Rotating quotes

@@ -71,6 +71,30 @@
     if (typeof gtag === 'function') {
       gtag('event', name, params || {});
     }
+    if (typeof window.fbq === 'function') {
+      var fbMap = {
+        slot_selected: 'Lead',
+        begin_checkout: 'InitiateCheckout',
+        purchase: 'Purchase',
+        checkout_abandoned: null
+      };
+      var fbName = fbMap[name];
+      if (fbName) {
+        var fbParams = {};
+        if (params && params.value != null) fbParams.value = params.value;
+        if (params && params.currency) fbParams.currency = params.currency;
+        window.fbq('track', fbName, fbParams);
+      }
+    }
+    var ids = window.MARKETING_IDS || {};
+    if (name === 'purchase' && ids.googleAdsTag && ids.googleAdsConversionLabel && typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        send_to: ids.googleAdsTag + '/' + ids.googleAdsConversionLabel,
+        value: (params && params.value) || 180,
+        currency: (params && params.currency) || 'PLN',
+        transaction_id: (params && params.transaction_id) || ''
+      });
+    }
   }
 
   function init(containerId, locale) {
