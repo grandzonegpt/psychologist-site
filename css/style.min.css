@@ -2313,6 +2313,19 @@ select:focus-visible {
 .service-icon svg { width: 30px; height: 30px; display: block; }
 .light-theme .service-icon { color: #4a3d2a; opacity: 1; }
 
+/* Editorial service numerals (replaces abstract SVG icons) */
+.service-num {
+  margin-bottom: 14px;
+  font-family: var(--font-serif);
+  font-size: 44px;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  display: block;
+}
+.light-theme .service-num { color: #4a3d2a; }
+
 /* Hero breathing wave: soft horizontal line under hero content */
 .hero { position: relative; overflow: hidden; }
 .hero-wave {
