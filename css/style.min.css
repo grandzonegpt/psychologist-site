@@ -2387,6 +2387,23 @@ body::before {
 }
 .light-theme body::before { opacity: 0.05; }
 
+/* Editorial anchor motif: thin vertical hairline running full page height,
+   fixed at the left viewport edge to sew sections into one continuous thread. */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 32px;
+  width: 1px;
+  background: var(--accent);
+  opacity: 0.14;
+  pointer-events: none;
+  z-index: 1;
+}
+.light-theme body::after { opacity: 0.22; }
+@media (max-width: 720px) { body::after { display: none; } }
+
 /* Minimal ornament above the first H2 in a blog post: line - circle - line */
 .post-page .post-content > h2:first-of-type {
   position: relative;
