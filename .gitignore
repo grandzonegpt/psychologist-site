@@ -3,3 +3,4 @@ node_modules/
 *.log
 .env
 assets/credentials/raw/
+.claude/
