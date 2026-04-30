@@ -309,60 +309,57 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .link-cta .arrow { font-family: var(--font-serif); transition: transform .25s ease; }
 .link-cta:hover .arrow { transform: translateX(3px); }
 
-/* Telegram contact block — bordered editorial-flat zone, clearly its own option vs the email form below */
-.tg-block {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 22px;
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  font-size: 15px;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  transition: border-color .25s ease, background .25s ease, color .25s ease;
-}
-.tg-block:hover {
-  border-color: var(--text-primary);
-  background: rgba(31, 28, 24, 0.04);
-  color: var(--text-primary);
-}
-.tg-block svg {
-  flex-shrink: 0;
-  color: var(--accent);
-  stroke-width: 1.5;
-  transition: color .25s ease;
-}
-.tg-block .tg-block-text {
-  flex: 1;
-  font-weight: 400;
-}
-.tg-block .tg-block-arrow {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  color: var(--accent);
-  opacity: 0.7;
-  transition: transform .25s ease, opacity .25s ease;
-}
-.tg-block:hover .tg-block-arrow { transform: translateX(3px); opacity: 1; }
-.light-theme .tg-block svg,
-.light-theme .tg-block .tg-block-arrow { color: #8a6a3a; }
-.light-theme .tg-block:hover { border-color: #1a1a1b; background: rgba(74, 61, 42, 0.05); }
+/* Booking form card — split into two subsections (Telegram / email form) with a hairline divider */
+.form-subsection { padding: 4px 0; }
 
-/* Editorial separator between Telegram block and email form, no text */
-.booking-or {
-  display: flex; align-items: center; gap: 16px;
-  margin: 26px 0 24px;
+.form-divider {
+  border: none;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 28px 0;
 }
-.booking-or .line { flex: 1; height: 1px; background: var(--border-subtle); }
-.booking-or .ornament {
-  font-family: var(--font-serif); font-size: 14px;
-  color: var(--accent); letter-spacing: .3em;
-  opacity: 0.7;
+
+/* Telegram link — single visual language with other CTA links on the site */
+.tg-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  transition: color .2s ease, border-color .2s ease;
 }
-.light-theme .booking-or .ornament { color: #8a6a3a; }
+.tg-link:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.tg-link .tg-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  transition: color .2s ease;
+}
+.tg-link:hover .tg-icon { color: var(--accent); }
+.tg-link .arrow {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform .25s ease, color .2s;
+}
+.tg-link:hover .arrow {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+.light-theme .tg-link .tg-icon,
+.light-theme .tg-link:hover { color: #8a6a3a; }
+.light-theme .tg-link:hover { border-bottom-color: #8a6a3a; }
+.light-theme .tg-link:hover .arrow { color: #8a6a3a; }
 
 /* Hero */
 .hero {
@@ -1132,12 +1129,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
   color: #4a3d2a;
   border-color: #4a3d2a;
 }
-.light-theme .telegram-btn {
-  background: rgba(74, 61, 42, 0.06);
-  border-color: #4a3d2a;
-  color: #4a3d2a;
-}
-.light-theme .telegram-btn:hover { background: #4a3d2a; color: #f5f1e8; }
 .light-theme .bw-success {
   background: rgba(74, 61, 42, 0.08);
   color: #2d2419;
@@ -1602,25 +1593,10 @@ nav.breadcrumbs + section { padding-top: 32px; }
 }
 .booking-col-sub {
   font-size: 13px;
+  line-height: 1.6;
   color: var(--text-muted);
   margin: 0 0 24px;
 }
-.telegram-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: rgba(210, 200, 185, 0.1);
-  border: 1px solid var(--accent);
-  border-radius: 6px;
-  color: var(--accent);
-  font-size: 13px;
-  letter-spacing: 0.05em;
-  margin-bottom: 20px;
-  transition: background .2s, color .2s;
-}
-.telegram-btn:hover { background: var(--accent); color: var(--bg-primary); }
-.telegram-btn svg { stroke-width: 1.5; flex-shrink: 0; }
 
 .booking-form-card {
   background: var(--bg-elevated);
