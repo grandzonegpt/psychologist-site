@@ -465,11 +465,15 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgress();
   }
 
-  // Theme toggle
+  // Theme toggle (default: light; user can opt into dark)
   const themeBtn = document.querySelector('.theme-toggle');
   if (themeBtn) {
     const saved = localStorage.getItem('theme');
-    if (saved === 'light') document.documentElement.classList.add('light-theme');
+    if (saved === 'dark') {
+      document.documentElement.classList.remove('light-theme');
+    } else {
+      document.documentElement.classList.add('light-theme');
+    }
     const update = () => {
       const isLight = document.documentElement.classList.contains('light-theme');
       themeBtn.textContent = isLight ? '🌙' : '☀️';
