@@ -386,7 +386,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   border-radius: 6px; padding: 10px; text-decoration: none;
   transition: border-color .25s, transform .25s;
 }
-.diploma-thumb:hover { border-color: var(--accent); transform: translateY(-2px); }
+.diploma-thumb:hover { border-color: var(--accent); }
 .diploma-thumb img { width: 100%; height: auto; border-radius: 3px; }
 .diploma-thumb span {
   display: block; margin-top: 10px;
@@ -604,7 +604,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
 }
 .quiz-options button:hover {
   border-color: rgba(245, 241, 232, 0.3);
-  transform: translateY(-1px);
 }
 .quiz-options button.selected {
   background: var(--accent);
@@ -772,7 +771,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   padding: 32px 24px;
   transition: border-color .25s, transform .25s;
 }
-.first-aid-card:hover { border-color: rgba(245, 241, 232, 0.3); transform: translateY(-2px); }
+.first-aid-card:hover { border-color: rgba(245, 241, 232, 0.3); }
 .first-aid-num {
   font-family: var(--font-serif);
   font-size: 36px;
@@ -830,7 +829,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   border-radius: 12px;
   transition: border-color .25s, transform .25s;
 }
-.fs-step:hover { border-color: rgba(245, 241, 232, 0.3); transform: translateY(-2px); }
+.fs-step:hover { border-color: rgba(245, 241, 232, 0.3); }
 .fs-num {
   font-family: var(--font-serif);
   font-size: 32px;
@@ -885,7 +884,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   border-radius: 12px;
   transition: border-color .25s, transform .25s;
 }
-.myth-card:hover { border-color: rgba(245, 241, 232, 0.3); transform: translateY(-2px); }
+.myth-card:hover { border-color: rgba(245, 241, 232, 0.3); }
 .myth-label {
   display: inline-block;
   font-size: 11px;
@@ -917,7 +916,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   text-align: center;
   transition: border-color .25s, transform .25s;
 }
-.material-card:hover { border-color: rgba(245, 241, 232, 0.3); transform: translateY(-2px); }
+.material-card:hover { border-color: rgba(245, 241, 232, 0.3); }
 .material-icon { margin-bottom: 18px; color: var(--accent); opacity: 0.85; }
 .material-icon svg { width: 44px; height: 44px; display: block; }
 .light-theme .material-icon { color: #4a3d2a; opacity: 1; }
@@ -1068,7 +1067,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   background: var(--bg-secondary); border: 1px solid var(--border-subtle);
   border-radius: 12px; padding: 32px; transition: border-color .3s, transform .3s;
 }
-.case-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.case-card:hover { border-color: var(--accent); }
 .case-tag {
   display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
   color: var(--text-muted); background: rgba(245,241,232,0.06); padding: 4px 10px;
@@ -1084,17 +1083,11 @@ nav.breadcrumbs + section { padding-top: 32px; }
   border-radius: 6px; color: var(--text-muted); font-size: 14px; line-height: 1.6;
 }
 
-/* Micro-animations */
+/* Micro-animations (editorial: hover changes color/border only, no jumps) */
 .hero-photo img { transition: transform 6s ease; }
 .hero-photo:hover img { transform: scale(1.03); }
-.stat { transition: transform .3s ease; }
-.stat:hover { transform: translateY(-4px); }
-.card { transition: transform .3s ease, border-color .3s ease; }
-.card:hover { transform: translateY(-4px); }
-.post-card { transition: transform .3s ease, border-color .3s ease; }
-.post-card:hover { transform: translateY(-5px); }
-.fs-step { transition: transform .3s ease; }
-.fs-step:hover { transform: translateY(-3px); }
+.card { transition: border-color .3s ease; }
+.post-card { transition: border-color .3s ease; }
 
 /* Share button */
 .share-bar { display: flex; align-items: center; gap: 12px; margin: 24px 0; }
@@ -1554,7 +1547,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   gap: 14px;
   transition: border-color .25s, transform .25s;
 }
-.post-card:hover { border-color: var(--border-subtle); transform: translateY(-2px); }
+.post-card:hover { border-color: var(--text-primary); }
 .post-card h3 { margin: 0; font-size: 22px; }
 .post-card p { color: var(--text-muted); font-size: 14px; margin: 0; }
 .post-card .read-more {
@@ -1977,7 +1970,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
 }
 .post-content .related-articles .related-grid a:hover {
   background: var(--bg-secondary);
-  transform: translateY(-1px);
 }
 @media (max-width: 720px) {
   .post-content .related-articles .related-grid {
@@ -2117,7 +2109,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   gap: 14px;
   transition: background .25s, transform .25s;
 }
-.blog-card:hover { background: var(--bg-secondary); transform: translateY(-2px); }
+.blog-card:hover { background: var(--bg-secondary); }
 .blog-card .card-cat {
   font-size: 11px;
   text-transform: uppercase;
