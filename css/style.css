@@ -309,6 +309,33 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .link-cta .arrow { font-family: var(--font-serif); transition: transform .25s ease; }
 .link-cta:hover .arrow { transform: translateX(3px); }
 
+/* Telegram link variant — bigger, with brand mark, visually distinct from the form below */
+.link-cta-tg {
+  font-size: 15px;
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+  padding: 10px 0;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+.link-cta-tg svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  align-self: center;
+}
+.link-cta-tg:hover { color: var(--accent); border-color: var(--accent); }
+.link-cta-tg:hover svg { color: var(--accent); }
+.light-theme .link-cta-tg svg { color: #8a6a3a; }
+.light-theme .link-cta-tg:hover { color: #8a6a3a; border-color: #8a6a3a; }
+.light-theme .link-cta-tg:hover svg { color: #8a6a3a; }
+
+/* Divider between Telegram link and email form (no text, just a hairline with breathing room) */
+.booking-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 22px 0 24px;
+}
+
 /* Hero */
 .hero {
   padding: 180px 0 120px;
