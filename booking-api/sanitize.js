@@ -26,4 +26,11 @@ function validateBooking({ name, email, date, time, locale }) {
   return null;
 }
 
-module.exports = { escapeHtml, validateBooking };
+function validateContact({ name, email, message }) {
+  if (!name || typeof name !== 'string' || name.length > 100) return 'Invalid name';
+  if (!email || typeof email !== 'string' || email.length > 200) return 'Invalid email or phone';
+  if (message != null && (typeof message !== 'string' || message.length > 1000)) return 'Invalid message';
+  return null;
+}
+
+module.exports = { escapeHtml, validateBooking, validateContact };

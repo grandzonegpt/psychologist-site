@@ -343,10 +343,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn) btn.disabled = true;
       if (errEl) errEl.hidden = true;
       try {
+        const fd = new FormData(form);
+        const payload = {
+          name: fd.get('name') || '',
+          email: fd.get('email') || '',
+          message: fd.get('message') || '',
+          consent_privacy: !!fd.get('consent_privacy'),
+          _gotcha: fd.get('_gotcha') || '',
+          locale: document.documentElement.lang === 'pl' || /-pl\.html$/.test(window.location.pathname) ? 'pl' : 'ru'
+        };
         const res = await fetch(endpoint, {
           method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
         });
         if (res.ok) {
           if (typeof gtag === 'function') {

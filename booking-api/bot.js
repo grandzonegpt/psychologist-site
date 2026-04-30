@@ -545,4 +545,20 @@ async function handleSetTime(chatId, dow, text) {
   await showEditSchedule(chatId);
 }
 
-module.exports = { init, notifyNewBooking };
+function notifyContact({ name, email, message, locale }) {
+  if (!bot || !ownerChatId) return;
+
+  const safe = (s) => String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
+  const trimmedMsg = message ? (message.length > 600 ? message.slice(0, 600) + '…' : message) : '—';
+
+  bot.sendMessage(ownerChatId,
+    '✉️ *Новая заявка с сайта*\n\n' +
+    `👤 ${safe(name)}\n` +
+    `📧 ${safe(email)}\n` +
+    `🌐 ${locale === 'pl' ? 'PL' : 'RU'}\n\n` +
+    `💬 ${safe(trimmedMsg)}`,
+    { parse_mode: 'Markdown' }
+  );
+}
+
+module.exports = { init, notifyNewBooking, notifyContact };

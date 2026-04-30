@@ -66,4 +66,43 @@ async function sendConfirmation({ name, email, date, time, locale }) {
   console.log(`Confirmation email sent to ${email}`);
 }
 
-module.exports = { sendConfirmation };
+async function sendContactNotification({ name, email, message, locale, to }) {
+  if (!process.env.RESEND_API_KEY) {
+    console.log('Mailer: no Resend key, skipping contact notification');
+    return;
+  }
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+
+  const recipient = to || process.env.CONTACT_EMAIL || 'goalcoachup@gmail.com';
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message || '').replace(/\n/g, '<br>');
+  const subject = `Новая заявка с levashou.pl от ${safeName}`;
+
+  await resend.emails.send({
+    from: 'levashou.pl <onboarding@resend.dev>',
+    to: recipient,
+    replyTo: email,
+    subject,
+    html: `
+      <div style="font-family:'Inter',Arial,sans-serif;max-width:560px;margin:0 auto;padding:32px 28px;color:#1f1c18;">
+        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:500;">Новая заявка с сайта</h2>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+          <tr><td style="padding:8px 0;color:#6b645a;width:140px;">Имя:</td><td style="padding:8px 0;"><strong>${safeName}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Email / телефон:</td><td style="padding:8px 0;"><strong>${safeEmail}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Локаль:</td><td style="padding:8px 0;">${locale === 'pl' ? 'PL' : 'RU'}</td></tr>
+        </table>
+        ${safeMessage ? `
+        <div style="padding:18px 20px;background:#f4ede0;border-left:3px solid #8a6a3a;margin-bottom:24px;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:.15em;color:#6b645a;margin-bottom:8px;">Сообщение</div>
+          <div style="font-size:15px;line-height:1.6;color:#1f1c18;">${safeMessage}</div>
+        </div>` : ''}
+        <p style="margin:0;color:#6b645a;font-size:13px;">Ответить можно прямо на это письмо: Reply-To указан на адрес отправителя.</p>
+      </div>
+    `
+  });
+
+  console.log(`Contact notification sent to ${recipient} from ${email}`);
+}
+
+module.exports = { sendConfirmation, sendContactNotification };

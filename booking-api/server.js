@@ -8,7 +8,7 @@ const config = require('./config');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
 const reminders = require('./reminders');
-const { validateBooking } = require('./sanitize');
+const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
 app.use(helmet());
@@ -47,6 +47,7 @@ app.use(express.json({ limit: '16kb' }));
 const apiLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 30, standardHeaders: true, legacyHeaders: false });
 app.use('/api/book', apiLimiter);
 app.use('/api/slots', rateLimit({ windowMs: 60 * 1000, max: 20, standardHeaders: true, legacyHeaders: false }));
+app.use('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, max: 10, standardHeaders: true, legacyHeaders: false }));
 
 let calendar;
 try {
@@ -213,6 +214,32 @@ app.post('/api/book', async (req, res) => {
   } catch (e) {
     console.error('Book error:', e.message);
     res.status(500).json({ error: 'Booking failed' });
+  }
+});
+
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, message, locale, _gotcha, consent_privacy } = req.body || {};
+
+    if (_gotcha) return res.json({ ok: true });
+
+    if (!consent_privacy) return res.status(400).json({ error: 'Consent required' });
+
+    const validationError = validateContact({ name, email, message });
+    if (validationError) return res.status(400).json({ error: validationError });
+
+    const localeStr = locale === 'pl' ? 'pl' : 'ru';
+
+    mailer.sendContactNotification({ name, email, message, locale: localeStr })
+      .catch(e => console.error('Contact email error:', e.message));
+
+    telegramBot.notifyContact({ name, email, message, locale: localeStr });
+
+    console.log(`Contact: ${name} <${email}> [${localeStr}]`);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('Contact error:', e.message);
+    res.status(500).json({ error: 'Contact submission failed' });
   }
 });
 
