@@ -645,8 +645,31 @@ nav.breadcrumbs + section { padding-top: 32px; }
 }
 @media (max-width: 560px) { .quiz-options { flex-direction: column; } }
 
-/* Recognize yourself */
+/* Recognize yourself — editorial vertical list */
 .recognize { padding: 96px 0; }
+.recognize-list {
+  display: flex; flex-direction: column;
+  max-width: 760px; margin: 48px 0 0;
+}
+.recognize-row {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  display: grid; grid-template-columns: 36px 1fr; gap: 18px;
+  align-items: baseline;
+}
+.recognize-row:last-child { border-bottom: none; }
+.recognize-num {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 16px; color: var(--accent); line-height: 1;
+}
+.recognize-row p {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: 18px; line-height: 1.5;
+  color: var(--text-primary); margin: 0; font-weight: 400;
+}
+.light-theme .recognize-num { color: #8a6a3a; }
+
+/* Legacy grid kept for non-index pages that may still use it */
 .recognize-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
