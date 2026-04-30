@@ -654,6 +654,33 @@ nav.breadcrumbs + section { padding-top: 32px; }
 }
 @media (max-width: 560px) { .quiz-options { flex-direction: column; } }
 
+/* Big editorial quote (replaces a vignette between Recognize and Services) */
+.big-quote {
+  padding: 80px 24px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.big-quote .pre {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .2em;
+  color: var(--text-muted); margin-bottom: 24px;
+}
+.big-quote q {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(22px, 3vw, 32px); line-height: 1.4;
+  color: var(--text-primary); display: block;
+  quotes: '"' '"' "'" "'";
+}
+.big-quote q::before { content: open-quote; color: var(--accent); margin-right: 0.05em; }
+.big-quote q::after { content: close-quote; color: var(--accent); margin-left: 0.05em; }
+.light-theme .big-quote q::before,
+.light-theme .big-quote q::after { color: #8a6a3a; }
+.big-quote .author {
+  margin-top: 24px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: .15em;
+  color: var(--text-muted);
+}
+
 /* Editorial vignette divider between sections */
 .vignette {
   display: flex; align-items: center; gap: 20px;
