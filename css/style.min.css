@@ -309,32 +309,60 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .link-cta .arrow { font-family: var(--font-serif); transition: transform .25s ease; }
 .link-cta:hover .arrow { transform: translateX(3px); }
 
-/* Telegram link variant — bigger, with brand mark, visually distinct from the form below */
-.link-cta-tg {
-  font-size: 15px;
+/* Telegram contact block — bordered editorial-flat zone, clearly its own option vs the email form below */
+.tg-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
   color: var(--text-primary);
-  border-bottom-color: var(--text-primary);
-  padding: 10px 0;
-  margin-bottom: 0;
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition: border-color .25s ease, background .25s ease, color .25s ease;
 }
-.link-cta-tg svg {
+.tg-block:hover {
+  border-color: var(--text-primary);
+  background: rgba(31, 28, 24, 0.04);
+  color: var(--text-primary);
+}
+.tg-block svg {
   flex-shrink: 0;
   color: var(--accent);
-  align-self: center;
+  stroke-width: 1.5;
+  transition: color .25s ease;
 }
-.link-cta-tg:hover { color: var(--accent); border-color: var(--accent); }
-.link-cta-tg:hover svg { color: var(--accent); }
-.light-theme .link-cta-tg svg { color: #8a6a3a; }
-.light-theme .link-cta-tg:hover { color: #8a6a3a; border-color: #8a6a3a; }
-.light-theme .link-cta-tg:hover svg { color: #8a6a3a; }
+.tg-block .tg-block-text {
+  flex: 1;
+  font-weight: 400;
+}
+.tg-block .tg-block-arrow {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--accent);
+  opacity: 0.7;
+  transition: transform .25s ease, opacity .25s ease;
+}
+.tg-block:hover .tg-block-arrow { transform: translateX(3px); opacity: 1; }
+.light-theme .tg-block svg,
+.light-theme .tg-block .tg-block-arrow { color: #8a6a3a; }
+.light-theme .tg-block:hover { border-color: #1a1a1b; background: rgba(74, 61, 42, 0.05); }
 
-/* Divider between Telegram link and email form (no text, just a hairline with breathing room) */
-.booking-divider {
-  height: 1px;
-  background: var(--border-subtle);
-  margin: 22px 0 24px;
+/* Editorial separator between Telegram block and email form, no text */
+.booking-or {
+  display: flex; align-items: center; gap: 16px;
+  margin: 26px 0 24px;
 }
+.booking-or .line { flex: 1; height: 1px; background: var(--border-subtle); }
+.booking-or .ornament {
+  font-family: var(--font-serif); font-size: 14px;
+  color: var(--accent); letter-spacing: .3em;
+  opacity: 0.7;
+}
+.light-theme .booking-or .ornament { color: #8a6a3a; }
 
 /* Hero */
 .hero {
