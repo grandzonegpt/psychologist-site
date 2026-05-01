@@ -1906,14 +1906,33 @@ nav.breadcrumbs + section { padding-top: 32px; }
   color: #8a7548;
 }
 .post-page .post-back:hover { color: #b8860b; }
+body[data-category="anxiety"]   { --cat-color: var(--cat-anxiety); }
+body[data-category="trauma"]    { --cat-color: var(--cat-trauma); }
+body[data-category="relations"] { --cat-color: var(--cat-relations); }
+body[data-category="method"]    { --cat-color: var(--cat-method); }
+body[data-category="practice"]  { --cat-color: var(--cat-practice); }
+
+.post-page::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--cat-color);
+  margin: 0 auto 24px;
+}
 .post-page .post-meta {
   max-width: 680px;
   margin: 0 auto 8px;
   padding: 0 24px;
-  font-size: 12px;
+  text-align: center;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   color: #6b6b6b;
+}
+.post-page .post-meta .post-cat-label {
+  color: var(--cat-color);
+  font-weight: 500;
 }
 .post-content {
   max-width: 680px;
@@ -1924,7 +1943,17 @@ nav.breadcrumbs + section { padding-top: 32px; }
   line-height: 1.7;
   color: #1a1a1a;
 }
-.post-content h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 36px; line-height: 1.2; margin: 48px 0 24px; color: #1a1a1a; }
+.post-content h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 36px);
+  text-align: center;
+  margin: 16px auto 28px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  max-width: 720px;
+  color: #1a1a1a;
+}
 .post-content h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 26px; line-height: 1.3; margin: 48px 0 16px; color: #1a1a1a; }
 .post-content h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 21px; margin: 36px 0 12px; color: #1a1a1a; }
 .post-content p { margin: 0 0 20px; color: #1a1a1a; }
@@ -1933,12 +1962,19 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .post-content a { color: #b8860b; text-decoration: underline; }
 .post-content strong { color: #1a1a1a; font-weight: 600; }
 .post-content .highlight {
-  background: #fff;
-  border-left: 3px solid #b8860b;
-  padding: 20px 24px;
-  margin: 32px 0;
+  border-left: 2px solid var(--cat-color);
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  padding: 8px 0 8px 24px;
+  background: transparent;
+  border-radius: 0;
+  font-family: var(--font-serif);
   font-style: italic;
-  color: #1a1a1a;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 32px 0;
 }
 .post-content .post-cta {
   margin: 48px 0 0;
