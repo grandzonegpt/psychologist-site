@@ -632,4 +632,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/grounding-5-4-3-2-1.html"/>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/diary.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/diary.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/diary-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/diary.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/diary-pl.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/diary.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/diary-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/diary.html"/>
+    <priority>0.8</priority>
+  </url>
 </urlset>
