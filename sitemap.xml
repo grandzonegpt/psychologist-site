@@ -664,4 +664,20 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/abc.html"/>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/pmr.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/pmr.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/pmr-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/pmr.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/pmr-pl.html</loc>
+    <lastmod>2026-05-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/pmr.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/pmr-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/pmr.html"/>
+    <priority>0.8</priority>
+  </url>
 </urlset>
