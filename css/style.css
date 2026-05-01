@@ -1822,7 +1822,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
   padding: 140px 0 96px;
 }
 /* Article pages are always cream; scope internal blocks to a light palette */
-.post-page .post-content .related-articles .related-grid a,
 .post-page .post-content .author-card,
 .post-page .post-content .post-cta {
   background: #fbf8f1 !important;
@@ -1834,10 +1833,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
   border: 1px solid rgba(0, 0, 0, 0.09) !important;
   border-left: 3px solid #4a3d2a !important;
   color: #1a1a1a !important;
-}
-.post-page .post-content .related-articles .related-grid a:hover {
-  background: #ffffff !important;
-  border-color: rgba(0, 0, 0, 0.18) !important;
 }
 .post-page .post-content .mid-cta p,
 .post-page .post-content .author-card .bio strong,
@@ -1973,7 +1968,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   font-style: italic;
   font-size: 20px;
   line-height: 1.55;
-  color: var(--text-primary);
+  color: #1a1a1a;
   margin: 32px 0;
 }
 .post-content .post-cta {
@@ -2080,41 +2075,54 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 
 /* Related articles */
 .post-content .related-articles {
-  margin: 72px 0 0;
-  padding-top: 40px;
-  border-top: 1px solid var(--border-subtle);
+  margin: 56px auto 0;
+  padding-top: 0;
+  border-top: none;
+  max-width: 720px;
 }
 .post-content .related-articles .related-heading {
-  font-family: var(--font-serif);
-  font-size: 20px;
-  color: var(--text-primary);
-  margin-bottom: 20px;
-  letter-spacing: -0.01em;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #6b6b6b;
+  margin: 0 0 28px;
+  font-weight: 500;
 }
 .post-content .related-articles .related-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  counter-reset: related-counter;
 }
 .post-content .related-articles .related-grid a {
-  display: block;
-  padding: 20px;
-  background: var(--bg-elevated);
-  border: none;
-  border-radius: 6px;
-  color: var(--text-primary);
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 18px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: #1a1a1a;
   text-decoration: none;
+  transition: color 0.25s ease;
+  counter-increment: related-counter;
+}
+.post-content .related-articles .related-grid a:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.post-content .related-articles .related-grid a::before {
+  content: counter(related-counter, lower-roman) ".";
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--cat-color);
   font-size: 15px;
-  line-height: 1.4;
-  transition: background 0.2s, transform 0.2s;
+  text-align: right;
 }
 .post-content .related-articles .related-grid a:hover {
-  background: var(--bg-secondary);
-}
-@media (max-width: 720px) {
-  .post-content .related-articles .related-grid {
-    grid-template-columns: 1fr;
-  }
+  color: var(--cat-color);
 }
 
 /* Author card at end of article */
