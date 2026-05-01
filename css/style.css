@@ -2197,59 +2197,103 @@ nav.breadcrumbs + section { padding-top: 32px; }
   .post-page .post-meta { padding: 0 16px; }
 }
 
-/* Blog index cards (auto-fit grid + explicit structure) */
+/* Blog index cards — editorial: category stripe + faded number */
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
+  gap: 24px;
 }
 .blog-card {
+  position: relative;
   background: var(--bg-elevated);
+  padding: 32px 30px 28px;
   border: none;
-  border-radius: 6px;
-  padding: 32px 28px;
+  border-top: 3px solid var(--cat-color);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: background .25s, transform .25s;
+  transition: background 0.25s ease;
+  overflow: hidden;
 }
+.blog-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: var(--font-serif);
+  font-size: 56px;
+  font-weight: 400;
+  color: var(--cat-color);
+  opacity: 0.10;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  z-index: 0;
+}
+.blog-card > * { position: relative; z-index: 1; }
+.blog-card[data-category="anxiety"]   { --cat-color: var(--cat-anxiety); }
+.blog-card[data-category="trauma"]    { --cat-color: var(--cat-trauma); }
+.blog-card[data-category="relations"] { --cat-color: var(--cat-relations); }
+.blog-card[data-category="method"]    { --cat-color: var(--cat-method); }
+.blog-card[data-category="practice"]  { --cat-color: var(--cat-practice); }
 .blog-card:hover { background: var(--bg-secondary); }
 .blog-card .card-cat {
+  font-family: var(--font-sans);
   font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-primary);
-  display: inline-block;
-  margin-right: 10px;
+  letter-spacing: 0.18em;
+  color: var(--cat-color);
+  font-weight: 500;
+  margin: 0;
+  display: block;
 }
 .blog-card .card-date {
-  display: inline-block;
-  font-size: 12px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
+  text-transform: none;
+  display: block;
+  margin-top: -6px;
 }
 .blog-card h3 {
-  margin: 0;
+  font-family: var(--font-serif);
   font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.25;
   color: var(--text-primary);
+  letter-spacing: -0.005em;
+  max-width: 92%;
 }
 .blog-card p {
-  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-weight: 300;
   font-size: 14px;
+  color: var(--text-muted);
   margin: 0;
+  line-height: 1.6;
   flex-grow: 1;
 }
 .blog-card .card-link {
   margin-top: 12px;
+  font-family: var(--font-serif);
+  font-size: 14px;
   color: var(--text-primary);
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  text-transform: none;
+  letter-spacing: 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 3px;
   align-self: flex-start;
-  border-bottom: 1px solid transparent;
-  transition: border-color .2s;
+  transition: border-color 0.25s ease, color 0.25s ease;
 }
-.blog-card .card-link:hover { border-bottom-color: var(--accent); }
+.blog-card .card-link:hover {
+  border-bottom-color: var(--cat-color);
+  color: var(--cat-color);
+}
 
 /* Post hero image on article pages */
 .post-hero {
