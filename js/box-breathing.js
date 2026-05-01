@@ -40,7 +40,7 @@
   function render() {
     var p = PHASES[state.phase];
     labelEl.textContent = state.running ? p.name : L.ready;
-    countEl.textContent = state.running ? state.secLeft : '—';
+    countEl.textContent = state.running ? state.secLeft : '·';
     cycleEl.textContent = state.cycle;
   }
 

@@ -87,7 +87,7 @@
     var list = readAll();
     if (!list.length) { alert(L.none); return; }
     var txt = list.map(function (e, i) {
-      return '— ' + L.entry + ' ' + (i + 1) + ' · ' + new Date(e.date).toLocaleDateString(L.locale) + ' —\n'
+      return '· ' + L.entry + ' ' + (i + 1) + ' · ' + new Date(e.date).toLocaleDateString(L.locale) + ' ·\n'
         + L.happened + ': ' + e.event + '\n'
         + L.thought + ': ' + e.thought + '\n'
         + L.feeling + ': ' + e.feeling + ' (' + e.intensity + '/10)\n'

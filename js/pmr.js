@@ -24,12 +24,12 @@
     ready: 'Gotów? ',
     sec: ' sek',
     notice: 'Zauważ, gdzie ciągnie, gdzie pali.',
-    diff: 'Zapamiętaj tę różnicę — to właśnie cel praktyki.',
+    diff: 'Zapamiętaj tę różnicę: to właśnie cel praktyki.',
     rest_p1: 'Przerwa. Oddychaj swobodnie.',
-    rest_p2: 'Za kilka sekund — następna strefa.',
+    rest_p2: 'Za kilka sekund: następna strefa.',
     done_which: 'Gotowe',
     done_name: 'Wszystkie 8 stref przeszły',
-    done_text: 'Poleż jeszcze minutę. Zauważ, jak teraz czuje się ciało — stało się inne.'
+    done_text: 'Poleż jeszcze minutę. Zauważ, jak teraz czuje się ciało. Stało się inne.'
   } : {
     zoneOf: function (i, n) { return 'Зона ' + i + ' из ' + n; },
     tense: 'Напряги ',
@@ -38,12 +38,12 @@
     ready: 'Готов? ',
     sec: ' сек',
     notice: 'Заметь, где тянет, где жжёт.',
-    diff: 'Запомни эту разницу — именно она и есть цель практики.',
+    diff: 'Запомни эту разницу: именно она и есть цель практики.',
     rest_p1: 'Передышка. Дыши свободно.',
-    rest_p2: 'Через несколько секунд — следующая зона.',
+    rest_p2: 'Через несколько секунд: следующая зона.',
     done_which: 'Готово',
     done_name: 'Все 8 зон пройдены',
-    done_text: 'Полежи ещё минуту. Заметь, как сейчас чувствуется тело — оно стало другим.'
+    done_text: 'Полежи ещё минуту. Заметь, как сейчас чувствуется тело. Оно стало другим.'
   };
 
   var zoneEls = Array.prototype.slice.call(figure.querySelectorAll('.pmr-zone'));
