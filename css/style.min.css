@@ -10,7 +10,10 @@
   --text-primary:     #f5f1e8;
   --text-muted:       #a8a39a;
   --accent:           #f5f1e8;
+  --accent-soft:      #b08c5a;
   --border-subtle:    #2a2a30;
+  --success:          #5b7a3a;
+  --error:            #a04030;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans:  'Inter', -apple-system, system-ui, sans-serif;
@@ -1073,7 +1076,21 @@ nav.breadcrumbs + section { padding-top: 32px; }
   --text-primary: #1a1a1b;
   --text-muted: #5a5650;
   --accent: #1a1a1b;
+  --accent-soft: #b08c5a;
   --border-subtle: #d5d0c8;
+  --success: #5b7a3a;
+  --error: #a04030;
+}
+/* Practices section uses warm-paper palette with ochre accent */
+.light-theme .practices-page,
+.light-theme .practice-page {
+  --bg-primary: #f4ede0;
+  --bg-secondary: #ebe3d2;
+  --bg-elevated: #faf5ea;
+  --text-primary: #1f1c18;
+  --text-muted: #6b645a;
+  --accent: #8a6a3a;
+  --border-subtle: rgba(31,28,24,0.12);
 }
 .light-theme .site-nav { background: rgba(247,245,240,0.92); }
 .light-theme .site-nav.scrolled { background: rgba(247,245,240,0.97); border-color: var(--border-subtle); }
