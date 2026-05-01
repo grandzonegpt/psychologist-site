@@ -2698,7 +2698,7 @@ body::after {
 ============================================================ */
 
 /* === /practices index page === */
-.practices-page { max-width: 1080px; margin: 0 auto; padding: 80px 32px 120px; background: var(--bg-primary); color: var(--text-primary); }
+.practices-page { max-width: 1080px; margin: 0 auto; padding: 96px 32px 120px; background: var(--bg-primary); color: var(--text-primary); }
 .practices-page .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--text-muted); margin-bottom: 24px; }
 .practices-page h1 { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 56px); font-weight: 500; margin: 0 0 18px; line-height: 1.1; letter-spacing: -0.01em; max-width: 760px; }
 .practices-page .lead { font-family: var(--font-sans); font-size: 17px; color: var(--text-muted); max-width: 640px; line-height: 1.7; margin: 0 0 56px; font-weight: 300; }
