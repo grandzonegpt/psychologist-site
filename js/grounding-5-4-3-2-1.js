@@ -6,6 +6,9 @@
   var steps = Array.prototype.slice.call(document.querySelectorAll('.gstep'));
   if (!steps.length) return;
 
+  var lang = (document.documentElement.getAttribute('lang') || 'ru').slice(0, 2);
+  var doneText = lang === 'pl' ? 'Gotowe' : 'Готово';
+
   function refresh() {
     var firstActiveSet = false;
     steps.forEach(function (step) {
@@ -18,7 +21,7 @@
 
       if (checked === total && total > 0) {
         step.classList.add('done');
-        if (statusEl) statusEl.textContent = 'Готово';
+        if (statusEl) statusEl.textContent = doneText;
       } else if (!firstActiveSet) {
         step.classList.add('active');
         if (statusEl) statusEl.textContent = checked + ' / ' + total;

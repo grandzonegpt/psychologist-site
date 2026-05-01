@@ -3,11 +3,20 @@
    Точка по периметру синхронизирована с текстом фазы. */
 
 (function () {
+  var lang = (document.documentElement.getAttribute('lang') || 'ru').slice(0, 2);
+  var L = lang === 'pl' ? {
+    inhale: 'Wdech', hold: 'Zatrzymanie', exhale: 'Wydech',
+    ready: 'Gotów?', done: 'Gotowe'
+  } : {
+    inhale: 'Вдох', hold: 'Задержка', exhale: 'Выдох',
+    ready: 'Готов?', done: 'Готово'
+  };
+
   var PHASES = [
-    { name: 'Вдох',     dur: 4 },
-    { name: 'Задержка', dur: 4 },
-    { name: 'Выдох',    dur: 4 },
-    { name: 'Задержка', dur: 4 }
+    { name: L.inhale, dur: 4 },
+    { name: L.hold,   dur: 4 },
+    { name: L.exhale, dur: 4 },
+    { name: L.hold,   dur: 4 }
   ];
   var TOTAL_CYCLES = 6;
 
@@ -30,7 +39,7 @@
 
   function render() {
     var p = PHASES[state.phase];
-    labelEl.textContent = state.running ? p.name : 'Готов?';
+    labelEl.textContent = state.running ? p.name : L.ready;
     countEl.textContent = state.running ? state.secLeft : '—';
     cycleEl.textContent = state.cycle;
   }
@@ -72,7 +81,7 @@
     btnStart.classList.remove('is-on');
     btnStop.classList.add('is-on');
     if (completed) {
-      labelEl.textContent = 'Готово';
+      labelEl.textContent = L.done;
       countEl.textContent = '✓';
     } else {
       render();

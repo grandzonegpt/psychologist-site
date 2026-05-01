@@ -3,10 +3,19 @@
    Круг с radial-gradient масштабируется через CSS class is-inhale/is-hold/is-exhale. */
 
 (function () {
+  var lang = (document.documentElement.getAttribute('lang') || 'ru').slice(0, 2);
+  var L = lang === 'pl' ? {
+    inhale: 'Wdech', hold: 'Zatrzymanie', exhale: 'Wydech',
+    ready: 'Gotów?', done: 'Gotowe'
+  } : {
+    inhale: 'Вдох', hold: 'Задержка', exhale: 'Выдох',
+    ready: 'Готов?', done: 'Готово'
+  };
+
   var PHASES = [
-    { name: 'Вдох',     dur: 4, cls: 'is-inhale' },
-    { name: 'Задержка', dur: 7, cls: 'is-hold'   },
-    { name: 'Выдох',    dur: 8, cls: 'is-exhale' }
+    { name: L.inhale, dur: 4, cls: 'is-inhale' },
+    { name: L.hold,   dur: 7, cls: 'is-hold'   },
+    { name: L.exhale, dur: 8, cls: 'is-exhale' }
   ];
   var TOTAL_CYCLES = 4;
 
@@ -28,7 +37,7 @@
 
   function render() {
     var p = PHASES[state.phase];
-    labelEl.textContent = state.running ? p.name : 'Готов?';
+    labelEl.textContent = state.running ? p.name : L.ready;
     countEl.textContent = state.running ? state.secLeft : '—';
     cycleEl.textContent = state.cycle;
   }
@@ -65,7 +74,7 @@
     state.tickId = null;
     applyPhaseClass();
     btnStart.classList.remove('is-on'); btnStop.classList.add('is-on');
-    if (completed) { labelEl.textContent = 'Готово'; countEl.textContent = '✓'; }
+    if (completed) { labelEl.textContent = L.done; countEl.textContent = '✓'; }
     else { render(); }
   }
 
