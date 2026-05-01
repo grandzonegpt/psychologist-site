@@ -19,6 +19,12 @@
   --font-sans:  'Inter', -apple-system, system-ui, sans-serif;
 
   --maxw: 1120px;
+
+  --cat-anxiety:   #8a6a3a;
+  --cat-trauma:    #7a4838;
+  --cat-relations: #6a4a5a;
+  --cat-method:    #1f1c18;
+  --cat-practice:  #5a6b4a;
 }
 
 * { box-sizing: border-box; }
