@@ -65,20 +65,26 @@ telegramBot.init(calendar);
 reminders.start(calendar);
 
 async function createCalendarEvent({ name, email, date, time, locale }) {
+  // Naive datetime (без Z): Google интерпретирует его в timeZone из start.timeZone.
+  // Если пропустить через new Date(...).toISOString(), JS парсит как UTC,
+  // и событие на 13:00 Варшава уезжает в календаре на 15:00.
   const startDateTime = `${date}T${time}:00`;
-  const start = new Date(startDateTime);
-  const end = new Date(start.getTime() + config.slotDuration * 60000);
+  const [h, m] = time.split(':').map(Number);
+  const endTotalMin = h * 60 + m + config.slotDuration;
+  const endDateTime = `${date}T${String(Math.floor(endTotalMin / 60)).padStart(2, '0')}:${String(endTotalMin % 60).padStart(2, '0')}:00`;
   const serviceName = config.serviceName[locale] || config.serviceName.ru;
 
   if (calendar) {
     const event = await calendar.events.insert({
       calendarId: config.calendarId,
       conferenceDataVersion: 1,
+      sendUpdates: 'all',
       requestBody: {
         summary: `${serviceName}: ${name}`,
         description: `Email: ${email}\nLocale: ${locale || 'ru'}\n\n🔗 Google Meet: https://meet.google.com/mbs-kkqi-kpp`,
-        start: { dateTime: start.toISOString(), timeZone: config.timezone },
-        end: { dateTime: end.toISOString(), timeZone: config.timezone },
+        start: { dateTime: startDateTime, timeZone: config.timezone },
+        end: { dateTime: endDateTime, timeZone: config.timezone },
+        attendees: [{ email }],
         reminders: {
           useDefault: false,
           overrides: [
