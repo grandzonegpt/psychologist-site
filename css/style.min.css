@@ -16,7 +16,7 @@
   --error:            #a04030;
 
   --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'Lato', -apple-system, system-ui, sans-serif;
+  --font-sans:  'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --maxw: 1120px;
 
@@ -1920,7 +1920,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 }
 .post-page .post-meta .post-cat-label {
   color: var(--cat-color);
-  font-weight: 500;
+  font-weight: 700;
 }
 .post-content {
   max-width: 680px;
@@ -1948,7 +1948,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 .post-content ul, .post-content ol { margin: 0 0 24px; padding-left: 24px; }
 .post-content li { margin-bottom: 10px; }
 .post-content a { color: #b8860b; text-decoration: underline; }
-.post-content strong { color: #1a1a1a; font-weight: 600; }
+.post-content strong { color: #1a1a1a; font-weight: 700; }
 .post-content .highlight {
   border-left: 2px solid var(--cat-color);
   border-top: none;
@@ -2053,7 +2053,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   border: 2px solid var(--accent);
   border-radius: 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .sticky-cta-mobile button {
   background: transparent;
@@ -2081,7 +2081,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   text-align: center;
   color: #6b6b6b;
   margin: 0 0 28px;
-  font-weight: 500;
+  font-weight: 700;
 }
 .post-content .related-articles .related-grid {
   display: flex;
@@ -2281,7 +2281,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--cat-color);
-  font-weight: 500;
+  font-weight: 700;
   margin: 0;
   display: block;
 }
@@ -2452,7 +2452,7 @@ select:focus-visible {
   border-color: rgba(0,0,0,0.06);
 }
 .self-check .sc-question { margin-bottom: 28px; }
-.self-check .sc-q { font-weight: 500; margin: 0 0 14px; line-height: 1.5; font-size: 16px; }
+.self-check .sc-q { font-weight: 700; margin: 0 0 14px; line-height: 1.5; font-size: 16px; }
 .self-check .sc-options { display: flex; flex-direction: column; gap: 8px; }
 .self-check .sc-options label {
   display: flex; align-items: center; gap: 12px;
@@ -2661,7 +2661,7 @@ body::after {
 .bw-unavailable{color:var(--text-muted);opacity:.5}
 .bw-available{background:var(--bg-elevated);color:var(--text-primary);cursor:pointer;border:1px solid var(--border-subtle)}
 .bw-available:hover{border-color:#C9A961;color:#C9A961}
-.bw-selected{background:#C9A961!important;color:#0a0a0b!important;border-color:#C9A961!important;font-weight:500}
+.bw-selected{background:#C9A961!important;color:#0a0a0b!important;border-color:#C9A961!important;font-weight:700}
 .bw-slots-title {
   font-family: var(--font-serif);
   font-size: 11px; text-transform: uppercase; letter-spacing: .15em;
@@ -2679,13 +2679,13 @@ body::after {
   transition: border-color .25s ease, color .25s ease;
 }
 .bw-slot:hover { border-bottom-color: var(--accent); color: var(--accent); }
-.bw-slot-selected { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+.bw-slot-selected { color: var(--accent); border-bottom-color: var(--accent); font-weight: 700; }
 .bw-form-title{font-size:.9rem;color:var(--text-muted);margin-bottom:12px}
 .bw-form{display:flex;flex-direction:column;gap:10px}
 .bw-form input{background:var(--bg-elevated);border:1px solid var(--border-subtle);color:var(--text-primary);padding:10px 14px;border-radius:8px;font-size:.9rem;font-family:var(--font-sans)}
 .bw-form input::placeholder{color:var(--text-muted)}
 .bw-form input:focus{outline:none;border-color:#C9A961}
-.bw-submit{background:#C9A961;color:#0a0a0b;border:none;padding:12px;border-radius:8px;font-size:.95rem;font-weight:500;cursor:pointer;transition:background .15s;font-family:var(--font-sans)}
+.bw-submit{background:#C9A961;color:#0a0a0b;border:none;padding:12px;border-radius:8px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .15s;font-family:var(--font-sans)}
 .bw-submit:hover{background:#B89550}
 .bw-submit:disabled{opacity:.6;cursor:not-allowed}
 .bw-message{padding:14px;border-radius:8px;text-align:center;font-size:.9rem;margin-top:12px}
@@ -2765,7 +2765,7 @@ body::after {
 .practice-topbar .close .x { font-family: var(--font-serif); font-size: 16px; }
 
 .practice-head { padding: 56px 64px 32px; max-width: 880px; }
-.practice-head .eyebrow-cat { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); margin-bottom: 18px; font-weight: 500; }
+.practice-head .eyebrow-cat { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--accent); margin-bottom: 18px; font-weight: 700; }
 .practice-head h1 { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 46px); font-weight: 400; margin: 0 0 16px; line-height: 1.1; letter-spacing: -0.015em; }
 .practice-head .lead { font-family: var(--font-serif); font-style: italic; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.5; color: var(--text-muted); margin: 0; max-width: 640px; }
 .practice-head .practice-meta { display: flex; gap: 28px; align-items: baseline; font-size: 11px; text-transform: uppercase; letter-spacing: .15em; color: var(--text-muted); margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; }
