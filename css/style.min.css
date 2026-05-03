@@ -2952,8 +2952,23 @@ body::after {
 
 @media (max-width: 720px) {
   .pitem { grid-template-columns: 56px 1fr; gap: 18px; }
-  .pitem .pmeta { display: none; }
+  .pitem .pmeta { grid-column: 2; text-align: left; margin-top: 10px; min-width: 0; font-size: 10px; }
   .pitem .pnum { font-size: 28px; }
+}
+
+/* Universal-practice marker on the index */
+.pitem .pmark {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-left: 14px;
+  padding: 3px 9px;
+  border: 1px solid var(--accent);
+  font-weight: 400;
+  vertical-align: middle;
 }
 
 /* === Practice page common === */
@@ -2979,9 +2994,9 @@ body::after {
 .engine-stage { padding: 80px 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 540px; border-right: 1px solid var(--border-subtle); position: relative; background: var(--bg-secondary); }
 .engine-side { padding: 64px 56px; }
 
-.engine-stage .stage-controls { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; }
-.engine-stage .stage-controls button { font-family: var(--font-sans); font-size: 11px; text-transform: uppercase; letter-spacing: .15em; background: transparent; border: 1px solid var(--border-subtle); color: var(--text-muted); padding: 10px 18px; cursor: pointer; transition: color .25s ease, border-color .25s ease; }
-.engine-stage .stage-controls button:hover { color: var(--text-primary); border-color: var(--text-primary); }
+.engine-stage .stage-controls { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
+.engine-stage .stage-controls button { font-family: var(--font-sans); font-size: 12px; text-transform: uppercase; letter-spacing: .15em; background: transparent; border: 1px solid var(--border-subtle); color: var(--text-muted); padding: 12px 24px; cursor: pointer; transition: color .25s ease, border-color .25s ease, background .25s ease; }
+.engine-stage .stage-controls button:hover { background: var(--bg-elevated); color: var(--text-primary); border-color: var(--text-primary); }
 .engine-stage .stage-controls button.is-on { color: var(--text-primary); border-color: var(--text-primary); }
 .engine-stage .cycle-counter { position: absolute; top: 28px; left: 32px; font-size: 11px; text-transform: uppercase; letter-spacing: .15em; color: var(--text-muted); }
 .engine-stage .cycle-counter .num { font-family: var(--font-serif); font-style: italic; color: var(--accent); font-size: 15px; margin: 0 4px; text-transform: none; letter-spacing: 0; }
@@ -3012,6 +3027,19 @@ body::after {
   .practice-head, .practice-foot { padding-left: 24px; padding-right: 24px; }
 }
 
+/* Cross-practice suggestions, sits between .engine and .practice-foot */
+.practice-related { padding: 48px 64px; border-bottom: 1px solid var(--border-subtle); max-width: 1240px; margin: 0 auto; }
+.practice-related .ttl { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--text-muted); margin-bottom: 20px; }
+.related-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.related-item { display: flex; flex-direction: column; gap: 6px; padding: 18px 22px; border: 1px solid var(--border-subtle); text-decoration: none; color: inherit; transition: border-color .25s ease, background .25s ease; }
+.related-item:hover { border-color: var(--accent); background: var(--bg-secondary); }
+.related-name { font-family: var(--font-serif); font-size: 18px; font-weight: 500; color: var(--text-primary); }
+.related-when { font-family: var(--font-sans); font-size: 13px; color: var(--text-muted); line-height: 1.45; }
+@media (max-width: 720px) {
+  .practice-related { padding: 36px 24px; }
+  .related-list { grid-template-columns: 1fr; gap: 12px; }
+}
+
 /* === Box-breathing-specific === */
 .box-frame { position: relative; width: clamp(260px, 70vw, 360px); aspect-ratio: 1; border: 1px solid var(--border-subtle); }
 .box-frame .corner { position: absolute; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
@@ -3027,8 +3055,10 @@ body::after {
 .box-edge-label.left   { left: -76px;   top: 50%;  transform: translateY(-50%); }
 .box-edge-label .n { font-family: var(--font-sans); font-style: normal; font-size: 11px; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); margin-left: 6px; }
 
-.box-dot { position: absolute; width: 14px; height: 14px; background: var(--text-primary); border-radius: 50%; top: -7px; left: -7px; transition: top .25s, left .25s; }
+.box-dot { position: absolute; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; top: -7px; left: -7px; box-shadow: 0 0 0 6px rgba(138,106,58,0.18); transition: top .25s, left .25s; }
 .box-frame.is-running .box-dot { animation: boxTrace 16s linear infinite; }
+.box-frame:not(.is-running) .box-dot { animation: boxDotIdle 2.5s ease-in-out infinite; }
+@keyframes boxDotIdle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 @keyframes boxTrace {
   0%   { top: -7px;             left: -7px; }
   25%  { top: -7px;             left: calc(100% - 7px); }
@@ -3055,6 +3085,8 @@ body::after {
   transform: scale(0.62);
   transition: transform 4s ease-in-out;
 }
+#breath-stage:not(.is-inhale):not(.is-hold):not(.is-exhale) .breath-circle { animation: breathIdle 3s ease-in-out infinite; }
+@keyframes breathIdle { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
 #breath-stage.is-inhale .breath-circle { transform: scale(1);    transition-duration: 4s; }
 #breath-stage.is-hold   .breath-circle { transform: scale(1); transition-duration: 0s; }
 #breath-stage.is-exhale .breath-circle { transform: scale(0.62); transition-duration: 8s; }
@@ -3072,10 +3104,10 @@ body::after {
 .gstep .gstep-num { font-family: var(--font-serif); font-style: italic; font-size: 22px; color: var(--accent); line-height: 1; }
 .gstep .gstep-body h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 500; margin: 0 0 6px; line-height: 1.25; }
 .gstep .gstep-body p { font-size: 13px; color: var(--text-muted); margin: 0 0 14px; line-height: 1.55; }
-.gstep .gstep-chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.gstep .gchip { width: 38px; height: 38px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); cursor: pointer; transition: border-color .25s ease, background .25s ease, color .25s ease; font-family: var(--font-serif); font-size: 14px; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; }
-.gstep .gchip:hover { border-color: var(--text-primary); color: var(--text-primary); }
-.gstep .gchip.checked { border-color: var(--accent); background: var(--bg-secondary); color: var(--accent); }
+.gstep .gstep-chips { display: flex; gap: 10px; flex-wrap: wrap; }
+.gstep .gchip { width: 44px; height: 44px; border: 1px solid var(--border-subtle); background: var(--bg-elevated); cursor: pointer; transition: border-color .25s ease, background .25s ease, color .25s ease, transform .25s ease; font-family: var(--font-serif); font-size: 16px; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; }
+.gstep .gchip:hover { border-color: var(--text-primary); background: var(--bg-secondary); color: var(--text-primary); }
+.gstep .gchip.checked { border-color: var(--accent); background: var(--bg-elevated); color: var(--accent); transform: scale(1.05); font-weight: 700; }
 .gstep .gchip.checked::before { content: '✓'; }
 .gstep .gstatus { font-size: 11px; text-transform: uppercase; letter-spacing: .15em; color: var(--text-muted); min-width: 60px; text-align: right; }
 .gstep.done .gstatus { color: var(--success); }
