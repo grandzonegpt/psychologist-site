@@ -10,7 +10,7 @@ module.exports = {
     3: { start: '10:00', end: '14:00' },
     4: { start: '12:00', end: '16:00' }
   },
-  daysAhead: 28,
+  daysAhead: 14,
   serviceName: {
     ru: 'Психологическая консультация',
     pl: 'Konsultacja psychologiczna'
