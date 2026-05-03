@@ -545,6 +545,23 @@ async function handleSetTime(chatId, dow, text) {
   await showEditSchedule(chatId);
 }
 
+function notifyBookingFailed({ name, email, date, time, error }) {
+  if (!bot || !ownerChatId) return;
+
+  const safe = (s) => String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
+
+  bot.sendMessage(ownerChatId,
+    '🚨 *ПЛАТЁЖ ПРОШЁЛ, КАЛЕНДАРЬ НЕ ЗАПИСАН*\n\n' +
+    `👤 ${safe(name)}\n` +
+    `📧 ${safe(email)}\n` +
+    `📅 ${formatDate(date)}\n` +
+    `🕐 ${time}\n\n` +
+    `❌ Ошибка: ${safe(error)}\n\n` +
+    '*СРОЧНО ВРУЧНУЮ*: создай событие в календаре и напиши клиенту.',
+    { parse_mode: 'Markdown' }
+  );
+}
+
 function notifyContact({ name, email, message, locale }) {
   if (!bot || !ownerChatId) return;
 
@@ -561,4 +578,4 @@ function notifyContact({ name, email, message, locale }) {
   );
 }
 
-module.exports = { init, notifyNewBooking, notifyContact };
+module.exports = { init, notifyNewBooking, notifyBookingFailed, notifyContact };

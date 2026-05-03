@@ -2,12 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const { google } = require('googleapis');
 const Stripe = require('stripe');
 const config = require('./config');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
 const reminders = require('./reminders');
+const calendarLib = require('./calendar');
 const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
@@ -30,12 +30,13 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     const session = event.data.object;
     const { name, email, date, time, locale } = session.metadata;
     try {
-      const eventId = await createCalendarEvent({ name, email, date, time, locale });
-      telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId });
-      mailer.sendConfirmation({ name, email, date, time, locale }).catch(e => console.error('Email error:', e.message));
-      console.log(`Booking confirmed: ${name} on ${date} at ${time}`);
+      const { eventId, meetLink } = await calendarLib.createCalendarEvent({ name, email, date, time, locale });
+      telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId, meetLink });
+      mailer.sendConfirmation({ name, email, date, time, locale, meetLink }).catch(e => console.error('Email error:', e.message));
+      console.log(`Booking confirmed: ${name} on ${date} at ${time} (meet: ${meetLink || 'none'})`);
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
+      telegramBot.notifyBookingFailed({ name, email, date, time, error: e.message });
     }
   }
   res.json({ received: true });
@@ -49,54 +50,10 @@ app.use('/api/book', apiLimiter);
 app.use('/api/slots', rateLimit({ windowMs: 60 * 1000, max: 20, standardHeaders: true, legacyHeaders: false }));
 app.use('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, max: 10, standardHeaders: true, legacyHeaders: false }));
 
-let calendar;
-try {
-  const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '{}');
-  const auth = new google.auth.GoogleAuth({
-    credentials,
-    scopes: ['https://www.googleapis.com/auth/calendar']
-  });
-  calendar = google.calendar({ version: 'v3', auth });
-} catch (e) {
-  console.error('Google auth error:', e.message);
-}
+const calendar = calendarLib.init();
 
 telegramBot.init(calendar);
 reminders.start(calendar);
-
-async function createCalendarEvent({ name, email, date, time, locale }) {
-  // Naive datetime (без Z): Google интерпретирует его в timeZone из start.timeZone.
-  // Если пропустить через new Date(...).toISOString(), JS парсит как UTC,
-  // и событие на 13:00 Варшава уезжает в календаре на 15:00.
-  const startDateTime = `${date}T${time}:00`;
-  const [h, m] = time.split(':').map(Number);
-  const endTotalMin = h * 60 + m + config.slotDuration;
-  const endDateTime = `${date}T${String(Math.floor(endTotalMin / 60)).padStart(2, '0')}:${String(endTotalMin % 60).padStart(2, '0')}:00`;
-  const serviceName = config.serviceName[locale] || config.serviceName.ru;
-
-  if (calendar) {
-    const event = await calendar.events.insert({
-      calendarId: config.calendarId,
-      conferenceDataVersion: 1,
-      sendUpdates: 'all',
-      requestBody: {
-        summary: `${serviceName}: ${name}`,
-        description: `Email: ${email}\nLocale: ${locale || 'ru'}\n\n🔗 Google Meet: https://meet.google.com/mbs-kkqi-kpp`,
-        start: { dateTime: startDateTime, timeZone: config.timezone },
-        end: { dateTime: endDateTime, timeZone: config.timezone },
-        attendees: [{ email }],
-        reminders: {
-          useDefault: false,
-          overrides: [
-            { method: 'popup', minutes: 30 }
-          ]
-        }
-      }
-    });
-    return event.data.id;
-  }
-  return null;
-}
 
 function generateSlots(daySchedule) {
   const slots = [];

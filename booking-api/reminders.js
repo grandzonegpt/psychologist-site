@@ -2,7 +2,6 @@ const config = require('./config');
 const { Resend } = require('resend');
 const { escapeHtml } = require('./sanitize');
 
-const MEET_LINK = 'https://meet.google.com/mbs-kkqi-kpp';
 const CHECK_INTERVAL = 5 * 60 * 1000;
 const REMINDER_MINUTES = 60;
 const sentReminders = new Set();
@@ -10,29 +9,29 @@ const sentReminders = new Set();
 let resend;
 
 const templates = {
-  ru: ({ name, time }) => ({
+  ru: ({ name, time, meetLink }) => ({
     subject: `Напоминание: сессия сегодня в ${time}`,
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">⏰ Напоминание</h2>
-        <p style="margin:0 0 8px;">${escapeHtml(name)}, через час твоя сессия.</p>
-        <p style="margin:0 0 20px;color:#a8a39a;">Начало в <strong>${time}</strong></p>
-        <a href="${MEET_LINK}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Подключиться через Google Meet</a>
-        <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${MEET_LINK}</p>
+        <p style="margin:0 0 8px;">${escapeHtml(name)}, через час ваша сессия.</p>
+        <p style="margin:0 0 20px;color:#a8a39a;">Начало в <strong>${time}</strong> по Варшаве</p>
+        ${meetLink ? `<a href="${meetLink}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Подключиться через Google Meet</a>
+        <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${meetLink}</p>` : `<p style="margin:0;color:#a8a39a;font-size:13px;">Ссылка на Meet: смотрите в приглашении Google Calendar.</p>`}
         <hr style="border:none;border-top:1px solid #2a2a30;margin:24px 0;">
         <p style="margin:0;color:#a8a39a;font-size:12px;">Aliaksei Levashou<br>levashou.pl</p>
       </div>
     `
   }),
-  pl: ({ name, time }) => ({
+  pl: ({ name, time, meetLink }) => ({
     subject: `Przypomnienie: sesja dzisiaj o ${time}`,
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
         <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">⏰ Przypomnienie</h2>
         <p style="margin:0 0 8px;">${escapeHtml(name)}, za godzinę Twoja sesja.</p>
-        <p style="margin:0 0 20px;color:#a8a39a;">Początek o <strong>${time}</strong></p>
-        <a href="${MEET_LINK}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Dołącz przez Google Meet</a>
-        <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${MEET_LINK}</p>
+        <p style="margin:0 0 20px;color:#a8a39a;">Początek o <strong>${time}</strong> czasu warszawskiego</p>
+        ${meetLink ? `<a href="${meetLink}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Dołącz przez Google Meet</a>
+        <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">${meetLink}</p>` : `<p style="margin:0;color:#a8a39a;font-size:13px;">Link do Meet: znajdziesz w zaproszeniu Google Calendar.</p>`}
         <hr style="border:none;border-top:1px solid #2a2a30;margin:24px 0;">
         <p style="margin:0;color:#a8a39a;font-size:12px;">Aliaksei Levashou<br>levashou.pl</p>
       </div>
@@ -82,14 +81,17 @@ async function checkUpcoming(calendar) {
       const desc = ev.description || '';
       const emailMatch = desc.match(/Email:\s*(\S+)/);
       const localeMatch = desc.match(/Locale:\s*(\S+)/);
+      const meetMatch = desc.match(/Google Meet:\s*(https?:\/\/\S+)/);
       if (!emailMatch) continue;
 
       const email = emailMatch[1];
       const locale = localeMatch ? localeMatch[1] : 'ru';
+      // Prefer the canonical hangoutLink on the event itself; fall back to description.
+      const meetLink = ev.hangoutLink || (meetMatch ? meetMatch[1] : null);
       const name = ev.summary.split(':').slice(1).join(':').trim() || 'Клиент';
       const time = `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`;
 
-      const template = (templates[locale] || templates.ru)({ name, time });
+      const template = (templates[locale] || templates.ru)({ name, time, meetLink });
 
       await resend.emails.send({
         from: 'Aliaksei Levashou <onboarding@resend.dev>',

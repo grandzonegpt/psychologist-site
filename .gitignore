@@ -2,6 +2,8 @@ node_modules/
 .DS_Store
 *.log
 .env
+.env.local
+.env.*.local
 assets/credentials/raw/
 .claude/
 _design_system_unpacked/
