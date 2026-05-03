@@ -2701,6 +2701,203 @@ body::after {
 .bw-loading{text-align:center;color:var(--text-muted);padding:20px;font-size:.9rem}
 
 /* ============================================================
+   Booking Widget V2 (Day Swiper). Colors mirror .bw-day / .bw-available.
+============================================================ */
+.bw-v2 { font-family: var(--font-sans); margin: 0; max-width: 100%; }
+.bw-v2__lead {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.bw-v2__lead em { font-style: italic; color: #C9A961; }
+.bw-v2__meta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 28px;
+}
+.bw-v2__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bw-v2__range {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.bw-v2__nav { display: flex; gap: 8px; }
+.bw-v2__nav-btn {
+  background: none;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  font-family: var(--font-sans);
+  line-height: 1;
+  padding: 0;
+}
+.bw-v2__nav-btn:hover:not(:disabled) { border-color: #C9A961; color: #C9A961; }
+.bw-v2__nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.bw-v2__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--bw-columns, 4), 1fr);
+  gap: 16px;
+  margin: 0 0 24px;
+}
+.bw-v2__column { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.bw-v2__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-sans);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bw-v2__day-name {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.bw-v2__day-date {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+.bw-v2__day-date em {
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.bw-v2__times { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+/* Free slot. Mirrors .bw-available. */
+.bw-v2__time {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+  text-align: center;
+  line-height: 1.2;
+}
+/* Hover. Mirrors .bw-available:hover. */
+.bw-v2__time:hover { border-color: #C9A961; color: #C9A961; }
+/* Selected. Mirrors .bw-selected. */
+.bw-v2__time--selected,
+.bw-v2__time--selected:hover {
+  background: #C9A961;
+  color: #0a0a0b;
+  border-color: #C9A961;
+  font-weight: 700;
+}
+/* Taken. Mirrors .bw-past opacity, with line-through. */
+.bw-v2__time--taken {
+  opacity: 0.35;
+  text-decoration: line-through;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.bw-v2__form { margin-top: 28px; }
+.bw-v2__form[hidden] { display: none; }
+.bw-v2__form-title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.bw-v2__form form { display: flex; flex-direction: column; gap: 10px; }
+.bw-v2__form input {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font-sans);
+}
+.bw-v2__form input::placeholder { color: var(--text-muted); }
+.bw-v2__form input:focus { outline: none; border-color: #C9A961; }
+.bw-v2__form button[type="submit"] {
+  background: #C9A961;
+  color: #0a0a0b;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  font-family: var(--font-sans);
+}
+.bw-v2__form button[type="submit"]:hover { background: #B89550; }
+.bw-v2__form button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+.bw-v2__message {
+  padding: 14px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+}
+.bw-v2__message--success {
+  background: rgba(201,169,97,0.12);
+  color: #C9A961;
+  border: 1px solid rgba(201,169,97,0.3);
+}
+.bw-v2__message--error {
+  background: rgba(180,60,60,0.12);
+  color: #c55;
+  border: 1px solid rgba(180,60,60,0.3);
+}
+.bw-v2__loading { text-align: center; color: var(--text-muted); padding: 20px; font-size: 14px; }
+@media (max-width: 768px) {
+  .bw-v2__grid {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 4px;
+    gap: 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    grid-template-columns: none;
+    padding-bottom: 4px;
+  }
+  .bw-v2__grid::-webkit-scrollbar { display: none; }
+  .bw-v2__column {
+    flex: 0 0 calc((100% - 24px) / 3);
+    scroll-snap-align: start;
+  }
+  .bw-v2__time { font-size: 13px; padding: 7px 10px; }
+  .bw-v2__lead { font-size: 22px; }
+}
+
+/* ============================================================
    Practices section — editorial layout (warm paper + ochre)
 ============================================================ */
 

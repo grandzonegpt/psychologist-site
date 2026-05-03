@@ -1,52 +1,50 @@
 (function() {
   const API_URL = 'https://booking-api-production-c2ca.up.railway.app';
+  const BATCH_SIZE = 4;
+  const MOBILE_QUERY = '(max-width: 768px)';
 
   const i18n = {
     ru: {
+      daysShort: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+      daysFull: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
       months: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
       monthsGen: ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
-      weekdays: ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'],
-      weekdaysFull: ['понедельник','вторник','среду','четверг','пятницу','субботу','воскресенье'],
-      selectDate: 'Выбери дату',
-      selectTime: 'Выбери время',
+      monthsRangeUpper: ['ЯНВАРЯ','ФЕВРАЛЯ','МАРТА','АПРЕЛЯ','МАЯ','ИЮНЯ','ИЮЛЯ','АВГУСТА','СЕНТЯБРЯ','ОКТЯБРЯ','НОЯБРЯ','ДЕКАБРЯ'],
+      today: 'СЕГОДНЯ',
+      leadPrefix: 'Ближайшее окно',
+      leadEmpty: 'Свободных окон пока нет',
+      meta: 'Сессия · {duration} минут · {price} PLN · листай дни ‹ ›',
+      formTitle: '{day} {date}, {time}, {duration} мин, {price} PLN',
       name: 'Имя',
       email: 'Email',
       book: 'Записаться',
-      booked: 'Оплата прошла! Ссылка на встречу:',
-      meetLink: 'Подключиться через Google Meet',
-      noSlots: 'Нет свободных слотов',
       loading: 'Загрузка...',
       error: 'Ошибка. Попробуй ещё раз.',
-      duration: 'мин',
-      price: 'PLN',
-      availPrefix: 'Ближайшее свободное время:',
-      availToday: 'сегодня в',
-      availTomorrow: 'завтра в',
-      availThisWeek: 'в',
-      availNone: 'свободных слотов на этой неделе нет, посмотри даты ниже'
+      navPrev: 'Раньше',
+      navNext: 'Позже',
+      bookedTitle: 'Оплата прошла.',
+      bookedBody: 'Подтверждение и ссылка на встречу придут на твой email в течение минуты.'
     },
     pl: {
+      daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
+      daysFull: ['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'],
       months: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
       monthsGen: ['stycznia','lutego','marca','kwietnia','maja','czerwca','lipca','sierpnia','września','października','listopada','grudnia'],
-      weekdays: ['Pn','Wt','Śr','Cz','Pt','Sb','Nd'],
-      weekdaysFull: ['poniedziałek','wtorek','środę','czwartek','piątek','sobotę','niedzielę'],
-      selectDate: 'Wybierz datę',
-      selectTime: 'Wybierz godzinę',
+      monthsRangeUpper: ['STYCZNIA','LUTEGO','MARCA','KWIETNIA','MAJA','CZERWCA','LIPCA','SIERPNIA','WRZEŚNIA','PAŹDZIERNIKA','LISTOPADA','GRUDNIA'],
+      today: 'DZIŚ',
+      leadPrefix: 'Najbliższy termin',
+      leadEmpty: 'Brak wolnych terminów',
+      meta: 'Sesja · {duration} minut · {price} PLN · przesuwaj dni ‹ ›',
+      formTitle: '{day} {date}, {time}, {duration} min, {price} PLN',
       name: 'Imię',
       email: 'Email',
       book: 'Umów sesję',
-      booked: 'Płatność przeszła! Link do spotkania:',
-      meetLink: 'Dołącz przez Google Meet',
-      noSlots: 'Brak wolnych terminów',
       loading: 'Ładowanie...',
       error: 'Błąd. Spróbuj ponownie.',
-      duration: 'min',
-      price: 'PLN',
-      availPrefix: 'Najbliższy wolny termin:',
-      availToday: 'dziś o',
-      availTomorrow: 'jutro o',
-      availThisWeek: 'w',
-      availNone: 'brak wolnych terminów w tym tygodniu, sprawdź daty poniżej'
+      navPrev: 'Wcześniej',
+      navNext: 'Później',
+      bookedTitle: 'Płatność przeszła.',
+      bookedBody: 'Potwierdzenie i link do spotkania przyjdą na twój email w ciągu minuty.'
     }
   };
 
@@ -97,242 +95,261 @@
     }
   }
 
+  function parseDate(dateStr) { return new Date(dateStr + 'T00:00:00'); }
+
+  function isToday(dateStr) {
+    const d = parseDate(dateStr);
+    const today = new Date(); today.setHours(0,0,0,0);
+    return d.getTime() === today.getTime();
+  }
+
+  function formatRangeUpper(dateStrA, dateStrB, t) {
+    const a = parseDate(dateStrA);
+    const b = parseDate(dateStrB);
+    const aStr = a.getDate() + ' ' + t.monthsRangeUpper[a.getMonth()];
+    const bStr = b.getDate() + ' ' + t.monthsRangeUpper[b.getMonth()];
+    if (dateStrA === dateStrB) return aStr;
+    return aStr + '. ' + bStr;
+  }
+
   function init(containerId, locale) {
     const t = i18n[locale] || i18n.ru;
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    container.innerHTML = `
-      <div class="bw-widget">
-        <div class="bw-header">
-          <button class="bw-nav bw-prev" aria-label="Previous">&#8249;</button>
-          <span class="bw-month"></span>
-          <button class="bw-nav bw-next" aria-label="Next">&#8250;</button>
-        </div>
-        <div class="bw-weekdays">${t.weekdays.map(d => `<span>${d}</span>`).join('')}</div>
-        <div class="bw-days"></div>
-        <div class="bw-slots-section" style="display:none;">
-          <div class="bw-slots-title"></div>
-          <div class="bw-slots"></div>
-        </div>
-        <div class="bw-form-section" style="display:none;">
-          <div class="bw-form-title"></div>
-          <form class="bw-form">
-            <input type="text" name="name" placeholder="${t.name}" required>
-            <input type="email" name="email" placeholder="${t.email}" required>
-            <button type="submit" class="bw-submit">${t.book}</button>
-          </form>
-        </div>
-        <div class="bw-message" style="display:none;"></div>
-        <div class="bw-loading" style="display:none;">${t.loading}</div>
-      </div>
-    `;
+    container.innerHTML =
+      '<div class="bw-v2">' +
+        '<h2 class="bw-v2__lead"></h2>' +
+        '<p class="bw-v2__meta"></p>' +
+        '<header class="bw-v2__header">' +
+          '<div class="bw-v2__range"></div>' +
+          '<div class="bw-v2__nav">' +
+            '<button class="bw-v2__nav-btn" type="button" data-action="prev" disabled aria-label="' + t.navPrev + '">‹</button>' +
+            '<button class="bw-v2__nav-btn" type="button" data-action="next" aria-label="' + t.navNext + '">›</button>' +
+          '</div>' +
+        '</header>' +
+        '<div class="bw-v2__grid"></div>' +
+        '<div class="bw-v2__form" hidden>' +
+          '<div class="bw-v2__form-title"></div>' +
+          '<form>' +
+            '<input type="text" name="name" placeholder="' + t.name + '" required>' +
+            '<input type="email" name="email" placeholder="' + t.email + '" required>' +
+            '<button type="submit">' + t.book + '</button>' +
+          '</form>' +
+        '</div>' +
+        '<div class="bw-v2__message" hidden></div>' +
+        '<div class="bw-v2__loading">' + t.loading + '</div>' +
+      '</div>';
+
+    const $widget = container.querySelector('.bw-v2');
+    const $lead = container.querySelector('.bw-v2__lead');
+    const $meta = container.querySelector('.bw-v2__meta');
+    const $range = container.querySelector('.bw-v2__range');
+    const $prev = container.querySelector('[data-action="prev"]');
+    const $next = container.querySelector('[data-action="next"]');
+    const $grid = container.querySelector('.bw-v2__grid');
+    const $form = container.querySelector('.bw-v2__form');
+    const $formTitle = container.querySelector('.bw-v2__form-title');
+    const $formEl = $form.querySelector('form');
+    const $message = container.querySelector('.bw-v2__message');
+    const $loading = container.querySelector('.bw-v2__loading');
 
     let slotsData = {};
-    let currentMonth = new Date();
+    let availableDays = [];
+    let serviceInfo = { duration: 50, price: 180 };
     let selectedDate = null;
     let selectedTime = null;
-    let serviceInfo = {};
+    let currentBatchStart = 0;
 
-    const $month = container.querySelector('.bw-month');
-    const $days = container.querySelector('.bw-days');
-    const $prev = container.querySelector('.bw-prev');
-    const $next = container.querySelector('.bw-next');
-    const $slotsSection = container.querySelector('.bw-slots-section');
-    const $slotsTitle = container.querySelector('.bw-slots-title');
-    const $slots = container.querySelector('.bw-slots');
-    const $formSection = container.querySelector('.bw-form-section');
-    const $formTitle = container.querySelector('.bw-form-title');
-    const $form = container.querySelector('.bw-form');
-    const $message = container.querySelector('.bw-message');
-    const $loading = container.querySelector('.bw-loading');
+    const isMobile = () => window.matchMedia(MOBILE_QUERY).matches;
 
-    function renderCalendar() {
-      const year = currentMonth.getFullYear();
-      const month = currentMonth.getMonth();
-      $month.textContent = `${t.months[month]} ${year}`;
-
-      const firstDay = new Date(year, month, 1);
-      let startDow = firstDay.getDay() - 1;
-      if (startDow < 0) startDow = 6;
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-      const today = new Date();
-      today.setHours(0,0,0,0);
-
-      let html = '';
-      for (let i = 0; i < startDow; i++) html += '<span class="bw-day bw-empty"></span>';
-
-      for (let d = 1; d <= daysInMonth; d++) {
-        const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        const dateObj = new Date(year, month, d);
-        const isPast = dateObj < today;
-        const hasSlots = slotsData[dateStr] && slotsData[dateStr].length > 0;
-        const isSelected = dateStr === selectedDate;
-
-        let cls = 'bw-day';
-        if (isPast) cls += ' bw-past';
-        else if (hasSlots) cls += ' bw-available';
-        else cls += ' bw-unavailable';
-        if (isSelected) cls += ' bw-selected';
-
-        html += `<span class="${cls}" data-date="${dateStr}">${d}</span>`;
-      }
-      $days.innerHTML = html;
-
-      $days.querySelectorAll('.bw-available').forEach(el => {
-        el.addEventListener('click', () => selectDate(el.dataset.date));
-      });
+    function visibleDays() {
+      if (isMobile()) return availableDays;
+      return availableDays.slice(currentBatchStart, currentBatchStart + BATCH_SIZE);
     }
 
-    function selectDate(dateStr) {
-      selectedDate = dateStr;
-      selectedTime = null;
-      $formSection.style.display = 'none';
-      $message.style.display = 'none';
-      renderCalendar();
+    function findFirstFreeSlot() {
+      for (let i = 0; i < availableDays.length; i++) {
+        const d = availableDays[i];
+        const slots = slotsData[d];
+        if (slots && slots.length) return { date: d, time: slots[0] };
+      }
+      return null;
+    }
 
-      const slots = slotsData[dateStr] || [];
-      if (slots.length === 0) {
-        $slotsSection.style.display = 'none';
+    function updateLead() {
+      const first = findFirstFreeSlot();
+      if (!first) {
+        $lead.textContent = t.leadEmpty;
         return;
       }
-
-      const d = new Date(dateStr + 'T00:00:00');
-      const dayName = t.weekdays[(d.getDay() + 6) % 7];
-      const dayNum = d.getDate();
-      const monthName = t.months[d.getMonth()];
-      $slotsTitle.textContent = `${dayNum} ${monthName}, ${dayName}`;
-
-      $slots.innerHTML = slots.map(time =>
-        `<button class="bw-slot" data-time="${time}">${time}</button>`
-      ).join('');
-
-      $slots.querySelectorAll('.bw-slot').forEach(el => {
-        el.addEventListener('click', () => selectTime(el.dataset.time));
-      });
-
-      $slotsSection.style.display = 'block';
+      const d = parseDate(first.date);
+      const dayWord = t.daysFull[d.getDay()];
+      $lead.innerHTML = t.leadPrefix + ' <em>' + dayWord + ', ' + first.time + '</em>';
     }
 
-    function selectTime(time) {
-      selectedTime = time;
-      $slots.querySelectorAll('.bw-slot').forEach(el => {
-        el.classList.toggle('bw-slot-selected', el.dataset.time === time);
+    function updateMeta() {
+      $meta.textContent = t.meta
+        .replace('{duration}', serviceInfo.duration || 50)
+        .replace('{price}', serviceInfo.price || 180);
+    }
+
+    function updateRange() {
+      const days = visibleDays();
+      if (!days.length) { $range.textContent = ''; return; }
+      $range.textContent = formatRangeUpper(days[0], days[days.length - 1], t);
+    }
+
+    function updateNavButtons() {
+      if (isMobile()) {
+        const atStart = $grid.scrollLeft <= 1;
+        const atEnd = $grid.scrollLeft + $grid.clientWidth >= $grid.scrollWidth - 1;
+        $prev.disabled = atStart;
+        $next.disabled = atEnd || availableDays.length === 0;
+        return;
+      }
+      $prev.disabled = currentBatchStart === 0;
+      $next.disabled = currentBatchStart + BATCH_SIZE >= availableDays.length;
+    }
+
+    function renderGrid() {
+      const days = visibleDays();
+      const cols = isMobile() ? Math.min(days.length, 3) : Math.max(1, Math.min(days.length, BATCH_SIZE));
+      $widget.style.setProperty('--bw-columns', cols);
+
+      $grid.innerHTML = days.map(function(date) {
+        const d = parseDate(date);
+        const dayName = isToday(date) ? t.today : t.daysShort[d.getDay()].toUpperCase();
+        const dateLabel = d.getDate() + ' <em>' + t.monthsGen[d.getMonth()] + '</em>';
+        const slots = slotsData[date] || [];
+        const slotsHtml = slots.map(function(time) {
+          const sel = (date === selectedDate && time === selectedTime) ? ' bw-v2__time--selected' : '';
+          return '<button type="button" class="bw-v2__time' + sel + '" data-date="' + date + '" data-time="' + time + '">' + time + '</button>';
+        }).join('');
+        return '<div class="bw-v2__column">' +
+                 '<div class="bw-v2__day">' +
+                   '<span class="bw-v2__day-name">' + dayName + '</span>' +
+                   '<span class="bw-v2__day-date">' + dateLabel + '</span>' +
+                 '</div>' +
+                 '<div class="bw-v2__times">' + slotsHtml + '</div>' +
+               '</div>';
+      }).join('');
+
+      $grid.querySelectorAll('.bw-v2__time').forEach(function(el) {
+        el.addEventListener('click', onSlotClick);
       });
 
-      const d = new Date(selectedDate + 'T00:00:00');
-      const dayNum = d.getDate();
-      const monthName = t.months[d.getMonth()];
-      $formTitle.textContent = `${dayNum} ${monthName}, ${time}, ${serviceInfo.duration || 50} ${t.duration}, ${serviceInfo.price || 180} ${t.price}`;
-      $formSection.style.display = 'block';
-      $message.style.display = 'none';
+      updateRange();
+      updateNavButtons();
+    }
+
+    function onSlotClick(e) {
+      const el = e.currentTarget;
+      if (el.classList.contains('bw-v2__time--taken')) {
+        e.preventDefault();
+        return;
+      }
+      selectedDate = el.dataset.date;
+      selectedTime = el.dataset.time;
+
+      $grid.querySelectorAll('.bw-v2__time--selected').forEach(function(s) { s.classList.remove('bw-v2__time--selected'); });
+      el.classList.add('bw-v2__time--selected');
+
+      const d = parseDate(selectedDate);
+      $formTitle.textContent = t.formTitle
+        .replace('{day}', d.getDate())
+        .replace('{date}', t.monthsGen[d.getMonth()])
+        .replace('{time}', selectedTime)
+        .replace('{duration}', serviceInfo.duration || 50)
+        .replace('{price}', serviceInfo.price || 180);
+      $form.removeAttribute('hidden');
+      $message.setAttribute('hidden', '');
       trackEvent('slot_selected', { locale: locale, date: selectedDate, time: selectedTime });
     }
 
-    $form.addEventListener('submit', async (e) => {
+    $prev.addEventListener('click', function() {
+      if (isMobile()) {
+        const colWidth = $grid.clientWidth / 3;
+        $grid.scrollBy({ left: -colWidth * 2, behavior: 'smooth' });
+        return;
+      }
+      currentBatchStart = Math.max(0, currentBatchStart - BATCH_SIZE);
+      renderGrid();
+    });
+
+    $next.addEventListener('click', function() {
+      if (isMobile()) {
+        const colWidth = $grid.clientWidth / 3;
+        $grid.scrollBy({ left: colWidth * 2, behavior: 'smooth' });
+        return;
+      }
+      if (currentBatchStart + BATCH_SIZE < availableDays.length) {
+        currentBatchStart += BATCH_SIZE;
+        renderGrid();
+      }
+    });
+
+    $grid.addEventListener('scroll', function() {
+      if (isMobile()) updateNavButtons();
+    }, { passive: true });
+
+    window.addEventListener('resize', function() {
+      currentBatchStart = 0;
+      renderGrid();
+    });
+
+    $formEl.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const name = $form.name.value.trim();
-      const email = $form.email.value.trim();
+      const name = $formEl.name.value.trim();
+      const email = $formEl.email.value.trim();
       if (!name || !email || !selectedDate || !selectedTime) return;
 
-      $form.querySelector('.bw-submit').disabled = true;
-      $form.querySelector('.bw-submit').textContent = t.loading;
+      const $submit = $formEl.querySelector('button[type="submit"]');
+      $submit.disabled = true;
+      $submit.textContent = t.loading;
 
       try {
-        trackEvent('begin_checkout', { currency: 'PLN', value: 180, locale: locale });
+        trackEvent('begin_checkout', { currency: 'PLN', value: serviceInfo.price || 180, locale: locale });
         const attr = getAttribution();
-        const resp = await fetch(`${API_URL}/api/book`, {
+        const resp = await fetch(API_URL + '/api/book', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.assign({ name, email, date: selectedDate, time: selectedTime, locale }, attr))
+          body: JSON.stringify(Object.assign({ name: name, email: email, date: selectedDate, time: selectedTime, locale: locale }, attr))
         });
         const data = await resp.json();
         if (data.ok && data.url) {
           window.location.href = data.url;
           return;
-        } else if (!data.ok) {
-          throw new Error(data.error);
         }
+        throw new Error(data.error || 'Booking failed');
       } catch (err) {
         $message.textContent = t.error;
-        $message.className = 'bw-message bw-error';
-        $message.style.display = 'block';
+        $message.className = 'bw-v2__message bw-v2__message--error';
+        $message.removeAttribute('hidden');
       }
-      $form.querySelector('.bw-submit').disabled = false;
-      $form.querySelector('.bw-submit').textContent = t.book;
+      $submit.disabled = false;
+      $submit.textContent = t.book;
     });
-
-    $prev.addEventListener('click', () => {
-      currentMonth.setMonth(currentMonth.getMonth() - 1);
-      renderCalendar();
-    });
-    $next.addEventListener('click', () => {
-      currentMonth.setMonth(currentMonth.getMonth() + 1);
-      renderCalendar();
-    });
-
-    function generateDemoSlots() {
-      const demo = {};
-      const now = new Date();
-      for (let d = 1; d <= 28; d++) {
-        const date = new Date(now);
-        date.setDate(date.getDate() + d);
-        const dow = date.getDay();
-        const dateStr = date.toISOString().split('T')[0];
-        if (dow === 2 || dow === 4) demo[dateStr] = ['12:00','13:00','14:00','15:00'];
-        else if (dow === 3) demo[dateStr] = ['10:00','11:00','12:00','13:00'];
-        else continue;
-      }
-      return demo;
-    }
-
-    function updateAvailabilityIndicator() {
-      const indicators = document.querySelectorAll('.availability[data-availability-locale="' + locale + '"] .availability-text');
-      if (!indicators.length) return;
-
-      const dates = Object.keys(slotsData).filter(d => slotsData[d] && slotsData[d].length).sort();
-      if (!dates.length) {
-        indicators.forEach(el => { el.textContent = t.availPrefix + ' ' + t.availNone; });
-        return;
-      }
-
-      const firstDate = dates[0];
-      const firstTime = slotsData[firstDate][0];
-      const slotDate = new Date(firstDate + 'T00:00:00');
-      const today = new Date();
-      today.setHours(0,0,0,0);
-      const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
-      const dayDiff = Math.round((slotDate - today) / 86400000);
-
-      let phrase;
-      if (dayDiff === 0) {
-        phrase = t.availToday + ' ' + firstTime;
-      } else if (dayDiff === 1) {
-        phrase = t.availTomorrow + ' ' + firstTime;
-      } else if (dayDiff > 1 && dayDiff < 7) {
-        const wd = t.weekdaysFull[(slotDate.getDay() + 6) % 7];
-        phrase = t.availThisWeek + ' ' + wd + ' ' + firstTime;
-      } else {
-        const day = slotDate.getDate();
-        const monthGen = t.monthsGen[slotDate.getMonth()];
-        phrase = day + ' ' + monthGen + ', ' + firstTime;
-      }
-      indicators.forEach(el => { el.textContent = t.availPrefix + ' ' + phrase; });
-    }
 
     async function loadSlots() {
       $loading.style.display = 'block';
       try {
-        const resp = await fetch(`${API_URL}/api/slots`);
+        const resp = await fetch(API_URL + '/api/slots');
         const data = await resp.json();
         slotsData = data.slots || {};
-        serviceInfo = { duration: data.duration, price: data.price };
+        if (data.duration) serviceInfo.duration = data.duration;
+        if (data.price) serviceInfo.price = data.price;
       } catch (e) {
-        slotsData = generateDemoSlots();
-        serviceInfo = { duration: 50, price: 180 };
+        slotsData = {};
       }
-      renderCalendar();
-      updateAvailabilityIndicator();
+      availableDays = Object.keys(slotsData)
+        .filter(function(d) { return slotsData[d] && slotsData[d].length > 0; })
+        .sort();
+      currentBatchStart = 0;
+
+      updateLead();
+      updateMeta();
+      renderGrid();
       $loading.style.display = 'none';
     }
 
@@ -340,10 +357,10 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('booking') === 'success') {
-      trackEvent('purchase', { currency: 'PLN', value: 180, transaction_id: 'pending_' + Date.now() });
-      $message.innerHTML = `${t.booked}<br><a href="https://meet.google.com/mbs-kkqi-kpp" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#C9A961;color:#0a0a0b;border-radius:8px;text-decoration:none;font-weight:500;">${t.meetLink}</a>`;
-      $message.className = 'bw-message bw-success';
-      $message.style.display = 'block';
+      trackEvent('purchase', { currency: 'PLN', value: serviceInfo.price || 180, transaction_id: 'pending_' + Date.now() });
+      $message.innerHTML = '<strong>' + t.bookedTitle + '</strong><br>' + t.bookedBody;
+      $message.className = 'bw-v2__message bw-v2__message--success';
+      $message.removeAttribute('hidden');
       window.history.replaceState({}, '', window.location.pathname);
     } else if (urlParams.get('booking') === 'cancelled') {
       trackEvent('checkout_abandoned', { currency: 'PLN', value: 180 });
