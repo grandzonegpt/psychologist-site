@@ -11,3 +11,7 @@ Levashou.pl Design System.zip
 practices-design-export.html
 *-export.html
 .claude/settings.local.json
+
+# Orphan audit (temp)
+_orphan-*.txt
+_orphan-audit.sh
