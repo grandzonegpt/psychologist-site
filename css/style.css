@@ -3027,6 +3027,32 @@ body::after {
   .practice-head, .practice-foot { padding-left: 24px; padding-right: 24px; }
 }
 
+/* Privacy reassurance for practices that ask the user to type (diary, abc) */
+.privacy-note {
+  max-width: 760px;
+  margin: 0 auto 24px;
+  padding: 14px 22px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.privacy-note .icon {
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.privacy-note strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
 /* Cross-practice suggestions, sits between .engine and .practice-foot */
 .practice-related { padding: 48px 64px; border-bottom: 1px solid var(--border-subtle); max-width: 1240px; margin: 0 auto; }
 .practice-related .ttl { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--text-muted); margin-bottom: 20px; }
