@@ -3083,8 +3083,6 @@ body::after {
 
 .box-dot { position: absolute; width: 14px; height: 14px; background: var(--accent); border-radius: 50%; top: -7px; left: -7px; box-shadow: 0 0 0 6px rgba(138,106,58,0.18); transition: top .25s, left .25s; }
 .box-frame.is-running .box-dot { animation: boxTrace 16s linear infinite; }
-.box-frame:not(.is-running) .box-dot { animation: boxDotIdle 2.5s ease-in-out infinite; }
-@keyframes boxDotIdle { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
 @keyframes boxTrace {
   0%   { top: -7px;             left: -7px; }
   25%  { top: -7px;             left: calc(100% - 7px); }
@@ -3112,8 +3110,6 @@ body::after {
   box-shadow: 0 0 32px 4px rgba(138,106,58,0.06);
   transition: transform 4s cubic-bezier(0.45, 0, 0.55, 1), box-shadow 4s ease-out;
 }
-#breath-stage:not(.is-inhale):not(.is-hold):not(.is-exhale) .breath-circle { animation: breathIdle 4s ease-in-out infinite; }
-@keyframes breathIdle { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
 #breath-stage.is-inhale .breath-circle {
   transform: scale(1);
   transition-duration: 4s;
@@ -3123,9 +3119,7 @@ body::after {
   transform: scale(1);
   transition-duration: 0s;
   box-shadow: 0 0 64px 10px rgba(138,106,58,0.16);
-  animation: holdAlive 3.5s ease-in-out infinite;
 }
-@keyframes holdAlive { 0%, 100% { opacity: 0.92; } 50% { opacity: 1; } }
 #breath-stage.is-exhale .breath-circle {
   transform: scale(0.62);
   transition-duration: 8s;
