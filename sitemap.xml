@@ -56,11 +56,20 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Landing pages: emigration (RU only, per V1 strategy) -->
+  <!-- Landing pages: emigration -->
   <url>
     <loc>https://levashou.pl/emigration.html</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-04</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/emigration.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/emigration-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/emigration.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/emigration-pl.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/emigration.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/emigration-pl.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/emigration.html"/>
     <priority>0.9</priority>
   </url>
