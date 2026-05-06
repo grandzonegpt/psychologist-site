@@ -14,7 +14,7 @@
       leadPrefix: 'Ближайшее окно',
       leadEmpty: 'Свободных окон пока нет',
       meta: 'Сессия · {duration} минут · {price} PLN · листай дни ‹ ›',
-      formTitle: '{day} {date}, {time}, {duration} мин, {price} PLN',
+      formTitle: '{dayName}, {day} {date}, {time}, {duration} мин, {price} PLN',
       name: 'Имя',
       email: 'Email',
       book: 'Записаться',
@@ -35,7 +35,7 @@
       leadPrefix: 'Najbliższy termin',
       leadEmpty: 'Brak wolnych terminów',
       meta: 'Sesja · {duration} minut · {price} PLN · przesuwaj dni ‹ ›',
-      formTitle: '{day} {date}, {time}, {duration} min, {price} PLN',
+      formTitle: '{dayName}, {day} {date}, {time}, {duration} min, {price} PLN',
       name: 'Imię',
       email: 'Email',
       book: 'Umów sesję',
@@ -257,6 +257,7 @@
 
       const d = parseDate(selectedDate);
       $formTitle.textContent = t.formTitle
+        .replace('{dayName}', t.daysFull[d.getDay()])
         .replace('{day}', d.getDate())
         .replace('{date}', t.monthsGen[d.getMonth()])
         .replace('{time}', selectedTime)
