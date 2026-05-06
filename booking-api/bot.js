@@ -4,9 +4,32 @@ const path = require('path');
 const config = require('./config');
 
 const SCHEDULE_FILE = path.join(__dirname, 'schedule.json');
+const CHAT_FILE = path.join(__dirname, 'chat.json');
 
 let bot;
 let ownerChatId = null;
+
+function loadOwnerChatId() {
+  try {
+    if (fs.existsSync(CHAT_FILE)) {
+      const data = JSON.parse(fs.readFileSync(CHAT_FILE, 'utf8'));
+      if (data && typeof data.ownerChatId === 'number') {
+        ownerChatId = data.ownerChatId;
+        console.log(`Bot: restored ownerChatId=${ownerChatId} from ${CHAT_FILE}`);
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load chat.json:', e.message);
+  }
+}
+
+function saveOwnerChatId(chatId) {
+  try {
+    fs.writeFileSync(CHAT_FILE, JSON.stringify({ ownerChatId: chatId }, null, 2));
+  } catch (e) {
+    console.error('Failed to save chat.json:', e.message);
+  }
+}
 let calendarRef = null;
 const pendingLinks = new Map();
 const bookingEvents = new Map();
@@ -69,10 +92,12 @@ function init(calendar) {
 
   bot = new TelegramBot(token, { polling: true });
   calendarRef = calendar;
+  loadOwnerChatId();
   console.log('Telegram bot started');
 
   bot.onText(/\/start/, (msg) => {
     ownerChatId = msg.chat.id;
+    saveOwnerChatId(ownerChatId);
     bot.sendMessage(msg.chat.id,
       '👋 *Привет! Я твой бот для управления записями.*\n\nВот что я умею:',
       { parse_mode: 'Markdown', reply_markup: mainMenu() }

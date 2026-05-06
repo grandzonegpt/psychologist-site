@@ -1,2 +1,15 @@
 node_modules/
 .env
+.env.local
+
+# Bot persistence (per-deploy state, not source)
+chat.json
+schedule.json
+
+# Reports + scratch outputs
+reports/
+*.json.bak
+
+# Local-only scripts (can stay tracked, but their dated outputs do not)
+scripts/gsc-deep-report-*.json
+scripts/gsc-indexation-detailed-*.json
