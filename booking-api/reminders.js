@@ -94,7 +94,7 @@ async function checkUpcoming(calendar) {
       const template = (templates[locale] || templates.ru)({ name, time, meetLink });
 
       await resend.emails.send({
-        from: 'Aliaksei Levashou <onboarding@resend.dev>',
+        from: 'Aliaksei Levashou <noreply@levashou.pl>',
         to: email,
         subject: template.subject,
         html: template.html

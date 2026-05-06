@@ -81,7 +81,7 @@ async function sendConfirmation({ name, email, date, time, locale, meetLink }) {
   const replyTo = process.env.CONTACT_EMAIL || 'goalcoachup@gmail.com';
 
   await resend.emails.send({
-    from: 'Aliaksei Levashou <onboarding@resend.dev>',
+    from: 'Aliaksei Levashou <noreply@levashou.pl>',
     to: email,
     replyTo,
     subject: template.subject,
@@ -105,7 +105,7 @@ async function sendAdminBookingAlert({ name, email, date, time, locale, meetLink
   const localeLabel = locale === 'pl' ? 'Польский' : 'Русский';
 
   await resend.emails.send({
-    from: 'levashou.pl booking <onboarding@resend.dev>',
+    from: 'levashou.pl booking <noreply@levashou.pl>',
     to: recipient,
     replyTo: email,
     subject: `Новая запись: ${safeName}, ${humanDate}, ${time}`,
@@ -142,7 +142,7 @@ async function sendContactNotification({ name, email, message, locale, to }) {
   const subject = `Новая заявка с levashou.pl от ${safeName}`;
 
   await resend.emails.send({
-    from: 'levashou.pl <onboarding@resend.dev>',
+    from: 'levashou.pl <noreply@levashou.pl>',
     to: recipient,
     replyTo: email,
     subject,
