@@ -32,7 +32,8 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     try {
       const { eventId, meetLink } = await calendarLib.createCalendarEvent({ name, email, date, time, locale });
       telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId, meetLink });
-      mailer.sendConfirmation({ name, email, date, time, locale, meetLink }).catch(e => console.error('Email error:', e.message));
+      mailer.sendConfirmation({ name, email, date, time, locale, meetLink }).catch(e => console.error('Client email error:', e.message));
+      mailer.sendAdminBookingAlert({ name, email, date, time, locale, meetLink }).catch(e => console.error('Admin email error:', e.message));
       console.log(`Booking confirmed: ${name} on ${date} at ${time} (meet: ${meetLink || 'none'})`);
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);

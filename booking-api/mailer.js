@@ -91,6 +91,43 @@ async function sendConfirmation({ name, email, date, time, locale, meetLink }) {
   console.log(`Confirmation email sent to ${email}`);
 }
 
+async function sendAdminBookingAlert({ name, email, date, time, locale, meetLink }) {
+  if (!process.env.RESEND_API_KEY) {
+    console.log('Mailer: no Resend key, skipping admin alert');
+    return;
+  }
+  if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
+
+  const recipient = process.env.ADMIN_EMAIL || 'talkwith@levashou.pl';
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const humanDate = formatDateHuman(date, 'ru');
+  const localeLabel = locale === 'pl' ? 'Польский' : 'Русский';
+
+  await resend.emails.send({
+    from: 'levashou.pl booking <onboarding@resend.dev>',
+    to: recipient,
+    replyTo: email,
+    subject: `Новая запись: ${safeName}, ${humanDate}, ${time}`,
+    html: `
+      <div style="font-family:'Inter',Arial,sans-serif;max-width:560px;margin:0 auto;padding:32px 28px;color:#1f1c18;">
+        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:500;">Новая запись на сессию</h2>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+          <tr><td style="padding:8px 0;color:#6b645a;width:140px;">Клиент:</td><td style="padding:8px 0;"><strong>${safeName}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Email:</td><td style="padding:8px 0;"><a href="mailto:${safeEmail}" style="color:#1f1c18;">${safeEmail}</a></td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Дата:</td><td style="padding:8px 0;"><strong>${humanDate}</strong></td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Время:</td><td style="padding:8px 0;"><strong>${time}</strong> по Варшаве, ${config.slotDuration} минут</td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Язык:</td><td style="padding:8px 0;">${localeLabel}</td></tr>
+          ${meetLink ? `<tr><td style="padding:8px 0;color:#6b645a;">Meet:</td><td style="padding:8px 0;"><a href="${meetLink}" style="color:#1f1c18;">${meetLink}</a></td></tr>` : ''}
+        </table>
+        <p style="margin:0;color:#6b645a;font-size:13px;">Запись создана автоматически после оплаты. Событие в Google Calendar и Telegram-уведомление параллельно.</p>
+      </div>
+    `
+  });
+
+  console.log(`Admin booking alert sent to ${recipient}`);
+}
+
 async function sendContactNotification({ name, email, message, locale, to }) {
   if (!process.env.RESEND_API_KEY) {
     console.log('Mailer: no Resend key, skipping contact notification');
@@ -130,4 +167,4 @@ async function sendContactNotification({ name, email, message, locale, to }) {
   console.log(`Contact notification sent to ${recipient} from ${email}`);
 }
 
-module.exports = { sendConfirmation, sendContactNotification, formatDateHuman };
+module.exports = { sendConfirmation, sendAdminBookingAlert, sendContactNotification, formatDateHuman };
