@@ -2,6 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config');
+const { warsawDate, warsawDayBounds } = require('./tz');
 
 const SCHEDULE_FILE = path.join(__dirname, 'schedule.json');
 const CHAT_FILE = path.join(__dirname, 'chat.json');
@@ -352,11 +353,11 @@ async function showBlockHourPicker(chatId, dateStr, calendar) {
   const allSlots = generateSlots(daySchedule);
 
   const now = new Date();
-  const timeMax = new Date(`${dateStr}T23:59:59`);
+  const bounds = warsawDayBounds(dateStr);
   const events = await calendar.events.list({
     calendarId: config.calendarId,
-    timeMin: new Date(`${dateStr}T00:00:00`).toISOString(),
-    timeMax: timeMax.toISOString(),
+    timeMin: bounds.start.toISOString(),
+    timeMax: bounds.end.toISOString(),
     singleEvents: true,
     timeZone: config.timezone
   });
@@ -365,7 +366,7 @@ async function showBlockHourPicker(chatId, dateStr, calendar) {
   const buttons = [];
   const row = [];
   for (const time of allSlots) {
-    const slotStart = new Date(`${dateStr}T${time}:00`);
+    const slotStart = warsawDate(dateStr, time);
     const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
 
     const isBusy = busyItems.some(ev => {
@@ -403,7 +404,7 @@ async function showBlockHourPicker(chatId, dateStr, calendar) {
 async function blockHour(chatId, dateStr, time, calendar) {
   if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
 
-  const start = new Date(`${dateStr}T${time}:00`);
+  const start = warsawDate(dateStr, time);
   const end = new Date(start.getTime() + config.slotDuration * 60000);
 
   await calendar.events.insert({

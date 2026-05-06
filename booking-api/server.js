@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const Stripe = require('stripe');
+const { warsawDate, warsawDateString } = require('./tz');
 const config = require('./config');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
@@ -100,11 +101,14 @@ app.get('/api/slots', async (req, res) => {
       const daySchedule = config.schedule[dow];
       if (!daySchedule) continue;
 
-      const dateStr = date.toISOString().split('T')[0];
+      // dateStr must reflect the Warsaw calendar date, not the runtime's UTC
+      // interpretation. warsawDateString handles DST and timezone offset.
+      const dateStr = warsawDateString(date);
       const allSlots = generateSlots(daySchedule);
 
       const available = allSlots.filter(time => {
-        const slotStart = new Date(`${dateStr}T${time}:00`);
+        // Slot times in the schedule are Warsaw clock readings.
+        const slotStart = warsawDate(dateStr, time);
         const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
 
         if (slotStart < now) return false;
