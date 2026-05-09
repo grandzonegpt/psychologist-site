@@ -3,7 +3,7 @@ const fs = require('fs');
 const config = require('./config');
 const dataDir = require('./dataDir');
 const audit = require('./audit');
-const { warsawDate, warsawDayBounds } = require('./tz');
+const { warsawDate, warsawDayBounds, warsawDateString } = require('./tz');
 
 const SCHEDULE_FILE = dataDir.path('schedule.json');
 const CHAT_FILE = dataDir.path('chat.json');
@@ -351,10 +351,16 @@ async function showBlockDayPicker(chatId, prefix) {
   for (let i = 0; i < 14; i++) {
     const date = new Date(now);
     date.setDate(date.getDate() + i);
-    const dow = date.getDay();
+    // Use Warsaw calendar date, not UTC. Otherwise late evening in Warsaw
+    // (after 22:00 in summer) the picker shows yesterday's date and clicking
+    // it blocks the wrong day in Google Calendar.
+    const dateStr = warsawDateString(date);
+    const [, monthStr, dayStr] = dateStr.split('-');
+    const dayNum = parseInt(dayStr, 10);
+    const monthIdx = parseInt(monthStr, 10) - 1;
+    const dow = new Date(`${dateStr}T12:00:00`).getDay();
     if (!config.schedule[dow]) continue;
-    const dateStr = date.toISOString().split('T')[0];
-    buttons.push([{ text: `${DAY_NAMES[dow]} ${date.getDate()} ${MONTH_NAMES[date.getMonth()]}`, callback_data: `${prefix}_${dateStr}` }]);
+    buttons.push([{ text: `${DAY_NAMES[dow]} ${dayNum} ${MONTH_NAMES[monthIdx]}`, callback_data: `${prefix}_${dateStr}` }]);
   }
   buttons.push(...backButton());
 
