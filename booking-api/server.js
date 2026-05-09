@@ -13,6 +13,7 @@ const reminders = require('./reminders');
 const calendarLib = require('./calendar');
 const holds = require('./holds');
 const audit = require('./audit');
+const monitor = require('./monitor');
 const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
@@ -121,6 +122,7 @@ const calendar = calendarLib.init();
 
 telegramBot.init(calendar);
 reminders.start(calendar);
+monitor.start(telegramBot);
 
 function generateSlots(daySchedule) {
   const slots = [];

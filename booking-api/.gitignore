@@ -8,6 +8,8 @@ node_modules/
 chat.json
 schedule.json
 processed-events.json
+alerted-sessions.json
+audit.log
 data/
 
 # Reports + scratch outputs

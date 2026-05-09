@@ -598,6 +598,23 @@ function notifyBookingFailed({ name, email, date, time, error }) {
   );
 }
 
+function notifyMissingBooking({ name, email, date, time, sessionId }) {
+  if (!bot || !ownerChatId) return;
+
+  const safe = (s) => String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
+
+  bot.sendMessage(ownerChatId,
+    '🚨 *ОПЛАЧЕНО, НО НЕТ СОБЫТИЯ В КАЛЕНДАРЕ*\n\n' +
+    `👤 ${safe(name) || 'неизвестно'}\n` +
+    `📧 ${safe(email) || 'неизвестно'}\n` +
+    `📅 ${formatDate(date)}\n` +
+    `🕐 ${time}\n` +
+    `🔖 session: ${safe(sessionId)}\n\n` +
+    '*Действие*: создай событие в Google Calendar вручную и напиши клиенту с Meet-ссылкой.',
+    { parse_mode: 'Markdown' }
+  );
+}
+
 function notifyContact({ name, email, message, locale }) {
   if (!bot || !ownerChatId) return;
 
@@ -614,4 +631,4 @@ function notifyContact({ name, email, message, locale }) {
   );
 }
 
-module.exports = { init, notifyNewBooking, notifyBookingFailed, notifyContact };
+module.exports = { init, notifyNewBooking, notifyBookingFailed, notifyContact, notifyMissingBooking };
