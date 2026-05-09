@@ -106,12 +106,17 @@ function init(calendar) {
     );
   });
 
+  bot.onText(/^\/log(?:\s+(\d+))?$/, (msg, m) => {
+    const n = m && m[1] ? Math.min(parseInt(m[1], 10), 50) : 20;
+    showAuditLog(msg.chat.id, n);
+  });
+
   bot.on('callback_query', async (query) => {
     const chatId = query.message.chat.id;
     const data = query.data;
 
     try {
-      if (data === 'schedule') {
+      if (data === 'schedule' || data === 'edit_schedule') {
         await showSchedule(chatId);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
@@ -128,8 +133,8 @@ function init(calendar) {
         await blockHour(chatId, parts[0], parts[1], calendar);
       } else if (data === 'unblock') {
         await showUnblockPicker(chatId, calendar);
-      } else if (data === 'edit_schedule') {
-        await showEditSchedule(chatId);
+      } else if (data === 'log') {
+        await showAuditLog(chatId);
       } else if (data.startsWith('toggleday_')) {
         await toggleDay(chatId, parseInt(data.replace('toggleday_', '')));
       } else if (data.startsWith('settime_')) {
@@ -218,10 +223,10 @@ function init(calendar) {
 function mainMenu() {
   return {
     inline_keyboard: [
-      [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи на неделю', callback_data: 'week' }],
-      [{ text: '🚫 Заблокировать день', callback_data: 'block_day' }, { text: '🕐 Заблокировать час', callback_data: 'block_hour' }],
-      [{ text: '✅ Разблокировать', callback_data: 'unblock' }],
-      [{ text: '⚙️ Настроить расписание', callback_data: 'edit_schedule' }]
+      [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи', callback_data: 'week' }],
+      [{ text: '🚫 Закрыть день', callback_data: 'block_day' }, { text: '🚫 Закрыть час', callback_data: 'block_hour' }],
+      [{ text: '✅ Открыть слот', callback_data: 'unblock' }],
+      [{ text: '🕓 Журнал', callback_data: 'log' }]
     ]
   };
 }
@@ -236,16 +241,29 @@ function formatDate(dateStr) {
 }
 
 async function showSchedule(chatId) {
-  const days = Object.entries(config.schedule)
-    .sort(([a], [b]) => a - b)
-    .map(([dow, s]) => `  ${DAY_NAMES[dow]}:  ${s.start} — ${s.end}`)
-    .join('\n');
+  // Combined view + editor: all 7 days with current state and inline toggles.
+  const buttons = [];
+  for (let dow = 1; dow <= 7; dow++) {
+    const d = dow % 7;
+    const active = !!config.schedule[d];
+    const label = active
+      ? `✅ ${FULL_DAY_NAMES[d]}  ${config.schedule[d].start}-${config.schedule[d].end}`
+      : `⚪ ${FULL_DAY_NAMES[d]}  выходной`;
+    const row = [{ text: label, callback_data: `toggleday_${d}` }];
+    if (active) row.push({ text: '🕐 Часы', callback_data: `settime_${d}` });
+    buttons.push(row);
+  }
+  buttons.push(...backButton());
 
-  await bot.sendMessage(chatId,
-    '📅 *Твоё расписание:*\n\n' + days + '\n\n' +
+  const summary =
+    '📅 *Расписание*\n\n' +
+    'Тапни день чтобы открыть или закрыть.\n' +
+    'Кнопка 🕐 Часы меняет время рабочего дня.\n\n' +
     `⏱ Сессия: ${config.slotDuration} мин + ${config.breakDuration} мин перерыв\n` +
-    `💰 Цена: ${config.price} ${config.currency}`,
-    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    `💰 Цена: ${config.price} ${config.currency}`;
+
+  await bot.sendMessage(chatId, summary,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
   );
 }
 
@@ -492,6 +510,34 @@ async function unblockEvent(chatId, eventId, calendar) {
   }
 }
 
+const WARSAW_TS = new Intl.DateTimeFormat('ru-RU', {
+  timeZone: 'Europe/Warsaw',
+  day: '2-digit', month: '2-digit',
+  hour: '2-digit', minute: '2-digit', hour12: false
+});
+
+async function showAuditLog(chatId, n) {
+  const entries = audit.tail(n || 20);
+  if (entries.length === 0) {
+    await bot.sendMessage(chatId, '🕓 Журнал пуст.',
+      { reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+  const lines = entries.map(e => {
+    const ts = WARSAW_TS.format(new Date(e.ts));
+    const details = Object.entries(e)
+      .filter(([k]) => k !== 'ts' && k !== 'action')
+      .map(([k, v]) => `${k}=${v}`)
+      .join(' ');
+    return `${ts} • ${e.action}${details ? ' · ' + details : ''}`;
+  }).join('\n');
+  await bot.sendMessage(chatId,
+    `🕓 *Журнал, последние ${entries.length}:*\n\`\`\`\n${lines}\n\`\`\``,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+  );
+}
+
 function notifyNewBooking({ name, email, date, time, locale, eventId }) {
   if (!bot || !ownerChatId) return;
 
@@ -521,27 +567,6 @@ const FULL_DAY_NAMES = {
   4: 'Четверг', 5: 'Пятница', 6: 'Суббота'
 };
 
-async function showEditSchedule(chatId) {
-  const buttons = [];
-  for (let dow = 1; dow <= 7; dow++) {
-    const d = dow % 7;
-    const active = !!config.schedule[d];
-    const label = active
-      ? `✅ ${FULL_DAY_NAMES[d]}  ${config.schedule[d].start}–${config.schedule[d].end}`
-      : `❌ ${FULL_DAY_NAMES[d]}`;
-    buttons.push([
-      { text: label, callback_data: `toggleday_${d}` },
-      ...(active ? [{ text: '🕐 Часы', callback_data: `settime_${d}` }] : [])
-    ]);
-  }
-  buttons.push(...backButton());
-
-  await bot.sendMessage(chatId,
-    '⚙️ *Расписание*\n\nНажми на день, чтобы включить/выключить.\nНажми 🕐 чтобы изменить часы.',
-    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
-  );
-}
-
 async function toggleDay(chatId, dow) {
   if (config.schedule[dow]) {
     delete config.schedule[dow];
@@ -551,34 +576,53 @@ async function toggleDay(chatId, dow) {
     audit.log('schedule_open', { dow, start: '10:00', end: '16:00' });
   }
   saveSchedule();
-  await showEditSchedule(chatId);
+  await showSchedule(chatId);
 }
 
 async function promptSetTime(chatId, dow) {
   pendingTime.set(chatId, { dow });
   await bot.sendMessage(chatId,
-    `🕐 *${FULL_DAY_NAMES[dow]}*\n\nВведи время в формате:\n\`10:00-16:00\``,
+    `🕐 *${FULL_DAY_NAMES[dow]}*\n\n` +
+    'Напиши диапазон часов. Подойдут любые формы:\n' +
+    '`10-16`\n`10:00-16:00`\n`8 20`\n`9:30 18:30`',
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
   );
 }
 
+// Forgiving parser: accepts dashes (-, –, —) and bare whitespace as separator,
+// minutes are optional, ASCII spaces collapsed.
+function parseTimeRange(text) {
+  const cleaned = text.trim().replace(/[—–]/g, '-').replace(/\s+/g, ' ');
+  let m = cleaned.match(/^(\d{1,2})(?::(\d{2}))?\s*-\s*(\d{1,2})(?::(\d{2}))?$/);
+  if (!m) m = cleaned.match(/^(\d{1,2})(?::(\d{2}))?\s+(\d{1,2})(?::(\d{2}))?$/);
+  if (!m) return null;
+  const startH = parseInt(m[1], 10);
+  const startM = parseInt(m[2] || '0', 10);
+  const endH = parseInt(m[3], 10);
+  const endM = parseInt(m[4] || '0', 10);
+  if (startH > 23 || endH > 23 || startM > 59 || endM > 59) return null;
+  if (startH * 60 + startM >= endH * 60 + endM) return null;
+  const fmt = (h, mi) => `${String(h).padStart(2, '0')}:${String(mi).padStart(2, '0')}`;
+  return { start: fmt(startH, startM), end: fmt(endH, endM) };
+}
+
 async function handleSetTime(chatId, dow, text) {
-  const match = text.match(/^(\d{1,2}:\d{2})\s*[-–]\s*(\d{1,2}:\d{2})$/);
-  if (!match) {
+  const range = parseTimeRange(text);
+  if (!range) {
     await bot.sendMessage(chatId,
-      '❌ Неправильный формат. Напиши так: `10:00-16:00`',
+      '❌ Не смог распознать. Примеры: `10-16`, `10:00-16:00`, `8 20`',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
     return;
   }
-  config.schedule[dow] = { start: match[1], end: match[2] };
+  config.schedule[dow] = { start: range.start, end: range.end };
   saveSchedule();
-  audit.log('schedule_hours', { dow, start: match[1], end: match[2] });
+  audit.log('schedule_hours', { dow, start: range.start, end: range.end });
   await bot.sendMessage(chatId,
-    `✅ *${FULL_DAY_NAMES[dow]}*: ${match[1]}–${match[2]}`,
+    `✅ *${FULL_DAY_NAMES[dow]}*: ${range.start}-${range.end}`,
     { parse_mode: 'Markdown' }
   );
-  await showEditSchedule(chatId);
+  await showSchedule(chatId);
 }
 
 function notifyBookingFailed({ name, email, date, time, error }) {
