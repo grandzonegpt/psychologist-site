@@ -2791,10 +2791,10 @@ body::after {
   margin-left: 4px;
 }
 .bw-v2__times { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
-/* Free slot. Mirrors .bw-available. */
+/* Base shape: pill, transparent fill, neutral text. */
 .bw-v2__time {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
+  background: transparent;
+  border: 1px solid transparent;
   color: var(--text-primary);
   font-family: var(--font-sans);
   font-weight: 400;
@@ -2806,9 +2806,16 @@ body::after {
   text-align: center;
   line-height: 1.2;
 }
-/* Hover. Mirrors .bw-available:hover. */
-.bw-v2__time:hover { border-color: #C9A961; color: #C9A961; }
-/* Selected. Mirrors .bw-selected. */
+/* Available: outlined, transparent. */
+.bw-v2__time--available {
+  border-color: var(--text-muted);
+}
+.bw-v2__time--available:hover {
+  border-color: #C9A961;
+  color: #C9A961;
+  background: transparent;
+}
+/* Selected: gold-filled. */
 .bw-v2__time--selected,
 .bw-v2__time--selected:hover {
   background: #C9A961;
@@ -2816,13 +2823,108 @@ body::after {
   border-color: #C9A961;
   font-weight: 700;
 }
-/* Taken. Mirrors .bw-past opacity, with line-through. */
+/* Taken: line-through, no border, transparent border keeps vertical alignment. */
 .bw-v2__time--taken {
-  opacity: 0.35;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
   text-decoration: line-through;
   cursor: not-allowed;
   pointer-events: none;
 }
+/* Too-soon: dashed outline, muted, not bookable. */
+.bw-v2__time--too-soon {
+  border: 1px dashed var(--text-muted);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.bw-v2__time--past,
+.bw-v2__time--off-hours { display: none; }
+/* All-taken day label. */
+.bw-v2__all-taken {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-align: center;
+  margin: -4px 0 4px;
+}
+/* Confirmation step: replaces form between slot pick and Stripe. */
+.bw-v2__confirm { margin-top: 28px; }
+.bw-v2__confirm[hidden] { display: none; }
+.bw-v2__confirm-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--text-primary);
+  margin: 0 0 14px;
+}
+.bw-v2__confirm-session,
+.bw-v2__confirm-cancel,
+.bw-v2__confirm-meta {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+.bw-v2__confirm-cancel { color: var(--text-muted); }
+.bw-v2__confirm-meta { color: var(--text-muted); margin-bottom: 16px; }
+.bw-v2__confirm-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.bw-v2__confirm-back,
+.bw-v2__confirm-pay {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.bw-v2__confirm-back {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+.bw-v2__confirm-back:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+.bw-v2__confirm-pay {
+  background: #C9A961;
+  border: 1px solid #C9A961;
+  color: #0a0a0b;
+  font-weight: 700;
+  flex: 1;
+  min-width: 200px;
+}
+.bw-v2__confirm-pay:hover { background: #B89550; border-color: #B89550; }
+.bw-v2__confirm-pay:disabled { opacity: 0.6; cursor: not-allowed; }
+/* API error fallback inside grid. */
+.bw-v2__fallback {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 14px;
+}
+.bw-v2__fallback p { margin: 0 0 14px; line-height: 1.6; }
+.bw-v2__fallback-btn {
+  display: inline-block;
+  background: #C9A961;
+  color: #0a0a0b;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+.bw-v2__fallback-btn:hover { background: #B89550; }
 .bw-v2__form { margin-top: 28px; }
 .bw-v2__form[hidden] { display: none; }
 .bw-v2__form-title {

@@ -93,7 +93,10 @@ app.get('/api/slots', async (req, res) => {
       busySlots = busy.data.calendars[config.calendarId]?.busy || [];
     }
 
-    const result = {};
+    const tooSoonCutoff = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    const days = [];
+    const legacy = {};
+
     for (let d = 0; d < config.daysAhead; d++) {
       const date = new Date(timeMin);
       date.setDate(date.getDate() + d);
@@ -105,28 +108,42 @@ app.get('/api/slots', async (req, res) => {
       // interpretation. warsawDateString handles DST and timezone offset.
       const dateStr = warsawDateString(date);
       const allSlots = generateSlots(daySchedule);
+      const daySlots = [];
+      const availableLegacy = [];
 
-      const available = allSlots.filter(time => {
+      for (const time of allSlots) {
         // Slot times in the schedule are Warsaw clock readings.
         const slotStart = warsawDate(dateStr, time);
         const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
 
-        if (slotStart < now) return false;
+        if (slotStart < now) continue;
 
-        return !busySlots.some(b => {
+        const isBusy = busySlots.some(b => {
           const bStart = new Date(b.start);
           const bEnd = new Date(b.end);
           return slotStart < bEnd && slotEnd > bStart;
         });
-      });
 
-      if (available.length > 0) {
-        result[dateStr] = available;
+        let status;
+        if (isBusy) status = 'taken';
+        else if (slotStart < tooSoonCutoff) status = 'too-soon';
+        else {
+          status = 'available';
+          availableLegacy.push(time);
+        }
+
+        daySlots.push({ time, status });
+      }
+
+      if (daySlots.length > 0) {
+        days.push({ date: dateStr, slots: daySlots });
+        if (availableLegacy.length > 0) legacy[dateStr] = availableLegacy;
       }
     }
 
     res.json({
-      slots: result,
+      days,
+      slots: legacy,
       service: config.serviceName,
       duration: config.slotDuration,
       price: config.price,

@@ -2,6 +2,7 @@
   const API_URL = 'https://booking-api-production-c2ca.up.railway.app';
   const BATCH_SIZE = 4;
   const MOBILE_QUERY = '(max-width: 768px)';
+  const TG_URL = 'https://t.me/aliaksei_therapist';
 
   const i18n = {
     ru: {
@@ -17,13 +18,24 @@
       formTitle: '{dayName}, {day} {date}, {time}, {duration} мин, {price} PLN',
       name: 'Имя',
       email: 'Email',
-      book: 'Записаться',
+      bookContinue: 'Далее',
       loading: 'Загрузка...',
+      loadingSchedule: 'Загружаю расписание...',
       error: 'Ошибка. Попробуй ещё раз.',
       navPrev: 'Раньше',
       navNext: 'Позже',
       bookedTitle: 'Оплата прошла.',
-      bookedBody: 'Подтверждение и ссылка на встречу придут на твой email в течение минуты.'
+      bookedBody: 'Подтверждение и ссылка на встречу придут на твой email в течение минуты.',
+      allTaken: 'все занято',
+      tooSoonHint: 'минимум за 12 часов',
+      apiError: 'Не удалось загрузить расписание. Напиши в Telegram, подберём время вручную.',
+      writeTelegram: 'Написать в Telegram',
+      confirmTitle: 'Подтверждение записи',
+      confirmSession: 'Сессия {dayFull}, {day} {month} в {time}',
+      confirmCancel: 'Бесплатная отмена до {deadlineDate} {deadlineTime}',
+      confirmDuration: 'Сессия {duration} минут · {price} PLN',
+      confirmPay: 'Подтвердить и оплатить →',
+      confirmBack: 'Назад'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -38,13 +50,24 @@
       formTitle: '{dayName}, {day} {date}, {time}, {duration} min, {price} PLN',
       name: 'Imię',
       email: 'Email',
-      book: 'Umów sesję',
+      bookContinue: 'Dalej',
       loading: 'Ładowanie...',
+      loadingSchedule: 'Ładuję terminy...',
       error: 'Błąd. Spróbuj ponownie.',
       navPrev: 'Wcześniej',
       navNext: 'Później',
       bookedTitle: 'Płatność przeszła.',
-      bookedBody: 'Potwierdzenie i link do spotkania przyjdą na twój email w ciągu minuty.'
+      bookedBody: 'Potwierdzenie i link do spotkania przyjdą na twój email w ciągu minuty.',
+      allTaken: 'wszystkie zajęte',
+      tooSoonHint: 'minimum 12 godzin wcześniej',
+      apiError: 'Nie udało się załadować terminów. Napisz na Telegram, ustalimy termin ręcznie.',
+      writeTelegram: 'Napisz na Telegram',
+      confirmTitle: 'Potwierdzenie rezerwacji',
+      confirmSession: 'Sesja {dayFull}, {day} {month} o {time}',
+      confirmCancel: 'Bezpłatne odwołanie do {deadlineDate} {deadlineTime}',
+      confirmDuration: 'Sesja {duration} minut · {price} PLN',
+      confirmPay: 'Potwierdź i opłać →',
+      confirmBack: 'Wstecz'
     }
   };
 
@@ -112,6 +135,8 @@
     return aStr + '. ' + bStr;
   }
 
+  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+
   function init(containerId, locale) {
     const t = i18n[locale] || i18n.ru;
     const container = document.getElementById(containerId);
@@ -134,11 +159,21 @@
           '<form>' +
             '<input type="text" name="name" placeholder="' + t.name + '" required>' +
             '<input type="email" name="email" placeholder="' + t.email + '" required>' +
-            '<button type="submit">' + t.book + '</button>' +
+            '<button type="submit">' + t.bookContinue + '</button>' +
           '</form>' +
         '</div>' +
+        '<div class="bw-v2__confirm" hidden>' +
+          '<div class="bw-v2__confirm-title">' + t.confirmTitle + '</div>' +
+          '<p class="bw-v2__confirm-session"></p>' +
+          '<p class="bw-v2__confirm-cancel"></p>' +
+          '<p class="bw-v2__confirm-meta"></p>' +
+          '<div class="bw-v2__confirm-actions">' +
+            '<button type="button" class="bw-v2__confirm-back">' + t.confirmBack + '</button>' +
+            '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
+          '</div>' +
+        '</div>' +
         '<div class="bw-v2__message" hidden></div>' +
-        '<div class="bw-v2__loading">' + t.loading + '</div>' +
+        '<div class="bw-v2__loading">' + t.loadingSchedule + '</div>' +
       '</div>';
 
     const $widget = container.querySelector('.bw-v2');
@@ -151,34 +186,44 @@
     const $form = container.querySelector('.bw-v2__form');
     const $formTitle = container.querySelector('.bw-v2__form-title');
     const $formEl = $form.querySelector('form');
+    const $confirm = container.querySelector('.bw-v2__confirm');
+    const $confirmSession = container.querySelector('.bw-v2__confirm-session');
+    const $confirmCancel = container.querySelector('.bw-v2__confirm-cancel');
+    const $confirmMeta = container.querySelector('.bw-v2__confirm-meta');
+    const $confirmBack = container.querySelector('.bw-v2__confirm-back');
+    const $confirmPay = container.querySelector('.bw-v2__confirm-pay');
     const $message = container.querySelector('.bw-v2__message');
     const $loading = container.querySelector('.bw-v2__loading');
 
-    let slotsData = {};
-    let availableDays = [];
+    let daysData = [];
     let serviceInfo = { duration: 50, price: 180 };
     let selectedDate = null;
     let selectedTime = null;
+    let pendingName = '';
+    let pendingEmail = '';
     let currentBatchStart = 0;
 
     const isMobile = () => window.matchMedia(MOBILE_QUERY).matches;
 
     function visibleDays() {
-      if (isMobile()) return availableDays;
-      return availableDays.slice(currentBatchStart, currentBatchStart + BATCH_SIZE);
+      if (isMobile()) return daysData;
+      return daysData.slice(currentBatchStart, currentBatchStart + BATCH_SIZE);
     }
 
-    function findFirstFreeSlot() {
-      for (let i = 0; i < availableDays.length; i++) {
-        const d = availableDays[i];
-        const slots = slotsData[d];
-        if (slots && slots.length) return { date: d, time: slots[0] };
+    function findFirstAvailable() {
+      for (let i = 0; i < daysData.length; i++) {
+        const day = daysData[i];
+        for (let j = 0; j < day.slots.length; j++) {
+          if (day.slots[j].status === 'available') {
+            return { date: day.date, time: day.slots[j].time };
+          }
+        }
       }
       return null;
     }
 
     function updateLead() {
-      const first = findFirstFreeSlot();
+      const first = findFirstAvailable();
       if (!first) {
         $lead.textContent = t.leadEmpty;
         return;
@@ -197,7 +242,7 @@
     function updateRange() {
       const days = visibleDays();
       if (!days.length) { $range.textContent = ''; return; }
-      $range.textContent = formatRangeUpper(days[0], days[days.length - 1], t);
+      $range.textContent = formatRangeUpper(days[0].date, days[days.length - 1].date, t);
     }
 
     function updateNavButtons() {
@@ -205,11 +250,16 @@
         const atStart = $grid.scrollLeft <= 1;
         const atEnd = $grid.scrollLeft + $grid.clientWidth >= $grid.scrollWidth - 1;
         $prev.disabled = atStart;
-        $next.disabled = atEnd || availableDays.length === 0;
+        $next.disabled = atEnd || daysData.length === 0;
         return;
       }
       $prev.disabled = currentBatchStart === 0;
-      $next.disabled = currentBatchStart + BATCH_SIZE >= availableDays.length;
+      $next.disabled = currentBatchStart + BATCH_SIZE >= daysData.length;
+    }
+
+    function dayIsAllTaken(day) {
+      if (!day.slots.length) return false;
+      return day.slots.every(function(s) { return s.status === 'taken'; });
     }
 
     function renderGrid() {
@@ -217,20 +267,26 @@
       const cols = isMobile() ? Math.min(days.length, 3) : Math.max(1, Math.min(days.length, BATCH_SIZE));
       $widget.style.setProperty('--bw-columns', cols);
 
-      $grid.innerHTML = days.map(function(date) {
-        const d = parseDate(date);
-        const dayName = isToday(date) ? t.today : t.daysShort[d.getDay()].toUpperCase();
+      $grid.innerHTML = days.map(function(day) {
+        const d = parseDate(day.date);
+        const dayName = isToday(day.date) ? t.today : t.daysShort[d.getDay()].toUpperCase();
         const dateLabel = d.getDate() + ' <em>' + t.monthsGen[d.getMonth()] + '</em>';
-        const slots = slotsData[date] || [];
-        const slotsHtml = slots.map(function(time) {
-          const sel = (date === selectedDate && time === selectedTime) ? ' bw-v2__time--selected' : '';
-          return '<button type="button" class="bw-v2__time' + sel + '" data-date="' + date + '" data-time="' + time + '">' + time + '</button>';
+        const allTaken = dayIsAllTaken(day);
+        const allTakenLabel = allTaken
+          ? '<div class="bw-v2__all-taken">' + t.allTaken + '</div>'
+          : '';
+        const slotsHtml = day.slots.map(function(s) {
+          const isSelected = (day.date === selectedDate && s.time === selectedTime && s.status === 'available');
+          const cls = 'bw-v2__time bw-v2__time--' + s.status + (isSelected ? ' bw-v2__time--selected' : '');
+          const tooltip = s.status === 'too-soon' ? ' title="' + t.tooSoonHint + '"' : '';
+          return '<button type="button" class="' + cls + '" data-date="' + day.date + '" data-time="' + s.time + '" data-status="' + s.status + '"' + tooltip + '>' + s.time + '</button>';
         }).join('');
         return '<div class="bw-v2__column">' +
                  '<div class="bw-v2__day">' +
                    '<span class="bw-v2__day-name">' + dayName + '</span>' +
                    '<span class="bw-v2__day-date">' + dateLabel + '</span>' +
                  '</div>' +
+                 allTakenLabel +
                  '<div class="bw-v2__times">' + slotsHtml + '</div>' +
                '</div>';
       }).join('');
@@ -245,7 +301,7 @@
 
     function onSlotClick(e) {
       const el = e.currentTarget;
-      if (el.classList.contains('bw-v2__time--taken')) {
+      if (el.dataset.status !== 'available') {
         e.preventDefault();
         return;
       }
@@ -263,10 +319,81 @@
         .replace('{time}', selectedTime)
         .replace('{duration}', serviceInfo.duration || 50)
         .replace('{price}', serviceInfo.price || 180);
+
+      // Restore preserved values so "Back" from confirmation keeps state.
+      $formEl.name.value = pendingName;
+      $formEl.email.value = pendingEmail;
       $form.removeAttribute('hidden');
+      $confirm.setAttribute('hidden', '');
       $message.setAttribute('hidden', '');
       trackEvent('slot_selected', { locale: locale, date: selectedDate, time: selectedTime });
     }
+
+    function showConfirm() {
+      const d = parseDate(selectedDate);
+      const [h, m] = selectedTime.split(':').map(Number);
+      const slotStart = new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
+      const deadline = new Date(slotStart.getTime() - 24 * 60 * 60 * 1000);
+
+      $confirmSession.textContent = t.confirmSession
+        .replace('{dayFull}', t.daysFull[d.getDay()])
+        .replace('{day}', d.getDate())
+        .replace('{month}', t.monthsGen[d.getMonth()])
+        .replace('{time}', selectedTime);
+
+      const deadlineDateStr = deadline.getDate() + ' ' + t.monthsGen[deadline.getMonth()];
+      const deadlineTimeStr = pad2(deadline.getHours()) + ':' + pad2(deadline.getMinutes());
+      $confirmCancel.textContent = t.confirmCancel
+        .replace('{deadlineDate}', deadlineDateStr)
+        .replace('{deadlineTime}', deadlineTimeStr);
+
+      $confirmMeta.textContent = t.confirmDuration
+        .replace('{duration}', serviceInfo.duration || 50)
+        .replace('{price}', serviceInfo.price || 180);
+
+      $form.setAttribute('hidden', '');
+      $confirm.removeAttribute('hidden');
+      $message.setAttribute('hidden', '');
+    }
+
+    function backToForm() {
+      $confirm.setAttribute('hidden', '');
+      $form.removeAttribute('hidden');
+      $formEl.name.value = pendingName;
+      $formEl.email.value = pendingEmail;
+    }
+
+    $confirmBack.addEventListener('click', backToForm);
+
+    $confirmPay.addEventListener('click', async function() {
+      if (!selectedDate || !selectedTime || !pendingName || !pendingEmail) {
+        backToForm();
+        return;
+      }
+      $confirmPay.disabled = true;
+      $confirmPay.textContent = t.loading;
+      try {
+        trackEvent('begin_checkout', { currency: 'PLN', value: serviceInfo.price || 180, locale: locale });
+        const attr = getAttribution();
+        const resp = await fetch(API_URL + '/api/book', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.assign({ name: pendingName, email: pendingEmail, date: selectedDate, time: selectedTime, locale: locale }, attr))
+        });
+        const data = await resp.json();
+        if (data.ok && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+        throw new Error(data.error || 'Booking failed');
+      } catch (err) {
+        $message.textContent = t.error;
+        $message.className = 'bw-v2__message bw-v2__message--error';
+        $message.removeAttribute('hidden');
+      }
+      $confirmPay.disabled = false;
+      $confirmPay.textContent = t.confirmPay;
+    });
 
     $prev.addEventListener('click', function() {
       if (isMobile()) {
@@ -284,7 +411,7 @@
         $grid.scrollBy({ left: colWidth * 2, behavior: 'smooth' });
         return;
       }
-      if (currentBatchStart + BATCH_SIZE < availableDays.length) {
+      if (currentBatchStart + BATCH_SIZE < daysData.length) {
         currentBatchStart += BATCH_SIZE;
         renderGrid();
       }
@@ -299,53 +426,58 @@
       renderGrid();
     });
 
-    $formEl.addEventListener('submit', async function(e) {
+    $formEl.addEventListener('submit', function(e) {
       e.preventDefault();
       const name = $formEl.name.value.trim();
       const email = $formEl.email.value.trim();
       if (!name || !email || !selectedDate || !selectedTime) return;
-
-      const $submit = $formEl.querySelector('button[type="submit"]');
-      $submit.disabled = true;
-      $submit.textContent = t.loading;
-
-      try {
-        trackEvent('begin_checkout', { currency: 'PLN', value: serviceInfo.price || 180, locale: locale });
-        const attr = getAttribution();
-        const resp = await fetch(API_URL + '/api/book', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.assign({ name: name, email: email, date: selectedDate, time: selectedTime, locale: locale }, attr))
-        });
-        const data = await resp.json();
-        if (data.ok && data.url) {
-          window.location.href = data.url;
-          return;
-        }
-        throw new Error(data.error || 'Booking failed');
-      } catch (err) {
-        $message.textContent = t.error;
-        $message.className = 'bw-v2__message bw-v2__message--error';
-        $message.removeAttribute('hidden');
-      }
-      $submit.disabled = false;
-      $submit.textContent = t.book;
+      pendingName = name;
+      pendingEmail = email;
+      showConfirm();
     });
+
+    function showApiError() {
+      $widget.classList.add('bw-v2--error');
+      $loading.style.display = 'none';
+      $grid.innerHTML =
+        '<div class="bw-v2__fallback">' +
+          '<p>' + t.apiError + '</p>' +
+          '<a class="bw-v2__fallback-btn" href="' + TG_URL + '" target="_blank" rel="noopener noreferrer">' + t.writeTelegram + '</a>' +
+        '</div>';
+      $lead.textContent = t.leadEmpty;
+      $range.textContent = '';
+      $prev.disabled = true;
+      $next.disabled = true;
+    }
+
+    function normalizeDays(data) {
+      if (Array.isArray(data.days)) return data.days;
+      // Fallback to legacy { slots: { dateStr: [time, ...] } }
+      const map = data.slots || {};
+      return Object.keys(map).sort().map(function(date) {
+        return {
+          date: date,
+          slots: (map[date] || []).map(function(time) { return { time: time, status: 'available' }; })
+        };
+      });
+    }
 
     async function loadSlots() {
       $loading.style.display = 'block';
+      let data;
       try {
         const resp = await fetch(API_URL + '/api/slots');
-        const data = await resp.json();
-        slotsData = data.slots || {};
-        if (data.duration) serviceInfo.duration = data.duration;
-        if (data.price) serviceInfo.price = data.price;
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        data = await resp.json();
       } catch (e) {
-        slotsData = {};
+        showApiError();
+        return;
       }
-      availableDays = Object.keys(slotsData)
-        .filter(function(d) { return slotsData[d] && slotsData[d].length > 0; })
-        .sort();
+
+      if (data.duration) serviceInfo.duration = data.duration;
+      if (data.price) serviceInfo.price = data.price;
+
+      daysData = normalizeDays(data);
       currentBatchStart = 0;
 
       updateLead();
