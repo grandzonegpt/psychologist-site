@@ -2,9 +2,13 @@ node_modules/
 .env
 .env.local
 
-# Bot persistence (per-deploy state, not source)
+# Persistent state (Railway volume contents). When BOOKING_DATA_DIR is
+# unset, these files land next to bot.js / server.js and must not be
+# committed.
 chat.json
 schedule.json
+processed-events.json
+data/
 
 # Reports + scratch outputs
 reports/

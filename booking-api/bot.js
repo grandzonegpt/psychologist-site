@@ -1,11 +1,11 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
-const path = require('path');
 const config = require('./config');
+const dataDir = require('./dataDir');
 const { warsawDate, warsawDayBounds } = require('./tz');
 
-const SCHEDULE_FILE = path.join(__dirname, 'schedule.json');
-const CHAT_FILE = path.join(__dirname, 'chat.json');
+const SCHEDULE_FILE = dataDir.path('schedule.json');
+const CHAT_FILE = dataDir.path('chat.json');
 
 let bot;
 let ownerChatId = null;

@@ -1,10 +1,12 @@
 const express = require('express');
+const fs = require('fs');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const Stripe = require('stripe');
 const { warsawDate, warsawDateString } = require('./tz');
 const config = require('./config');
+const dataDir = require('./dataDir');
 const telegramBot = require('./bot');
 const mailer = require('./mailer');
 const reminders = require('./reminders');
@@ -20,10 +22,32 @@ const allowedOrigins = ['https://levashou.pl', 'https://www.levashou.pl', 'http:
 
 // Stripe retries deliveries on non-2xx (and sometimes on 2xx if they didn't
 // see the ack in time). Without dedup the same event creates two calendar
-// entries. Persistent dedup will land in a follow-up; this in-memory ring
-// closes the common case (retries within seconds-to-minutes).
-const processedWebhookEvents = new Set();
+// entries. Persisted to BOOKING_DATA_DIR so a restart in the middle of
+// Stripe's retry window doesn't reopen the door.
+const PROCESSED_FILE = dataDir.path('processed-events.json');
 const PROCESSED_LIMIT = 1000;
+const processedWebhookEvents = new Set();
+
+function loadProcessedWebhookEvents() {
+  try {
+    if (fs.existsSync(PROCESSED_FILE)) {
+      const arr = JSON.parse(fs.readFileSync(PROCESSED_FILE, 'utf8'));
+      arr.forEach(id => processedWebhookEvents.add(id));
+      console.log(`Webhook dedup: loaded ${arr.length} ids`);
+    }
+  } catch (e) {
+    console.error('Failed to load processed events:', e.message);
+  }
+}
+
+function saveProcessedWebhookEvents() {
+  try {
+    fs.writeFileSync(PROCESSED_FILE, JSON.stringify(Array.from(processedWebhookEvents)));
+  } catch (e) {
+    console.error('Failed to save processed events:', e.message);
+  }
+}
+
 function markWebhookProcessed(eventId) {
   processedWebhookEvents.add(eventId);
   if (processedWebhookEvents.size > PROCESSED_LIMIT) {
@@ -31,7 +55,10 @@ function markWebhookProcessed(eventId) {
     processedWebhookEvents.clear();
     half.forEach(id => processedWebhookEvents.add(id));
   }
+  saveProcessedWebhookEvents();
 }
+
+loadProcessedWebhookEvents();
 
 app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
