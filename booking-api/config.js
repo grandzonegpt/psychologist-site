@@ -5,11 +5,10 @@ module.exports = {
   breakDuration: 10,
   price: 180,
   currency: 'PLN',
-  schedule: {
-    2: { start: '12:00', end: '16:00' },
-    3: { start: '10:00', end: '14:00' },
-    4: { start: '12:00', end: '16:00' }
-  },
+  // Source of truth lives in schedule.json under BOOKING_DATA_DIR and is
+  // mutated by the Telegram bot. Empty here so a fresh deploy without that
+  // file shows nothing rather than misleading legacy defaults.
+  schedule: {},
   daysAhead: 14,
   serviceName: {
     ru: 'Психологическая консультация',
