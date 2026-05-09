@@ -18,6 +18,21 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const allowedOrigins = ['https://levashou.pl', 'https://www.levashou.pl', 'http://localhost:3000', 'http://127.0.0.1:5500'];
 
+// Stripe retries deliveries on non-2xx (and sometimes on 2xx if they didn't
+// see the ack in time). Without dedup the same event creates two calendar
+// entries. Persistent dedup will land in a follow-up; this in-memory ring
+// closes the common case (retries within seconds-to-minutes).
+const processedWebhookEvents = new Set();
+const PROCESSED_LIMIT = 1000;
+function markWebhookProcessed(eventId) {
+  processedWebhookEvents.add(eventId);
+  if (processedWebhookEvents.size > PROCESSED_LIMIT) {
+    const half = Array.from(processedWebhookEvents).slice(PROCESSED_LIMIT / 2);
+    processedWebhookEvents.clear();
+    half.forEach(id => processedWebhookEvents.add(id));
+  }
+}
+
 app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   let event;
@@ -27,6 +42,12 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     console.error('Webhook signature failed:', e.message);
     return res.status(400).send('Invalid signature');
   }
+
+  if (processedWebhookEvents.has(event.id)) {
+    console.log(`Webhook duplicate ignored: ${event.id} (${event.type})`);
+    return res.json({ received: true, deduped: true });
+  }
+  markWebhookProcessed(event.id);
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
