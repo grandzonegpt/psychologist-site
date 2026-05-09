@@ -12,6 +12,7 @@ const mailer = require('./mailer');
 const reminders = require('./reminders');
 const calendarLib = require('./calendar');
 const holds = require('./holds');
+const audit = require('./audit');
 const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
@@ -72,6 +73,7 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
 
   if (processedWebhookEvents.has(event.id)) {
     console.log(`Webhook duplicate ignored: ${event.id} (${event.type})`);
+    audit.log('webhook_dedup', { eventId: event.id, type: event.type });
     return res.json({ received: true, deduped: true });
   }
   markWebhookProcessed(event.id);
@@ -89,9 +91,11 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
       mailer.sendConfirmation({ name, email, date, time, locale, meetLink }).catch(e => console.error('Client email error:', e.message));
       mailer.sendAdminBookingAlert({ name, email, date, time, locale, meetLink }).catch(e => console.error('Admin email error:', e.message));
       console.log(`Booking confirmed: ${name} on ${date} at ${time} (meet: ${meetLink || 'none'})`);
+      audit.log('booking_confirmed', { date, time, locale, eventId, sessionId: session.id });
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
       telegramBot.notifyBookingFailed({ name, email, date, time, error: e.message });
+      audit.log('booking_failed', { date, time, error: e.message, sessionId: session.id });
     }
   } else if (event.type === 'checkout.session.expired') {
     const session = event.data.object;
@@ -99,6 +103,7 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     if (holdEventId) {
       await holds.deleteHold(holdEventId);
       console.log(`Hold released on session expiry: ${holdEventId}`);
+      audit.log('session_expired', { sessionId: session.id, holdEventId });
     }
   }
   res.json({ received: true });
@@ -293,6 +298,7 @@ app.post('/api/book', async (req, res) => {
       cancel_url: `${origin}${returnPage}?booking=cancelled`
     });
 
+    audit.log('book_request', { date, time, locale: locale || 'ru', sessionId: session.id, holdEventId });
     res.json({ ok: true, url: session.url });
   } catch (e) {
     console.error('Book error:', e.message);
@@ -300,6 +306,7 @@ app.post('/api/book', async (req, res) => {
       // Stripe creation failed after we placed a hold. Roll back.
       await holds.deleteHold(holdEventId);
     }
+    audit.log('book_error', { error: e.message });
     res.status(500).json({ error: 'Booking failed' });
   }
 });

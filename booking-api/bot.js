@@ -2,6 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const config = require('./config');
 const dataDir = require('./dataDir');
+const audit = require('./audit');
 const { warsawDate, warsawDayBounds } = require('./tz');
 
 const SCHEDULE_FILE = dataDir.path('schedule.json');
@@ -337,6 +338,7 @@ async function blockDay(chatId, dateStr, calendar) {
     }
   });
 
+  audit.log('block_day', { date: dateStr });
   await bot.sendMessage(chatId,
     `✅ *${formatDate(dateStr)}* заблокирован.\nСлоты на этот день больше не будут показываться.`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
@@ -420,6 +422,7 @@ async function blockHour(chatId, dateStr, time, calendar) {
     }
   });
 
+  audit.log('block_hour', { date: dateStr, time });
   await bot.sendMessage(chatId,
     `✅ *${formatDate(dateStr)}, ${time}* заблокирован.\nЭтот слот больше не будет показываться на сайте.`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
@@ -480,6 +483,7 @@ async function unblockEvent(chatId, eventId, calendar) {
 
   try {
     await calendar.events.delete({ calendarId: config.calendarId, eventId });
+    audit.log('unblock', { eventId });
     await bot.sendMessage(chatId, '✅ Разблокировано. Слоты снова доступны.',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
@@ -541,8 +545,10 @@ async function showEditSchedule(chatId) {
 async function toggleDay(chatId, dow) {
   if (config.schedule[dow]) {
     delete config.schedule[dow];
+    audit.log('schedule_close', { dow });
   } else {
     config.schedule[dow] = { start: '10:00', end: '16:00' };
+    audit.log('schedule_open', { dow, start: '10:00', end: '16:00' });
   }
   saveSchedule();
   await showEditSchedule(chatId);
@@ -567,6 +573,7 @@ async function handleSetTime(chatId, dow, text) {
   }
   config.schedule[dow] = { start: match[1], end: match[2] };
   saveSchedule();
+  audit.log('schedule_hours', { dow, start: match[1], end: match[2] });
   await bot.sendMessage(chatId,
     `✅ *${FULL_DAY_NAMES[dow]}*: ${match[1]}–${match[2]}`,
     { parse_mode: 'Markdown' }

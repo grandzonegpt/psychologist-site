@@ -6,6 +6,7 @@
 
 const calendarLib = require('./calendar');
 const config = require('./config');
+const audit = require('./audit');
 const { warsawDate } = require('./tz');
 
 const HOLD_PREFIX = 'HOLD:';
@@ -53,6 +54,7 @@ async function createHold(date, time) {
     }
   });
 
+  audit.log('hold_create', { date, time, eventId: event.data.id });
   return event.data.id;
 }
 
@@ -61,6 +63,7 @@ async function deleteHold(eventId) {
   if (!cal || !eventId) return;
   try {
     await cal.events.delete({ calendarId: config.calendarId, eventId });
+    audit.log('hold_delete', { eventId });
   } catch (e) {
     if (e.code !== 404 && e.code !== 410) {
       console.error('deleteHold:', eventId, e.message);
@@ -101,7 +104,10 @@ async function cleanupStaleHolds() {
       console.error('cleanupStaleHolds:', ev.id, e.message);
     }
   }
-  if (deleted > 0) console.log(`Holds cleaned up: ${deleted}`);
+  if (deleted > 0) {
+    console.log(`Holds cleaned up: ${deleted}`);
+    audit.log('hold_cleanup', { count: deleted });
+  }
   return deleted;
 }
 
