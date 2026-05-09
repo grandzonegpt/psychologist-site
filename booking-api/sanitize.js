@@ -15,7 +15,7 @@ const LOCALE_RE = /^(ru|pl)$/;
 
 function validateBooking({ name, email, date, time, locale }) {
   if (!name || typeof name !== 'string' || name.length > 100) return 'Invalid name';
-  if (!email || !EMAIL_RE.test(email)) return 'Invalid email';
+  if (!email || typeof email !== 'string' || email.length > 200 || !EMAIL_RE.test(email)) return 'Invalid email';
   if (!date || !DATE_RE.test(date)) return 'Invalid date';
   if (!time || !TIME_RE.test(time)) return 'Invalid time';
 
