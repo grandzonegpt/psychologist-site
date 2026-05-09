@@ -663,7 +663,7 @@ function notifyContact({ name, email, message, locale }) {
   if (!bot || !ownerChatId) return;
 
   const safe = (s) => String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
-  const trimmedMsg = message ? (message.length > 600 ? message.slice(0, 600) + '…' : message) : '—';
+  const trimmedMsg = message ? (message.length > 600 ? message.slice(0, 600) + '…' : message) : '(пусто)';
 
   bot.sendMessage(ownerChatId,
     '✉️ *Новая заявка с сайта*\n\n' +
