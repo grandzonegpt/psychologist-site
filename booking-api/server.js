@@ -9,6 +9,7 @@ const telegramBot = require('./bot');
 const mailer = require('./mailer');
 const reminders = require('./reminders');
 const calendarLib = require('./calendar');
+const holds = require('./holds');
 const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
@@ -29,8 +30,12 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    const { name, email, date, time, locale } = session.metadata;
+    const { name, email, date, time, locale, holdEventId } = session.metadata;
     try {
+      // Drop the provisional hold first so the slot is free for the
+      // real booking event. createCalendarEvent doesn't tolerate a
+      // duplicate-time event in the same calendar.
+      if (holdEventId) await holds.deleteHold(holdEventId);
       const { eventId, meetLink } = await calendarLib.createCalendarEvent({ name, email, date, time, locale });
       telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId, meetLink });
       mailer.sendConfirmation({ name, email, date, time, locale, meetLink }).catch(e => console.error('Client email error:', e.message));
@@ -39,6 +44,13 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
       telegramBot.notifyBookingFailed({ name, email, date, time, error: e.message });
+    }
+  } else if (event.type === 'checkout.session.expired') {
+    const session = event.data.object;
+    const holdEventId = session.metadata?.holdEventId;
+    if (holdEventId) {
+      await holds.deleteHold(holdEventId);
+      console.log(`Hold released on session expiry: ${holdEventId}`);
     }
   }
   res.json({ received: true });
@@ -156,12 +168,45 @@ app.get('/api/slots', async (req, res) => {
 });
 
 app.post('/api/book', async (req, res) => {
+  let holdEventId = null;
   try {
     const { name, email, date, time, locale } = req.body;
     const validationError = validateBooking({ name, email, date, time, locale });
     if (validationError) {
       return res.status(400).json({ error: validationError });
     }
+
+    // Schedule check: dow must be a working day, time must be a generated slot.
+    const dow = new Date(`${date}T00:00:00`).getDay();
+    const daySchedule = config.schedule[dow];
+    if (!daySchedule) {
+      return res.status(400).json({ error: 'day_not_working' });
+    }
+    if (!generateSlots(daySchedule).includes(time)) {
+      return res.status(400).json({ error: 'invalid_slot' });
+    }
+
+    // Past + too-soon checks (must mirror /api/slots policy).
+    const slotStart = warsawDate(date, time);
+    const now = new Date();
+    if (slotStart < now) {
+      return res.status(400).json({ error: 'past_slot' });
+    }
+    const tooSoonCutoff = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    if (slotStart < tooSoonCutoff) {
+      return res.status(400).json({ error: 'too_soon' });
+    }
+
+    // Race-window guard: someone may have just booked this slot.
+    const free = await holds.isSlotFree(date, time);
+    if (!free) {
+      return res.status(409).json({ error: 'slot_taken' });
+    }
+
+    // Place a provisional hold so a parallel /api/book sees the slot busy.
+    // The hold is replaced with a real booking event on payment success
+    // (checkout.session.completed) or deleted on payment expiry.
+    holdEventId = await holds.createHold(date, time);
 
     const serviceName = config.serviceName[locale] || config.serviceName.ru;
     // SECURITY: never trust req.headers.origin — client-controlled, used in
@@ -178,9 +223,14 @@ app.post('/api/book', async (req, res) => {
       referrer_page: truncate(req.body.referrer_page)
     };
 
+    // 31 minutes is just over Stripe's 30-minute minimum for expires_at.
+    // Keeps holds from lingering long if the user abandons checkout.
+    const expiresAt = Math.floor(Date.now() / 1000) + 31 * 60;
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card', 'p24', 'blik'],
       mode: 'payment',
+      expires_at: expiresAt,
       line_items: [{
         price_data: {
           currency: 'pln',
@@ -190,7 +240,7 @@ app.post('/api/book', async (req, res) => {
         quantity: 1
       }],
       customer_email: email,
-      metadata: { name, email, date, time, locale: locale || 'ru', ...attribution },
+      metadata: { name, email, date, time, locale: locale || 'ru', holdEventId, ...attribution },
       success_url: `${origin}${returnPage}?booking=success`,
       cancel_url: `${origin}${returnPage}?booking=cancelled`
     });
@@ -198,6 +248,10 @@ app.post('/api/book', async (req, res) => {
     res.json({ ok: true, url: session.url });
   } catch (e) {
     console.error('Book error:', e.message);
+    if (holdEventId) {
+      // Stripe creation failed after we placed a hold. Roll back.
+      await holds.deleteHold(holdEventId);
+    }
     res.status(500).json({ error: 'Booking failed' });
   }
 });

@@ -1,8 +1,10 @@
 const config = require('./config');
 const { Resend } = require('resend');
 const { escapeHtml } = require('./sanitize');
+const holds = require('./holds');
 
 const CHECK_INTERVAL = 5 * 60 * 1000;
+const HOLD_CLEANUP_INTERVAL = 30 * 60 * 1000;
 const REMINDER_MINUTES = 60;
 const sentReminders = new Set();
 
@@ -40,6 +42,11 @@ const templates = {
 };
 
 function start(calendar) {
+  // Hold cleanup runs even without Resend key, since it depends only on
+  // Google Calendar.
+  setInterval(() => holds.cleanupStaleHolds().catch(e => console.error('Hold cleanup:', e.message)), HOLD_CLEANUP_INTERVAL);
+  setTimeout(() => holds.cleanupStaleHolds().catch(e => console.error('Hold cleanup:', e.message)), 60000);
+
   if (!process.env.RESEND_API_KEY) {
     console.log('Reminders: no Resend key, skipping');
     return;
@@ -68,7 +75,10 @@ async function checkUpcoming(calendar) {
     });
 
     const items = (events.data.items || []).filter(ev =>
-      ev.summary && !ev.summary.toLowerCase().includes('block') && ev.description
+      ev.summary &&
+      !ev.summary.toLowerCase().includes('block') &&
+      !ev.summary.startsWith(holds.HOLD_PREFIX) &&
+      ev.description
     );
 
     for (const ev of items) {

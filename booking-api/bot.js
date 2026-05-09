@@ -267,7 +267,10 @@ async function showWeekBookings(chatId, calendar) {
     timeZone: config.timezone
   });
 
-  const items = events.data.items || [];
+  // Hide HOLD events: they're transient checkout placeholders, not real bookings.
+  const items = (events.data.items || []).filter(ev =>
+    !(ev.summary && ev.summary.startsWith('HOLD:'))
+  );
   if (items.length === 0) {
     await bot.sendMessage(chatId, '📋 *Записи на неделю:*\n\nПусто, записей нет 🏖',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
