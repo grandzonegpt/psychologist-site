@@ -17,6 +17,11 @@ const monitor = require('./monitor');
 const { validateBooking, validateContact } = require('./sanitize');
 
 const app = express();
+// Railway/Heroku/Cloudflare put us behind a reverse proxy. Without trust proxy,
+// express-rate-limit sees every request as coming from the proxy IP and the
+// rate limit applies globally instead of per-client. '1' trusts a single hop
+// upstream, which matches Railway's edge.
+app.set('trust proxy', 1);
 app.use(helmet());
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
