@@ -11,6 +11,20 @@ const CHAT_FILE = dataDir.path('chat.json');
 let bot;
 let ownerChatId = null;
 
+// Authorization. If BOOKING_OWNER_CHAT_ID env is set, only that chat id is
+// accepted. Otherwise, the first /start wins and subsequent /starts from
+// different chats are silently ignored (first-come lockout). Without this
+// guard, anyone who finds the bot username can send /start, become owner,
+// and manage the schedule + audit log.
+const ALLOWED_OWNER = process.env.BOOKING_OWNER_CHAT_ID
+  ? Number(process.env.BOOKING_OWNER_CHAT_ID)
+  : null;
+
+function isAuthorized(chatId) {
+  if (ALLOWED_OWNER) return chatId === ALLOWED_OWNER;
+  return ownerChatId !== null && chatId === ownerChatId;
+}
+
 function loadOwnerChatId() {
   try {
     if (fs.existsSync(CHAT_FILE)) {
@@ -98,6 +112,14 @@ function init(calendar) {
   console.log('Telegram bot started');
 
   bot.onText(/\/start/, (msg) => {
+    if (ALLOWED_OWNER && msg.chat.id !== ALLOWED_OWNER) {
+      console.warn(`Bot: rejected /start from unauthorized chat ${msg.chat.id}`);
+      return;
+    }
+    if (!ALLOWED_OWNER && ownerChatId !== null && ownerChatId !== msg.chat.id) {
+      console.warn(`Bot: rejected /start from non-owner chat ${msg.chat.id} (owner=${ownerChatId})`);
+      return;
+    }
     ownerChatId = msg.chat.id;
     saveOwnerChatId(ownerChatId);
     bot.sendMessage(msg.chat.id,
@@ -107,12 +129,17 @@ function init(calendar) {
   });
 
   bot.onText(/^\/log(?:\s+(\d+))?$/, (msg, m) => {
+    if (!isAuthorized(msg.chat.id)) return;
     const n = m && m[1] ? Math.min(parseInt(m[1], 10), 50) : 20;
     showAuditLog(msg.chat.id, n);
   });
 
   bot.on('callback_query', async (query) => {
     const chatId = query.message.chat.id;
+    if (!isAuthorized(chatId)) {
+      bot.answerCallbackQuery(query.id);
+      return;
+    }
     const data = query.data;
 
     try {
@@ -170,6 +197,7 @@ function init(calendar) {
   bot.on('message', async (msg) => {
     if (!msg.text || msg.text.startsWith('/')) return;
     const chatId = msg.chat.id;
+    if (!isAuthorized(chatId)) return;
 
     const timeInput = pendingTime.get(chatId);
     if (timeInput) {
