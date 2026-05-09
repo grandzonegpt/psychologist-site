@@ -43,8 +43,13 @@ function loadProcessedWebhookEvents() {
 }
 
 function saveProcessedWebhookEvents() {
+  // Atomic write: tmp + rename. Without this, a crash mid-fsync could leave
+  // corrupted JSON, the next restart would load 0 events, and a Stripe retry
+  // would create a duplicate calendar entry that the monitor wouldn't catch.
+  const tmp = PROCESSED_FILE + '.tmp';
   try {
-    fs.writeFileSync(PROCESSED_FILE, JSON.stringify(Array.from(processedWebhookEvents)));
+    fs.writeFileSync(tmp, JSON.stringify(Array.from(processedWebhookEvents)));
+    fs.renameSync(tmp, PROCESSED_FILE);
   } catch (e) {
     console.error('Failed to save processed events:', e.message);
   }
