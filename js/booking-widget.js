@@ -29,6 +29,7 @@
       allTaken: 'все занято',
       tooSoonHint: 'минимум за 12 часов',
       apiError: 'Не удалось загрузить расписание. Напиши в Telegram, подберём время вручную.',
+      slotTaken: 'Этот слот только что заняли. Обнови страницу и выбери другое время.',
       writeTelegram: 'Написать в Telegram',
       confirmTitle: 'Подтверждение записи',
       confirmSession: 'Сессия {dayFull}, {day} {month} в {time}',
@@ -61,6 +62,7 @@
       allTaken: 'wszystkie zajęte',
       tooSoonHint: 'minimum 12 godzin wcześniej',
       apiError: 'Nie udało się załadować terminów. Napisz na Telegram, ustalimy termin ręcznie.',
+      slotTaken: 'Ten termin właśnie został zarezerwowany. Odśwież stronę i wybierz inny.',
       writeTelegram: 'Napisz na Telegram',
       confirmTitle: 'Potwierdzenie rezerwacji',
       confirmSession: 'Sesja {dayFull}, {day} {month} o {time}',
@@ -380,12 +382,16 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(Object.assign({ name: pendingName, email: pendingEmail, date: selectedDate, time: selectedTime, locale: locale }, attr))
         });
-        const data = await resp.json();
+        const data = await resp.json().catch(function() { return {}; });
         if (data.ok && data.url) {
           window.location.href = data.url;
           return;
         }
-        throw new Error(data.error || 'Booking failed');
+        // 409 means the slot was just taken by a parallel booking.
+        const slotTaken = resp.status === 409 || data.error === 'slot_taken';
+        $message.textContent = slotTaken ? t.slotTaken : t.error;
+        $message.className = 'bw-v2__message bw-v2__message--error';
+        $message.removeAttribute('hidden');
       } catch (err) {
         $message.textContent = t.error;
         $message.className = 'bw-v2__message bw-v2__message--error';
