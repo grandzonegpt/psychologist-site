@@ -75,6 +75,22 @@ function saveSchedule() {
 
 loadSchedule();
 
+// bookingEvents accumulates entries on every confirmed payment (one per webhook)
+// and is only deleted on the "Send Meet link" button press. Operators may not
+// click that button ever (Calendar invite already includes the Meet link), so
+// the Map would otherwise grow unbounded across the deploy lifetime. Hourly
+// sweep with 7-day TTL: the button is meaningful only while the session is
+// still upcoming, and 7 days covers the longest expected booking horizon.
+const BOOKING_EVENTS_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+setInterval(() => {
+  const cutoff = Date.now() - BOOKING_EVENTS_TTL_MS;
+  for (const [k, v] of bookingEvents) {
+    if (v && typeof v.addedAt === 'number' && v.addedAt < cutoff) {
+      bookingEvents.delete(k);
+    }
+  }
+}, 60 * 60 * 1000);
+
 const DAY_NAMES = {
   0: 'Вс', 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб'
 };
@@ -576,7 +592,7 @@ function notifyNewBooking({ name, email, date, time, locale, eventId }) {
   if (!bot || !ownerChatId) return;
 
   const bookingId = `${date}_${time}_${Date.now()}`;
-  bookingEvents.set(bookingId, { name, email, date, time, locale, eventId });
+  bookingEvents.set(bookingId, { name, email, date, time, locale, eventId, addedAt: Date.now() });
 
   bot.sendMessage(ownerChatId,
     '🔔 *Новая запись!*\n\n' +
