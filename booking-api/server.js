@@ -358,15 +358,6 @@ app.post('/api/contact', async (req, res) => {
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// TEMP: one-shot Sentry pipeline check. Removed in the immediately following
-// commit, so this endpoint is only reachable for a few minutes during the
-// deploy that adds it.
-app.get('/api/sentry-test', (req, res) => {
-  const err = new Error('Sentry pipeline test');
-  sentry.captureException(err, { phase: 'sentry_pipeline_test', triggeredAt: new Date().toISOString() });
-  res.json({ ok: true, sentryEnabled: sentry.enabled });
-});
-
 // Sentry's express error handler must come after all routes. It catches any
 // unhandled exception thrown inside a handler and forwards it to Sentry,
 // then chains to the default Express handler. No-op if Sentry is not init'd.
