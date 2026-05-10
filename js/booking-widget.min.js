@@ -33,10 +33,14 @@
       writeTelegram: 'Написать в Telegram',
       confirmTitle: 'Подтверждение записи',
       confirmSession: 'Сессия {dayFull}, {day} {month} в {time}',
-      confirmCancel: 'Бесплатная отмена до {deadlineDate} {deadlineTime}',
+      confirmCancel: 'Бесплатная отмена за 24 часа до сессии',
       confirmDuration: 'Сессия {duration} минут · {price} PLN',
       confirmPay: 'Подтвердить и оплатить →',
-      changeTime: 'изменить время'
+      changeTime: 'изменить время',
+      cancelDetailsTitle: 'Подробнее об отмене',
+      cancelDetailsP1: 'Отменить или перенести сессию без потери оплаты можно за 24 часа до её начала. Если отменяешь позже, оплата сохраняется: это время уже было зарезервировано для тебя.',
+      cancelDetailsP2: 'Если отменяю я, ты получаешь полный возврат или можешь выбрать новое время.',
+      cancelDetailsP3: 'Болезнь, форс-мажор и другие исключительные ситуации обсуждаем отдельно. Напиши мне, разберёмся.'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -66,10 +70,14 @@
       writeTelegram: 'Napisz na Telegram',
       confirmTitle: 'Potwierdzenie rezerwacji',
       confirmSession: 'Sesja {dayFull}, {day} {month} o {time}',
-      confirmCancel: 'Bezpłatne odwołanie do {deadlineDate} {deadlineTime}',
+      confirmCancel: 'Bezpłatna anulacja do 24 godzin przed sesją',
       confirmDuration: 'Sesja {duration} minut · {price} PLN',
       confirmPay: 'Potwierdź i opłać →',
-      changeTime: 'zmień godzinę'
+      changeTime: 'zmień godzinę',
+      cancelDetailsTitle: 'Więcej o anulacji',
+      cancelDetailsP1: 'Sesję można odwołać lub przełożyć bez utraty opłaty na 24 godziny przed jej rozpoczęciem. Przy późniejszym odwołaniu opłata zostaje, ponieważ ten czas był już zarezerwowany dla Ciebie.',
+      cancelDetailsP2: 'Jeśli to ja odwołuję sesję, dostajesz pełny zwrot albo możesz wybrać nowy termin.',
+      cancelDetailsP3: 'Choroba, siła wyższa i inne wyjątkowe sytuacje omawiamy osobno. Napisz do mnie, znajdziemy rozwiązanie.'
     }
   };
 
@@ -137,8 +145,6 @@
     return aStr + '. ' + bStr;
   }
 
-  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
-
   function init(containerId, locale) {
     const t = i18n[locale] || i18n.ru;
     const container = document.getElementById(containerId);
@@ -168,9 +174,17 @@
         '<div class="bw-v2__confirm" hidden>' +
           '<div class="bw-v2__confirm-title">' + t.confirmTitle + '</div>' +
           '<p class="bw-v2__confirm-session"></p>' +
-          '<p class="bw-v2__confirm-cancel"></p>' +
           '<p class="bw-v2__confirm-meta"></p>' +
+          '<p class="bw-v2__confirm-cancel"></p>' +
           '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
+          '<details class="bw-v2__cancel-details">' +
+            '<summary class="bw-v2__cancel-details-summary">' + t.cancelDetailsTitle + '</summary>' +
+            '<div class="bw-v2__cancel-details-body">' +
+              '<p>' + t.cancelDetailsP1 + '</p>' +
+              '<p>' + t.cancelDetailsP2 + '</p>' +
+              '<p>' + t.cancelDetailsP3 + '</p>' +
+            '</div>' +
+          '</details>' +
         '</div>' +
         '<div class="bw-v2__message" hidden></div>' +
         '<div class="bw-v2__loading">' + t.loadingSchedule + '</div>' +
@@ -345,9 +359,6 @@
 
     function showConfirm() {
       const d = parseDate(selectedDate);
-      const [h, m] = selectedTime.split(':').map(Number);
-      const slotStart = new Date(d.getFullYear(), d.getMonth(), d.getDate(), h, m);
-      const deadline = new Date(slotStart.getTime() - 24 * 60 * 60 * 1000);
 
       $confirmSession.textContent = t.confirmSession
         .replace('{dayFull}', t.daysFull[d.getDay()])
@@ -355,11 +366,7 @@
         .replace('{month}', t.monthsGen[d.getMonth()])
         .replace('{time}', selectedTime);
 
-      const deadlineDateStr = deadline.getDate() + ' ' + t.monthsGen[deadline.getMonth()];
-      const deadlineTimeStr = pad2(deadline.getHours()) + ':' + pad2(deadline.getMinutes());
-      $confirmCancel.textContent = t.confirmCancel
-        .replace('{deadlineDate}', deadlineDateStr)
-        .replace('{deadlineTime}', deadlineTimeStr);
+      $confirmCancel.textContent = t.confirmCancel;
 
       $confirmMeta.textContent = t.confirmDuration
         .replace('{duration}', serviceInfo.duration || 50)
