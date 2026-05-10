@@ -6,7 +6,10 @@ const holds = require('./holds');
 const CHECK_INTERVAL = 5 * 60 * 1000;
 const HOLD_CLEANUP_INTERVAL = 30 * 60 * 1000;
 const REMINDER_MINUTES = 60;
-const sentReminders = new Set();
+// id -> timestamp(ms). Pruned every cycle so the in-memory ledger does not
+// grow without bound across long-running deploys.
+const sentReminders = new Map();
+const SENT_TTL_MS = 48 * 60 * 60 * 1000;
 
 let resend;
 
@@ -63,6 +66,13 @@ async function checkUpcoming(calendar) {
 
   try {
     const now = new Date();
+    // Prune entries older than SENT_TTL_MS. The reminder window closes 50 min
+    // before slot start; once an event is in the past, we will never re-send,
+    // so dropping its id is safe.
+    const cutoff = now.getTime() - SENT_TTL_MS;
+    for (const [id, ts] of sentReminders) {
+      if (ts < cutoff) sentReminders.delete(id);
+    }
     const soon = new Date(now.getTime() + REMINDER_MINUTES * 60000);
 
     const events = await calendar.events.list({
@@ -110,7 +120,7 @@ async function checkUpcoming(calendar) {
         html: template.html
       });
 
-      sentReminders.add(ev.id);
+      sentReminders.set(ev.id, Date.now());
       console.log(`Reminder sent to ${email} for ${time}`);
     }
   } catch (e) {
