@@ -1452,8 +1452,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
   box-shadow: none;
 }
 .gcal-fallback:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
-.booking-note { font-size: 13px; color: var(--text-muted); margin: 0 auto 12px; max-width: 560px; }
-.booking-note:last-of-type { margin-bottom: 32px; }
 
 /* Free intro block: full-bleed editorial band, breaks the section rhythm */
 .free-intro {
@@ -1605,7 +1603,6 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .booking-col { text-align: left; }
 .booking-col .price-strip { display: inline-block; margin-bottom: 24px; }
 .booking-col .gcal-host { display: block; margin: 4px 0 20px; }
-.booking-col .booking-note { margin: 0 0 32px; max-width: none; }
 .booking-col .refund-box { margin-bottom: 0; }
 .booking-col-title {
   font-family: var(--font-serif);
@@ -2908,6 +2905,41 @@ body::after {
 }
 .bw-v2__confirm-pay:hover { background: #B89550; border-color: #B89550; }
 .bw-v2__confirm-pay:disabled { opacity: 0.6; cursor: not-allowed; }
+/* Cancellation policy: collapsed accordion under the CTA. */
+.bw-v2__cancel-details {
+  margin: 12px 0 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.bw-v2__cancel-details-summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 8px 0;
+  color: var(--text-muted);
+  transition: color 0.25s ease;
+  user-select: none;
+}
+.bw-v2__cancel-details-summary::-webkit-details-marker { display: none; }
+.bw-v2__cancel-details-summary::before {
+  content: '+';
+  display: inline-block;
+  width: 16px;
+  text-align: center;
+  margin-right: 4px;
+}
+.bw-v2__cancel-details[open] .bw-v2__cancel-details-summary::before {
+  content: '\2212';
+}
+.bw-v2__cancel-details-summary:hover { color: var(--text-primary); }
+.bw-v2__cancel-details-body {
+  padding: 4px 0 8px 20px;
+}
+.bw-v2__cancel-details-body p {
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+.bw-v2__cancel-details-body p:last-child { margin-bottom: 0; }
 /* API error fallback inside grid. */
 .bw-v2__fallback {
   text-align: center;
