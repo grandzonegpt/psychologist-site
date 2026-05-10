@@ -12,16 +12,23 @@ app.disable('x-powered-by');
 // site. CSP keeps 'unsafe-inline' on script-src because the home page
 // already has inline GA4 + Consent Mode v2 + theme-switch script; moving
 // to nonces or hashes is a separate hardening pass.
+// Tracking scripts loaded conditionally in main.js after cookie consent:
+// Microsoft Clarity (clarity.ms), Meta Pixel (connect.facebook.net + pixel
+// posts to facebook.com), LinkedIn Insight (snap.licdn.com + px.ads.linkedin.com).
+// Without these in the allow-list, accepting cookies silently fails on CSP.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://snap.licdn.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net",
-  "connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://booking-api-production-c2ca.up.railway.app",
+  "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
+  "connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://booking-api-production-c2ca.up.railway.app https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self' https://www.mollie.com",
+  // form-action 'self' only: Stripe Checkout is a JS redirect (window.location),
+  // not a cross-origin form submit, so checkout.stripe.com is not needed here.
+  // Earlier 'https://www.mollie.com' was leftover from another project.
+  "form-action 'self'",
   "frame-ancestors 'none'",
   "upgrade-insecure-requests",
 ].join('; ');
