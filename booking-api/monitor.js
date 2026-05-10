@@ -87,6 +87,26 @@ async function check() {
       );
 
       if (realEvents.length === 0) {
+        // Distinguish webhook failure ("paid, no event" -> alert) from operator
+        // cancellation ("paid, refunded, event deleted" -> suppress). Without
+        // this check, every refund issued via Stripe dashboard or via API
+        // triggers a false missing-booking alert until the session ages out
+        // of LOOKBACK_MS.
+        let refunded = false;
+        if (s.payment_intent) {
+          try {
+            const pi = await stripe.paymentIntents.retrieve(s.payment_intent, { expand: ['latest_charge'] });
+            if (pi.latest_charge && pi.latest_charge.refunded) refunded = true;
+          } catch (e) {
+            console.error('Monitor: PI lookup failed for', s.id, e.message);
+          }
+        }
+        if (refunded) {
+          audit.log('monitor_skip_refunded', { sessionId: s.id, date, time });
+          alertedSessions.add(s.id);
+          saveAlerted();
+          continue;
+        }
         // Paid but no real event in calendar: webhook failure or processing error.
         if (bot && typeof bot.notifyMissingBooking === 'function') {
           bot.notifyMissingBooking({ name, email, date, time, sessionId: s.id });
