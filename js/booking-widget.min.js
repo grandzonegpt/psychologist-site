@@ -35,7 +35,8 @@
       confirmSession: 'Сессия {dayFull}, {day} {month} в {time}',
       confirmCancel: 'Бесплатная отмена до {deadlineDate} {deadlineTime}',
       confirmDuration: 'Сессия {duration} минут · {price} PLN',
-      confirmPay: 'Подтвердить и оплатить →'
+      confirmPay: 'Подтвердить и оплатить →',
+      changeTime: 'изменить время'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -67,7 +68,8 @@
       confirmSession: 'Sesja {dayFull}, {day} {month} o {time}',
       confirmCancel: 'Bezpłatne odwołanie do {deadlineDate} {deadlineTime}',
       confirmDuration: 'Sesja {duration} minut · {price} PLN',
-      confirmPay: 'Potwierdź i opłać →'
+      confirmPay: 'Potwierdź i opłać →',
+      changeTime: 'zmień godzinę'
     }
   };
 
@@ -154,6 +156,7 @@
           '</div>' +
         '</header>' +
         '<div class="bw-v2__grid"></div>' +
+        '<button type="button" class="bw-v2__change-time" hidden>' + t.changeTime + '</button>' +
         '<div class="bw-v2__form" hidden>' +
           '<div class="bw-v2__form-title"></div>' +
           '<form>' +
@@ -188,6 +191,7 @@
     const $confirmCancel = container.querySelector('.bw-v2__confirm-cancel');
     const $confirmMeta = container.querySelector('.bw-v2__confirm-meta');
     const $confirmPay = container.querySelector('.bw-v2__confirm-pay');
+    const $changeTime = container.querySelector('.bw-v2__change-time');
     const $message = container.querySelector('.bw-v2__message');
     const $loading = container.querySelector('.bw-v2__loading');
 
@@ -295,10 +299,24 @@
       updateNavButtons();
     }
 
+    function deselectSlot() {
+      selectedDate = null;
+      selectedTime = null;
+      $grid.querySelectorAll('.bw-v2__time--selected').forEach(function(s) { s.classList.remove('bw-v2__time--selected'); });
+      $form.setAttribute('hidden', '');
+      $confirm.setAttribute('hidden', '');
+      $message.setAttribute('hidden', '');
+      $changeTime.setAttribute('hidden', '');
+    }
+
     function onSlotClick(e) {
       const el = e.currentTarget;
       if (el.dataset.status !== 'available') {
         e.preventDefault();
+        return;
+      }
+      if (el.classList.contains('bw-v2__time--selected')) {
+        deselectSlot();
         return;
       }
       selectedDate = el.dataset.date;
@@ -316,12 +334,12 @@
         .replace('{duration}', serviceInfo.duration || 50)
         .replace('{price}', serviceInfo.price || 180);
 
-      // Restore preserved values so "Back" from confirmation keeps state.
       $formEl.name.value = pendingName;
       $formEl.email.value = pendingEmail;
       $form.removeAttribute('hidden');
       $confirm.setAttribute('hidden', '');
       $message.setAttribute('hidden', '');
+      $changeTime.removeAttribute('hidden');
       trackEvent('slot_selected', { locale: locale, date: selectedDate, time: selectedTime });
     }
 
@@ -358,6 +376,8 @@
       $formEl.name.value = pendingName;
       $formEl.email.value = pendingEmail;
     }
+
+    $changeTime.addEventListener('click', deselectSlot);
 
     $confirmPay.addEventListener('click', async function() {
       if (!selectedDate || !selectedTime || !pendingName || !pendingEmail) {
