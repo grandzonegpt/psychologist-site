@@ -5,8 +5,38 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.disable('x-powered-by');
+
+// Security headers applied to every response (200, 301, 404, 410, etc).
+// Centralised here so a future code path can't forget them. Targeting an
+// «A» grade on securityheaders.com — pragmatic for a static psychotherapy
+// site. CSP keeps 'unsafe-inline' on script-src because the home page
+// already has inline GA4 + Consent Mode v2 + theme-switch script; moving
+// to nonces or hashes is a separate hardening pass.
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net",
+  "connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://booking-api-production-c2ca.up.railway.app",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://www.mollie.com",
+  "frame-ancestors 'none'",
+  "upgrade-insecure-requests",
+].join('; ');
+const SECURITY_HEADERS = {
+  'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+  'x-content-type-options': 'nosniff',
+  'x-frame-options': 'DENY',
+  'referrer-policy': 'strict-origin-when-cross-origin',
+  'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+  'content-security-policy': CSP,
+};
 app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', 'upgrade-insecure-requests');
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) {
+    res.setHeader(k, v);
+  }
   next();
 });
 
