@@ -35,8 +35,7 @@
       confirmSession: 'Сессия {dayFull}, {day} {month} в {time}',
       confirmCancel: 'Бесплатная отмена до {deadlineDate} {deadlineTime}',
       confirmDuration: 'Сессия {duration} минут · {price} PLN',
-      confirmPay: 'Подтвердить и оплатить →',
-      confirmBack: 'Назад'
+      confirmPay: 'Подтвердить и оплатить →'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -68,8 +67,7 @@
       confirmSession: 'Sesja {dayFull}, {day} {month} o {time}',
       confirmCancel: 'Bezpłatne odwołanie do {deadlineDate} {deadlineTime}',
       confirmDuration: 'Sesja {duration} minut · {price} PLN',
-      confirmPay: 'Potwierdź i opłać →',
-      confirmBack: 'Wstecz'
+      confirmPay: 'Potwierdź i opłać →'
     }
   };
 
@@ -169,10 +167,7 @@
           '<p class="bw-v2__confirm-session"></p>' +
           '<p class="bw-v2__confirm-cancel"></p>' +
           '<p class="bw-v2__confirm-meta"></p>' +
-          '<div class="bw-v2__confirm-actions">' +
-            '<button type="button" class="bw-v2__confirm-back">' + t.confirmBack + '</button>' +
-            '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
-          '</div>' +
+          '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
         '</div>' +
         '<div class="bw-v2__message" hidden></div>' +
         '<div class="bw-v2__loading">' + t.loadingSchedule + '</div>' +
@@ -192,7 +187,6 @@
     const $confirmSession = container.querySelector('.bw-v2__confirm-session');
     const $confirmCancel = container.querySelector('.bw-v2__confirm-cancel');
     const $confirmMeta = container.querySelector('.bw-v2__confirm-meta');
-    const $confirmBack = container.querySelector('.bw-v2__confirm-back');
     const $confirmPay = container.querySelector('.bw-v2__confirm-pay');
     const $message = container.querySelector('.bw-v2__message');
     const $loading = container.querySelector('.bw-v2__loading');
@@ -364,8 +358,6 @@
       $formEl.name.value = pendingName;
       $formEl.email.value = pendingEmail;
     }
-
-    $confirmBack.addEventListener('click', backToForm);
 
     $confirmPay.addEventListener('click', async function() {
       if (!selectedDate || !selectedTime || !pendingName || !pendingEmail) {

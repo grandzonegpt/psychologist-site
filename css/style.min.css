@@ -2872,36 +2872,19 @@ body::after {
 }
 .bw-v2__confirm-cancel { color: var(--text-muted); }
 .bw-v2__confirm-meta { color: var(--text-muted); margin-bottom: 16px; }
-.bw-v2__confirm-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.bw-v2__confirm-back,
 .bw-v2__confirm-pay {
+  display: block;
+  width: 100%;
   font-family: var(--font-sans);
   font-size: 15px;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-}
-.bw-v2__confirm-back {
-  background: transparent;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-}
-.bw-v2__confirm-back:hover {
-  border-color: var(--text-muted);
-  color: var(--text-primary);
-}
-.bw-v2__confirm-pay {
-  background: #C9A961;
-  border: 1px solid #C9A961;
-  color: #0a0a0b;
   font-weight: 700;
-  flex: 1;
-  min-width: 200px;
+  padding: 14px 18px;
+  border: 1px solid #C9A961;
+  border-radius: 8px;
+  background: #C9A961;
+  color: #0a0a0b;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 .bw-v2__confirm-pay:hover { background: #B89550; border-color: #B89550; }
 .bw-v2__confirm-pay:disabled { opacity: 0.6; cursor: not-allowed; }
