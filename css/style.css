@@ -2715,7 +2715,15 @@ body::after {
   font-family: var(--font-sans);
   font-size: 14px;
   color: var(--text-muted);
-  margin: 0 0 28px;
+  margin: 0 0 4px;
+}
+.bw-v2__tz-note {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin: 0 0 24px;
+  opacity: 0.75;
 }
 .bw-v2__header {
   display: flex;

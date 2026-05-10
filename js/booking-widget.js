@@ -15,6 +15,7 @@
       leadPrefix: 'Ближайшее окно',
       leadEmpty: 'Свободных окон пока нет',
       meta: 'Сессия · {duration} минут · {price} PLN',
+      tzNote: 'по варшавскому времени',
       formTitle: '{dayName}, {day} {date}, {time}, {duration} мин, {price} PLN',
       name: 'Имя',
       email: 'Email',
@@ -52,6 +53,7 @@
       leadPrefix: 'Najbliższy termin',
       leadEmpty: 'Brak wolnych terminów',
       meta: 'Sesja · {duration} minut · {price} PLN',
+      tzNote: 'czas warszawski',
       formTitle: '{dayName}, {day} {date}, {time}, {duration} min, {price} PLN',
       name: 'Imię',
       email: 'Email',
@@ -154,6 +156,7 @@
       '<div class="bw-v2">' +
         '<h2 class="bw-v2__lead"></h2>' +
         '<p class="bw-v2__meta"></p>' +
+        '<p class="bw-v2__tz-note">' + t.tzNote + '</p>' +
         '<header class="bw-v2__header">' +
           '<div class="bw-v2__range"></div>' +
           '<div class="bw-v2__nav">' +
@@ -174,6 +177,7 @@
         '<div class="bw-v2__confirm" hidden>' +
           '<div class="bw-v2__confirm-title">' + t.confirmTitle + '</div>' +
           '<p class="bw-v2__confirm-session"></p>' +
+          '<p class="bw-v2__tz-note">' + t.tzNote + '</p>' +
           '<p class="bw-v2__confirm-meta"></p>' +
           '<p class="bw-v2__confirm-cancel"></p>' +
           '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
