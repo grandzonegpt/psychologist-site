@@ -14,6 +14,7 @@ const audit = require('./audit');
 const dataDir = require('./dataDir');
 const fs = require('fs');
 const { warsawDate } = require('./tz');
+const sentry = require('./sentry');
 
 const CHECK_INTERVAL = 15 * 60 * 1000;
 const LOOKBACK_MS = 60 * 60 * 1000;
@@ -118,6 +119,7 @@ async function check() {
     }
   } catch (e) {
     console.error('Monitor check error:', e.message);
+    sentry.captureException(e, { phase: 'monitor_check' });
   }
 }
 

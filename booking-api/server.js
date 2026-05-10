@@ -1,3 +1,7 @@
+// Sentry must initialise BEFORE express so its auto-instrumentation can patch
+// http/express modules at require time. No-op if SENTRY_DSN env var is unset.
+const sentry = require('./sentry');
+
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
@@ -105,6 +109,7 @@ app.post('/api/stripe-webhook', express.raw({ type: 'application/json' }), async
       audit.log('booking_confirmed', { date, time, locale, eventId, sessionId: session.id });
     } catch (e) {
       console.error('Calendar event failed after payment:', e.message);
+      sentry.captureException(e, { phase: 'webhook_calendar_event', sessionId: session.id, date, time, email });
       telegramBot.notifyBookingFailed({ name, email, date, time, error: e.message });
       audit.log('booking_failed', { date, time, error: e.message, sessionId: session.id });
     }
@@ -314,6 +319,7 @@ app.post('/api/book', async (req, res) => {
     res.json({ ok: true, url: session.url });
   } catch (e) {
     console.error('Book error:', e.message);
+    sentry.captureException(e, { phase: 'api_book', date: req.body?.date, time: req.body?.time, holdEventId });
     if (holdEventId) {
       // Stripe creation failed after we placed a hold. Roll back.
       await holds.deleteHold(holdEventId);
@@ -345,11 +351,19 @@ app.post('/api/contact', async (req, res) => {
     res.json({ ok: true });
   } catch (e) {
     console.error('Contact error:', e.message);
+    sentry.captureException(e, { phase: 'api_contact' });
     res.status(500).json({ error: 'Contact submission failed' });
   }
 });
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+// Sentry's express error handler must come after all routes. It catches any
+// unhandled exception thrown inside a handler and forwards it to Sentry,
+// then chains to the default Express handler. No-op if Sentry is not init'd.
+if (sentry.enabled) {
+  sentry.Sentry.setupExpressErrorHandler(app);
+}
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Booking API on port ${PORT}`));

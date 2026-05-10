@@ -2,6 +2,7 @@ const config = require('./config');
 const { Resend } = require('resend');
 const { escapeHtml } = require('./sanitize');
 const holds = require('./holds');
+const sentry = require('./sentry');
 
 const CHECK_INTERVAL = 5 * 60 * 1000;
 const HOLD_CLEANUP_INTERVAL = 30 * 60 * 1000;
@@ -125,6 +126,7 @@ async function checkUpcoming(calendar) {
     }
   } catch (e) {
     console.error('Reminder check error:', e.message);
+    sentry.captureException(e, { phase: 'reminder_check' });
   }
 }
 
