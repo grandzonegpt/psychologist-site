@@ -15,3 +15,19 @@ practices-design-export.html
 # Orphan audit (temp)
 _orphan-*.txt
 _orphan-audit.sh
+
+# Local docs / design exports kept on disk only
+/Levashou.pl*.pdf
+
+# Stray data dir from another project (PHQ/GAD/PCL JSONs from quiet.levashou.pl)
+/data/
+
+# booking-api dev/audit scripts kept local. Production scripts
+# (get-refresh-token, migrate-blocks-to-warsaw, test-admin-email) stay tracked.
+booking-api/scripts/audit-*
+booking-api/scripts/check-session.js
+booking-api/scripts/debug-*
+booking-api/scripts/find-*
+booking-api/scripts/funnel-*
+booking-api/scripts/get-gsc-token.js
+booking-api/scripts/gsc-*
