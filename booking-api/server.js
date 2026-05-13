@@ -282,7 +282,11 @@ app.post('/api/book', async (req, res) => {
     // SECURITY: never trust req.headers.origin — client-controlled, used in
     // Stripe redirect URLs (open-redirect / phishing risk). Hardcoded.
     const origin = 'https://levashou.pl';
-    const returnPage = locale === 'pl' ? '/index-pl.html' : '/';
+    // Success goes to a dedicated thank-you page (minimal copy, no upsell).
+    // Cancel returns to the booking section on the home page with a query
+    // flag that the widget reads to show a "payment cancelled" hint.
+    const successPage = locale === 'pl' ? '/dziekuje' : '/spasibo';
+    const cancelPage = locale === 'pl' ? '/index-pl.html' : '/';
 
     const truncate = (v) => (typeof v === 'string' ? v.slice(0, 200) : '');
     const attribution = {
@@ -311,8 +315,8 @@ app.post('/api/book', async (req, res) => {
       }],
       customer_email: email,
       metadata: { name, email, date, time, locale: locale || 'ru', holdEventId, ...attribution },
-      success_url: `${origin}${returnPage}?booking=success`,
-      cancel_url: `${origin}${returnPage}?booking=cancelled`
+      success_url: `${origin}${successPage}`,
+      cancel_url: `${origin}${cancelPage}?booking=cancelled`
     });
 
     audit.log('book_request', { date, time, locale: locale || 'ru', sessionId: session.id, holdEventId });

@@ -80,6 +80,15 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Booking thank-you pages — clean URLs without .html. Stripe success_url
+// redirects here after a confirmed payment.
+app.get('/spasibo', (req, res) => {
+  res.sendFile(path.join(__dirname, 'spasibo.html'));
+});
+app.get('/dziekuje', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dziekuje.html'));
+});
+
 // 301 redirects for renamed pages
 const redirects = {
   '/sos.html': '/practices.html',
