@@ -71,11 +71,9 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'robots.txt'));
 });
 
-// Redirect /index.html → / and /index-pl.html → /pl (avoid duplicate content)
-app.get('/index.html', (req, res) => {
-  res.redirect(301, '/');
-});
-// Serve index.html at /
+// Serve index.html at /. The /index.html URL is left to static middleware
+// so it returns 200 with the same content; canonical tag in the HTML
+// points to / and signals the preferred URL to Google instead of a 301.
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
