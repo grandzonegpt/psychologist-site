@@ -128,6 +128,60 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Landing pages: trauma (umbrella) -->
+  <url>
+    <loc>https://levashou.pl/trauma.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/trauma.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/trauma-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/trauma.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/trauma-pl.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/trauma.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/trauma-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/trauma.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing pages: PTSD -->
+  <url>
+    <loc>https://levashou.pl/ptsd.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/ptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/ptsd-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/ptsd.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/ptsd-pl.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/ptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/ptsd-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/ptsd.html"/>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Landing pages: grief -->
+  <url>
+    <loc>https://levashou.pl/grief.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/grief.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/grief-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/grief.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/grief-pl.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/grief.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/grief-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/grief.html"/>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Landing pages: psychosomatics -->
   <url>
     <loc>https://levashou.pl/psychosomatics.html</loc>
