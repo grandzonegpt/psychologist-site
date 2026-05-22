@@ -625,6 +625,20 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/helping-loved-one.html"/>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/blog/online-vs-offline.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/online-vs-offline.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/online-vs-offline.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/online-vs-offline.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/blog/online-vs-offline.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/blog-pl/online-vs-offline.html"/>
+    <priority>0.8</priority>
+  </url>
 
   <!-- New blog articles 2026-04-18 -->
   <url>
