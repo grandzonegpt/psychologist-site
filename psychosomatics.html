@@ -282,7 +282,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Психосоматические расстройства","alternateName":["Соматоформные расстройства","Somatoform disorders"],"code":{"@type":"MedicalCode","codeValue":"F45","codingSystem":"ICD-10"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Когнитивно-поведенческая терапия, работа с регуляцией нервной системы"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Соматоформное расстройство (психосоматика)",
+  "alternateName": [
+    "Bodily distress disorder",
+    "Психосоматическое расстройство"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6C20",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Телесные симптомы без органической причины"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Хронические боли"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Нарушения сна"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Желудочно-кишечные жалобы"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Чрезмерная сосредоточенность на симптомах"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PHQ-15 (Patient Health Questionnaire-15)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "КПТ при соматоформных расстройствах"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Mindfulness-based stress reduction (MBSR)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Работа с телесными ощущениями"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

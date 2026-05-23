@@ -394,7 +394,61 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Длительная реакция горя","alternateName":["Prolonged grief disorder","Затяжное горе"],"code":{"@type":"MedicalCode","codeValue":"6B42","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Психотерапия осложнённого горя (CGT, Shear) и подход dual process model"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Пролонгированное расстройство горя",
+  "alternateName": [
+    "Prolonged grief disorder",
+    "PGD",
+    "Затяжное горе"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B42",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Тоска по умершему более 6 месяцев"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Эмоциональное оцепенение"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Ощущение, что часть себя умерла"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Трудности возвращения к привычной жизни"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Избегание напоминаний о потере"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PG-13 (Prolonged Grief-13)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "КПТ при пролонгированном горе (Boelen, Shear)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Комплицированная терапия горя (CGT)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Dual process model (Stroebe, Schut)"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

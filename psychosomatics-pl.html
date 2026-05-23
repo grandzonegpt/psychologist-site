@@ -275,7 +275,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Zaburzenia psychosomatyczne","alternateName":["Zaburzenia somatomorfne","Somatoform disorders"],"code":{"@type":"MedicalCode","codeValue":"F45","codingSystem":"ICD-10"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Terapia poznawczo-behawioralna, praca z regulacją układu nerwowego"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Zaburzenie somatyczne (psychosomatyka)",
+  "alternateName": [
+    "Bodily distress disorder",
+    "Zaburzenie somatoformiczne"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6C20",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Objawy somatyczne bez przyczyny organicznej"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Chroniczne bóle"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Zaburzenia snu"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Dolegliwości gastryczne"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Nadmierne skupienie na objawach"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PHQ-15 (Patient Health Questionnaire-15)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "CBT przy zaburzeniach somatoformicznych"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Mindfulness-based stress reduction (MBSR)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Praca z odczuciami cielesnymi"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

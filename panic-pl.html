@@ -389,7 +389,64 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Zaburzenie paniczne","alternateName":["Napady paniki","Panic disorder","Panic attacks"],"code":{"@type":"MedicalCode","codeValue":"F41.0","codingSystem":"ICD-10"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Terapia poznawczo-behawioralna z protokołem ekspozycji interoceptywnej"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Zaburzenie paniczne",
+  "alternateName": [
+    "Panic disorder",
+    "Napady paniki"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B01",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Nagłe napady silnego lęku"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Kołatanie serca"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Duszność"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Drżenie, pocenie się"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Lęk przed utratą kontroli lub śmiercią"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Depersonalizacja"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PDSS (Panic Disorder Severity Scale)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Protokół CBT przy zaburzeniu panicznym (Clark, Barlow)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Ekspozycja interoceptywna"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Techniki oddechowe"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

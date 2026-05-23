@@ -397,7 +397,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Przedłużona reakcja żałoby","alternateName":["Prolonged grief disorder","Żałoba powikłana"],"code":{"@type":"MedicalCode","codeValue":"6B42","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Psychoterapia żałoby powikłanej (CGT, Shear) i podejście dual process model"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Przedłużone zaburzenie żałoby",
+  "alternateName": [
+    "Prolonged grief disorder",
+    "PGD"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B42",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Tęsknota za zmarłym dłużej niż 6 miesięcy"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Otępienie emocjonalne"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Poczucie, że część siebie umarła"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Trudności z powrotem do codziennego życia"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Unikanie przypomnień o stracie"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PG-13 (Prolonged Grief-13)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "CBT przy przedłużonej żałobie (Boelen, Shear)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Complicated Grief Therapy (CGT)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Dual process model (Stroebe, Schut)"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

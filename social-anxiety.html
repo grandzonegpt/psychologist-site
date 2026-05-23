@@ -400,7 +400,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Социальное тревожное расстройство","alternateName":["Социофобия","Social Anxiety Disorder","SAD"],"code":{"@type":"MedicalCode","codeValue":"6B04","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Когнитивно-поведенческая терапия с экспозицией (модель Кларка и Уэллса)"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Социальное тревожное расстройство",
+  "alternateName": [
+    "Social anxiety disorder",
+    "Социофобия"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B04",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Сильный страх оценки и осуждения"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Покраснение, потливость в социальных ситуациях"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Избегание выступлений и общения"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Самокритика после социального контакта"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Мысли о провале заранее"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "LSAS (Liebowitz Social Anxiety Scale)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "КПТ по модели Кларка и Уэллса"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Экспозиционная терапия"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Тренинг социальных навыков"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

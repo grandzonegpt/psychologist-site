@@ -403,7 +403,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Zaburzenie lęku społecznego","alternateName":["Fobia społeczna","Social Anxiety Disorder","SAD"],"code":{"@type":"MedicalCode","codeValue":"6B04","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Terapia poznawczo-behawioralna z ekspozycją (model Clarka i Wellsa)"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Lęk społeczny (fobia społeczna)",
+  "alternateName": [
+    "Social anxiety disorder",
+    "Fobia społeczna"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B04",
+    "codingSystem": "ICD-11"
+  },
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Silny lęk przed oceną i krytyką"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Rumieniec, pocenie się w sytuacjach społecznych"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Unikanie wystąpień i rozmów"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Samokrytyka po kontaktach społecznych"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Z wyprzedzeniem myśli o porażce"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "LSAS (Liebowitz Social Anxiety Scale)"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "CBT wg modelu Clarka i Wellsa"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Terapia ekspozycyjna"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Trening umiejętności społecznych"
+    }
+  ]
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>
