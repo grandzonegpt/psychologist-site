@@ -403,7 +403,69 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Zaburzenie depresyjne","alternateName":["Depresja","Major depressive disorder","MDD"],"code":{"@type":"MedicalCode","codeValue":"6A70","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Terapia poznawczo-behawioralna (CBT) przy depresji"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Zaburzenie depresyjne",
+  "alternateName": [
+    "Depresja",
+    "Major depressive disorder",
+    "MDD"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6A70",
+    "codingSystem": "ICD-11"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Terapia poznawczo-behawioralna (CBT) przy depresji"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Aktywacja behawioralna (BA)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Terapia interpersonalna (IPT)"
+    }
+  ],
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Utrzymujący się obniżony nastrój"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Anhedonia (utrata zdolności do odczuwania przyjemności)"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Zaburzenia snu"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Zmiany apetytu i wagi"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Chroniczne zmęczenie"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Trudności z koncentracją"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Poczucie beznadziei"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PHQ-9 (Patient Health Questionnaire-9)"
+  }
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

@@ -400,7 +400,60 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Посттравматическое стрессовое расстройство (ПТСР)","alternateName":["PTSD","ПТСР"],"code":{"@type":"MedicalCode","codeValue":"6B40","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Травмофокусированная когнитивно-поведенческая терапия (TF-CBT)"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Посттравматическое стрессовое расстройство (ПТСР)",
+  "alternateName": [
+    "PTSD",
+    "ПТСР"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6B40",
+    "codingSystem": "ICD-11"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Травмофокусированная когнитивно-поведенческая терапия (TF-CBT)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Когнитивная процессуальная терапия (CPT)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Пролонгированная экспозиция (PE)"
+    }
+  ],
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Флешбеки"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Кошмары"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Гиперактивация (повышенная настороженность, вздрагивание)"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Избегание триггеров"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Эмоциональное оцепенение"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PCL-5 (PTSD Checklist for DSM-5)"
+  }
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

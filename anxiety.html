@@ -395,7 +395,65 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Тревожное расстройство","alternateName":["Генерализованное тревожное расстройство","Anxiety disorder","GAD"],"code":{"@type":"MedicalCode","codeValue":"F41.1","codingSystem":"ICD-10"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Когнитивно-поведенческая терапия (КПТ): метод первой линии по рекомендациям NICE"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Тревожное расстройство",
+  "alternateName": [
+    "Генерализованное тревожное расстройство",
+    "Anxiety disorder",
+    "GAD"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "F41.1",
+    "codingSystem": "ICD-10"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Когнитивно-поведенческая терапия (КПТ): метод первой линии по рекомендациям NICE"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Релаксационные техники"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Экспозиционная терапия"
+    }
+  ],
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Чрезмерное беспокойство"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Беспокойство, неусидчивость"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Мышечное напряжение"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Нарушения сна"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Трудности концентрации"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Раздражительность"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "GAD-7 (Generalized Anxiety Disorder Scale)"
+  }
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>

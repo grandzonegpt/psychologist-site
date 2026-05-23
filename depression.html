@@ -400,7 +400,69 @@
 ]}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"MedicalCondition","name":"Депрессивное расстройство","alternateName":["Депрессия","Major depressive disorder","MDD"],"code":{"@type":"MedicalCode","codeValue":"6A70","codingSystem":"ICD-11"},"possibleTreatment":{"@type":"MedicalTherapy","name":"Когнитивно-поведенческая терапия (КПТ) при депрессии"}}
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalCondition",
+  "name": "Депрессивное расстройство",
+  "alternateName": [
+    "Депрессия",
+    "Major depressive disorder",
+    "MDD"
+  ],
+  "code": {
+    "@type": "MedicalCode",
+    "codeValue": "6A70",
+    "codingSystem": "ICD-11"
+  },
+  "possibleTreatment": [
+    {
+      "@type": "MedicalTherapy",
+      "name": "Когнитивно-поведенческая терапия (КПТ) при депрессии"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Поведенческая активация (BA)"
+    },
+    {
+      "@type": "MedicalTherapy",
+      "name": "Интерперсональная терапия (IPT)"
+    }
+  ],
+  "signOrSymptom": [
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Стойко сниженное настроение"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Ангедония (потеря интереса к радующему)"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Нарушения сна"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Изменение аппетита и веса"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Хроническая усталость"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Трудности концентрации"
+    },
+    {
+      "@type": "MedicalSignOrSymptom",
+      "name": "Чувство безнадёжности"
+    }
+  ],
+  "typicalTest": {
+    "@type": "MedicalTest",
+    "name": "PHQ-9 (Patient Health Questionnaire-9)"
+  }
+}
 </script>
 <script src="/js/main.min.js?v=22"></script>
 </body>
