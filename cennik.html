@@ -58,9 +58,18 @@
       "name": "Цены. Сессия онлайн 180 PLN. Алексей Левашев",
       "description": "Индивидуальная сессия онлайн 50 минут, 180 PLN (~42 €). Бесплатное знакомство 15 минут. Оплата Blik, картой, Apple Pay или Google Pay при бронировании.",
       "inLanguage": "ru",
-      "isPartOf": { "@id": "https://levashou.pl/#website" },
-      "about": { "@id": "https://levashou.pl/#aliaksei" },
-      "mainEntity": { "@id": "https://levashou.pl/#service" }
+      "isPartOf": {
+        "@id": "https://levashou.pl/#website"
+      },
+      "about": {
+        "@type": "Person",
+        "@id": "https://levashou.pl/#aliaksei",
+        "name": "Aliaksei Levashou",
+        "url": "https://levashou.pl/"
+      },
+      "mainEntity": {
+        "@id": "https://levashou.pl/#service"
+      }
     }
   ]
 }
@@ -263,7 +272,43 @@
 </div>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Индивидуальная сессия онлайн (КПТ)","provider":{"@id":"https://levashou.pl/#aliaksei"},"areaServed":"PL","availableLanguage":["ru","pl","be"],"offers":[{"@type":"Offer","name":"Индивидуальная сессия онлайн","price":"180","priceCurrency":"PLN","description":"50 минут, онлайн, КПТ","availability":"https://schema.org/InStock","url":"https://cal.com/levashou"},{"@type":"Offer","name":"Знакомство (вводный звонок)","price":"0","priceCurrency":"PLN","description":"15 минут, бесплатно","availability":"https://schema.org/InStock","url":"https://cal.com/levashou/intro-ru"}]}
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Индивидуальная сессия онлайн (КПТ)",
+  "provider": {
+    "@type": "Person",
+    "@id": "https://levashou.pl/#aliaksei",
+    "name": "Aliaksei Levashou",
+    "url": "https://levashou.pl/"
+  },
+  "areaServed": "PL",
+  "availableLanguage": [
+    "ru",
+    "pl",
+    "be"
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Индивидуальная сессия онлайн",
+      "price": "180",
+      "priceCurrency": "PLN",
+      "description": "50 минут, онлайн, КПТ",
+      "availability": "https://schema.org/InStock",
+      "url": "https://cal.com/levashou"
+    },
+    {
+      "@type": "Offer",
+      "name": "Знакомство (вводный звонок)",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "description": "15 минут, бесплатно",
+      "availability": "https://schema.org/InStock",
+      "url": "https://cal.com/levashou/intro-ru"
+    }
+  ]
+}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

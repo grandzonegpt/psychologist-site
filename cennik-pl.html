@@ -58,9 +58,18 @@
       "name": "Cennik. Sesja online 180 PLN. Aliaksei Levashou",
       "description": "Sesja indywidualna online 50 minut, 180 PLN. Bezpłatna konsultacja wstępna 15 minut. Płatność Blik, kartą, Apple Pay lub Google Pay przy rezerwacji.",
       "inLanguage": "pl",
-      "isPartOf": { "@id": "https://levashou.pl/#website" },
-      "about": { "@id": "https://levashou.pl/#aliaksei" },
-      "mainEntity": { "@id": "https://levashou.pl/#service" }
+      "isPartOf": {
+        "@id": "https://levashou.pl/#website"
+      },
+      "about": {
+        "@type": "Person",
+        "@id": "https://levashou.pl/#aliaksei",
+        "name": "Aliaksei Levashou",
+        "url": "https://levashou.pl/index-pl.html"
+      },
+      "mainEntity": {
+        "@id": "https://levashou.pl/#service"
+      }
     }
   ]
 }
@@ -263,7 +272,43 @@
 </div>
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Sesja indywidualna online (CBT)","provider":{"@id":"https://levashou.pl/#aliaksei"},"areaServed":"PL","availableLanguage":["pl","ru","be"],"offers":[{"@type":"Offer","name":"Sesja indywidualna online","price":"180","priceCurrency":"PLN","description":"50 minut, online, CBT","availability":"https://schema.org/InStock","url":"https://cal.com/levashou"},{"@type":"Offer","name":"Konsultacja wstępna (zapoznawcza)","price":"0","priceCurrency":"PLN","description":"15 minut, bezpłatnie","availability":"https://schema.org/InStock","url":"https://cal.com/levashou/intro-pl"}]}
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Sesja indywidualna online (CBT)",
+  "provider": {
+    "@type": "Person",
+    "@id": "https://levashou.pl/#aliaksei",
+    "name": "Aliaksei Levashou",
+    "url": "https://levashou.pl/index-pl.html"
+  },
+  "areaServed": "PL",
+  "availableLanguage": [
+    "pl",
+    "ru",
+    "be"
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Sesja indywidualna online",
+      "price": "180",
+      "priceCurrency": "PLN",
+      "description": "50 minut, online, CBT",
+      "availability": "https://schema.org/InStock",
+      "url": "https://cal.com/levashou"
+    },
+    {
+      "@type": "Offer",
+      "name": "Konsultacja wstępna (zapoznawcza)",
+      "price": "0",
+      "priceCurrency": "PLN",
+      "description": "15 minut, bezpłatnie",
+      "availability": "https://schema.org/InStock",
+      "url": "https://cal.com/levashou/intro-pl"
+    }
+  ]
+}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[

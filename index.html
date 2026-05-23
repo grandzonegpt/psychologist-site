@@ -115,8 +115,16 @@
   "@id": "https://levashou.pl/#website",
   "url": "https://levashou.pl/",
   "name": "Aliaksei Levashou. Psychotraumatolog, psycholog, CBT. Warszawa",
-  "inLanguage": ["ru", "pl"],
-  "publisher": {"@id": "https://levashou.pl/#aliaksei"}
+  "inLanguage": [
+    "ru",
+    "pl"
+  ],
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://levashou.pl/#aliaksei",
+    "name": "Aliaksei Levashou",
+    "url": "https://levashou.pl/"
+  }
 }
 </script>
 <script type="application/ld+json">
@@ -145,24 +153,65 @@
   "@type": "Service",
   "@id": "https://levashou.pl/#service",
   "serviceType": "Психотерапия онлайн",
-  "provider": { "@id": "https://levashou.pl/#aliaksei" },
+  "provider": {
+    "@type": "Person",
+    "@id": "https://levashou.pl/#aliaksei",
+    "name": "Aliaksei Levashou",
+    "url": "https://levashou.pl/"
+  },
   "areaServed": [
-    {"@type": "Place", "name": "European Union"},
-    {"@type": "Country", "name": "Poland"},
-    {"@type": "City", "name": "Warszawa"},
-    {"@type": "Country", "name": "Germany"},
-    {"@type": "Country", "name": "Czechia"},
-    {"@type": "Country", "name": "Lithuania"},
-    {"@type": "Country", "name": "Latvia"},
-    {"@type": "Country", "name": "Netherlands"},
-    {"@type": "Country", "name": "Italy"},
-    {"@type": "Country", "name": "Spain"},
-    {"@type": "Country", "name": "Portugal"}
+    {
+      "@type": "Place",
+      "name": "European Union"
+    },
+    {
+      "@type": "Country",
+      "name": "Poland"
+    },
+    {
+      "@type": "City",
+      "name": "Warszawa"
+    },
+    {
+      "@type": "Country",
+      "name": "Germany"
+    },
+    {
+      "@type": "Country",
+      "name": "Czechia"
+    },
+    {
+      "@type": "Country",
+      "name": "Lithuania"
+    },
+    {
+      "@type": "Country",
+      "name": "Latvia"
+    },
+    {
+      "@type": "Country",
+      "name": "Netherlands"
+    },
+    {
+      "@type": "Country",
+      "name": "Italy"
+    },
+    {
+      "@type": "Country",
+      "name": "Spain"
+    },
+    {
+      "@type": "Country",
+      "name": "Portugal"
+    }
   ],
   "availableChannel": {
     "@type": "ServiceChannel",
     "serviceUrl": "https://cal.com/levashou/intro-ru",
-    "availableLanguage": ["ru", "pl"]
+    "availableLanguage": [
+      "ru",
+      "pl"
+    ]
   },
   "offers": {
     "@type": "Offer",
@@ -174,19 +223,110 @@
     "@type": "OfferCatalog",
     "name": "Направления психотерапии",
     "itemListElement": [
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия ПТСР","url":"https://levashou.pl/ptsd.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия комплексного ПТСР","url":"https://levashou.pl/cptsd.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия травмы","url":"https://levashou.pl/trauma.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия депрессии","url":"https://levashou.pl/depression.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия тревоги","url":"https://levashou.pl/anxiety.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия панических атак","url":"https://levashou.pl/panic.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия социальной тревожности","url":"https://levashou.pl/social-anxiety.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия ОКР","url":"https://levashou.pl/ocd.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия выгорания","url":"https://levashou.pl/burnout-page.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Терапия горя и утраты","url":"https://levashou.pl/grief.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Помощь при психосоматике","url":"https://levashou.pl/psychosomatics.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Адаптация в эмиграции","url":"https://levashou.pl/emigration.html"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"После газлайтинга","url":"https://levashou.pl/gaslighting.html"}}
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия ПТСР",
+          "url": "https://levashou.pl/ptsd.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия комплексного ПТСР",
+          "url": "https://levashou.pl/cptsd.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия травмы",
+          "url": "https://levashou.pl/trauma.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия депрессии",
+          "url": "https://levashou.pl/depression.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия тревоги",
+          "url": "https://levashou.pl/anxiety.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия панических атак",
+          "url": "https://levashou.pl/panic.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия социальной тревожности",
+          "url": "https://levashou.pl/social-anxiety.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия ОКР",
+          "url": "https://levashou.pl/ocd.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия выгорания",
+          "url": "https://levashou.pl/burnout-page.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Терапия горя и утраты",
+          "url": "https://levashou.pl/grief.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Помощь при психосоматике",
+          "url": "https://levashou.pl/psychosomatics.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Адаптация в эмиграции",
+          "url": "https://levashou.pl/emigration.html"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "После газлайтинга",
+          "url": "https://levashou.pl/gaslighting.html"
+        }
+      }
     ]
   }
 }
