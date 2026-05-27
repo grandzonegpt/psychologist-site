@@ -25,6 +25,7 @@
   --cat-relations: #6a4a5a;
   --cat-method:    #1f1c18;
   --cat-practice:  #5a6b4a;
+  --cat-self:      #6a5a4a;
 }
 
 * { box-sizing: border-box; }
@@ -2257,27 +2258,14 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   transition: background 0.25s ease;
   overflow: hidden;
 }
-.blog-card::before {
-  content: attr(data-num);
-  position: absolute;
-  top: 18px;
-  right: 22px;
-  font-family: var(--font-serif);
-  font-size: 56px;
-  font-weight: 400;
-  color: var(--cat-color);
-  opacity: 0.10;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  pointer-events: none;
-  z-index: 0;
-}
+.blog-card::before { content: none; }
 .blog-card > * { position: relative; z-index: 1; }
 .blog-card[data-category="anxiety"]   { --cat-color: var(--cat-anxiety); }
 .blog-card[data-category="trauma"]    { --cat-color: var(--cat-trauma); }
 .blog-card[data-category="relations"] { --cat-color: var(--cat-relations); }
 .blog-card[data-category="method"]    { --cat-color: var(--cat-method); }
 .blog-card[data-category="practice"]  { --cat-color: var(--cat-practice); }
+.blog-card[data-category="self"]      { --cat-color: var(--cat-self); }
 .blog-card:hover { background: var(--bg-secondary); }
 .blog-card .card-cat {
   font-family: var(--font-sans);
