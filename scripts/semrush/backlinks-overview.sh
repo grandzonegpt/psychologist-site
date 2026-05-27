@@ -11,7 +11,7 @@ DOMAIN="${1:?Usage: $0 DOMAIN}"
 
 echo "Fetching backlinks overview for $DOMAIN..." >&2
 
-result=$(semrush_call \
+result=$(semrush_backlinks_call \
   "type=backlinks_overview" \
   "target=${DOMAIN}" \
   "target_type=root_domain")

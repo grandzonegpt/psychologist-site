@@ -27,11 +27,20 @@ fi
 
 mkdir -p "$DATA_DIR"
 
-# Generic Semrush analytics API call.
-# Args: type=domain_ranks domain=example.com database=pl [extras]
-# Returns: CSV on stdout, status header in $SEMRUSH_LAST_HEADERS.
+# Generic Semrush analytics API call (v3 endpoint).
+# For: domain_ranks, domain_organic, domain_adwords, phrase_*, etc.
 semrush_call() {
   local url="https://api.semrush.com/?key=${SEMRUSH_API_KEY}"
+  for arg in "$@"; do
+    url+="&${arg}"
+  done
+  curl -s "$url"
+}
+
+# Backlinks API call (v1 endpoint, separate base).
+# For: backlinks_overview, backlinks_refdomains, backlinks, backlinks_anchors, etc.
+semrush_backlinks_call() {
+  local url="https://api.semrush.com/analytics/v1/?key=${SEMRUSH_API_KEY}"
   for arg in "$@"; do
     url+="&${arg}"
   done

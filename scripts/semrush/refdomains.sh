@@ -12,12 +12,12 @@ LIMIT="${2:-100}"
 
 echo "Fetching top $LIMIT referring domains for $DOMAIN..." >&2
 
-result=$(semrush_call \
+result=$(semrush_backlinks_call \
   "type=backlinks_refdomains" \
   "target=${DOMAIN}" \
   "target_type=root_domain" \
   "display_limit=${LIMIT}" \
-  "display_sort=ascore_desc")
+  "display_sort=domain_ascore_desc")
 
 echo "$result" | head -10
 echo "..."
