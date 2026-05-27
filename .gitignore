@@ -4,6 +4,9 @@ node_modules/
 .env
 .env.local
 .env.*.local
+.env.semrush
+.semrush_cache/
+data/semrush/
 assets/credentials/raw/
 .claude/
 _design_system_unpacked/
