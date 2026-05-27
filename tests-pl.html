@@ -213,248 +213,45 @@
 </section>
 
 <section style="padding:48px 0 80px;">
-  <div class="container">
+  <div class="container" style="max-width:1080px;">
+    <div class="tests-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
 
-    <div style="max-width:720px;margin:0 auto 32px;">
-      <p style="text-align:center;color:var(--text-muted);font-size:15px;margin-bottom:20px;">Każdy test dostępny też jako osobna strona ze szczegółowym opisem skali:</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a href="/tests-pl/phq-9.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--border-subtle);border-radius:8px;text-decoration:none;color:var(--text-primary);font-size:14px;font-family:'Lato',sans-serif;">PHQ-9 na depresję <span style="color:var(--text-muted);">→</span></a>
-        <a href="/tests-pl/gad-7.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--border-subtle);border-radius:8px;text-decoration:none;color:var(--text-primary);font-size:14px;font-family:'Lato',sans-serif;">GAD-7 na lęk <span style="color:var(--text-muted);">→</span></a>
-        <a href="/tests-pl/pcl-5.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--border-subtle);border-radius:8px;text-decoration:none;color:var(--text-primary);font-size:14px;font-family:'Lato',sans-serif;">PCL-5 na PTSD <span style="color:var(--text-muted);">→</span></a>
-      </div>
+      <a href="/tests-pl/phq-9.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#8a7548;margin-bottom:10px;font-family:'Lato',sans-serif;">Depresja</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">PHQ-9</div>
+        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">9 pytań o ostatnich 2 tygodniach. Najpopularniejszy test przesiewowy na depresję na świecie.</p>
+        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
+          <span>~3 minuty</span>
+          <span style="color:var(--accent);">Wypełnij →</span>
+        </div>
+      </a>
+
+      <a href="/tests-pl/gad-7.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#8a7548;margin-bottom:10px;font-family:'Lato',sans-serif;">Lęk</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">GAD-7</div>
+        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">7 pytań o ostatnich 2 tygodniach. Standard przesiewowy zaburzenia lękowego uogólnionego.</p>
+        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
+          <span>~2 minuty</span>
+          <span style="color:var(--accent);">Wypełnij →</span>
+        </div>
+      </a>
+
+      <a href="/tests-pl/pcl-5.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#8a7548;margin-bottom:10px;font-family:'Lato',sans-serif;">PTSD</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">PCL-5</div>
+        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">20 pytań o objawach z ostatniego miesiąca. Standard przesiewowy PTSD wg DSM-5.</p>
+        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
+          <span>~5 minut</span>
+          <span style="color:var(--accent);">Wypełnij →</span>
+        </div>
+      </a>
+
     </div>
 
-    <div class="test-tabs">
-      <button class="test-tab active" data-test="gad7">Lęk (GAD-7)</button>
-      <button class="test-tab" data-test="phq9">Depresja (PHQ-9)</button>
-      <button class="test-tab" data-test="pcl5">PTSD (PCL-5)</button>
-    </div>
-
-    <!-- ===== GAD-7 ===== -->
-    <div class="test-panel active" id="panel-gad7">
-      <div class="test-intro">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Skala lęku GAD-7</h2>
-        <p>7 pytań dotyczących ostatnich dwóch tygodni. Stosowana w praktyce klinicznej do oceny poziomu lęku. Opracowanie: Dr Robert L. Spitzer, Dr Janet B.W. Williams, Dr Kurt Kroenke oraz współpracownicy. Zgoda na powielanie nie jest wymagana.</p>
-      </div>
-      <form class="test-form" id="form-gad7">
-        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Jak często w ciągu ostatnich 2 tygodni dokuczały Panu(i) następujące problemy?</p>
-
-        <div class="tq">
-          <p class="tq-text">1. Czuł(a) się Pan(i) podenerwowany(a), niespokojny(a), mocno spięty(a)</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g1" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g1" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g1" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g1" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">2. Nie mógł(a) Pan(i) przestać się martwić albo zapanować nad tym</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g2" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g2" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g2" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g2" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">3. Za bardzo się Pan(i) martwił(a) różnymi rzeczami</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g3" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g3" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g3" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g3" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">4. Miał(a) Pan(i) trudności z relaksowaniem się</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g4" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g4" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g4" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g4" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">5. Był(a) Pan(i) tak niespokojny(a), że nie mógł(a) usiedzieć na miejscu</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g5" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g5" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g5" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g5" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">6. Łatwo stawał(a) się Pan(i) rozdrażniony(a) lub poirytowany(a)</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g6" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g6" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g6" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g6" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">7. Obawiał(a) się Pan(i), tak jakby miało się stać coś strasznego</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="g7" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="g7" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="g7" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="g7" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-
-        <button type="submit" class="test-submit">Pokaż wynik</button>
-      </form>
-      <div class="test-result" id="result-gad7" hidden></div>
-    </div>
-
-    <!-- ===== PHQ-9 ===== -->
-    <div class="test-panel" id="panel-phq9">
-      <div class="test-intro">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Kwestionariusz Zdrowia Pacjenta-9 (PHQ-9)</h2>
-        <p>9 pytań dotyczących ostatnich dwóch tygodni. Najpopularniejsze narzędzie przesiewowe do oceny depresji na świecie. Opracowanie: Dr Robert L. Spitzer, Dr Janet B.W. Williams, Dr Kurt Kroenke oraz współpracownicy. Zgoda na powielanie nie jest wymagana.</p>
-      </div>
-      <form class="test-form" id="form-phq9">
-        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Jak często w ciągu ostatnich 2 tygodni dokuczały Panu/Pani następujące problemy?</p>
-
-        <div class="tq">
-          <p class="tq-text">1. Niewielkie zainteresowanie lub odczuwanie przyjemności z wykonywania czynności</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p1" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p1" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p1" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p1" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">2. Uczucie smutku, przygnębienia lub beznadziejności</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p2" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p2" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p2" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p2" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">3. Kłopoty z zaśnięciem lub przerywany sen, albo zbyt długi sen</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p3" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p3" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p3" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p3" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">4. Uczucie zmęczenia lub brak energii</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p4" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p4" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p4" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p4" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">5. Brak apetytu lub przejadanie się</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p5" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p5" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p5" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p5" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">6. Poczucie niezadowolenia z siebie, lub uczucie, że jest się do niczego, albo że zawiódł/zawiodła Pan/Pani siebie lub rodzinę</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p6" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p6" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p6" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p6" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">7. Problemy ze skupieniem się na przykład przy czytaniu gazety lub oglądaniu telewizji</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p7" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p7" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p7" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p7" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">8. Poruszanie się lub mówienie tak wolno, że inni mogliby to zauważyć? Albo wręcz przeciwnie, niemożność usiedzenia w miejscu lub podenerwowanie powodujące ruchliwość znacznie większą niż zwykle</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p8" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p8" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p8" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p8" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-        <div class="tq">
-          <p class="tq-text">9. Myśli, że lepiej byłoby umrzeć, albo chęć zrobienia sobie jakiejś krzywdy</p>
-          <div class="tq-opts">
-            <label><input type="radio" name="p9" value="0" required><span>Wcale nie dokuczały</span></label>
-            <label><input type="radio" name="p9" value="1"><span>Kilka dni</span></label>
-            <label><input type="radio" name="p9" value="2"><span>Więcej niż połowę dni</span></label>
-            <label><input type="radio" name="p9" value="3"><span>Niemal codziennie</span></label>
-          </div>
-        </div>
-
-        <button type="submit" class="test-submit">Pokaż wynik</button>
-      </form>
-      <div class="test-result" id="result-phq9" hidden></div>
-    </div>
-
-    <!-- ===== PCL-5 ===== -->
-    <div class="test-panel" id="panel-pcl5">
-      <div class="test-intro">
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:12px;">Skala PTSD (PCL-5)</h2>
-        <p>20 pytań o reakcjach na stresujące wydarzenia w ciągu ostatniego miesiąca. Polska adaptacja: Zawadzki, Popiel, Białecka, Pragłowska (Uniwersytet Warszawski). Walidacja: Ogińska-Bulik, Juczyński, Lis-Turlejska, Merecz-Kot (2018).</p>
-      </div>
-      <div class="test-legal-notice">To narzędzie przesiewowe. Nie zastępuje diagnozy klinicznej postawionej przez psychiatrę lub psychoterapeutę. Wynik służy jedynie do wstępnej oceny i rozmowy ze specjalistą. Wypełnienie kwestionariusza jest dobrowolne i anonimowe, odpowiedzi nie są zapisywane ani przesyłane.</div>
-      <form class="test-form" id="form-pcl5">
-        <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;text-align:center;">Poniżej znajduje się lista problemów, które czasem pojawiają się u osób po bardzo stresującym doświadczeniu. Wskaż, jak bardzo dokuczał Panu/Pani każdy z nich w ciągu ostatniego miesiąca.</p>
-
-        <div class="tq"><p class="tq-text">1. Powtarzające się, niechciane, niepokojące wspomnienia stresującego wydarzenia</p><div class="tq-opts"><label><input type="radio" name="c1" value="0" required><span>Wcale</span></label><label><input type="radio" name="c1" value="1"><span>Trochę</span></label><label><input type="radio" name="c1" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c1" value="3"><span>Bardzo</span></label><label><input type="radio" name="c1" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">2. Powtarzające się niepokojące sny o stresującym wydarzeniu</p><div class="tq-opts"><label><input type="radio" name="c2" value="0" required><span>Wcale</span></label><label><input type="radio" name="c2" value="1"><span>Trochę</span></label><label><input type="radio" name="c2" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c2" value="3"><span>Bardzo</span></label><label><input type="radio" name="c2" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">3. Nagłe poczucie lub zachowanie, jakby stresujące wydarzenie działo się ponownie (jakby Pan(i) przeżywał(a) je na nowo)</p><div class="tq-opts"><label><input type="radio" name="c3" value="0" required><span>Wcale</span></label><label><input type="radio" name="c3" value="1"><span>Trochę</span></label><label><input type="radio" name="c3" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c3" value="3"><span>Bardzo</span></label><label><input type="radio" name="c3" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">4. Silna reakcja emocjonalna przy przypomnieniu o stresującym wydarzeniu (strach, gniew, poczucie winy, wstyd)</p><div class="tq-opts"><label><input type="radio" name="c4" value="0" required><span>Wcale</span></label><label><input type="radio" name="c4" value="1"><span>Trochę</span></label><label><input type="radio" name="c4" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c4" value="3"><span>Bardzo</span></label><label><input type="radio" name="c4" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">5. Silne reakcje fizyczne przy przypomnieniu o stresującym wydarzeniu (przyspieszone bicie serca, trudności z oddychaniem, pocenie się)</p><div class="tq-opts"><label><input type="radio" name="c5" value="0" required><span>Wcale</span></label><label><input type="radio" name="c5" value="1"><span>Trochę</span></label><label><input type="radio" name="c5" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c5" value="3"><span>Bardzo</span></label><label><input type="radio" name="c5" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">6. Unikanie wspomnień, myśli lub uczuć związanych ze stresującym wydarzeniem</p><div class="tq-opts"><label><input type="radio" name="c6" value="0" required><span>Wcale</span></label><label><input type="radio" name="c6" value="1"><span>Trochę</span></label><label><input type="radio" name="c6" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c6" value="3"><span>Bardzo</span></label><label><input type="radio" name="c6" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">7. Unikanie zewnętrznych przypomnień o stresującym wydarzeniu (osób, miejsc, rozmów, czynności, przedmiotów, sytuacji)</p><div class="tq-opts"><label><input type="radio" name="c7" value="0" required><span>Wcale</span></label><label><input type="radio" name="c7" value="1"><span>Trochę</span></label><label><input type="radio" name="c7" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c7" value="3"><span>Bardzo</span></label><label><input type="radio" name="c7" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">8. Trudności z przypomnieniem sobie ważnych części stresującego wydarzenia</p><div class="tq-opts"><label><input type="radio" name="c8" value="0" required><span>Wcale</span></label><label><input type="radio" name="c8" value="1"><span>Trochę</span></label><label><input type="radio" name="c8" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c8" value="3"><span>Bardzo</span></label><label><input type="radio" name="c8" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">9. Silne negatywne przekonania o sobie, innych lub świecie (np. „Jestem zły", „Nikomu nie można ufać", „Świat jest całkowicie niebezpieczny")</p><div class="tq-opts"><label><input type="radio" name="c9" value="0" required><span>Wcale</span></label><label><input type="radio" name="c9" value="1"><span>Trochę</span></label><label><input type="radio" name="c9" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c9" value="3"><span>Bardzo</span></label><label><input type="radio" name="c9" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">10. Obwinianie siebie lub innych za stresujące wydarzenie lub za to, co po nim nastąpiło</p><div class="tq-opts"><label><input type="radio" name="c10" value="0" required><span>Wcale</span></label><label><input type="radio" name="c10" value="1"><span>Trochę</span></label><label><input type="radio" name="c10" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c10" value="3"><span>Bardzo</span></label><label><input type="radio" name="c10" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">11. Silne negatywne emocje (strach, przerażenie, gniew, poczucie winy, wstyd)</p><div class="tq-opts"><label><input type="radio" name="c11" value="0" required><span>Wcale</span></label><label><input type="radio" name="c11" value="1"><span>Trochę</span></label><label><input type="radio" name="c11" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c11" value="3"><span>Bardzo</span></label><label><input type="radio" name="c11" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">12. Utrata zainteresowania czynnościami, które wcześniej sprawiały przyjemność</p><div class="tq-opts"><label><input type="radio" name="c12" value="0" required><span>Wcale</span></label><label><input type="radio" name="c12" value="1"><span>Trochę</span></label><label><input type="radio" name="c12" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c12" value="3"><span>Bardzo</span></label><label><input type="radio" name="c12" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">13. Poczucie odcięcia lub wyobcowania od innych ludzi</p><div class="tq-opts"><label><input type="radio" name="c13" value="0" required><span>Wcale</span></label><label><input type="radio" name="c13" value="1"><span>Trochę</span></label><label><input type="radio" name="c13" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c13" value="3"><span>Bardzo</span></label><label><input type="radio" name="c13" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">14. Trudności z odczuwaniem pozytywnych emocji (radość, miłość, czułość)</p><div class="tq-opts"><label><input type="radio" name="c14" value="0" required><span>Wcale</span></label><label><input type="radio" name="c14" value="1"><span>Trochę</span></label><label><input type="radio" name="c14" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c14" value="3"><span>Bardzo</span></label><label><input type="radio" name="c14" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">15. Drażliwość, wybuchy gniewu, agresywne zachowanie</p><div class="tq-opts"><label><input type="radio" name="c15" value="0" required><span>Wcale</span></label><label><input type="radio" name="c15" value="1"><span>Trochę</span></label><label><input type="radio" name="c15" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c15" value="3"><span>Bardzo</span></label><label><input type="radio" name="c15" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">16. Nadmiernie ryzykowne lub autodestrukcyjne zachowanie</p><div class="tq-opts"><label><input type="radio" name="c16" value="0" required><span>Wcale</span></label><label><input type="radio" name="c16" value="1"><span>Trochę</span></label><label><input type="radio" name="c16" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c16" value="3"><span>Bardzo</span></label><label><input type="radio" name="c16" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">17. Nadmierna czujność, wyczekiwanie na niebezpieczeństwo</p><div class="tq-opts"><label><input type="radio" name="c17" value="0" required><span>Wcale</span></label><label><input type="radio" name="c17" value="1"><span>Trochę</span></label><label><input type="radio" name="c17" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c17" value="3"><span>Bardzo</span></label><label><input type="radio" name="c17" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">18. Nadmierna reakcja przestrachu (wzdrygnięcie się na niespodziewane dźwięki)</p><div class="tq-opts"><label><input type="radio" name="c18" value="0" required><span>Wcale</span></label><label><input type="radio" name="c18" value="1"><span>Trochę</span></label><label><input type="radio" name="c18" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c18" value="3"><span>Bardzo</span></label><label><input type="radio" name="c18" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">19. Trudności z koncentracją uwagi</p><div class="tq-opts"><label><input type="radio" name="c19" value="0" required><span>Wcale</span></label><label><input type="radio" name="c19" value="1"><span>Trochę</span></label><label><input type="radio" name="c19" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c19" value="3"><span>Bardzo</span></label><label><input type="radio" name="c19" value="4"><span>Niezwykle</span></label></div></div>
-        <div class="tq"><p class="tq-text">20. Problemy z zasypianiem lub snem</p><div class="tq-opts"><label><input type="radio" name="c20" value="0" required><span>Wcale</span></label><label><input type="radio" name="c20" value="1"><span>Trochę</span></label><label><input type="radio" name="c20" value="2"><span>Umiarkowanie</span></label><label><input type="radio" name="c20" value="3"><span>Bardzo</span></label><label><input type="radio" name="c20" value="4"><span>Niezwykle</span></label></div></div>
-
-        <button type="submit" class="test-submit">Pokaż wynik</button>
-      </form>
-      <div class="test-result" id="result-pcl5" hidden></div>
-      <div class="test-attribution">
-        Narzędzie oryginalne: Weathers F.W., Litz B.T., Keane T.M., Palmieri P.A., Marx B.P., Schnurr P.P. (2013). The PTSD Checklist for DSM-5 (PCL-5). National Center for PTSD, USA. Dostępne na ptsd.va.gov.<br><br>
-        Wersja polska: Zawadzki B., Popiel A., Białecka B., Pragłowska E. Uniwersytet Warszawski.<br><br>
-        Walidacja polska: Ogińska-Bulik N., Juczyński Z., Lis-Turlejska M., Merecz-Kot D. (2018). Polska adaptacja PTSD Checklist for DSM-5, PCL-5. Przegląd Psychologiczny, 61(2), 281–285.<br><br>
-        Kwestionariusz udostępniany bezpłatnie przez National Center for PTSD do zastosowań klinicznych i badawczych przez wykwalifikowanych specjalistów zdrowia psychicznego. Treść pytań nie została zmodyfikowana.
-      </div>
-      <div class="test-related" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-subtle);text-align:center;font-size:14px;color:var(--text-muted);">
-        Więcej o pracy z tematem: <a href="/ptsd-pl.html">Terapia PTSD</a> · <a href="/trauma-pl.html">Terapia traumy</a> · <a href="/cptsd-pl.html">CPTSD</a>
-      </div>
-    </div>
-
-    <div class="test-disclaimer">
-      Te kwestionariusze służą wyłącznie do samooceny i nie zastępują konsultacji ze specjalistą. Wynik nie jest diagnozą. Jeśli wynik jest wysoki lub coś Cię niepokoi, skonsultuj się z psychologiem.
-    </div>
-
+    <p style="margin:40px auto 0;max-width:640px;text-align:center;color:var(--text-muted);font-size:14px;line-height:1.7;">Wynik testu: nie diagnoza. To sygnał, który pomaga zrozumieć, czy warto zgłosić się do specjalisty. Skale używane są przez psychologów i psychiatrów na całym świecie, ale ostateczną ocenę daje wywiad kliniczny.</p>
   </div>
 </section>
+
 
 <div class="not-sure-cta">
   <div class="container">
@@ -515,113 +312,6 @@
 </div>
 
 <script src="/js/main.min.js?v=22"></script>
-<script>
-(function(){
-  const tabs = document.querySelectorAll('.test-tab');
-  const panels = document.querySelectorAll('.test-panel');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.test).classList.add('active');
-    });
-  });
-
-  const interpretations = {
-    gad7: [
-      {max: 4, level: 'Minimalny poziom lęku', desc: 'Twój poziom lęku mieści się w normie. To dobre wyniki.'},
-      {max: 9, level: 'Łagodny lęk', desc: 'Występują pewne objawy lęku, ale nie są jeszcze krytyczne. Warto zwrócić uwagę na sen, odpoczynek i poziom stresu.'},
-      {max: 14, level: 'Umiarkowany lęk', desc: 'Lęk zauważalnie wpływa na codzienne życie. Zalecana jest konsultacja ze specjalistą.'},
-      {max: 21, level: 'Nasilony lęk', desc: 'Wysoki poziom lęku. Zdecydowanie zalecana jest konsultacja z psychologiem lub psychoterapeutą.'}
-    ],
-    phq9: [
-      {max: 4, level: 'Minimalne objawy', desc: 'Objawy depresji minimalne lub nieobecne. To dobry wynik.'},
-      {max: 9, level: 'Łagodna depresja', desc: 'Występują łagodne objawy. Warto zwrócić uwagę na tryb życia, aktywność fizyczną i kontakty społeczne.'},
-      {max: 14, level: 'Umiarkowana depresja', desc: 'Objawy depresji są wyraźne. Zalecana jest konsultacja ze specjalistą.'},
-      {max: 19, level: 'Umiarkowanie nasilona depresja', desc: 'Istotny wpływ na codzienne życie. Zalecana jest konsultacja z psychologiem.'},
-      {max: 27, level: 'Nasilona depresja', desc: 'Wysoki poziom objawów depresyjnych. Zdecydowanie zalecana jest pomoc profesjonalisty.'}
-    ],
-    pcl5: [
-      {max: 19, level: 'Poniżej progu klinicznego', desc: 'Objawy PTSD nie osiągają poziomu klinicznego. Jeśli jednak coś Pana/Panią niepokoi, konsultacja nie zaszkodzi.'},
-      {max: 32, level: 'Poziom graniczny', desc: 'Występują oznaki reakcji pourazowych. Zalecane jest omówienie wyniku ze specjalistą.'},
-      {max: 80, level: 'Powyżej progu klinicznego', desc: 'Wynik wskazuje na prawdopodobne PTSD. Zalecana jest konsultacja z psychotraumatologiem w celu szczegółowej oceny.'}
-    ]
-  };
-
-  function crossLinks(testId) {
-    var links = {
-      gad7: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border-subtle);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
-        'Lęk i depresja często idą w parze.<br><a href="#" onclick="switchTo(\'phq9\');return false;" style="color:var(--accent);">Wypełnij test na depresję (PHQ-9)</a></div>',
-      phq9: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border-subtle);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
-        'Depresji często towarzyszy lęk.<br><a href="#" onclick="switchTo(\'gad7\');return false;" style="color:var(--accent);">Wypełnij test na lęk (GAD-7)</a></div>',
-      pcl5: '<div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border-subtle);font-size:14px;color:var(--text-muted);line-height:1.8;">' +
-        'Trauma rzadko przychodzi sama. Sprawdź także:<br>' +
-        '<a href="#" onclick="switchTo(\'phq9\');return false;" style="color:var(--accent);">Test na depresję (PHQ-9)</a><br>' +
-        '<a href="#" onclick="switchTo(\'gad7\');return false;" style="color:var(--accent);">Test na lęk (GAD-7)</a></div>'
-    };
-    return links[testId] || '';
-  }
-
-  window.switchTo = function(testId) {
-    document.querySelectorAll('.test-tab').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.test-panel').forEach(function(p){ p.classList.remove('active'); });
-    document.querySelector('[data-test="' + testId + '"]').classList.add('active');
-    document.getElementById('panel-' + testId).classList.add('active');
-    resetTest(testId);
-    document.getElementById('panel-' + testId).scrollIntoView({behavior:'smooth',block:'start'});
-  };
-
-  function setupForm(testId, prefix, count) {
-    const form = document.getElementById('form-' + testId);
-    const resultDiv = document.getElementById('result-' + testId);
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let total = 0;
-      for (let i = 1; i <= count; i++) {
-        const selected = form.querySelector('input[name="' + prefix + i + '"]:checked');
-        if (!selected) return;
-        total += parseInt(selected.value);
-      }
-
-      const maxScore = testId === 'pcl5' ? 80 : (testId === 'phq9' ? 27 : 21);
-      const levels = interpretations[testId];
-      let interp = levels[levels.length - 1];
-      for (let l of levels) {
-        if (total <= l.max) { interp = l; break; }
-      }
-
-      form.style.display = 'none';
-      resultDiv.hidden = false;
-      resultDiv.innerHTML =
-        '<h3>Twój wynik</h3>' +
-        '<div class="test-score">' + total + ' <span style="font-size:20px;color:var(--text-muted)">/ ' + maxScore + '</span></div>' +
-        '<div class="test-score-label">' + (testId === 'pcl5' ? 'PCL-5' : (testId === 'phq9' ? 'PHQ-9' : 'GAD-7')) + '</div>' +
-        '<div class="test-severity">' + interp.level + '</div>' +
-        '<p class="test-desc">' + interp.desc + '</p>' +
-        '<a href="/index-pl.html#booking" class="btn" style="display:inline-block;margin-bottom:16px;">Umów sesję</a><br>' +
-        '<button class="test-again" onclick="resetTest(\'' + testId + '\')">Wypełnij ponownie</button>' +
-        crossLinks(testId);
-
-      resultDiv.scrollIntoView({behavior: 'smooth', block: 'center'});
-    });
-  }
-
-  window.resetTest = function(testId) {
-    const form = document.getElementById('form-' + testId);
-    const resultDiv = document.getElementById('result-' + testId);
-    form.reset();
-    form.style.display = 'block';
-    resultDiv.hidden = true;
-    form.scrollIntoView({behavior: 'smooth', block: 'start'});
-  };
-
-  setupForm('gad7', 'g', 7);
-  setupForm('phq9', 'p', 9);
-  setupForm('pcl5', 'c', 20);
-})();
-</script>
 </body>
 </html>
