@@ -471,6 +471,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/flashback.html"/>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/glossary/hyperarousal.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary/hyperarousal.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl/hyperarousal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/hyperarousal.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/glossary-pl/hyperarousal.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary/hyperarousal.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl/hyperarousal.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/hyperarousal.html"/>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Blog / Library -->
   <url>
