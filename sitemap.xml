@@ -786,6 +786,20 @@
 
   <!-- Topic hub pages 2026-05-27 -->
   <url>
+    <loc>https://levashou.pl/topics/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/topics/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/topics-pl/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/topics-pl/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/topics/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/topics-pl/"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://levashou.pl/topics/anxiety.html</loc>
     <lastmod>2026-05-27</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/topics/anxiety.html"/>
