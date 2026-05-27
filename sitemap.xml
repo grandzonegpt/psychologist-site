@@ -423,6 +423,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/dissociation.html"/>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/glossary/cognitive-distortion.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary/cognitive-distortion.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl/cognitive-distortion.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/cognitive-distortion.html"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/glossary-pl/cognitive-distortion.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/glossary/cognitive-distortion.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/glossary-pl/cognitive-distortion.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/glossary/cognitive-distortion.html"/>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Blog / Library -->
   <url>
