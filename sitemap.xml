@@ -369,6 +369,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/perfectionism.html"/>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/tests/attachment-styles.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/attachment-styles.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/typy-przywiazania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/attachment-styles.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/typy-przywiazania.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/attachment-styles.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/typy-przywiazania.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/attachment-styles.html"/>
+    <priority>0.85</priority>
+  </url>
 
   <!-- Landing pages: not-sure -->
   <url>
