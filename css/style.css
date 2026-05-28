@@ -3575,13 +3575,16 @@ input, textarea, select {
 
 .price-card__amount {
   font-family: var(--font-serif);
-  font-size: clamp(96px, 17vw, 168px);
-  line-height: 0.82;
+  font-size: clamp(80px, 15vw, 144px);
+  line-height: 0.85;
   font-weight: 400;
   color: var(--accent-soft);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.045em;
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: clamp(8px, 1.5vw, 16px);
   animation: pc-amount .9s cubic-bezier(.22,.61,.36,1) .15s both;
 }
 @keyframes pc-amount {
@@ -3590,21 +3593,25 @@ input, textarea, select {
 }
 
 .price-card__currency {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2.8vw, 32px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.price-card__per {
   display: block;
   font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.32em;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-top: 14px;
   font-variant-numeric: tabular-nums;
-}
-.price-card__currency::before,
-.price-card__currency::after {
-  content: " ··· ";
-  opacity: 0.45;
-  letter-spacing: 0.05em;
 }
 
 .price-card__eur {
@@ -3613,7 +3620,7 @@ input, textarea, select {
   font-style: italic;
   font-size: clamp(18px, 2.4vw, 24px);
   color: var(--text-muted);
-  margin-top: 18px;
+  margin-top: 12px;
   font-variant-numeric: tabular-nums;
 }
 
