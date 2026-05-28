@@ -853,7 +853,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .recognize-row:last-child { border-bottom: none; }
 .recognize-num {
   width: 28px; height: 28px;
-  color: var(--accent); opacity: 0.85;
+  color: var(--text-primary); opacity: 0.65;
   display: inline-flex; align-items: center; justify-content: center;
 }
 .recognize-num svg { display: block; width: 100%; height: 100%; }
@@ -862,7 +862,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
   font-size: 18px; line-height: 1.5;
   color: var(--text-primary); margin: 0; font-weight: 400;
 }
-.light-theme .recognize-num { color: #8a6a3a; }
+.light-theme .recognize-num { color: var(--text-primary); }
 
 /* Legacy grid kept for non-index pages that may still use it */
 .recognize-grid {
