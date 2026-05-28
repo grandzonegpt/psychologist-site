@@ -3507,3 +3507,23 @@ input, textarea, select {
 @media (prefers-reduced-motion: reduce) {
   .btn:hover .arrow, .link-cta:hover .arrow, .hero-cta a:hover .arrow { transform: none; }
 }
+
+/* ============================================================
+   View Transitions — buttery cross-document navigation
+   Chrome 126+, Edge 126+, Safari 18+. Firefox falls back to normal nav.
+============================================================ */
+
+@view-transition { navigation: auto; }
+
+/* Subtle, fast cross-fade — not over-animated */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: .35s;
+  animation-timing-function: cubic-bezier(.22,.61,.36,1);
+}
+
+/* Respect reduced-motion: snap, no fade */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none; }
+}
