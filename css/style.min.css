@@ -3509,6 +3509,39 @@ input, textarea, select {
 }
 
 /* ============================================================
+   Mobile UX — tap-feedback, touch-action, safe-area, overscroll
+============================================================ */
+
+/* Remove 300ms tap delay + uglish gray flash on tap */
+a, button, input, textarea, select, summary, [role="button"], [role="tab"], label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hanging punctuation — quotes hang off line edge (supported Safari, falls back elsewhere) */
+body { hanging-punctuation: first last; }
+
+/* Safe-area insets for iPhone notch + home-indicator */
+.site-nav .nav-inner {
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
+}
+.sticky-cta-mobile {
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+.floating-cta {
+  bottom: max(24px, env(safe-area-inset-bottom));
+  right: max(24px, env(safe-area-inset-right));
+}
+
+/* Modal/dialog containers — scroll within stays within */
+.cookie-banner, .exit-popup, .lightbox {
+  overscroll-behavior: contain;
+}
+
+/* ============================================================
    View Transitions — buttery cross-document navigation
    Chrome 126+, Edge 126+, Safari 18+. Firefox falls back to normal nav.
 ============================================================ */
