@@ -3457,3 +3457,53 @@ h1, h2, h3, h4, .hero-title {
 @media (prefers-reduced-motion: reduce) {
   .diploma-thumb:hover img { transform: none; }
 }
+
+/* Hero stagger entrance — buttery first-impression */
+@keyframes hero-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hero-photo-in {
+  from { opacity: 0; transform: scale(1.025); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.hero .hero-title       { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) both; }
+.hero .hero-lead        { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .12s both; }
+.hero .hero-name        { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .24s both; }
+.hero .hero-creds       { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .32s both; }
+.hero .hero-schools     { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .40s both; }
+.hero .hero-cta         { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .50s both; }
+.hero .hero-trust       { animation: hero-up .9s cubic-bezier(.22,.61,.36,1) .60s both; }
+.hero-photo img         { animation: hero-photo-in 1.2s cubic-bezier(.22,.61,.36,1) .10s both; }
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-title, .hero .hero-lead, .hero .hero-name,
+  .hero .hero-creds, .hero .hero-schools, .hero .hero-cta,
+  .hero .hero-trust, .hero-photo img { animation: none; }
+}
+
+/* Smooth theme-toggle transition */
+body, .site-nav, .site-footer, .seasonal-banner,
+section, header, footer,
+.case-card, .myth-card, .post-card, .first-aid-card, .topic-card,
+.quals-row .quals-item, .stat,
+a, .btn, .btn-ghost, .blog-chip,
+input, textarea, select {
+  transition-property: background-color, color, border-color;
+  transition-duration: .35s;
+  transition-timing-function: ease;
+}
+
+/* Premium button — subtle gradient on hover, slight lift */
+.btn { transition: background-color .25s ease, color .25s ease, transform .15s ease, box-shadow .25s ease; }
+.btn:not(.btn-ghost):hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(60, 50, 40, 0.12); }
+.btn:not(.btn-ghost):active { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .btn:not(.btn-ghost):hover, .btn:not(.btn-ghost):active { transform: none; }
+}
+
+/* Arrow micro-anim on .btn arrow / link-cta arrow */
+.btn .arrow, .link-cta .arrow, .hero-cta .arrow { display: inline-block; transition: transform .25s ease; }
+.btn:hover .arrow, .link-cta:hover .arrow, .hero-cta a:hover .arrow { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover .arrow, .link-cta:hover .arrow, .hero-cta a:hover .arrow { transform: none; }
+}
