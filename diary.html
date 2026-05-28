@@ -182,21 +182,21 @@
       </div>
 
       <div class="diary-q">
-        <div class="qlabel"><span class="qn">i.</span><span class="qt">Что произошло</span></div>
+        <div class="qlabel" id="diary-event-q"><span class="qn">i.</span><span class="qt">Что произошло</span></div>
         <p class="qhint">Коротко, как в новостях: где, когда, что случилось. Без оценок.</p>
-        <textarea name="event" rows="2" placeholder="..."></textarea>
+        <textarea id="diary-event" name="event" rows="2" aria-labelledby="diary-event-q"></textarea>
       </div>
 
       <div class="diary-q">
-        <div class="qlabel"><span class="qn">ii.</span><span class="qt">Какая мысль пришла первой</span></div>
+        <div class="qlabel" id="diary-thought-q"><span class="qn">ii.</span><span class="qt">Какая мысль пришла первой</span></div>
         <p class="qhint">Прямой цитатой, как звучит в голове.</p>
-        <textarea name="thought" rows="2" placeholder="..."></textarea>
+        <textarea id="diary-thought" name="thought" rows="2" aria-labelledby="diary-thought-q"></textarea>
       </div>
 
       <div class="diary-q">
-        <div class="qlabel"><span class="qn">iii.</span><span class="qt">Что я почувствовал</span></div>
+        <div class="qlabel" id="diary-feeling-q"><span class="qn">iii.</span><span class="qt">Что я почувствовал</span></div>
         <p class="qhint">Назови эмоцию одним словом и оцени интенсивность.</p>
-        <textarea name="feeling" rows="1" placeholder="..."></textarea>
+        <textarea id="diary-feeling" name="feeling" rows="1" aria-labelledby="diary-feeling-q"></textarea>
         <div class="diary-scale" id="diary-scale" data-value="0">
           <span class="pip" data-v="1">1</span><span class="pip" data-v="2">2</span><span class="pip" data-v="3">3</span>
           <span class="pip" data-v="4">4</span><span class="pip" data-v="5">5</span><span class="pip" data-v="6">6</span>
@@ -206,9 +206,9 @@
       </div>
 
       <div class="diary-q">
-        <div class="qlabel"><span class="qn">iv.</span><span class="qt">Что я могу сказать себе вместо этого</span></div>
+        <div class="qlabel" id="diary-reframe-q"><span class="qn">iv.</span><span class="qt">Что я могу сказать себе вместо этого</span></div>
         <p class="qhint">Не «всё будет хорошо», а трезвый ответ. Что я сказал бы другу в этой ситуации.</p>
-        <textarea name="reframe" rows="2" placeholder="..."></textarea>
+        <textarea id="diary-reframe" name="reframe" rows="2" aria-labelledby="diary-reframe-q"></textarea>
       </div>
 
       <div class="diary-actions">
