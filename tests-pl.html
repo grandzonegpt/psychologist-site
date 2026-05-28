@@ -111,7 +111,7 @@
 <link rel="stylesheet" href="/css/style.min.css?v=104">
 <style>
 .test-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.test-tab{padding:12px 24px;border-radius:8px;background:var(--bg-elevated);color:var(--text-muted);cursor:pointer;border:1px solid var(--border-subtle);transition:all .2s;font-size:15px;font-family:'Lato',sans-serif}
+.test-tab{padding:12px 24px;border-radius:8px;background:var(--bg-elevated);color:var(--text-muted);cursor:pointer;border:1px solid var(--border-subtle);transition:border-color .2s,color .2s,background .2s;font-size:15px;font-family:'Lato',sans-serif}
 .test-tab:hover{border-color:var(--accent);color:var(--text-primary)}
 .test-tab.active{background:var(--accent);color:var(--bg-primary);border-color:var(--accent);font-weight:500}
 .test-panel{display:none}
@@ -134,7 +134,7 @@
 .test-score-label{color:var(--text-muted);font-size:14px;margin-bottom:24px}
 .test-severity{font-size:20px;margin-bottom:16px;font-weight:400}
 .test-desc{color:var(--text-muted);line-height:1.7;font-size:15px;margin-bottom:32px}
-.test-again{background:none;border:1px solid var(--border-subtle);color:var(--text-muted);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;margin-top:12px;font-family:'Lato',sans-serif;transition:all .2s}
+.test-again{background:none;border:1px solid var(--border-subtle);color:var(--text-muted);padding:10px 24px;border-radius:8px;cursor:pointer;font-size:14px;margin-top:12px;font-family:'Lato',sans-serif;transition:border-color .2s,color .2s,background .2s}
 .test-again:hover{border-color:var(--accent);color:var(--text-primary)}
 .test-disclaimer{max-width:640px;margin:48px auto 0;padding:20px 24px;border-radius:12px;background:var(--bg-elevated);border:1px solid var(--border-subtle);font-size:13px;color:var(--text-muted);line-height:1.7;text-align:center}
 .test-legal-notice{max-width:640px;margin:0 auto 40px;padding:16px 20px 16px 24px;border-left:3px solid #b8975a;background:var(--bg-elevated);border-radius:0 8px 8px 0;font-size:13px;color:var(--text-muted);line-height:1.7}
@@ -375,7 +375,7 @@
   </div>
 </footer>
 
-<div class="cookie-banner" role="dialog" aria-label="Cookies">
+<div class="cookie-banner" role="dialog" aria-modal="true" aria-label="Cookies">
   <p>Używamy cookies do działania strony i analityki. Możesz odrzucić. Więcej w <a href="/privacy-pl.html">polityce prywatności</a>.</p>
   <div class="cookie-actions">
     <button type="button" class="accept-all" data-cookie="all">Zaakceptuj wszystkie</button>
