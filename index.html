@@ -677,7 +677,7 @@
         </div>
       </div>
     </div>
-    <p class="reveal" style="text-align:center;margin-top:24px;color:var(--text-muted);font-size:14px;">Хочешь точнее? Пройди <a href="/tests.html" style="color:var(--accent);text-decoration:underline;">клинические шкалы (PHQ-9, GAD-7, PCL-5)</a>: те же опросники используют психиатры и исследователи.</p>
+    <p class="reveal" style="text-align:center;margin-top:24px;color:var(--text-muted);font-size:14px;">Хочешь точнее? Пройди <a href="/tests.html" style="color:var(--accent);text-decoration:underline;">клинические шкалы (<span translate="no">PHQ-9, GAD-7, PCL-5</span>)</a>: те же опросники используют психиатры и исследователи.</p>
   </div>
 </section>
 
@@ -787,7 +787,7 @@
         <p>Регулярные сессии по 50 минут. Каждый случай обсуждаю на регулярной супервизии у супервизора PTTPB.</p>
       </div>
     </div>
-    <p class="reveal" style="text-align:center;margin-top:32px;color:var(--text-muted);font-size:15px;">КПТ это метод первой линии по <strong style="color:#3d342a;">NICE</strong>, <strong style="color:#3d342a;">Cochrane</strong> и <strong style="color:#3d342a;">APA</strong>. Подробнее о подходах и протоколах: <a href="/metody.html">страница про методы</a>.</p>
+    <p class="reveal" style="text-align:center;margin-top:32px;color:var(--text-muted);font-size:15px;">КПТ это метод первой линии по <strong style="color:#3d342a;" translate="no">NICE</strong>, <strong style="color:#3d342a;" translate="no">Cochrane</strong> и <strong style="color:#3d342a;" translate="no">APA</strong>. Подробнее о подходах и протоколах: <a href="/metody.html">страница про методы</a>.</p>
   </div>
 </section>
 
@@ -1396,7 +1396,7 @@
   </div>
 </footer>
 
-<div class="cookie-banner" role="dialog" aria-label="Cookies">
+<div class="cookie-banner" role="dialog" aria-modal="true" aria-label="Cookies">
   <p>Используем cookies для работы сайта и аналитики. Можно отказаться. Подробнее в <a href="/privacy.html">политике конфиденциальности</a>.</p>
   <div class="cookie-actions">
     <button type="button" class="accept-all" data-cookie="all">Принять все</button>
@@ -1409,12 +1409,12 @@
   <a href="#booking">Записаться</a>
 </div>
 
-<div class="exit-popup" id="exit-popup" hidden>
+<div class="exit-popup" id="exit-popup" role="dialog" aria-modal="true" aria-labelledby="exit-popup-title" hidden>
   <div class="exit-popup-overlay"></div>
   <div class="exit-popup-content">
     <button class="exit-popup-close" aria-label="Закрыть">×</button>
     <div class="eyebrow" style="margin-bottom:8px;">Забери с собой</div>
-    <h3>7 признаков, когда пора к психологу</h3>
+    <h3 id="exit-popup-title">7 признаков, когда пора к психологу</h3>
     <p>Короткий PDF на одну страницу. Можно сохранить, показать близкому человеку или вернуться через пару недель и сравнить.</p>
     <a href="/assets/checklist-7-signs-ru.pdf" target="_blank" rel="noopener" class="btn" id="exit-popup-cta" download>Скачать PDF</a>
     <button class="exit-popup-skip">Не сейчас</button>
