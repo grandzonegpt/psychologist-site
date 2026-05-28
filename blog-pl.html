@@ -169,13 +169,13 @@
 <section style="padding:0 0 24px;">
   <div class="container">
     <div class="blog-filters" role="tablist" aria-label="Tematy bloga" style="display:flex;flex-wrap:wrap;gap:8px;">
-      <button type="button" class="blog-chip is-active" data-filter="all" role="tab" aria-selected="true">Wszystkie</button>
-      <button type="button" class="blog-chip" data-filter="anxiety" role="tab" aria-selected="false">Lęk i panika</button>
-      <button type="button" class="blog-chip" data-filter="trauma" role="tab" aria-selected="false">Trauma i PTSD</button>
-      <button type="button" class="blog-chip" data-filter="relations" role="tab" aria-selected="false">Relacje i bliscy</button>
-      <button type="button" class="blog-chip" data-filter="self" role="tab" aria-selected="false">Samoocena</button>
-      <button type="button" class="blog-chip" data-filter="method" role="tab" aria-selected="false">Metoda CBT</button>
-      <button type="button" class="blog-chip" data-filter="practice" role="tab" aria-selected="false">Praktyka i format</button>
+      <button type="button" class="blog-chip is-active" data-filter="all" role="tab" aria-selected="true" tabindex="0">Wszystkie</button>
+      <button type="button" class="blog-chip" data-filter="anxiety" role="tab" aria-selected="false" tabindex="-1">Lęk i panika</button>
+      <button type="button" class="blog-chip" data-filter="trauma" role="tab" aria-selected="false" tabindex="-1">Trauma i PTSD</button>
+      <button type="button" class="blog-chip" data-filter="relations" role="tab" aria-selected="false" tabindex="-1">Relacje i bliscy</button>
+      <button type="button" class="blog-chip" data-filter="self" role="tab" aria-selected="false" tabindex="-1">Samoocena</button>
+      <button type="button" class="blog-chip" data-filter="method" role="tab" aria-selected="false" tabindex="-1">Metoda CBT</button>
+      <button type="button" class="blog-chip" data-filter="practice" role="tab" aria-selected="false" tabindex="-1">Praktyka i format</button>
     </div>
   </div>
 </section>
@@ -369,24 +369,36 @@
 
 <script>
 (function(){
-  var chips=document.querySelectorAll('.blog-chip');
+  var chips=Array.prototype.slice.call(document.querySelectorAll('.blog-chip'));
   var grid=document.querySelector('.blog-grid');
   if(!grid||!chips.length)return;
-  function apply(filter){
+  function apply(filter,focus){
     grid.setAttribute('data-active-filter',filter);
     chips.forEach(function(c){
       var active=c.getAttribute('data-filter')===filter;
       c.classList.toggle('is-active',active);
       c.setAttribute('aria-selected',active?'true':'false');
+      c.setAttribute('tabindex',active?'0':'-1');
+      if(active&&focus)c.focus();
     });
     if(history.replaceState){
       var url=filter==='all'?location.pathname:location.pathname+'#filter='+filter;
       history.replaceState(null,'',url);
     }
   }
-  chips.forEach(function(c){c.addEventListener('click',function(){apply(c.getAttribute('data-filter'));});});
+  chips.forEach(function(c){c.addEventListener('click',function(){apply(c.getAttribute('data-filter'),false);});});
+  var tablist=chips[0]&&chips[0].parentElement;
+  if(tablist)tablist.addEventListener('keydown',function(e){
+    var dir={ArrowLeft:-1,ArrowRight:1,Home:'first',End:'last'};
+    if(!(e.key in dir))return;
+    e.preventDefault();
+    var i=chips.indexOf(document.activeElement);
+    if(i===-1)i=chips.map(function(c){return c.classList.contains('is-active');}).indexOf(true);
+    var next=dir[e.key]==='first'?0:dir[e.key]==='last'?chips.length-1:(i+dir[e.key]+chips.length)%chips.length;
+    apply(chips[next].getAttribute('data-filter'),true);
+  });
   var hash=location.hash.match(/filter=([a-z]+)/);
-  if(hash)apply(hash[1]);
+  if(hash)apply(hash[1],false);
 })();
 </script>
 
