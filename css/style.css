@@ -3390,3 +3390,70 @@ body::after {
   .pmr-stage { border-right: none; border-bottom: 1px solid var(--border-subtle); padding: 40px 24px; }
   .pmr-side { padding: 40px 24px; }
 }
+
+/* ============================================================
+   Visual polish — selection, numerals, OpenType, hover, hero photo
+============================================================ */
+
+::selection { background: var(--accent-soft); color: var(--bg-primary); }
+.light-theme ::selection { background: #8a7548; color: #f7f5f0; }
+
+/* Tabular numerals where alignment matters */
+.stat-num,
+.case-result,
+.fs-num, .step-num, .service-num, .recognize-num, .first-aid-num,
+.hero-creds, .hero-schools,
+.quals-name, .quals-label,
+.dim-label,
+.case-tag {
+  font-variant-numeric: tabular-nums;
+}
+
+/* OpenType refinements */
+body { font-feature-settings: "kern" 1, "liga" 1, "calt" 1; }
+h1, h2, h3, h4, .hero-title {
+  font-feature-settings: "kern" 1, "liga" 1, "dlig" 1, "calt" 1;
+}
+
+/* Hover lift on card surfaces */
+.case-card, .myth-card, .post-card, .first-aid-card {
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.case-card:hover, .myth-card:hover, .post-card:hover, .first-aid-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(60, 50, 40, 0.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-card:hover, .myth-card:hover, .post-card:hover, .first-aid-card:hover {
+    transform: none;
+  }
+}
+
+/* Animated underline on inline links inside about-body and prose */
+.about-body p a, .first-aid-card p a, .seasonal-banner a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 95%;
+  background-repeat: no-repeat;
+  transition: background-size .35s ease;
+  text-decoration: none;
+}
+.about-body p a:hover, .first-aid-card p a:hover, .seasonal-banner a:hover {
+  background-size: 100% 1px;
+}
+
+/* Hero photo — frame it as a portrait */
+.hero-photo img {
+  border-radius: 6px;
+  box-shadow: 0 18px 48px rgba(60, 50, 40, 0.14), 0 2px 6px rgba(60, 50, 40, 0.06);
+}
+.light-theme .hero-photo img {
+  box-shadow: 0 18px 48px rgba(60, 50, 40, 0.18), 0 2px 6px rgba(60, 50, 40, 0.08);
+}
+
+/* Diploma thumbs — gentle frame */
+.diploma-thumb img { transition: transform .25s ease, box-shadow .25s ease; }
+.diploma-thumb:hover img { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(60, 50, 40, 0.10); }
+@media (prefers-reduced-motion: reduce) {
+  .diploma-thumb:hover img { transform: none; }
+}
