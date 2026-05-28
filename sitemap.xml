@@ -337,6 +337,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/pcl-5.html"/>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://levashou.pl/tests/borderline.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/borderline.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/borderline.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/borderline.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/borderline.html</loc>
+    <lastmod>2026-05-28</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/borderline.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/borderline.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/borderline.html"/>
+    <priority>0.85</priority>
+  </url>
 
   <!-- Landing pages: not-sure -->
   <url>
