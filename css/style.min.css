@@ -3509,6 +3509,37 @@ input, textarea, select {
 }
 
 /* ============================================================
+   backdrop-filter fallback for Firefox <103 + old browsers
+============================================================ */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-nav { background: rgba(10, 10, 11, 0.96); }
+  .light-theme .site-nav { background: rgba(247, 245, 240, 0.96); }
+  .exit-popup-overlay { background: rgba(0, 0, 0, 0.92); }
+}
+
+/* ============================================================
+   Long-content safety: clamp card titles to prevent layout breaks
+============================================================ */
+.blog-card h3,
+.post-card h3,
+.first-aid-card h3,
+.book h3,
+.case-card .case-tag + p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================================
+   No-JS graceful degradation hint (works alongside <noscript> inline)
+============================================================ */
+@supports (display: none) {
+  /* This block intentionally a no-op; sentinel for tooling */
+}
+
+/* ============================================================
    Mobile UX — tap-feedback, touch-action, safe-area, overscroll
 ============================================================ */
 
