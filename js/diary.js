@@ -46,6 +46,13 @@
 
   numEl.textContent = String(readAll().length + 1).padStart(2, '0');
 
+  // Warn before unload if there is unsaved typing
+  var dirty = false;
+  form.addEventListener('input', function () { dirty = true; });
+  window.addEventListener('beforeunload', function (e) {
+    if (dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+
   scale.addEventListener('click', function (e) {
     var pip = e.target.closest('.pip');
     if (!pip) return;
@@ -71,6 +78,7 @@
     var list = readAll();
     list.push(entry);
     writeAll(list);
+    dirty = false;
     form.reset();
     Array.prototype.forEach.call(scale.querySelectorAll('.pip'), function (p) {
       p.classList.remove('on'); p.classList.remove('peak');
