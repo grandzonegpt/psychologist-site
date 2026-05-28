@@ -126,7 +126,7 @@ section.alt { background: var(--bg-secondary); }
   white-space: nowrap;
   flex-shrink: 0;
 }
-.nav-brand .dot { color: var(--accent-soft); }
+.nav-brand .dot { color: var(--text-muted); }
 .nav-links {
   display: flex;
   gap: 24px;
@@ -153,17 +153,15 @@ section.alt { background: var(--bg-secondary); }
 /* CTA pill — emphasize "Записаться" / "Zapisz się" / "Umów się" */
 .nav-links a[href$="#booking"] {
   padding: 8px 18px;
-  border: 1px solid var(--accent-soft);
-  color: var(--accent-soft);
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
   transition: background .25s ease, color .25s ease, border-color .25s ease;
 }
 .nav-links a[href$="#booking"]:hover {
-  background: var(--accent-soft);
+  background: var(--text-primary);
   color: var(--bg-primary);
-  border-color: var(--accent-soft);
+  border-color: var(--text-primary);
 }
-.light-theme .nav-links a[href$="#booking"] { color: #4a3d2a; border-color: #4a3d2a; }
-.light-theme .nav-links a[href$="#booking"]:hover { background: #4a3d2a; color: #f5f1e8; border-color: #4a3d2a; }
 
 /* Nav dropdown «Материалы» / «Materiały» */
 .nav-links .nav-dropdown { position: relative; }
@@ -315,9 +313,9 @@ nav.breadcrumbs + section { padding-top: 32px; }
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    border: 1px solid var(--accent-soft);
-    color: var(--accent-soft);
-    border-bottom: 1px solid var(--accent-soft);
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-primary);
   }
   .nav-links .nav-dropdown { width: 100%; border-bottom: 1px solid var(--border-subtle); }
   .nav-links .nav-dropdown summary { min-height: 52px; display: flex; align-items: center; padding: 0; color: var(--text-primary); font-family: var(--font-serif); font-size: 18px; }
@@ -1977,9 +1975,9 @@ nav.breadcrumbs + section { padding-top: 32px; }
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #8a7548;
+  color: var(--text-muted);
 }
-.post-page .post-back:hover { color: #b8860b; }
+.post-page .post-back:hover { color: var(--text-primary); }
 body[data-category="anxiety"]   { --cat-color: var(--cat-anxiety); }
 body[data-category="trauma"]    { --cat-color: var(--cat-trauma); }
 body[data-category="relations"] { --cat-color: var(--cat-relations); }
@@ -3469,8 +3467,7 @@ body::after {
    Visual polish — selection, numerals, OpenType, hover, hero photo
 ============================================================ */
 
-::selection { background: var(--accent-soft); color: var(--bg-primary); }
-.light-theme ::selection { background: #8a7548; color: #f7f5f0; }
+::selection { background: var(--text-primary); color: var(--bg-primary); }
 
 /* Tabular numerals where alignment matters */
 .stat-num,
