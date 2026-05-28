@@ -1262,18 +1262,18 @@
 
         <div class="booking-form-card">
           <form id="contact-form" class="contact-form" action="https://booking-api-production-c2ca.up.railway.app/api/contact" method="POST">
-            <input type="text" name="_gotcha" style="display:none">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off">
             <div class="field">
               <label for="name">Imię</label>
-              <input type="text" id="name" name="name" required placeholder="Twoje imię">
+              <input type="text" id="name" name="name" required autocomplete="name" autocapitalize="words" placeholder="Twoje imię">
             </div>
             <div class="field">
               <label for="email">Email lub telefon</label>
-              <input type="text" id="email" name="email" required placeholder="email lub +48...">
+              <input type="text" id="email" name="email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="email lub +48…">
             </div>
             <div class="field">
               <label for="message">O sytuacji (opcjonalnie)</label>
-              <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Możesz napisać parę słów, a możesz zostawić puste"></textarea>
+              <textarea id="message" name="message" rows="3" maxlength="1000" autocomplete="off" placeholder="Możesz napisać parę słów, a możesz zostawić puste"></textarea>
             </div>
             <label class="consent">
               <input type="checkbox" name="consent_privacy" required>
@@ -1300,7 +1300,7 @@
       <p style="margin:0 0 14px;color:var(--text-muted);font-size:14px;">Teksty o lęku, wypaleniu, emigracji. Bez reklam. Można wypisać się w jednym kliknięciu.</p>
       <form class="newsletter-form" data-newsletter="pl" onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;">
         <label for="nl-email-pl" class="visually-hidden">Email</label>
-        <input id="nl-email-pl" type="email" name="email" placeholder="twój email" required autocomplete="email" style="flex:1;min-width:200px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);color:inherit;">
+        <input id="nl-email-pl" type="email" name="email" placeholder="twój email" required autocomplete="email" autocapitalize="off" spellcheck="false" style="flex:1;min-width:200px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);color:inherit;">
         <button type="submit" class="btn">Zapisz się</button>
         <label style="flex-basis:100%;font-size:13px;color:var(--text-muted);display:flex;gap:8px;align-items:flex-start;">
           <input type="checkbox" required style="margin-top:3px;">

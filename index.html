@@ -1262,18 +1262,18 @@
 
         <div class="booking-form-card">
           <form id="contact-form" class="contact-form" action="https://booking-api-production-c2ca.up.railway.app/api/contact" method="POST">
-            <input type="text" name="_gotcha" style="display:none">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" aria-hidden="true" autocomplete="off">
             <div class="field">
               <label for="name">Имя</label>
-              <input type="text" id="name" name="name" required placeholder="Твоё имя">
+              <input type="text" id="name" name="name" required autocomplete="name" autocapitalize="words" placeholder="Твоё имя">
             </div>
             <div class="field">
               <label for="email">Email или телефон</label>
-              <input type="text" id="email" name="email" required placeholder="email или +48...">
+              <input type="text" id="email" name="email" required inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="email или +48…">
             </div>
             <div class="field">
               <label for="message">О ситуации (по желанию)</label>
-              <textarea id="message" name="message" rows="3" maxlength="1000" placeholder="Можешь написать пару слов, а можешь оставить пустым"></textarea>
+              <textarea id="message" name="message" rows="3" maxlength="1000" autocomplete="off" placeholder="Можешь написать пару слов, а можешь оставить пустым"></textarea>
             </div>
             <label class="consent">
               <input type="checkbox" name="consent_privacy" required>
@@ -1300,7 +1300,7 @@
       <p style="margin:0 0 14px;color:var(--text-muted);font-size:14px;">Тексты по теме тревоги, выгорания, эмиграции. Без рекламы. Можно отписаться в один клик.</p>
       <form class="newsletter-form" data-newsletter="ru" onsubmit="return false;" style="display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start;">
         <label for="nl-email-ru" class="visually-hidden">Email</label>
-        <input id="nl-email-ru" type="email" name="email" placeholder="твой email" required autocomplete="email" style="flex:1;min-width:200px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);color:inherit;">
+        <input id="nl-email-ru" type="email" name="email" placeholder="твой email" required autocomplete="email" autocapitalize="off" spellcheck="false" style="flex:1;min-width:200px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.04);color:inherit;">
         <button type="submit" class="btn">Подписаться</button>
         <label style="flex-basis:100%;font-size:13px;color:var(--text-muted);display:flex;gap:8px;align-items:flex-start;">
           <input type="checkbox" required style="margin-top:3px;">
