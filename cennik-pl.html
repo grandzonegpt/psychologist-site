@@ -46,7 +46,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" fetchpriority="high">
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=111"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=112"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -159,25 +159,44 @@
 </section>
 
 <section>
-  <div class="container" style="max-width:720px;">
-    <div class="cennik-table" style="border:1px solid var(--border);border-radius:12px;overflow:hidden;">
-      <div style="display:grid;grid-template-columns:1.6fr 0.7fr 0.9fr;gap:0;padding:16px 20px;background:var(--surface-alt,rgba(0,0,0,0.03));font-weight:500;font-size:14px;color:var(--text-muted);">
-        <div>Usługa</div>
-        <div>Czas</div>
-        <div style="text-align:right;">Cena</div>
+  <div class="container">
+    <article class="price-card">
+      <span class="price-card__lang-badge">PL · RU · BE</span>
+
+      <p class="price-card__eyebrow">Jedna sesja</p>
+
+      <div class="price-card__rule" aria-hidden="true"></div>
+
+      <div class="price-card__main">
+        <div>
+          <p class="price-card__amount">180<span class="price-card__currency">PLN</span></p>
+        </div>
+        <ul class="price-card__features">
+          <li>50&nbsp;minut</li>
+          <li>Online, Google&nbsp;Meet</li>
+          <li>Podejście CBT</li>
+          <li>Superwizja PTTPB</li>
+        </ul>
       </div>
-      <div style="display:grid;grid-template-columns:1.6fr 0.7fr 0.9fr;gap:0;padding:20px;border-top:1px solid var(--border);align-items:center;">
-        <div><strong>Sesja indywidualna online</strong><br><span style="color:var(--text-muted);font-size:14px;">CBT, Google Meet</span></div>
-        <div>50 min</div>
-        <div style="text-align:right;font-weight:500;">180&nbsp;PLN</div>
+
+      <div class="price-card__rule" aria-hidden="true"></div>
+
+      <p class="price-card__note">
+        Bez ukrytych opłat. Płatność przy rezerwacji: Blik, kartą, Apple&nbsp;Pay, Google&nbsp;Pay.
+      </p>
+
+      <div class="price-card__cta">
+        <a href="/index-pl.html#booking" class="btn">
+          <span>Umów sesję</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="https://cal.com/levashou/intro-pl?utm_source=landing&utm_medium=price_card&utm_content=cennik" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">
+          <span>Bezpłatnie, 15&nbsp;min</span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
       </div>
-      <div style="display:grid;grid-template-columns:1.6fr 0.7fr 0.9fr;gap:0;padding:20px;border-top:1px solid var(--border);align-items:center;">
-        <div><strong>Konsultacja wstępna (zapoznawcza)</strong><br><span style="color:var(--text-muted);font-size:14px;">żeby zobaczyć, czy do siebie pasujemy</span></div>
-        <div>15&nbsp;min</div>
-        <div style="text-align:right;font-weight:500;">bezpłatnie</div>
-      </div>
-    </div>
-    <p style="margin-top:20px;color:var(--text-muted);font-size:14px;">Pracuję online przez Google Meet. Jeśli rozważasz format stacjonarny w Warszawie - jest to możliwe po uzgodnieniu, napisz przed rezerwacją. Bez pakietów i ukrytych dopłat.</p>
+    </article>
+    <p style="max-width:720px;margin:24px auto 0;color:var(--text-muted);font-size:14px;text-align:center;">Pracuję online przez Google Meet. Format stacjonarny w Warszawie: po uzgodnieniu, napisz przed rezerwacją. Bez pakietów i ukrytych dopłat.</p>
   </div>
 </section>
 
