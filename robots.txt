@@ -1,3 +1,7 @@
+# levashou.pl
+# Open access for all crawlers: search engines, AI search, AI training.
+# Cloudflare Managed robots.txt intentionally disabled so this file is authoritative.
+
 User-agent: *
 Allow: /
 
