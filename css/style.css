@@ -4,6 +4,7 @@
 ============================================================ */
 
 :root {
+  color-scheme: dark;
   --bg-primary:       #0a0a0b;
   --bg-secondary:     #131316;
   --bg-elevated:      #1a1a1f;
@@ -63,7 +64,12 @@ h1, h2, h3, h4 {
   line-height: 1.15;
   color: var(--text-primary);
   margin: 0 0 0.6em;
+  text-wrap: balance;
 }
+p { text-wrap: pretty; }
+
+/* Anchor jump offset under fixed nav */
+[id] { scroll-margin-top: 80px; }
 h1 { font-size: clamp(36px, 5.6vw, 64px); font-weight: 500; }
 h2 { font-size: clamp(28px, 3.6vw, 44px); }
 h3 { font-size: clamp(22px, 2.4vw, 28px); }
@@ -1173,6 +1179,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .light-theme .bw-nav:hover { border-color: #4a3d2a; color: #2d2419; }
 .light-theme .bw-form input { background: #ffffff; border-color: rgba(0, 0, 0, 0.15); color: #1a1a1b; }
 .light-theme .bw-form input:focus { border-color: #4a3d2a; }
+.light-theme { color-scheme: light; }
 .theme-toggle {
   background: none; border: 1px solid var(--border-subtle); border-radius: 8px;
   color: var(--text-muted); cursor: pointer; padding: 6px 8px; line-height: 1;
@@ -2378,6 +2385,7 @@ select:focus-visible {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto; }
 }
 
 /* Reveal: progressive enhancement.
