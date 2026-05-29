@@ -151,6 +151,13 @@ const MONTH_NAMES = [
   'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
 ];
 
+// Escape Telegram Markdown specials. Any user-provided string (name, email)
+// interpolated into a parse_mode:'Markdown' message must pass through this,
+// or one stray underscore makes Telegram 400 the whole message.
+function escapeMd(s) {
+  return String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
+}
+
 function generateSlots(daySchedule) {
   const slots = [];
   const [startH, startM] = daySchedule.start.split(':').map(Number);
@@ -275,7 +282,7 @@ function init(calendar) {
         if (booking) {
           pendingLinks.set(chatId, booking);
           await bot.sendMessage(chatId,
-            `📎 *Отправить ссылку клиенту ${booking.name}*\n\nВставь ссылку на Google Meet:`,
+            `📎 *Отправить ссылку клиенту ${escapeMd(booking.name)}*\n\nВставь ссылку на Google Meet:`,
             { parse_mode: 'Markdown' }
           );
         }
@@ -331,7 +338,7 @@ function init(calendar) {
           sendUpdates: 'all'
         });
         await bot.sendMessage(chatId,
-          `✅ Ссылка отправлена!\n\n👤 ${pending.name}\n📧 ${pending.email}\n🔗 ${link}\n\nКлиент получит обновлённое приглашение на email.`,
+          `✅ Ссылка отправлена!\n\n👤 ${escapeMd(pending.name)}\n📧 ${escapeMd(pending.email)}\n🔗 ${escapeMd(link)}\n\nКлиент получит обновлённое приглашение на email.`,
           { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
         );
       } else {
