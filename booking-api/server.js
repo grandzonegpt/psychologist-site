@@ -182,6 +182,45 @@ function sessionParams(type) {
   };
 }
 
+// Deterministic 32-bit hash (FNV-1a). Used to pick decoy slots stably per
+// date so the showcase doesn't flicker between requests within a day.
+function hashStr(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+// "Showcase" decoy pass (paid widget only). Flips a share of an individual
+// day's AVAILABLE slots to 'taken' so the calendar looks in-demand. Display
+// only: callers never persist this and /api/book ignores it, so a decoy slot
+// stays genuinely bookable if asked for directly. Deterministic per date:
+// stable on refresh, but the pattern differs day to day so it never repeats
+// the same cells. Always keeps at least MIN_KEEP slots open per day.
+function applyDecoys(dateStr, daySlots) {
+  const cfg = config.decoy || {};
+  if (!cfg.enabled) return;
+  const ratio = cfg.intensity === 'med' ? 0.45 : 0.25;
+  const MIN_KEEP = 2;
+  const avail = daySlots.filter(s => s.status === 'available');
+  if (avail.length <= MIN_KEEP) return;
+  let pick = Math.min(Math.floor(avail.length * ratio), avail.length - MIN_KEEP);
+  if (pick <= 0) return;
+  // Score: bias toward evening then midday (those book first in real life),
+  // plus a per-slot deterministic jitter so it isn't a rigid evening block.
+  const scored = avail.map(s => {
+    const h = parseInt(s.time.split(':')[0], 10);
+    const prime = h >= 17 ? 3 : (h >= 11 && h <= 14 ? 2 : 1);
+    const jitter = (hashStr(dateStr + s.time) % 100) / 100;
+    return { time: s.time, score: prime + jitter };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  const chosen = new Set(scored.slice(0, pick).map(x => x.time));
+  daySlots.forEach(s => { if (chosen.has(s.time)) s.status = 'taken'; });
+}
+
 app.get('/api/slots', async (req, res) => {
   try {
     const sp = sessionParams(req.query.type);
@@ -221,7 +260,6 @@ app.get('/api/slots', async (req, res) => {
       const dateStr = warsawDateString(date);
       const allSlots = generateSlots(daySchedule, sp.duration, sp.breakDuration);
       const daySlots = [];
-      const availableLegacy = [];
 
       for (const time of allSlots) {
         // Slot times in the schedule are Warsaw clock readings.
@@ -239,13 +277,16 @@ app.get('/api/slots', async (req, res) => {
         let status;
         if (isBusy) status = 'taken';
         else if (slotStart < tooSoonCutoff) status = 'too-soon';
-        else {
-          status = 'available';
-          availableLegacy.push(time);
-        }
+        else status = 'available';
 
         daySlots.push({ time, status });
       }
+
+      // Showcase decoys run on the paid widget only, after real statuses are
+      // set, so they can flip available -> taken but never reveal a busy slot.
+      if (sp.type === 'paid') applyDecoys(dateStr, daySlots);
+
+      const availableLegacy = daySlots.filter(s => s.status === 'available').map(s => s.time);
 
       if (daySlots.length > 0) {
         days.push({ date: dateStr, slots: daySlots });

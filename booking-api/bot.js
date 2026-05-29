@@ -7,6 +7,7 @@ const { warsawDate, warsawDayBounds, warsawDateString } = require('./tz');
 
 const SCHEDULE_FILE = dataDir.path('schedule.json');
 const INTRO_SCHEDULE_FILE = dataDir.path('intro-schedule.json');
+const DECOY_FILE = dataDir.path('decoy.json');
 const CHAT_FILE = dataDir.path('chat.json');
 
 let bot;
@@ -97,8 +98,33 @@ function saveIntroSchedule() {
   }
 }
 
+// Showcase decoy config (display-only marketing availability). Persisted so
+// the setting survives restarts.
+function loadDecoy() {
+  try {
+    if (fs.existsSync(DECOY_FILE)) {
+      const data = JSON.parse(fs.readFileSync(DECOY_FILE, 'utf8'));
+      if (data && typeof data === 'object') {
+        if (typeof data.enabled === 'boolean') config.decoy.enabled = data.enabled;
+        if (data.intensity === 'low' || data.intensity === 'med') config.decoy.intensity = data.intensity;
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load decoy config:', e.message);
+  }
+}
+
+function saveDecoy() {
+  try {
+    fs.writeFileSync(DECOY_FILE, JSON.stringify(config.decoy, null, 2));
+  } catch (e) {
+    console.error('Failed to save decoy config:', e.message);
+  }
+}
+
 loadSchedule();
 loadIntroSchedule();
+loadDecoy();
 
 // bookingEvents accumulates entries on every confirmed payment (one per webhook)
 // and is only deleted on the "Send Meet link" button press. Operators may not
@@ -188,6 +214,18 @@ function init(calendar) {
         await showSchedule(chatId);
       } else if (data === 'intro_schedule') {
         await showIntroSchedule(chatId);
+      } else if (data === 'decoy') {
+        await showDecoyMenu(chatId);
+      } else if (data === 'decoy_toggle') {
+        config.decoy.enabled = !config.decoy.enabled;
+        saveDecoy();
+        audit.log('decoy_toggle', { enabled: config.decoy.enabled });
+        await showDecoyMenu(chatId);
+      } else if (data === 'decoy_low' || data === 'decoy_med') {
+        config.decoy.intensity = data === 'decoy_med' ? 'med' : 'low';
+        saveDecoy();
+        audit.log('decoy_intensity', { intensity: config.decoy.intensity });
+        await showDecoyMenu(chatId);
       } else if (data.startsWith('introtoggleday_')) {
         await toggleIntroDay(chatId, parseInt(data.replace('introtoggleday_', '')));
       } else if (data.startsWith('introsettime_')) {
@@ -301,6 +339,7 @@ function mainMenu() {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи', callback_data: 'week' }],
       [{ text: '🎁 Знакомства (расписание)', callback_data: 'intro_schedule' }],
+      [{ text: '🎭 Витрина занятости', callback_data: 'decoy' }],
       [{ text: '🚫 Закрыть день', callback_data: 'block_day' }, { text: '🚫 Закрыть час', callback_data: 'block_hour' }],
       [{ text: '✅ Открыть слот', callback_data: 'unblock' }],
       [{ text: '🕓 Журнал', callback_data: 'log' }]
@@ -338,6 +377,32 @@ async function showSchedule(chatId) {
     'Кнопка 🕐 Часы меняет время рабочего дня.\n\n' +
     `⏱ Сессия: ${config.slotDuration} мин + ${config.breakDuration} мин перерыв\n` +
     `💰 Цена: ${config.price} ${config.currency}`;
+
+  await bot.sendMessage(chatId, summary,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+async function showDecoyMenu(chatId) {
+  const on = config.decoy.enabled;
+  const intensity = config.decoy.intensity === 'med' ? 'средняя (~45%)' : 'низкая (~25%)';
+  const buttons = [
+    [{ text: on ? '🟢 Витрина ВКЛ (выключить)' : '⚪ Витрина ВЫКЛ (включить)', callback_data: 'decoy_toggle' }],
+    [
+      { text: config.decoy.intensity === 'low' ? '✅ Низкая' : 'Низкая', callback_data: 'decoy_low' },
+      { text: config.decoy.intensity === 'med' ? '✅ Средняя' : 'Средняя', callback_data: 'decoy_med' }
+    ]
+  ];
+  buttons.push(...backButton());
+
+  const summary =
+    '🎭 *Витрина занятости*\n\n' +
+    `Состояние: ${on ? '🟢 включена' : '⚪ выключена'}\n` +
+    `Интенсивность: ${intensity}\n\n` +
+    'Когда включено, часть свободных слотов на платном виджете показывается «занятыми» (перечёркнуто), чтобы календарь выглядел востребованным.\n\n' +
+    '• Только платный виджет. Бесплатное знакомство всегда открыто.\n' +
+    '• Реальный календарь не трогается, двойной записи не будет.\n' +
+    '• Узор разный по дням, минимум 2 свободных слота в дне сохраняются.';
 
   await bot.sendMessage(chatId, summary,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }

@@ -30,5 +30,12 @@ module.exports = {
   introServiceName: {
     ru: 'Бесплатное знакомство',
     pl: 'Bezpłatne zapoznanie'
-  }
+  },
+
+  // "Showcase" decoy availability: a marketing display that makes the PAID
+  // calendar look in-demand by rendering a share of free slots as taken
+  // (struck-through). Display-only: it never touches Google Calendar, never
+  // blocks a real booking, and never applies to the free intro. Toggled by
+  // the Telegram bot, persisted to decoy.json under BOOKING_DATA_DIR.
+  decoy: { enabled: false, intensity: 'low' }
 };
