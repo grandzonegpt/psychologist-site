@@ -18,21 +18,25 @@ function formatDateHuman(date, locale) {
 }
 
 const templates = {
-  ru: ({ name, date, time, meetLink }) => {
+  ru: ({ name, date, time, meetLink, durationMin, isIntro }) => {
     const safeMeet = meetLink || '#';
     const meetText = meetLink || 'ссылка придёт отдельно';
     const humanDate = formatDateHuman(date, 'ru');
+    const duration = durationMin || config.slotDuration;
+    const heading = isIntro ? 'Знакомство подтверждено' : 'Запись подтверждена';
+    const subjectPrefix = isIntro ? 'Знакомство подтверждено' : 'Запись подтверждена';
+    const intro = isIntro ? 'Ваше бесплатное знакомство забронировано.' : 'Ваша сессия забронирована.';
     return {
-      subject: `Запись подтверждена: ${humanDate}, ${time}`,
+      subject: `${subjectPrefix}: ${humanDate}, ${time}`,
       html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
-        <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">Запись подтверждена</h2>
+        <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">${heading}</h2>
         <p style="margin:0 0 8px;">Здравствуйте, ${escapeHtml(name)}.</p>
-        <p style="margin:0 0 20px;color:#a8a39a;">Ваша сессия забронирована.</p>
+        <p style="margin:0 0 20px;color:#a8a39a;">${intro}</p>
         <div style="background:#131316;border:1px solid #2a2a30;border-radius:8px;padding:20px;margin-bottom:24px;">
           <p style="margin:0 0 8px;">📅 <strong>${humanDate}</strong></p>
           <p style="margin:0 0 8px;">🕐 <strong>${time}</strong> по Варшаве</p>
-          <p style="margin:0 0 8px;">⏱ ${config.slotDuration} минут</p>
+          <p style="margin:0 0 8px;">⏱ ${duration} минут${isIntro ? ', бесплатно' : ''}</p>
         </div>
         ${meetLink ? `<a href="${safeMeet}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Подключиться через Google Meet</a>
         <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">Ссылка на встречу: <a href="${safeMeet}" style="color:#C9A961;">${meetText}</a></p>` : `<p style="margin:0;color:#a8a39a;font-size:13px;">Ссылку на Google Meet вы получите отдельным приглашением Google Calendar.</p>`}
@@ -43,21 +47,25 @@ const templates = {
     `
     };
   },
-  pl: ({ name, date, time, meetLink }) => {
+  pl: ({ name, date, time, meetLink, durationMin, isIntro }) => {
     const safeMeet = meetLink || '#';
     const meetText = meetLink || 'link zostanie wysłany osobno';
     const humanDate = formatDateHuman(date, 'pl');
+    const duration = durationMin || config.slotDuration;
+    const heading = isIntro ? 'Zapoznanie potwierdzone' : 'Wizyta potwierdzona';
+    const subjectPrefix = isIntro ? 'Potwierdzenie zapoznania' : 'Potwierdzenie wizyty';
+    const intro = isIntro ? 'Twoje bezpłatne zapoznanie zostało zarezerwowane.' : 'Twoja sesja została zarezerwowana.';
     return {
-      subject: `Potwierdzenie wizyty: ${humanDate}, ${time}`,
+      subject: `${subjectPrefix}: ${humanDate}, ${time}`,
       html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:500px;margin:0 auto;background:#0a0a0b;color:#f5f1e8;padding:40px 30px;border-radius:12px;">
-        <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">Wizyta potwierdzona</h2>
+        <h2 style="color:#C9A961;margin:0 0 24px;font-size:20px;">${heading}</h2>
         <p style="margin:0 0 8px;">Dzień dobry, ${escapeHtml(name)}.</p>
-        <p style="margin:0 0 20px;color:#a8a39a;">Twoja sesja została zarezerwowana.</p>
+        <p style="margin:0 0 20px;color:#a8a39a;">${intro}</p>
         <div style="background:#131316;border:1px solid #2a2a30;border-radius:8px;padding:20px;margin-bottom:24px;">
           <p style="margin:0 0 8px;">📅 <strong>${humanDate}</strong></p>
           <p style="margin:0 0 8px;">🕐 <strong>${time}</strong> czasu warszawskiego</p>
-          <p style="margin:0 0 8px;">⏱ ${config.slotDuration} minut</p>
+          <p style="margin:0 0 8px;">⏱ ${duration} minut${isIntro ? ', bezpłatnie' : ''}</p>
         </div>
         ${meetLink ? `<a href="${safeMeet}" style="display:inline-block;background:#C9A961;color:#0a0a0b;padding:14px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;">Dołącz przez Google Meet</a>
         <p style="margin:24px 0 0;color:#a8a39a;font-size:13px;">Link do spotkania: <a href="${safeMeet}" style="color:#C9A961;">${meetText}</a></p>` : `<p style="margin:0;color:#a8a39a;font-size:13px;">Link do Google Meet otrzymasz w osobnym zaproszeniu Google Calendar.</p>`}
@@ -70,14 +78,14 @@ const templates = {
   }
 };
 
-async function sendConfirmation({ name, email, date, time, locale, meetLink }) {
+async function sendConfirmation({ name, email, date, time, locale, meetLink, durationMin, isIntro }) {
   if (!process.env.RESEND_API_KEY) {
     console.log('Mailer: no Resend key, skipping');
     return;
   }
   if (!resend) resend = new Resend(process.env.RESEND_API_KEY);
 
-  const template = (templates[locale] || templates.ru)({ name, date, time, meetLink });
+  const template = (templates[locale] || templates.ru)({ name, date, time, meetLink, durationMin, isIntro });
   const replyTo = process.env.CONTACT_EMAIL || 'goalcoachup@gmail.com';
 
   await resend.emails.send({
@@ -91,7 +99,7 @@ async function sendConfirmation({ name, email, date, time, locale, meetLink }) {
   console.log(`Confirmation email sent to ${email}`);
 }
 
-async function sendAdminBookingAlert({ name, email, date, time, locale, meetLink }) {
+async function sendAdminBookingAlert({ name, email, date, time, locale, meetLink, durationMin, isIntro }) {
   if (!process.env.RESEND_API_KEY) {
     console.log('Mailer: no Resend key, skipping admin alert');
     return;
@@ -103,24 +111,33 @@ async function sendAdminBookingAlert({ name, email, date, time, locale, meetLink
   const safeEmail = escapeHtml(email);
   const humanDate = formatDateHuman(date, 'ru');
   const localeLabel = locale === 'pl' ? 'Польский' : 'Русский';
+  const duration = durationMin || config.slotDuration;
+  const kind = isIntro ? 'знакомство (бесплатно)' : 'сессию';
+  const heading = isIntro ? 'Новая запись на знакомство' : 'Новая запись на сессию';
+  const subjectKind = isIntro ? 'Знакомство' : 'Новая запись';
+  const durationCell = `${duration} минут${isIntro ? ', бесплатно' : ''}`;
+  const footnote = isIntro
+    ? 'Знакомство создано автоматически (без оплаты). Событие в Google Calendar и Telegram-уведомление параллельно.'
+    : 'Запись создана автоматически после оплаты. Событие в Google Calendar и Telegram-уведомление параллельно.';
 
   await resend.emails.send({
     from: 'levashou.pl booking <noreply@levashou.pl>',
     to: recipient,
     replyTo: email,
-    subject: `Новая запись: ${safeName}, ${humanDate}, ${time}`,
+    subject: `${subjectKind}: ${safeName}, ${humanDate}, ${time}`,
     html: `
       <div style="font-family:'Inter',Arial,sans-serif;max-width:560px;margin:0 auto;padding:32px 28px;color:#1f1c18;">
-        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:500;">Новая запись на сессию</h2>
+        <h2 style="margin:0 0 20px;font-family:Georgia,serif;font-size:22px;font-weight:500;">${heading}</h2>
         <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
           <tr><td style="padding:8px 0;color:#6b645a;width:140px;">Клиент:</td><td style="padding:8px 0;"><strong>${safeName}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#6b645a;">Email:</td><td style="padding:8px 0;"><a href="mailto:${safeEmail}" style="color:#1f1c18;">${safeEmail}</a></td></tr>
           <tr><td style="padding:8px 0;color:#6b645a;">Дата:</td><td style="padding:8px 0;"><strong>${humanDate}</strong></td></tr>
-          <tr><td style="padding:8px 0;color:#6b645a;">Время:</td><td style="padding:8px 0;"><strong>${time}</strong> по Варшаве, ${config.slotDuration} минут</td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Время:</td><td style="padding:8px 0;"><strong>${time}</strong> по Варшаве, ${durationCell}</td></tr>
+          <tr><td style="padding:8px 0;color:#6b645a;">Тип:</td><td style="padding:8px 0;">${kind}</td></tr>
           <tr><td style="padding:8px 0;color:#6b645a;">Язык:</td><td style="padding:8px 0;">${localeLabel}</td></tr>
           ${meetLink ? `<tr><td style="padding:8px 0;color:#6b645a;">Meet:</td><td style="padding:8px 0;"><a href="${meetLink}" style="color:#1f1c18;">${meetLink}</a></td></tr>` : ''}
         </table>
-        <p style="margin:0;color:#6b645a;font-size:13px;">Запись создана автоматически после оплаты. Событие в Google Calendar и Telegram-уведомление параллельно.</p>
+        <p style="margin:0;color:#6b645a;font-size:13px;">${footnote}</p>
       </div>
     `
   });

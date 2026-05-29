@@ -26,17 +26,22 @@ function getClient() {
   return calendar;
 }
 
-async function createCalendarEvent({ name, email, date, time, locale }) {
+async function createCalendarEvent({ name, email, date, time, locale, durationMin, serviceNames }) {
   if (!calendar) throw new Error('Calendar not initialized');
+
+  // durationMin/serviceNames let callers create a 15-min free intro event
+  // instead of the default 50-min paid session. Fall back to paid defaults.
+  const duration = durationMin || config.slotDuration;
+  const names = serviceNames || config.serviceName;
 
   // Naive datetime (no Z): Google interprets it in start.timeZone.
   // Passing through new Date(...).toISOString() would treat 13:00 Warsaw as UTC
   // and shift the event to 15:00 in the calendar.
   const startDateTime = `${date}T${time}:00`;
   const [h, m] = time.split(':').map(Number);
-  const endTotalMin = h * 60 + m + config.slotDuration;
+  const endTotalMin = h * 60 + m + duration;
   const endDateTime = `${date}T${String(Math.floor(endTotalMin / 60)).padStart(2, '0')}:${String(endTotalMin % 60).padStart(2, '0')}:00`;
-  const serviceName = config.serviceName[locale] || config.serviceName.ru;
+  const serviceName = names[locale] || names.ru;
 
   // The Meet link is read by reminders.js directly from event.hangoutLink,
   // so we don't need a follow-up patch to write it into the description.

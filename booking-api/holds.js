@@ -12,12 +12,12 @@ const { warsawDate } = require('./tz');
 const HOLD_PREFIX = 'HOLD:';
 const HOLD_TTL_MS = 35 * 60 * 1000;
 
-async function isSlotFree(date, time) {
+async function isSlotFree(date, time, durationMin) {
   const cal = calendarLib.getClient();
   if (!cal) return true;
 
   const start = warsawDate(date, time);
-  const end = new Date(start.getTime() + config.slotDuration * 60000);
+  const end = new Date(start.getTime() + (durationMin || config.slotDuration) * 60000);
 
   const busy = await cal.freebusy.query({
     requestBody: {

@@ -13,5 +13,22 @@ module.exports = {
   serviceName: {
     ru: 'Психологическая консультация',
     pl: 'Konsultacja psychologiczna'
+  },
+
+  // Free 15-minute intro call ("Бесплатное знакомство"). Booked through the
+  // same widget + Google Calendar as paid sessions, but with no Stripe step:
+  // the calendar event is created immediately on /api/book. Its weekly
+  // availability is a SEPARATE schedule the Telegram bot manages, stored in
+  // intro-schedule.json under BOOKING_DATA_DIR.
+  introSchedule: {},
+  introDuration: 15,
+  introBreakDuration: 5,
+  // Intro can be booked closer to "now" than paid sessions (no payment to
+  // clear), so it uses a shorter lead-time cutoff. Paid uses 12h, hardcoded
+  // in server.js; intro uses this.
+  introMinLeadHours: 3,
+  introServiceName: {
+    ru: 'Бесплатное знакомство',
+    pl: 'Bezpłatne zapoznanie'
   }
 };

@@ -139,15 +139,17 @@ telegramBot.init(calendar);
 reminders.start(calendar);
 monitor.start(telegramBot);
 
-function generateSlots(daySchedule) {
+function generateSlots(daySchedule, duration, breakDuration) {
   const slots = [];
+  const dur = duration || config.slotDuration;
+  const brk = breakDuration != null ? breakDuration : config.breakDuration;
   const [startH, startM] = daySchedule.start.split(':').map(Number);
   const [endH, endM] = daySchedule.end.split(':').map(Number);
   const startMin = startH * 60 + startM;
   const endMin = endH * 60 + endM;
-  const step = config.slotDuration + config.breakDuration;
+  const step = dur + brk;
 
-  for (let m = startMin; m + config.slotDuration <= endMin; m += step) {
+  for (let m = startMin; m + dur <= endMin; m += step) {
     const h = Math.floor(m / 60);
     const mm = m % 60;
     slots.push(`${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`);
@@ -155,13 +157,41 @@ function generateSlots(daySchedule) {
   return slots;
 }
 
+// Resolve the per-session-type parameters used by both /api/slots and
+// /api/book so the intro/paid split lives in exactly one place.
+function sessionParams(type) {
+  if (type === 'intro') {
+    return {
+      type: 'intro',
+      schedule: config.introSchedule,
+      duration: config.introDuration,
+      breakDuration: config.introBreakDuration,
+      price: 0,
+      minLeadMs: config.introMinLeadHours * 60 * 60 * 1000,
+      serviceName: config.introServiceName
+    };
+  }
+  return {
+    type: 'paid',
+    schedule: config.schedule,
+    duration: config.slotDuration,
+    breakDuration: config.breakDuration,
+    price: config.price,
+    minLeadMs: 12 * 60 * 60 * 1000,
+    serviceName: config.serviceName
+  };
+}
+
 app.get('/api/slots', async (req, res) => {
   try {
+    const sp = sessionParams(req.query.type);
     const now = new Date();
     const timeMin = new Date(now.toLocaleString('en-US', { timeZone: config.timezone }));
     const timeMax = new Date(timeMin);
     timeMax.setDate(timeMax.getDate() + config.daysAhead);
 
+    // Both intro and paid read the same Google Calendar busy intervals, so a
+    // free intro can never be offered on top of a paid session and vice versa.
     let busySlots = [];
     if (calendar) {
       const busy = await calendar.freebusy.query({
@@ -175,7 +205,7 @@ app.get('/api/slots', async (req, res) => {
       busySlots = busy.data.calendars[config.calendarId]?.busy || [];
     }
 
-    const tooSoonCutoff = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    const tooSoonCutoff = new Date(now.getTime() + sp.minLeadMs);
     const days = [];
     const legacy = {};
 
@@ -183,20 +213,20 @@ app.get('/api/slots', async (req, res) => {
       const date = new Date(timeMin);
       date.setDate(date.getDate() + d);
       const dow = date.getDay();
-      const daySchedule = config.schedule[dow];
+      const daySchedule = sp.schedule[dow];
       if (!daySchedule) continue;
 
       // dateStr must reflect the Warsaw calendar date, not the runtime's UTC
       // interpretation. warsawDateString handles DST and timezone offset.
       const dateStr = warsawDateString(date);
-      const allSlots = generateSlots(daySchedule);
+      const allSlots = generateSlots(daySchedule, sp.duration, sp.breakDuration);
       const daySlots = [];
       const availableLegacy = [];
 
       for (const time of allSlots) {
         // Slot times in the schedule are Warsaw clock readings.
         const slotStart = warsawDate(dateStr, time);
-        const slotEnd = new Date(slotStart.getTime() + config.slotDuration * 60000);
+        const slotEnd = new Date(slotStart.getTime() + sp.duration * 60000);
 
         if (slotStart < now) continue;
 
@@ -226,9 +256,10 @@ app.get('/api/slots', async (req, res) => {
     res.json({
       days,
       slots: legacy,
-      service: config.serviceName,
-      duration: config.slotDuration,
-      price: config.price,
+      type: sp.type,
+      service: sp.serviceName,
+      duration: sp.duration,
+      price: sp.price,
       currency: config.currency
     });
   } catch (e) {
@@ -241,36 +272,57 @@ app.post('/api/book', async (req, res) => {
   let holdEventId = null;
   try {
     const { name, email, date, time, locale } = req.body;
+    const sp = sessionParams(req.body.type);
     const validationError = validateBooking({ name, email, date, time, locale });
     if (validationError) {
       return res.status(400).json({ error: validationError });
     }
 
     // Schedule check: dow must be a working day, time must be a generated slot.
+    // Intro and paid have separate schedules, picked by sp.
     const dow = new Date(`${date}T00:00:00`).getDay();
-    const daySchedule = config.schedule[dow];
+    const daySchedule = sp.schedule[dow];
     if (!daySchedule) {
       return res.status(400).json({ error: 'day_not_working' });
     }
-    if (!generateSlots(daySchedule).includes(time)) {
+    if (!generateSlots(daySchedule, sp.duration, sp.breakDuration).includes(time)) {
       return res.status(400).json({ error: 'invalid_slot' });
     }
 
-    // Past + too-soon checks (must mirror /api/slots policy).
+    // Past + too-soon checks (must mirror /api/slots policy for this type).
     const slotStart = warsawDate(date, time);
     const now = new Date();
     if (slotStart < now) {
       return res.status(400).json({ error: 'past_slot' });
     }
-    const tooSoonCutoff = new Date(now.getTime() + 12 * 60 * 60 * 1000);
+    const tooSoonCutoff = new Date(now.getTime() + sp.minLeadMs);
     if (slotStart < tooSoonCutoff) {
       return res.status(400).json({ error: 'too_soon' });
     }
 
     // Race-window guard: someone may have just booked this slot.
-    const free = await holds.isSlotFree(date, time);
+    const free = await holds.isSlotFree(date, time, sp.duration);
     if (!free) {
       return res.status(409).json({ error: 'slot_taken' });
+    }
+
+    // Free intro: no payment, so no Stripe and no provisional hold. Create the
+    // calendar event immediately (with Meet link), notify, and email. The
+    // freebusy check above blocks the slot for everyone the moment it lands.
+    if (sp.type === 'intro') {
+      const { eventId, meetLink } = await calendarLib.createCalendarEvent({
+        name, email, date, time, locale,
+        durationMin: sp.duration,
+        serviceNames: sp.serviceName
+      });
+      telegramBot.notifyNewBooking({ name, email, date, time, locale, eventId, meetLink, isIntro: true });
+      mailer.sendConfirmation({ name, email, date, time, locale, meetLink, durationMin: sp.duration, isIntro: true })
+        .catch(e => console.error('Intro client email error:', e.message));
+      mailer.sendAdminBookingAlert({ name, email, date, time, locale, meetLink, durationMin: sp.duration, isIntro: true })
+        .catch(e => console.error('Intro admin email error:', e.message));
+      console.log(`Intro booked: ${name} on ${date} at ${time} (meet: ${meetLink || 'none'})`);
+      audit.log('intro_booked', { date, time, locale: locale || 'ru', eventId });
+      return res.json({ ok: true, booked: true, meetLink: meetLink || null });
     }
 
     // Place a provisional hold so a parallel /api/book sees the slot busy.

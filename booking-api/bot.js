@@ -6,6 +6,7 @@ const audit = require('./audit');
 const { warsawDate, warsawDayBounds, warsawDateString } = require('./tz');
 
 const SCHEDULE_FILE = dataDir.path('schedule.json');
+const INTRO_SCHEDULE_FILE = dataDir.path('intro-schedule.json');
 const CHAT_FILE = dataDir.path('chat.json');
 
 let bot;
@@ -73,7 +74,31 @@ function saveSchedule() {
   }
 }
 
+// Free-intro weekly availability lives in its own file so it never collides
+// with the paid schedule. Same shape: { [dow]: { start, end } }.
+function loadIntroSchedule() {
+  try {
+    if (fs.existsSync(INTRO_SCHEDULE_FILE)) {
+      const data = JSON.parse(fs.readFileSync(INTRO_SCHEDULE_FILE, 'utf8'));
+      Object.keys(data).forEach(k => { config.introSchedule[k] = data[k]; });
+      const toDelete = Object.keys(config.introSchedule).filter(k => !data[k]);
+      toDelete.forEach(k => delete config.introSchedule[k]);
+    }
+  } catch (e) {
+    console.error('Failed to load intro schedule:', e.message);
+  }
+}
+
+function saveIntroSchedule() {
+  try {
+    fs.writeFileSync(INTRO_SCHEDULE_FILE, JSON.stringify(config.introSchedule, null, 2));
+  } catch (e) {
+    console.error('Failed to save intro schedule:', e.message);
+  }
+}
+
 loadSchedule();
+loadIntroSchedule();
 
 // bookingEvents accumulates entries on every confirmed payment (one per webhook)
 // and is only deleted on the "Send Meet link" button press. Operators may not
@@ -161,6 +186,13 @@ function init(calendar) {
     try {
       if (data === 'schedule' || data === 'edit_schedule') {
         await showSchedule(chatId);
+      } else if (data === 'intro_schedule') {
+        await showIntroSchedule(chatId);
+      } else if (data.startsWith('introtoggleday_')) {
+        await toggleIntroDay(chatId, parseInt(data.replace('introtoggleday_', '')));
+      } else if (data.startsWith('introsettime_')) {
+        const dow = parseInt(data.replace('introsettime_', ''));
+        await promptSetTime(chatId, dow, true);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
       } else if (data === 'block_day') {
@@ -218,7 +250,7 @@ function init(calendar) {
     const timeInput = pendingTime.get(chatId);
     if (timeInput) {
       pendingTime.delete(chatId);
-      await handleSetTime(chatId, timeInput.dow, msg.text.trim());
+      await handleSetTime(chatId, timeInput.dow, msg.text.trim(), timeInput.intro);
       return;
     }
 
@@ -268,6 +300,7 @@ function mainMenu() {
   return {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи', callback_data: 'week' }],
+      [{ text: '🎁 Знакомства (расписание)', callback_data: 'intro_schedule' }],
       [{ text: '🚫 Закрыть день', callback_data: 'block_day' }, { text: '🚫 Закрыть час', callback_data: 'block_hour' }],
       [{ text: '✅ Открыть слот', callback_data: 'unblock' }],
       [{ text: '🕓 Журнал', callback_data: 'log' }]
@@ -588,14 +621,16 @@ async function showAuditLog(chatId, n) {
   );
 }
 
-function notifyNewBooking({ name, email, date, time, locale, eventId }) {
+function notifyNewBooking({ name, email, date, time, locale, eventId, isIntro }) {
   if (!bot || !ownerChatId) return;
 
   const bookingId = `${date}_${time}_${Date.now()}`;
   bookingEvents.set(bookingId, { name, email, date, time, locale, eventId, addedAt: Date.now() });
 
+  const title = isIntro ? '🎁 *Новое знакомство!* (бесплатно)' : '🔔 *Новая запись!*';
+
   bot.sendMessage(ownerChatId,
-    '🔔 *Новая запись!*\n\n' +
+    title + '\n\n' +
     `👤 ${name}\n` +
     `📧 ${email}\n` +
     `📅 ${formatDate(date)}\n` +
@@ -629,10 +664,11 @@ async function toggleDay(chatId, dow) {
   await showSchedule(chatId);
 }
 
-async function promptSetTime(chatId, dow) {
-  pendingTime.set(chatId, { dow });
+async function promptSetTime(chatId, dow, intro) {
+  pendingTime.set(chatId, { dow, intro: !!intro });
+  const head = intro ? `🎁 Знакомства · *${FULL_DAY_NAMES[dow]}*` : `🕐 *${FULL_DAY_NAMES[dow]}*`;
   await bot.sendMessage(chatId,
-    `🕐 *${FULL_DAY_NAMES[dow]}*\n\n` +
+    `${head}\n\n` +
     'Напиши диапазон часов. Подойдут любые формы:\n' +
     '`10-16`\n`10:00-16:00`\n`8 20`\n`9:30 18:30`',
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
@@ -656,13 +692,24 @@ function parseTimeRange(text) {
   return { start: fmt(startH, startM), end: fmt(endH, endM) };
 }
 
-async function handleSetTime(chatId, dow, text) {
+async function handleSetTime(chatId, dow, text, intro) {
   const range = parseTimeRange(text);
   if (!range) {
     await bot.sendMessage(chatId,
       '❌ Не смог распознать. Примеры: `10-16`, `10:00-16:00`, `8 20`',
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
+    return;
+  }
+  if (intro) {
+    config.introSchedule[dow] = { start: range.start, end: range.end };
+    saveIntroSchedule();
+    audit.log('intro_schedule_hours', { dow, start: range.start, end: range.end });
+    await bot.sendMessage(chatId,
+      `✅ Знакомства · *${FULL_DAY_NAMES[dow]}*: ${range.start}-${range.end}`,
+      { parse_mode: 'Markdown' }
+    );
+    await showIntroSchedule(chatId);
     return;
   }
   config.schedule[dow] = { start: range.start, end: range.end };
@@ -673,6 +720,46 @@ async function handleSetTime(chatId, dow, text) {
     { parse_mode: 'Markdown' }
   );
   await showSchedule(chatId);
+}
+
+async function toggleIntroDay(chatId, dow) {
+  if (config.introSchedule[dow]) {
+    delete config.introSchedule[dow];
+    audit.log('intro_schedule_close', { dow });
+  } else {
+    config.introSchedule[dow] = { start: '10:00', end: '13:00' };
+    audit.log('intro_schedule_open', { dow, start: '10:00', end: '13:00' });
+  }
+  saveIntroSchedule();
+  await showIntroSchedule(chatId);
+}
+
+async function showIntroSchedule(chatId) {
+  const buttons = [];
+  for (let dow = 1; dow <= 7; dow++) {
+    const d = dow % 7;
+    const active = !!config.introSchedule[d];
+    const label = active
+      ? `✅ ${FULL_DAY_NAMES[d]}  ${config.introSchedule[d].start}-${config.introSchedule[d].end}`
+      : `⚪ ${FULL_DAY_NAMES[d]}  закрыто`;
+    const row = [{ text: label, callback_data: `introtoggleday_${d}` }];
+    if (active) row.push({ text: '🕐 Часы', callback_data: `introsettime_${d}` });
+    buttons.push(row);
+  }
+  buttons.push(...backButton());
+
+  const summary =
+    '🎁 *Расписание бесплатных знакомств*\n\n' +
+    'Это отдельное расписание для 15-минутных знакомств.\n' +
+    'Тапни день чтобы открыть или закрыть.\n' +
+    'Кнопка 🕐 Часы меняет окно приёма.\n\n' +
+    `⏱ Знакомство: ${config.introDuration} мин + ${config.introBreakDuration} мин перерыв\n` +
+    '💰 Бесплатно, без оплаты\n\n' +
+    'Занятые в Google Calendar времена (платные сессии, блокировки) автоматически не показываются.';
+
+  await bot.sendMessage(chatId, summary,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
 }
 
 function notifyBookingFailed({ name, email, date, time, error }) {
