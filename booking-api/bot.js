@@ -176,6 +176,14 @@ function init(calendar) {
   bot = new TelegramBot(token, { polling: true });
   calendarRef = calendar;
   loadOwnerChatId();
+  // If the owner is pinned via env but /start was never run on this volume,
+  // chat.json is absent and ownerChatId stays null — which silently disables
+  // all notifications even though the menu works (auth uses ALLOWED_OWNER).
+  // Seed ownerChatId from the env so notifications fire without a /start.
+  if (!ownerChatId && ALLOWED_OWNER) {
+    ownerChatId = ALLOWED_OWNER;
+    console.log(`Bot: seeded ownerChatId from BOOKING_OWNER_CHAT_ID=${ALLOWED_OWNER}`);
+  }
   console.log('Telegram bot started');
 
   bot.onText(/\/start/, (msg) => {
@@ -770,6 +778,11 @@ async function showAuditLog(chatId, n) {
 function notifyNewBooking({ name, email, date, time, locale, eventId, isIntro }) {
   if (!bot || !ownerChatId) return;
 
+  // Escape Markdown specials: an unescaped underscore in a name or email
+  // (e.g. test_user@mail) makes Telegram reject the message, and since this
+  // send is fire-and-forget the failure was previously silent.
+  const safe = (s) => String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
+
   const bookingId = `${date}_${time}_${Date.now()}`;
   bookingEvents.set(bookingId, { name, email, date, time, locale, eventId, addedAt: Date.now() });
 
@@ -777,8 +790,8 @@ function notifyNewBooking({ name, email, date, time, locale, eventId, isIntro })
 
   bot.sendMessage(ownerChatId,
     title + '\n\n' +
-    `👤 ${name}\n` +
-    `📧 ${email}\n` +
+    `👤 ${safe(name)}\n` +
+    `📧 ${safe(email)}\n` +
     `📅 ${formatDate(date)}\n` +
     `🕐 ${time}\n` +
     `🌐 ${locale === 'pl' ? 'Польский' : 'Русский'}`,
@@ -790,7 +803,7 @@ function notifyNewBooking({ name, email, date, time, locale, eventId, isIntro })
         ]
       }
     }
-  );
+  ).catch(e => console.error('notifyNewBooking send error:', e.message));
 }
 
 const FULL_DAY_NAMES = {
