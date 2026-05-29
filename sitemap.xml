@@ -226,6 +226,23 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/attachment.html"/>
     <priority>0.9</priority>
   </url>
+  <!-- Landing pages: DDA (adult children of alcoholics) -->
+  <url>
+    <loc>https://levashou.pl/dda.html</loc>
+    <lastmod>2026-05-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/dda.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/dda-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/dda.html"/>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/dda-pl.html</loc>
+    <lastmod>2026-05-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/dda.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/dda-pl.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/dda.html"/>
+    <priority>0.9</priority>
+  </url>
   <url>
     <loc>https://levashou.pl/social-anxiety-pl.html</loc>
     <lastmod>2026-05-22</lastmod>
