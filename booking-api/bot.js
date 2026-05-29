@@ -52,6 +52,7 @@ let calendarRef = null;
 const pendingLinks = new Map();
 const bookingEvents = new Map();
 const unblockMap = new Map();
+const cancelMap = new Map();
 const pendingTime = new Map();
 
 function loadSchedule() {
@@ -269,6 +270,12 @@ function init(calendar) {
         await blockIntroHour(chatId, parts[0], parts[1], calendar);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
+      } else if (data === 'cancel_booking') {
+        await showCancelPicker(chatId, calendar);
+      } else if (data.startsWith('cancelyes_')) {
+        await doCancelBooking(chatId, data.replace('cancelyes_', ''), calendar);
+      } else if (data.startsWith('cancelbk_')) {
+        await confirmCancelBooking(chatId, data.replace('cancelbk_', ''));
       } else if (data === 'day_detail') {
         await showDayDetailPicker(chatId);
       } else if (data.startsWith('daydetail_')) {
@@ -378,7 +385,7 @@ function mainMenu() {
   return {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи', callback_data: 'week' }],
-      [{ text: '🔎 Детали дня', callback_data: 'day_detail' }],
+      [{ text: '❌ Отменить запись', callback_data: 'cancel_booking' }, { text: '🔎 Детали дня', callback_data: 'day_detail' }],
       [{ text: '🎁 Знакомства (расписание)', callback_data: 'intro_schedule' }],
       [{ text: '🎭 Витрина занятости', callback_data: 'decoy' }],
       [{ text: '🚫 Закрыть день', callback_data: 'block_day' }, { text: '🚫 Закрыть час', callback_data: 'block_hour' }],
@@ -628,6 +635,95 @@ async function blockIntroHour(chatId, dateStr, time, calendar) {
     `✅ Знакомство *${formatDate(dateStr)}, ${time}* закрыто.\nЭтот слот больше не показывается на /intro.\n\nОткрыть обратно: «✅ Открыть слот».`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
   );
+}
+
+async function showCancelPicker(chatId, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const now = new Date();
+  const future = new Date(now);
+  future.setDate(future.getDate() + 28);
+
+  const events = await calendar.events.list({
+    calendarId: config.calendarId,
+    timeMin: now.toISOString(),
+    timeMax: future.toISOString(),
+    singleEvents: true,
+    orderBy: 'startTime',
+    timeZone: config.timezone
+  });
+
+  // Only real client bookings (intro/paid). Blocks, holds and personal events
+  // are not "cancellable bookings" and must not appear here.
+  const items = (events.data.items || []).filter(ev => {
+    const cls = classifyEvent(ev.summary);
+    return cls.label === 'знакомство' || cls.label === 'платная сессия';
+  });
+
+  if (items.length === 0) {
+    await bot.sendMessage(chatId, '❌ *Отменить запись*\n\nНет предстоящих записей.',
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+
+  cancelMap.clear();
+  const buttons = items.slice(0, 30).map((ev, i) => {
+    const start = new Date(ev.start.dateTime || ev.start.date);
+    const time = ev.start.dateTime
+      ? `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`
+      : 'весь день';
+    const cls = classifyEvent(ev.summary);
+    const label = `${cls.icon} ${start.getDate()} ${MONTH_NAMES[start.getMonth()]} ${time} · ${ev.summary || ''}`.slice(0, 60);
+    const shortId = `c${i}`;
+    cancelMap.set(shortId, { id: ev.id, label });
+    return [{ text: label, callback_data: `cancelbk_${shortId}` }];
+  });
+  buttons.push(...backButton());
+
+  await bot.sendMessage(chatId, '❌ *Отменить запись*\n\nВыбери запись для отмены:',
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+async function confirmCancelBooking(chatId, shortId) {
+  const b = cancelMap.get(shortId);
+  if (!b) {
+    await bot.sendMessage(chatId, '❌ Запись не найдена, открой список заново.',
+      { reply_markup: { inline_keyboard: backButton() } });
+    return;
+  }
+  await bot.sendMessage(chatId,
+    `Отменить эту запись?\n\n${b.label}\n\nКлиент получит уведомление об отмене на email.`,
+    { reply_markup: { inline_keyboard: [
+      [{ text: '✅ Да, отменить', callback_data: `cancelyes_${shortId}` }],
+      [{ text: '◀️ Нет, назад', callback_data: 'menu' }]
+    ] } }
+  );
+}
+
+async function doCancelBooking(chatId, shortId, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+  const b = cancelMap.get(shortId);
+  if (!b) {
+    await bot.sendMessage(chatId, '❌ Запись не найдена, открой список заново.',
+      { reply_markup: { inline_keyboard: backButton() } });
+    return;
+  }
+  try {
+    // sendUpdates:'all' emails the client a Google cancellation notice.
+    await calendar.events.delete({ calendarId: config.calendarId, eventId: b.id, sendUpdates: 'all' });
+    cancelMap.delete(shortId);
+    audit.log('booking_cancelled', { eventId: b.id });
+    await bot.sendMessage(chatId,
+      `✅ Запись отменена. Слот снова свободен, клиент уведомлён.\n\n${b.label}`,
+      { reply_markup: { inline_keyboard: backButton() } }
+    );
+  } catch (e) {
+    console.error('Cancel booking error:', e.message);
+    await bot.sendMessage(chatId, '❌ Не удалось отменить: ' + e.message,
+      { reply_markup: { inline_keyboard: backButton() } });
+  }
 }
 
 async function showDecoyOpenPicker(chatId) {
