@@ -160,6 +160,15 @@ function escapeMd(s) {
   return String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
 }
 
+// The runtime is UTC; Date#getHours would render times 1-2h off. Format the
+// clock time explicitly in Warsaw so the bot shows the same time the client
+// booked.
+function warsawHM(dt) {
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Warsaw', hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(dt);
+}
+
 function generateSlots(daySchedule, duration, breakDuration) {
   const slots = [];
   const dur = duration || config.slotDuration;
@@ -271,7 +280,11 @@ function init(calendar) {
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
       } else if (data === 'cancel_booking') {
-        await showCancelPicker(chatId, calendar);
+        await showCancelTypeChooser(chatId);
+      } else if (data === 'cancel_intro') {
+        await showCancelPicker(chatId, calendar, 'intro');
+      } else if (data === 'cancel_paid') {
+        await showCancelPicker(chatId, calendar, 'paid');
       } else if (data.startsWith('cancelyes_')) {
         await doCancelBooking(chatId, data.replace('cancelyes_', ''), calendar);
       } else if (data.startsWith('cancelbk_')) {
@@ -488,7 +501,6 @@ async function showDayDetail(chatId, dateStr, calendar) {
     return;
   }
 
-  const fmtTime = (dt) => `${String(dt.getHours()).padStart(2, '0')}:${String(dt.getMinutes()).padStart(2, '0')}`;
   let text = `🔎 *${formatDate(dateStr)}* (${items.length})\n\n`;
   items.forEach(ev => {
     const cls = classifyEvent(ev.summary);
@@ -499,7 +511,7 @@ async function showDayDetail(chatId, dateStr, calendar) {
     const start = new Date(ev.start.dateTime);
     const end = new Date(ev.end.dateTime || ev.start.dateTime);
     const mins = Math.round((end - start) / 60000);
-    text += `${cls.icon} ${fmtTime(start)}–${fmtTime(end)} (${mins} мин) · _${cls.label}_\n    ${ev.summary || 'Без названия'}\n\n`;
+    text += `${cls.icon} ${warsawHM(start)}–${warsawHM(end)} (${mins} мин) · _${cls.label}_\n    ${ev.summary || 'Без названия'}\n\n`;
   });
 
   await bot.sendMessage(chatId, text,
@@ -637,8 +649,24 @@ async function blockIntroHour(chatId, dateStr, time, calendar) {
   );
 }
 
-async function showCancelPicker(chatId, calendar) {
+// Two clearly separated entry points so a free intro is never confused with a
+// paid session at cancel time — the paid path is marked 💰 to avoid a misclick.
+async function showCancelTypeChooser(chatId) {
+  await bot.sendMessage(chatId,
+    '❌ *Отменить запись*\n\nЧто отменяем? Выбери тип, чтобы не перепутать.',
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: [
+      [{ text: '🎁 Бесплатное знакомство', callback_data: 'cancel_intro' }],
+      [{ text: '💰 ПЛАТНАЯ сессия', callback_data: 'cancel_paid' }],
+      ...backButton()
+    ] } }
+  );
+}
+
+async function showCancelPicker(chatId, calendar, kind) {
   if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const wantLabel = kind === 'paid' ? 'платная сессия' : 'знакомство';
+  const heading = kind === 'paid' ? '💰 *Отменить ПЛАТНУЮ сессию*' : '🎁 *Отменить бесплатное знакомство*';
 
   const now = new Date();
   const future = new Date(now);
@@ -653,15 +681,14 @@ async function showCancelPicker(chatId, calendar) {
     timeZone: config.timezone
   });
 
-  // Only real client bookings (intro/paid). Blocks, holds and personal events
-  // are not "cancellable bookings" and must not appear here.
-  const items = (events.data.items || []).filter(ev => {
-    const cls = classifyEvent(ev.summary);
-    return cls.label === 'знакомство' || cls.label === 'платная сессия';
-  });
+  // Only the requested booking type. Blocks, holds, personal events and the
+  // other booking type are excluded so you can't misclick across types.
+  const items = (events.data.items || []).filter(ev =>
+    classifyEvent(ev.summary).label === wantLabel
+  );
 
   if (items.length === 0) {
-    await bot.sendMessage(chatId, '❌ *Отменить запись*\n\nНет предстоящих записей.',
+    await bot.sendMessage(chatId, `${heading}\n\nНет предстоящих записей этого типа.`,
       { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
     );
     return;
@@ -670,18 +697,35 @@ async function showCancelPicker(chatId, calendar) {
   cancelMap.clear();
   const buttons = items.slice(0, 30).map((ev, i) => {
     const start = new Date(ev.start.dateTime || ev.start.date);
-    const time = ev.start.dateTime
-      ? `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`
-      : 'весь день';
+    const end = new Date(ev.end.dateTime || start);
+    const time = ev.start.dateTime ? warsawHM(start) : 'весь день';
     const cls = classifyEvent(ev.summary);
-    const label = `${cls.icon} ${start.getDate()} ${MONTH_NAMES[start.getMonth()]} ${time} · ${ev.summary || ''}`.slice(0, 60);
+    // Pull the client name (summary after ": ") and email (attendee or desc).
+    const name = (ev.summary || '').includes(': ')
+      ? ev.summary.split(': ').slice(1).join(': ')
+      : (ev.summary || '');
+    let email = (ev.attendees && ev.attendees[0] && ev.attendees[0].email) || '';
+    if (!email && ev.description) {
+      const m = ev.description.match(/Email:\s*([^\s\n]+)/i);
+      if (m) email = m[1];
+    }
+    const mins = ev.start.dateTime ? Math.round((end - start) / 60000) : null;
+    const typeName = kind === 'paid' ? 'Платная сессия' : 'Бесплатное знакомство';
+    const detail =
+      `${cls.icon} ${typeName}\n` +
+      (name ? `👤 ${name}\n` : '') +
+      (email ? `📧 ${email}\n` : '') +
+      `📅 ${formatDate(warsawDateString(start))}\n` +
+      `🕐 ${ev.start.dateTime ? `${warsawHM(start)}–${warsawHM(end)}${mins ? ` (${mins} мин)` : ''}` : 'весь день'}`;
+
+    const label = `${cls.icon} ${start.getDate()} ${MONTH_NAMES[start.getMonth()]} ${time} · ${name}`.slice(0, 62);
     const shortId = `c${i}`;
-    cancelMap.set(shortId, { id: ev.id, label });
+    cancelMap.set(shortId, { id: ev.id, label, detail });
     return [{ text: label, callback_data: `cancelbk_${shortId}` }];
   });
   buttons.push(...backButton());
 
-  await bot.sendMessage(chatId, '❌ *Отменить запись*\n\nВыбери запись для отмены:',
+  await bot.sendMessage(chatId, `${heading}\n\nВыбери запись для отмены:`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
   );
 }
@@ -798,9 +842,7 @@ async function showWeekBookings(chatId, calendar) {
     const day = start.getDate();
     const month = MONTH_NAMES[start.getMonth()];
     const dow = DAY_NAMES[start.getDay()];
-    const time = ev.start.dateTime
-      ? `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`
-      : 'весь день';
+    const time = ev.start.dateTime ? warsawHM(start) : 'весь день';
 
     const isBlocked = ev.summary && ev.summary.toLowerCase().includes('block');
     const icon = isBlocked ? '🚫' : '👤';
@@ -983,8 +1025,7 @@ async function showUnblockPicker(chatId, calendar) {
       label = `🚫 ${formatDate(dateStr)} (весь день)`;
     } else {
       const start = new Date(ev.start.dateTime);
-      const time = `${String(start.getHours()).padStart(2, '0')}:${String(start.getMinutes()).padStart(2, '0')}`;
-      label = `🕐 ${formatDate(dateStr)}, ${time}`;
+      label = `🕐 ${formatDate(dateStr)}, ${warsawHM(start)}`;
     }
     const shortId = `u${unblockMap.size}`;
     unblockMap.set(shortId, ev.id);
