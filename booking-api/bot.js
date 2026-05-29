@@ -159,14 +159,16 @@ function escapeMd(s) {
   return String(s || '').replace(/[_*`\[\]]/g, m => '\\' + m);
 }
 
-function generateSlots(daySchedule) {
+function generateSlots(daySchedule, duration, breakDuration) {
   const slots = [];
+  const dur = duration || config.slotDuration;
+  const brk = breakDuration != null ? breakDuration : config.breakDuration;
   const [startH, startM] = daySchedule.start.split(':').map(Number);
   const [endH, endM] = daySchedule.end.split(':').map(Number);
   const startMin = startH * 60 + startM;
   const endMin = endH * 60 + endM;
-  const step = config.slotDuration + config.breakDuration;
-  for (let m = startMin; m + config.slotDuration <= endMin; m += step) {
+  const step = dur + brk;
+  for (let m = startMin; m + dur <= endMin; m += step) {
     const h = Math.floor(m / 60);
     const mm = m % 60;
     slots.push(`${String(h).padStart(2, '0')}:${String(mm).padStart(2, '0')}`);
@@ -258,6 +260,13 @@ function init(calendar) {
       } else if (data.startsWith('introsettime_')) {
         const dow = parseInt(data.replace('introsettime_', ''));
         await promptSetTime(chatId, dow, true);
+      } else if (data === 'intro_block_hour') {
+        await showIntroBlockDayPicker(chatId);
+      } else if (data.startsWith('introblockday_')) {
+        await showIntroBlockHourPicker(chatId, data.replace('introblockday_', ''), calendar);
+      } else if (data.startsWith('introblockhour_')) {
+        const parts = data.replace('introblockhour_', '').split('_');
+        await blockIntroHour(chatId, parts[0], parts[1], calendar);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
       } else if (data === 'day_detail') {
@@ -518,6 +527,106 @@ async function showDecoyMenu(chatId) {
 
   await bot.sendMessage(chatId, summary,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+async function showIntroBlockDayPicker(chatId) {
+  const buttons = [];
+  const now = new Date();
+  for (let i = 0; i < 14; i++) {
+    const date = new Date(now);
+    date.setDate(date.getDate() + i);
+    const dateStr = warsawDateString(date);
+    const [, monthStr, dayStr] = dateStr.split('-');
+    const dayNum = parseInt(dayStr, 10);
+    const monthIdx = parseInt(monthStr, 10) - 1;
+    const dow = new Date(`${dateStr}T12:00:00`).getDay();
+    if (!config.introSchedule[dow]) continue;
+    buttons.push([{ text: `${DAY_NAMES[dow]} ${dayNum} ${MONTH_NAMES[monthIdx]}`, callback_data: `introblockday_${dateStr}` }]);
+  }
+  if (buttons.length === 0) {
+    await bot.sendMessage(chatId,
+      '🎁 Сначала открой дни для знакомств (🎁 Знакомства), тогда появятся слоты для закрытия.',
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+  buttons.push(...backButton());
+  await bot.sendMessage(chatId, '🚫 *Знакомства: выбери день, чтобы закрыть слот:*', {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
+  });
+}
+
+async function showIntroBlockHourPicker(chatId, dateStr, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const dow = new Date(`${dateStr}T00:00:00`).getDay();
+  const daySchedule = config.introSchedule[dow];
+  if (!daySchedule) { await bot.sendMessage(chatId, '❌ Нет расписания знакомств на этот день'); return; }
+
+  const allSlots = generateSlots(daySchedule, config.introDuration, config.introBreakDuration);
+
+  const now = new Date();
+  const bounds = warsawDayBounds(dateStr);
+  const events = await calendar.events.list({
+    calendarId: config.calendarId,
+    timeMin: bounds.start.toISOString(),
+    timeMax: bounds.end.toISOString(),
+    singleEvents: true,
+    timeZone: config.timezone
+  });
+  const busyItems = events.data.items || [];
+
+  const buttons = [];
+  let row = [];
+  for (const time of allSlots) {
+    const slotStart = warsawDate(dateStr, time);
+    const slotEnd = new Date(slotStart.getTime() + config.introDuration * 60000);
+    const isBusy = busyItems.some(ev => {
+      const evStart = new Date(ev.start.dateTime || ev.start.date);
+      const evEnd = new Date(ev.end.dateTime || ev.end.date);
+      return slotStart < evEnd && slotEnd > evStart;
+    });
+    const isPast = slotStart < now;
+    if (!isBusy && !isPast) {
+      row.push({ text: time, callback_data: `introblockhour_${dateStr}_${time}` });
+      if (row.length === 3) { buttons.push([...row]); row.length = 0; }
+    }
+  }
+  if (row.length > 0) buttons.push([...row]);
+
+  if (buttons.length === 0) {
+    await bot.sendMessage(chatId, `🚫 *${formatDate(dateStr)}* (знакомства)\n\nНет свободных слотов для закрытия.`,
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+  buttons.push(...backButton());
+  await bot.sendMessage(chatId, `🚫 *${formatDate(dateStr)}* (знакомства)\nВыбери слот, чтобы закрыть:`, {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
+  });
+}
+
+async function blockIntroHour(chatId, dateStr, time, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const start = warsawDate(dateStr, time);
+  const end = new Date(start.getTime() + config.introDuration * 60000);
+
+  await calendar.events.insert({
+    calendarId: config.calendarId,
+    requestBody: {
+      summary: `Blocked intro ${time}`,
+      start: { dateTime: start.toISOString(), timeZone: config.timezone },
+      end: { dateTime: end.toISOString(), timeZone: config.timezone },
+      transparency: 'opaque'
+    }
+  });
+
+  audit.log('intro_block_hour', { date: dateStr, time });
+  await bot.sendMessage(chatId,
+    `✅ Знакомство *${formatDate(dateStr)}, ${time}* закрыто.\nЭтот слот больше не показывается на /intro.\n\nОткрыть обратно: «✅ Открыть слот».`,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
   );
 }
 
@@ -964,6 +1073,8 @@ async function showIntroSchedule(chatId) {
     if (active) row.push({ text: '🕐 Часы', callback_data: `introsettime_${d}` });
     buttons.push(row);
   }
+  buttons.push([{ text: '🚫 Закрыть слот знакомства', callback_data: 'intro_block_hour' }]);
+  buttons.push([{ text: '✅ Открыть слот (общий список)', callback_data: 'unblock' }]);
   buttons.push(...backButton());
 
   const summary =
