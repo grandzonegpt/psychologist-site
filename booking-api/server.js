@@ -297,6 +297,9 @@ app.get('/api/slots', async (req, res) => {
       }
     }
 
+    // Availability changes constantly (bookings, bot blocks, decoy). Never let
+    // a browser serve a cached response, or the widget shows stale slots.
+    res.set('Cache-Control', 'no-store');
     res.json({
       days,
       slots: legacy,
