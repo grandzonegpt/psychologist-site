@@ -20,7 +20,10 @@ module.exports = {
   // the calendar event is created immediately on /api/book. Its weekly
   // availability is a SEPARATE schedule the Telegram bot manages, stored in
   // intro-schedule.json under BOOKING_DATA_DIR.
-  introSchedule: {},
+  //
+  // Seed default: Friday (dow 5) 10:00-12:00. Applies only until the bot
+  // writes intro-schedule.json, after which the bot's version takes over.
+  introSchedule: { 5: { start: '10:00', end: '12:00' } },
   introDuration: 15,
   introBreakDuration: 5,
   // Intro can be booked closer to "now" than paid sessions (no payment to
