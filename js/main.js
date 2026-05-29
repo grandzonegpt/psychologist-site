@@ -413,7 +413,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Krótki PDF na jedną stronę. Możesz zapisać, pokazać bliskiej osobie albo wrócić za parę tygodni i porównać.',
       cta: 'Pobierz PDF',
       skip: 'Nie teraz',
-      pdf: '/assets/checklist-7-signs-pl.pdf'
+      pdf: '/assets/checklist-7-signs-pl.pdf?v=2'
     } : {
       closeLabel: 'Закрыть',
       eyebrow: 'Забери с собой',
@@ -421,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       desc: 'Короткий PDF на одну страницу. Можно сохранить, показать близкому человеку или вернуться через пару недель и сравнить.',
       cta: 'Скачать PDF',
       skip: 'Не сейчас',
-      pdf: '/assets/checklist-7-signs-ru.pdf'
+      pdf: '/assets/checklist-7-signs-ru.pdf?v=2'
     };
     const _popup = document.createElement('div');
     _popup.className = 'exit-popup';
