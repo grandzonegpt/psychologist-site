@@ -233,6 +233,10 @@ function init(calendar) {
         await promptSetTime(chatId, dow, true);
       } else if (data === 'week') {
         await showWeekBookings(chatId, calendar);
+      } else if (data === 'day_detail') {
+        await showDayDetailPicker(chatId);
+      } else if (data.startsWith('daydetail_')) {
+        await showDayDetail(chatId, data.replace('daydetail_', ''), calendar);
       } else if (data === 'block_day') {
         await showBlockDayPicker(chatId, 'blockday');
       } else if (data.startsWith('blockday_')) {
@@ -338,6 +342,7 @@ function mainMenu() {
   return {
     inline_keyboard: [
       [{ text: '📅 Расписание', callback_data: 'schedule' }, { text: '📋 Записи', callback_data: 'week' }],
+      [{ text: '🔎 Детали дня', callback_data: 'day_detail' }],
       [{ text: '🎁 Знакомства (расписание)', callback_data: 'intro_schedule' }],
       [{ text: '🎭 Витрина занятости', callback_data: 'decoy' }],
       [{ text: '🚫 Закрыть день', callback_data: 'block_day' }, { text: '🚫 Закрыть час', callback_data: 'block_hour' }],
@@ -380,6 +385,82 @@ async function showSchedule(chatId) {
 
   await bot.sendMessage(chatId, summary,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+// Classify a calendar event by its summary so the operator can tell at a
+// glance what is occupying a slot: paid session, free intro, a manual block,
+// a transient checkout hold, or an unrelated personal event.
+function classifyEvent(summary) {
+  const s = (summary || '').toLowerCase();
+  if (s.startsWith('hold:')) return { icon: '⏳', label: 'бронь в оплате' };
+  if (s.includes('block') || s.includes('заблок')) return { icon: '🚫', label: 'блокировка' };
+  if (s.includes('знакомств') || s.includes('zapozn')) return { icon: '🎁', label: 'знакомство' };
+  if (s.includes('консультац') || s.includes('konsultac')) return { icon: '👤', label: 'платная сессия' };
+  return { icon: '📌', label: 'личное / другое' };
+}
+
+async function showDayDetailPicker(chatId) {
+  const buttons = [];
+  const now = new Date();
+  let row = [];
+  for (let i = 0; i < 14; i++) {
+    const date = new Date(now);
+    date.setDate(date.getDate() + i);
+    const dateStr = warsawDateString(date);
+    const [, monthStr, dayStr] = dateStr.split('-');
+    const dayNum = parseInt(dayStr, 10);
+    const monthIdx = parseInt(monthStr, 10) - 1;
+    const dow = new Date(`${dateStr}T12:00:00`).getDay();
+    row.push({ text: `${DAY_NAMES[dow]} ${dayNum} ${MONTH_NAMES[monthIdx]}`, callback_data: `daydetail_${dateStr}` });
+    if (row.length === 2) { buttons.push([...row]); row.length = 0; }
+  }
+  if (row.length > 0) buttons.push([...row]);
+  buttons.push(...backButton());
+
+  await bot.sendMessage(chatId, '🔎 *Выбери день, чтобы посмотреть что в нём:*', {
+    parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons }
+  });
+}
+
+async function showDayDetail(chatId, dateStr, calendar) {
+  if (!calendar) { await bot.sendMessage(chatId, '❌ Google Calendar не подключён'); return; }
+
+  const bounds = warsawDayBounds(dateStr);
+  const events = await calendar.events.list({
+    calendarId: config.calendarId,
+    timeMin: bounds.start.toISOString(),
+    timeMax: bounds.end.toISOString(),
+    singleEvents: true,
+    orderBy: 'startTime',
+    timeZone: config.timezone
+  });
+
+  const items = events.data.items || [];
+  if (items.length === 0) {
+    await bot.sendMessage(chatId,
+      `🔎 *${formatDate(dateStr)}*\n\nСвободно, событий нет.`,
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+
+  const fmtTime = (dt) => `${String(dt.getHours()).padStart(2, '0')}:${String(dt.getMinutes()).padStart(2, '0')}`;
+  let text = `🔎 *${formatDate(dateStr)}* (${items.length})\n\n`;
+  items.forEach(ev => {
+    const cls = classifyEvent(ev.summary);
+    if (ev.start.date) {
+      text += `${cls.icon} весь день · _${cls.label}_\n    ${ev.summary || 'Без названия'}\n\n`;
+      return;
+    }
+    const start = new Date(ev.start.dateTime);
+    const end = new Date(ev.end.dateTime || ev.start.dateTime);
+    const mins = Math.round((end - start) / 60000);
+    text += `${cls.icon} ${fmtTime(start)}–${fmtTime(end)} (${mins} мин) · _${cls.label}_\n    ${ev.summary || 'Без названия'}\n\n`;
+  });
+
+  await bot.sendMessage(chatId, text,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
   );
 }
 
