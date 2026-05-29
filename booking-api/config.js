@@ -40,5 +40,8 @@ module.exports = {
   // (struck-through). Display-only: it never touches Google Calendar, never
   // blocks a real booking, and never applies to the free intro. Toggled by
   // the Telegram bot, persisted to decoy.json under BOOKING_DATA_DIR.
-  decoy: { enabled: false, intensity: 'low' }
+  // alwaysOpen: list of "HH:MM" times the decoy must NEVER close, so a popular
+  // slot the operator wants bookable stays available on the site even with the
+  // showcase on. Managed by the bot.
+  decoy: { enabled: false, intensity: 'low', alwaysOpen: [] }
 };

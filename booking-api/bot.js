@@ -107,6 +107,7 @@ function loadDecoy() {
       if (data && typeof data === 'object') {
         if (typeof data.enabled === 'boolean') config.decoy.enabled = data.enabled;
         if (data.intensity === 'low' || data.intensity === 'med') config.decoy.intensity = data.intensity;
+        if (Array.isArray(data.alwaysOpen)) config.decoy.alwaysOpen = data.alwaysOpen.filter(t => /^\d{2}:\d{2}$/.test(t));
       }
     }
   } catch (e) {
@@ -241,6 +242,17 @@ function init(calendar) {
         saveDecoy();
         audit.log('decoy_intensity', { intensity: config.decoy.intensity });
         await showDecoyMenu(chatId);
+      } else if (data === 'decoy_open') {
+        await showDecoyOpenPicker(chatId);
+      } else if (data.startsWith('decoyopen_')) {
+        const time = data.replace('decoyopen_', '');
+        const arr = config.decoy.alwaysOpen || (config.decoy.alwaysOpen = []);
+        const i = arr.indexOf(time);
+        if (i >= 0) arr.splice(i, 1); else arr.push(time);
+        arr.sort();
+        saveDecoy();
+        audit.log('decoy_alwaysopen', { time, on: i < 0 });
+        await showDecoyOpenPicker(chatId);
       } else if (data.startsWith('introtoggleday_')) {
         await toggleIntroDay(chatId, parseInt(data.replace('introtoggleday_', '')));
       } else if (data.startsWith('introsettime_')) {
@@ -482,25 +494,65 @@ async function showDayDetail(chatId, dateStr, calendar) {
 async function showDecoyMenu(chatId) {
   const on = config.decoy.enabled;
   const intensity = config.decoy.intensity === 'med' ? 'средняя (~45%)' : 'низкая (~25%)';
+  const alwaysOpen = (config.decoy.alwaysOpen || []);
   const buttons = [
     [{ text: on ? '🟢 Витрина ВКЛ (выключить)' : '⚪ Витрина ВЫКЛ (включить)', callback_data: 'decoy_toggle' }],
     [
       { text: config.decoy.intensity === 'low' ? '✅ Низкая' : 'Низкая', callback_data: 'decoy_low' },
       { text: config.decoy.intensity === 'med' ? '✅ Средняя' : 'Средняя', callback_data: 'decoy_med' }
-    ]
+    ],
+    [{ text: '✅ Всегда открыто (исключения)', callback_data: 'decoy_open' }]
   ];
   buttons.push(...backButton());
 
   const summary =
     '🎭 *Витрина занятости*\n\n' +
     `Состояние: ${on ? '🟢 включена' : '⚪ выключена'}\n` +
-    `Интенсивность: ${intensity}\n\n` +
+    `Интенсивность: ${intensity}\n` +
+    `Всегда открыто: ${alwaysOpen.length ? alwaysOpen.join(', ') : 'нет'}\n\n` +
     'Когда включено, часть свободных слотов на платном виджете показывается «занятыми» (перечёркнуто), чтобы календарь выглядел востребованным.\n\n' +
     '• Только платный виджет. Бесплатное знакомство всегда открыто.\n' +
     '• Реальный календарь не трогается, двойной записи не будет.\n' +
-    '• Узор разный по дням, минимум 2 свободных слота в дне сохраняются.';
+    '• Узор разный по дням, минимум 2 свободных слота в дне сохраняются.\n' +
+    '• «Всегда открыто»: эти времена витрина никогда не закрывает.';
 
   await bot.sendMessage(chatId, summary,
+    { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
+  );
+}
+
+async function showDecoyOpenPicker(chatId) {
+  // Distinct slot times across the paid weekly schedule — these are the times
+  // the operator can pin as "always open" so the decoy never closes them.
+  const times = new Set();
+  for (const dow of Object.keys(config.schedule)) {
+    generateSlots(config.schedule[dow]).forEach(t => times.add(t));
+  }
+  const sorted = Array.from(times).sort();
+  const pinned = new Set(config.decoy.alwaysOpen || []);
+
+  if (sorted.length === 0) {
+    await bot.sendMessage(chatId,
+      '✅ *Всегда открыто*\n\nСначала задай платное расписание (📅 Расписание), тогда тут появятся времена для исключений.',
+      { parse_mode: 'Markdown', reply_markup: { inline_keyboard: backButton() } }
+    );
+    return;
+  }
+
+  const buttons = [];
+  let row = [];
+  for (const t of sorted) {
+    const lbl = pinned.has(t) ? `✅ ${t}` : t;
+    row.push({ text: lbl, callback_data: `decoyopen_${t}` });
+    if (row.length === 3) { buttons.push([...row]); row.length = 0; }
+  }
+  if (row.length > 0) buttons.push([...row]);
+  buttons.push(...backButton());
+
+  await bot.sendMessage(chatId,
+    '✅ *Всегда открыто (исключения витрины)*\n\n' +
+    'Тапни время, чтобы оно НИКОГДА не закрывалось витриной. Повторный тап убирает из исключений.\n\n' +
+    `Сейчас защищены: ${pinned.size ? Array.from(pinned).sort().join(', ') : 'нет'}`,
     { parse_mode: 'Markdown', reply_markup: { inline_keyboard: buttons } }
   );
 }

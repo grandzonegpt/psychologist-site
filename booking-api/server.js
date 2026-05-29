@@ -204,13 +204,16 @@ function applyDecoys(dateStr, daySlots) {
   if (!cfg.enabled) return;
   const ratio = cfg.intensity === 'med' ? 0.45 : 0.25;
   const MIN_KEEP = 2;
+  const pinned = new Set(cfg.alwaysOpen || []);
   const avail = daySlots.filter(s => s.status === 'available');
   if (avail.length <= MIN_KEEP) return;
-  let pick = Math.min(Math.floor(avail.length * ratio), avail.length - MIN_KEEP);
+  // Pinned times are never decoyed — they always stay bookable on the site.
+  const candidates = avail.filter(s => !pinned.has(s.time));
+  let pick = Math.min(Math.floor(avail.length * ratio), candidates.length, avail.length - MIN_KEEP);
   if (pick <= 0) return;
   // Score: bias toward evening then midday (those book first in real life),
   // plus a per-slot deterministic jitter so it isn't a rigid evening block.
-  const scored = avail.map(s => {
+  const scored = candidates.map(s => {
     const h = parseInt(s.time.split(':')[0], 10);
     const prime = h >= 17 ? 3 : (h >= 11 && h <= 14 ? 2 : 1);
     const jitter = (hashStr(dateStr + s.time) % 100) / 100;
