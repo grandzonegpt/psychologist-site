@@ -567,19 +567,19 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Похоже, сейчас держишься.',
           body: 'Сигналов мало. Возьми страницу в закладки и пройди тест ещё раз через пару недель, если что-то изменится. Если хочется спокойно поговорить, есть бесплатные 15 минут.',
           cta: 'Познакомиться бесплатно',
-          url: 'https://cal.com/levashou/intro-ru'
+          url: '/intro.html'
         },
         mid: {
           title: 'Несколько сигналов совпали.',
           body: 'Это повод остановиться и разобраться. Начать можно с бесплатного 15-минутного разговора. Без обязательств, поймёшь подхожу ли я и как работаем.',
           cta: 'Записаться на 15 минут',
-          url: 'https://cal.com/levashou/intro-ru'
+          url: '/intro.html'
         },
         high: {
           title: 'Сигналов много и они устойчивые.',
           body: 'Одному выбираться из этого долго и изматывающе. Начни с 15-минутного разговора без оплаты, там решим куда дальше.',
           cta: 'Записаться на 15 минут',
-          url: 'https://cal.com/levashou/intro-ru'
+          url: '/intro.html'
         },
         retake: 'Пройти ещё раз'
       },
@@ -588,19 +588,19 @@ document.addEventListener('DOMContentLoaded', () => {
           title: 'Wygląda na to, że dajesz radę.',
           body: 'Sygnałów jest mało. Zapisz stronę i zrób test znów za parę tygodni, jeśli coś się zmieni. Gdybyś chciał spokojnie pogadać, są bezpłatne 15 minut.',
           cta: 'Umów bezpłatną rozmowę',
-          url: 'https://cal.com/levashou/intro-pl'
+          url: '/intro-pl.html'
         },
         mid: {
           title: 'Kilka sygnałów się zgadza.',
           body: 'To powód, żeby się zatrzymać. Dobrym startem jest bezpłatna 15-minutowa rozmowa. Bez zobowiązań, zobaczysz czy ci pasuję i jak pracuję.',
           cta: 'Umów 15 minut',
-          url: 'https://cal.com/levashou/intro-pl'
+          url: '/intro-pl.html'
         },
         high: {
           title: 'Sygnałów jest dużo i trzymają się od dawna.',
           body: 'Samemu wyjść z tego bywa długo i wyczerpująco. Zacznij od 15 minut bez opłaty, tam ustalimy co dalej.',
           cta: 'Umów 15 minut',
-          url: 'https://cal.com/levashou/intro-pl'
+          url: '/intro-pl.html'
         },
         retake: 'Zrób jeszcze raz'
       }
@@ -649,11 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ? (document.body.dataset.landingLocale === 'pl')
       : path.indexOf('/blog-pl/') === 0;
     var slug = document.body.dataset.landingSlug || '';
-    var utmSource = isBlog ? 'blog' : 'landing';
-    var utmContent = (isLanding && slug) ? ('&utm_content=' + slug) : '';
-    var url = isPl
-      ? ('https://cal.com/levashou/intro-pl?utm_source=' + utmSource + '&utm_medium=sticky_mobile' + utmContent)
-      : ('https://cal.com/levashou/intro-ru?utm_source=' + utmSource + '&utm_medium=sticky_mobile' + utmContent);
+    var url = isPl ? '/intro-pl.html' : '/intro.html';
     var label = isPl ? 'Opowiedzieć, co niepokoi' : 'Рассказать, что беспокоит';
     var closeLabel = isPl ? 'Zamknij' : 'Закрыть';
 

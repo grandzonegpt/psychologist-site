@@ -41,7 +41,14 @@
       cancelDetailsTitle: 'Подробнее об отмене',
       cancelDetailsP1: 'Отменить или перенести сессию без потери оплаты можно за 24 часа до её начала. Если отменяешь позже, оплата сохраняется: это время уже было зарезервировано для тебя.',
       cancelDetailsP2: 'Если отменяю я, ты получаешь полный возврат или можешь выбрать новое время.',
-      cancelDetailsP3: 'Болезнь, форс-мажор и другие исключительные ситуации обсуждаем отдельно. Напиши мне, разберёмся.'
+      cancelDetailsP3: 'Болезнь, форс-мажор и другие исключительные ситуации обсуждаем отдельно. Напиши мне, разберёмся.',
+      metaIntro: 'Знакомство · {duration} минут · бесплатно',
+      formTitleIntro: '{dayName}, {day} {date}, {time}, {duration} мин, бесплатно',
+      confirmDurationIntro: 'Знакомство · {duration} минут · бесплатно',
+      confirmCancelIntro: 'Отменить можно в любой момент, ответом на письмо',
+      confirmPayIntro: 'Подтвердить запись →',
+      bookedTitleIntro: 'Готово, ты записан.',
+      bookedBodyIntro: 'Ссылка на видеовстречу придёт на твой email в течение минуты. Если не пришла, проверь спам или напиши в Telegram.'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -79,7 +86,14 @@
       cancelDetailsTitle: 'Więcej o anulacji',
       cancelDetailsP1: 'Sesję można odwołać lub przełożyć bez utraty opłaty na 24 godziny przed jej rozpoczęciem. Przy późniejszym odwołaniu opłata zostaje, ponieważ ten czas był już zarezerwowany dla Ciebie.',
       cancelDetailsP2: 'Jeśli to ja odwołuję sesję, dostajesz pełny zwrot albo możesz wybrać nowy termin.',
-      cancelDetailsP3: 'Choroba, siła wyższa i inne wyjątkowe sytuacje omawiamy osobno. Napisz do mnie, znajdziemy rozwiązanie.'
+      cancelDetailsP3: 'Choroba, siła wyższa i inne wyjątkowe sytuacje omawiamy osobno. Napisz do mnie, znajdziemy rozwiązanie.',
+      metaIntro: 'Zapoznanie · {duration} minut · bezpłatnie',
+      formTitleIntro: '{dayName}, {day} {date}, {time}, {duration} min, bezpłatnie',
+      confirmDurationIntro: 'Zapoznanie · {duration} minut · bezpłatnie',
+      confirmCancelIntro: 'Możesz odwołać w każdej chwili, odpisując na email',
+      confirmPayIntro: 'Potwierdź rezerwację →',
+      bookedTitleIntro: 'Gotowe, jesteś zapisany.',
+      bookedBodyIntro: 'Link do spotkania wideo przyjdzie na twój email w ciągu minuty. Jeśli nie dotarł, sprawdź spam albo napisz na Telegram.'
     }
   };
 
@@ -147,8 +161,10 @@
     return aStr + '. ' + bStr;
   }
 
-  function init(containerId, locale) {
+  function init(containerId, locale, options) {
     const t = i18n[locale] || i18n.ru;
+    const isIntro = !!(options && options.type === 'intro');
+    const payLabel = isIntro ? t.confirmPayIntro : t.confirmPay;
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -180,7 +196,7 @@
           '<p class="bw-v2__tz-note">' + t.tzNote + '</p>' +
           '<p class="bw-v2__confirm-meta"></p>' +
           '<p class="bw-v2__confirm-cancel"></p>' +
-          '<button type="button" class="bw-v2__confirm-pay">' + t.confirmPay + '</button>' +
+          '<button type="button" class="bw-v2__confirm-pay">' + payLabel + '</button>' +
           '<details class="bw-v2__cancel-details">' +
             '<summary class="bw-v2__cancel-details-summary">' + t.cancelDetailsTitle + '</summary>' +
             '<div class="bw-v2__cancel-details-body">' +
@@ -214,7 +230,7 @@
     const $loading = container.querySelector('.bw-v2__loading');
 
     let daysData = [];
-    let serviceInfo = { duration: 50, price: 180 };
+    let serviceInfo = isIntro ? { duration: 15, price: 0 } : { duration: 50, price: 180 };
     let selectedDate = null;
     let selectedTime = null;
     let pendingName = '';
@@ -252,6 +268,10 @@
     }
 
     function updateMeta() {
+      if (isIntro) {
+        $meta.textContent = t.metaIntro.replace('{duration}', serviceInfo.duration || 15);
+        return;
+      }
       $meta.textContent = t.meta
         .replace('{duration}', serviceInfo.duration || 50)
         .replace('{price}', serviceInfo.price || 180);
@@ -344,12 +364,12 @@
       el.classList.add('bw-v2__time--selected');
 
       const d = parseDate(selectedDate);
-      $formTitle.textContent = t.formTitle
+      $formTitle.textContent = (isIntro ? t.formTitleIntro : t.formTitle)
         .replace('{dayName}', t.daysFull[d.getDay()])
         .replace('{day}', d.getDate())
         .replace('{date}', t.monthsGen[d.getMonth()])
         .replace('{time}', selectedTime)
-        .replace('{duration}', serviceInfo.duration || 50)
+        .replace('{duration}', serviceInfo.duration || (isIntro ? 15 : 50))
         .replace('{price}', serviceInfo.price || 180);
 
       $formEl.name.value = pendingName;
@@ -370,10 +390,10 @@
         .replace('{month}', t.monthsGen[d.getMonth()])
         .replace('{time}', selectedTime);
 
-      $confirmCancel.textContent = t.confirmCancel;
+      $confirmCancel.textContent = isIntro ? t.confirmCancelIntro : t.confirmCancel;
 
-      $confirmMeta.textContent = t.confirmDuration
-        .replace('{duration}', serviceInfo.duration || 50)
+      $confirmMeta.textContent = (isIntro ? t.confirmDurationIntro : t.confirmDuration)
+        .replace('{duration}', serviceInfo.duration || (isIntro ? 15 : 50))
         .replace('{price}', serviceInfo.price || 180);
 
       $form.setAttribute('hidden', '');
@@ -398,16 +418,39 @@
       $confirmPay.disabled = true;
       $confirmPay.textContent = t.loading;
       try {
-        trackEvent('begin_checkout', { currency: 'PLN', value: serviceInfo.price || 180, locale: locale });
+        if (isIntro) {
+          trackEvent('intro_begin', { locale: locale });
+        } else {
+          trackEvent('begin_checkout', { currency: 'PLN', value: serviceInfo.price || 180, locale: locale });
+        }
         const attr = getAttribution();
+        const payload = Object.assign({ name: pendingName, email: pendingEmail, date: selectedDate, time: selectedTime, locale: locale }, attr);
+        if (isIntro) payload.type = 'intro';
         const resp = await fetch(API_URL + '/api/book', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.assign({ name: pendingName, email: pendingEmail, date: selectedDate, time: selectedTime, locale: locale }, attr))
+          body: JSON.stringify(payload)
         });
         const data = await resp.json().catch(function() { return {}; });
+        // Paid flow: Stripe checkout URL to redirect to.
         if (data.ok && data.url) {
           window.location.href = data.url;
+          return;
+        }
+        // Intro flow: booked immediately, no payment. Show inline success.
+        if (data.ok && data.booked) {
+          trackEvent('intro_booked', { locale: locale });
+          if (selectedDate && selectedTime) {
+            var booked = (daysData.find(function(dd) { return dd.date === selectedDate; }) || {}).slots || [];
+            booked.forEach(function(s) { if (s.time === selectedTime) s.status = 'taken'; });
+          }
+          $confirm.setAttribute('hidden', '');
+          $changeTime.setAttribute('hidden', '');
+          deselectSlot();
+          renderGrid();
+          $message.innerHTML = '<strong>' + t.bookedTitleIntro + '</strong><br>' + t.bookedBodyIntro;
+          $message.className = 'bw-v2__message bw-v2__message--success';
+          $message.removeAttribute('hidden');
           return;
         }
         // 409 means the slot was just taken by a parallel booking.
@@ -421,7 +464,7 @@
         $message.removeAttribute('hidden');
       }
       $confirmPay.disabled = false;
-      $confirmPay.textContent = t.confirmPay;
+      $confirmPay.textContent = payLabel;
     });
 
     $prev.addEventListener('click', function() {
@@ -495,7 +538,7 @@
       $loading.style.display = 'block';
       let data;
       try {
-        const resp = await fetch(API_URL + '/api/slots');
+        const resp = await fetch(API_URL + '/api/slots' + (isIntro ? '?type=intro' : ''));
         if (!resp.ok) throw new Error('HTTP ' + resp.status);
         data = await resp.json();
       } catch (e) {
