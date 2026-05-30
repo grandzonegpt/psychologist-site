@@ -82,7 +82,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" fetchpriority="high">
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=121"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=121"><link rel="stylesheet" href="/css/orb.css?v=1"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
     if (localStorage.getItem('cookie-consent') === 'all') {
@@ -172,31 +172,7 @@
 
   <div class="engine">
     <div class="engine-stage">
-      <div class="cycle-counter">Цикл <span class="num" id="cycle-now">1</span><span>из</span><span class="num">6</span></div>
-
-      <div class="box-frame" id="box-frame">
-        <span class="corner tl"></span>
-        <span class="corner tr"></span>
-        <span class="corner br"></span>
-        <span class="corner bl"></span>
-
-        <span class="box-edge-label top">Вдох <span class="n">4 сек</span></span>
-        <span class="box-edge-label right">Задержка <span class="n">4 сек</span></span>
-        <span class="box-edge-label bottom">Выдох <span class="n">4 сек</span></span>
-        <span class="box-edge-label left">Задержка <span class="n">4 сек</span></span>
-
-        <span class="box-dot"></span>
-
-        <div class="box-center">
-          <div class="phase" id="phase-label">Готов?</div>
-          <div class="count" id="phase-count">·</div>
-        </div>
-      </div>
-
-      <div class="stage-controls">
-        <button id="btn-start" class="is-on">Начать</button>
-        <button id="btn-stop">Остановить</button>
-      </div>
+      <div class="orb-engine" data-phases='[["inhale",4],["hold",4],["exhale",4],["hold",4]]' data-cycles="6" data-shape="box"></div>
     </div>
 
     <div class="engine-side">
@@ -304,6 +280,6 @@
 </div>
 
 <script src="/js/main.min.js?v=26"></script>
-<script src="/js/box-breathing.js?v=2" defer></script>
+<script src="/js/breath-orb.js?v=1" defer></script>
 </body>
 </html>
