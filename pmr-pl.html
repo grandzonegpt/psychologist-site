@@ -86,7 +86,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet" fetchpriority="high">
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=121"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=121"><link rel="stylesheet" href="/css/pmr-body.css?v=1"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
     if (localStorage.getItem('cookie-consent') === 'all') {
@@ -175,49 +175,7 @@
   </div>
 
   <div class="pmr-engine">
-    <div class="pmr-stage">
-      <div class="pmr-figure" id="pmr-figure">
-        <svg viewBox="0 0 380 480" style="position:absolute; inset:0; width:100%; height:100%;">
-          <g fill="none" stroke="rgba(31,28,24,0.18)" stroke-width="1">
-            <ellipse cx="190" cy="50" rx="32" ry="38"/>
-            <line x1="190" y1="88" x2="190" y2="108"/>
-            <path d="M 110 130 Q 190 105, 270 130"/>
-            <path d="M 130 130 L 130 280 Q 190 295, 250 280 L 250 130"/>
-            <path d="M 110 130 L 80 250 L 88 320"/>
-            <path d="M 270 130 L 300 250 L 292 320"/>
-            <path d="M 130 280 L 120 340 L 130 460"/>
-            <path d="M 250 280 L 260 340 L 250 460"/>
-            <line x1="190" y1="290" x2="190" y2="460"/>
-          </g>
-        </svg>
-
-        <div class="pmr-zone" data-zone="0" data-name="Czoło i brwi" data-tense="Podnieś brwi tak wysoko, jak możesz, utrzymuj 5 sekund." data-release="Puść. Zauważ, jak ciężkie stają się powieki." style="top: 30px;"><span class="dot"></span><span class="zlabel"><span class="znum">i</span>Czoło i brwi</span></div>
-        <div class="pmr-zone" data-zone="1" data-name="Szczęka, usta" data-tense="Zaciśnij szczęki i ściśnij wargi. Pięć sekund." data-release="Puść. Szczęka może się lekko uchylić." style="top: 70px;"><span class="dot"></span><span class="zlabel"><span class="znum">ii</span>Szczęka, usta</span></div>
-        <div class="pmr-zone" data-zone="2" data-name="Barki i szyja" data-tense="Podnieś barki do uszu tak wysoko, jak możesz." data-release="Puść gwałtownie. Barki opadają." style="top: 130px;"><span class="dot"></span><span class="zlabel"><span class="znum">iii</span>Barki i szyja</span></div>
-        <div class="pmr-zone" data-zone="3" data-name="Ręce, pięści" data-tense="Zaciśnij oba pięści i napnij przedramiona." data-release="Otwórz dłonie. Palce ciepłe." style="top: 210px;"><span class="dot"></span><span class="zlabel"><span class="znum">iv</span>Ręce, pięści</span></div>
-        <div class="pmr-zone" data-zone="4" data-name="Klatka, brzuch" data-tense="Głęboki wdech, utrzymuj napięcie w klatce." data-release="Powolny wydech. Brzuch miękki." style="top: 270px;"><span class="dot"></span><span class="zlabel"><span class="znum">v</span>Klatka, brzuch</span></div>
-        <div class="pmr-zone" data-zone="5" data-name="Uda, pośladki" data-tense="Zaciśnij pośladki i napnij uda." data-release="Puść. Miednica ciężka, opada w podłogę." style="top: 340px;"><span class="dot"></span><span class="zlabel"><span class="znum">vi</span>Uda, pośladki</span></div>
-        <div class="pmr-zone" data-zone="6" data-name="Łydki" data-tense="Podciągnij palce stóp do siebie, łydki napięte." data-release="Puść. Łydki miękkie." style="top: 400px;"><span class="dot"></span><span class="zlabel"><span class="znum">vii</span>Łydki</span></div>
-        <div class="pmr-zone" data-zone="7" data-name="Stopy, palce" data-tense="Zaciśnij palce stóp, napnij stopy." data-release="Otwórz. Stopy rozpływają się." style="top: 450px;"><span class="dot"></span><span class="zlabel"><span class="znum">viii</span>Stopy, palce</span></div>
-      </div>
-    </div>
-
-    <div class="pmr-side">
-      <div class="pmr-mini-circle" id="pmr-circle"></div>
-      <div class="pmr-phase-card">
-        <div class="pwhich" id="pmr-which">Strefa 1 z 8</div>
-        <div class="pname" id="pmr-name">Czoło i brwi</div>
-        <div class="pwhat" id="pmr-what">Gotów? <span class="secs" id="pmr-secs"></span></div>
-      </div>
-      <div class="pmr-instr" id="pmr-instr">
-        <p>Podnieś brwi tak wysoko, jak możesz, utrzymuj napięcie pięć sekund. Zauważ, gdzie dokładnie ciągnie.</p>
-        <p>Potem gwałtownie puść i prześledź, jak napięcie odchodzi. Zapamiętaj tę różnicę: to uczucie „po" jest celem.</p>
-      </div>
-      <div class="pmr-controls">
-        <button id="pmr-start" class="is-on">Start</button>
-        <button id="pmr-stop">Stop</button>
-      </div>
-    </div>
+    <div class="pmr-body-engine"></div>
   </div>
 
   <section class="practice-related">
@@ -288,6 +246,6 @@
 </div>
 
 <script src="/js/main.min.js?v=26"></script>
-<script src="/js/pmr.js?v=2" defer></script>
+<script src="/js/pmr-body.js?v=1" defer></script>
 </body>
 </html>
