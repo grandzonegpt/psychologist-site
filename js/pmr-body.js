@@ -1,185 +1,57 @@
-/* pmr-body.js: premium progressive muscle relaxation (Jacobson). One luminous body, one screen.
-   Self-initializing on .pmr-body-engine. RU/PL from html lang. Needs /css/pmr-body.css. v1 */
-(function(){
-  "use strict";
-  function init(root){
-    var pl=(document.documentElement.getAttribute("lang")||"ru").slice(0,2)==="pl";
-    var T = pl ? {
-      tense:"Napnij", release:"Puść", rest:"Przerwa", ready:"Gotów?", done:"Gotowe",
-      zone:"Strefa", of:"z", start:"Zacznij", pause:"Pauza", resume:"Wznów", reset:"Reset", again:"Jeszcze raz",
-      settings:"Ustawienia", tenseLen:"Napięcie", releaseLen:"Rozluźnienie", sound:"Delikatny dźwięk",
-      haptics:"Wibracja w telefonie", sec:"s",
-      doneName:"Całe ciało", doneHint:"Poleż jeszcze minutę. Zauważ, jak teraz czuje się ciało.",
-      restHint:"Oddychaj swobodnie. Za chwilę następna strefa."
-    } : {
-      tense:"Напряги", release:"Отпусти", rest:"Передышка", ready:"Готов?", done:"Готово",
-      zone:"Зона", of:"из", start:"Начать", pause:"Пауза", resume:"Продолжить", reset:"Сброс", again:"Ещё раз",
-      settings:"Настройки", tenseLen:"Напряжение", releaseLen:"Расслабление", sound:"Мягкий звук",
-      haptics:"Вибрация на телефоне", sec:"с",
-      doneName:"Всё тело", doneHint:"Полежи ещё минуту. Заметь, как сейчас чувствуется тело. Оно стало другим.",
-      restHint:"Дыши свободно. Через пару секунд: следующая зона."
-    };
-    var ZONES = pl ? [
-      {n:"Czoło i brwi", t:"Podnieś brwi tak wysoko, jak możesz.", r:"Puść. Powieki ciężkie."},
-      {n:"Szczęka, usta", t:"Zaciśnij szczęki i ściśnij wargi.", r:"Puść. Szczęka lekko się uchyla."},
-      {n:"Barki i szyja", t:"Podnieś barki do uszu tak wysoko, jak możesz.", r:"Puść gwałtownie. Barki opadają."},
-      {n:"Ręce, pięści", t:"Zaciśnij oba pięści i napnij przedramiona.", r:"Otwórz dłonie. Palce ciepłe."},
-      {n:"Klatka, brzuch", t:"Głęboki wdech, utrzymaj napięcie w klatce.", r:"Powolny wydech. Brzuch miękki."},
-      {n:"Uda, pośladki", t:"Zaciśnij pośladki i napnij uda.", r:"Puść. Miednica ciężka, opada."},
-      {n:"Łydki", t:"Podciągnij palce stóp do siebie, łydki napięte.", r:"Puść. Łydki miękkie."},
-      {n:"Stopy, palce", t:"Zaciśnij palce stóp, napnij stopy.", r:"Otwórz. Stopy rozpływają się."}
-    ] : [
-      {n:"Лоб и брови", t:"Подними брови как можно выше.", r:"Отпусти. Веки тяжелеют."},
-      {n:"Челюсть, рот", t:"Сожми челюсти и сожми губы.", r:"Отпусти. Челюсть слегка приоткрывается."},
-      {n:"Плечи и шея", t:"Подними плечи к ушам как можно выше.", r:"Отпусти резко. Плечи падают."},
-      {n:"Руки, кулаки", t:"Сожми оба кулака и напряги предплечья.", r:"Раскрой ладони. Пальцы тёплые."},
-      {n:"Грудь, живот", t:"Глубокий вдох, удерживай напряжение в груди.", r:"Медленный выдох. Живот мягкий."},
-      {n:"Бёдра, ягодицы", t:"Сожми ягодицы и напряги бёдра.", r:"Отпусти. Таз тяжелеет в пол."},
-      {n:"Икры", t:"Подтяни носки к себе, икры напряжены.", r:"Отпусти. Икры мягкие."},
-      {n:"Стопы, пальцы", t:"Сожми пальцы ног, напряги стопы.", r:"Раскрой. Стопы расплываются."}
-    ];
-
-    var SIL = ''
-      + '<circle cx="100" cy="46" r="27"/>'
-      + '<rect x="90" y="66" width="20" height="20" rx="8"/>'
-      + '<path d="M64,98 Q100,82 136,98 L130,202 Q100,216 70,202 Z"/>'
-      + '<path d="M70,196 L130,196 L126,252 Q100,264 74,252 Z"/>'
-      + '<rect x="46" y="100" width="20" height="116" rx="10"/>'
-      + '<rect x="134" y="100" width="20" height="116" rx="10"/>'
-      + '<rect x="72" y="248" width="24" height="168" rx="12"/>'
-      + '<rect x="104" y="248" width="24" height="168" rx="12"/>'
-      + '<ellipse cx="84" cy="420" rx="15" ry="9"/>'
-      + '<ellipse cx="116" cy="420" rx="15" ry="9"/>';
-    var REGIONS = [
-      '<ellipse cx="100" cy="38" rx="22" ry="15"/>',
-      '<ellipse cx="100" cy="58" rx="20" ry="13"/>',
-      '<ellipse cx="100" cy="98" rx="52" ry="20"/>',
-      '<ellipse cx="56" cy="160" rx="16" ry="52"/><ellipse cx="144" cy="160" rx="16" ry="52"/>',
-      '<ellipse cx="100" cy="150" rx="40" ry="54"/>',
-      '<ellipse cx="100" cy="226" rx="40" ry="30"/>',
-      '<ellipse cx="84" cy="350" rx="16" ry="46"/><ellipse cx="116" cy="350" rx="16" ry="46"/>',
-      '<ellipse cx="84" cy="418" rx="18" ry="12"/><ellipse cx="116" cy="418" rx="18" ry="12"/>'
-    ];
-
-    var regSvg = REGIONS.map(function(s,i){ return '<g class="pmr-region" data-r="'+i+'">'+s+'</g>'; }).join('');
-    var svg = '<svg class="pmr-bsvg" viewBox="0 0 200 460" aria-hidden="true">'
-      + '<defs><clipPath id="pmrBodyClip">'+SIL+'</clipPath></defs>'
-      + '<g class="pmr-silhouette">'+SIL+'</g>'
-      + '<g clip-path="url(#pmrBodyClip)">'+regSvg+'</g></svg>';
-
-    var pips = ZONES.map(function(){ return '<span class="pmr-pip"></span>'; }).join('');
-
-    root.classList.add("pmr-body-engine");
-    root.innerHTML =
-      '<div class="pmr-bwhich">'+T.zone+' <b class="pZ">1</b> '+T.of+' <b>'+ZONES.length+'</b></div>'
-      + '<div class="pmr-bstage">'+svg+'</div>'
-      + '<div class="pmr-brd">'
-        + '<div class="pmr-bphase">'+T.ready+'</div>'
-        + '<div class="pmr-bcount">·</div>'
-        + '<div class="pmr-bname">'+ZONES[0].n+'</div>'
-        + '<p class="pmr-bhint" aria-live="polite"></p>'
-      + '</div>'
-      + '<div class="pmr-pips">'+pips+'</div>'
-      + '<div class="pmr-bctl">'
-        + '<button class="pmr-bbtn is-primary pStart">'+T.start+'</button>'
-        + '<button class="pmr-bbtn pPause" hidden>'+T.pause+'</button>'
-        + '<button class="pmr-bbtn pReset" hidden>'+T.reset+'</button>'
-      + '</div>'
-      + '<button class="pmr-bset-toggle" aria-expanded="false">'+T.settings+' <span class="chev">⌄</span></button>'
-      + '<div class="pmr-bpanel"><div class="pmr-bpanel-inner">'
-        + '<div class="pmr-brow"><label for="pTen">'+T.tenseLen+'</label><input type="range" id="pTen" min="4" max="7" step="1" value="5"><span class="pmr-bval"><span class="pTenV">5</span> '+T.sec+'</span></div>'
-        + '<div class="pmr-brow"><label for="pRel">'+T.releaseLen+'</label><input type="range" id="pRel" min="8" max="14" step="1" value="10"><span class="pmr-bval"><span class="pRelV">10</span> '+T.sec+'</span></div>'
-        + '<div class="pmr-brow"><label for="pSnd">'+T.sound+'</label><span class="pmr-bsw"><input type="checkbox" id="pSnd"><span class="tr"></span></span></div>'
-        + '<div class="pmr-brow"><label for="pHap">'+T.haptics+'</label><span class="pmr-bsw"><input type="checkbox" id="pHap"><span class="tr"></span></span></div>'
-      + '</div></div>';
-
-    var $=function(s){return root.querySelector(s);};
-    var regEls=Array.prototype.slice.call(root.querySelectorAll(".pmr-region"));
-    var pipEls=Array.prototype.slice.call(root.querySelectorAll(".pmr-pip"));
-    var zEl=$(".pZ"), phaseEl=$(".pmr-bphase"), countEl=$(".pmr-bcount"), nameEl=$(".pmr-bname"), hintEl=$(".pmr-bhint");
-    var bStart=$(".pStart"), bPause=$(".pPause"), bReset=$(".pReset");
-
-    var cfg={ tense:5, release:10, rest:4, sound:false, haptics:false };
-
-    // audio
-    var actx=null;
-    function ensureAudio(){ if(!actx){ try{actx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} } if(actx&&actx.state==="suspended") actx.resume(); }
-    function chime(f,dur){ if(!cfg.sound||!actx)return; var t=actx.currentTime,o=actx.createOscillator(),g=actx.createGain();
-      o.type="sine"; o.frequency.value=f; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.05,t+0.04);
-      g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||0.9)); o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t+(dur||0.9)+0.1); }
-
-    var st={ running:false, paused:false, z:0, phase:"idle", left:0, last:0, acc:0 };
-
-    function setRegion(i,cls){ var el=regEls[i]; if(!el)return; el.classList.remove("is-tense","is-release","is-done"); if(cls) el.classList.add(cls); }
-    function paintPips(){ pipEls.forEach(function(p,i){ p.classList.remove("is-done","is-now");
-      if(i<st.z) p.classList.add("is-done"); else if(i===st.z && st.running) p.classList.add("is-now"); }); }
-    function showPhase(word,tone){ phaseEl.textContent=word; phaseEl.className="pmr-bphase"+(tone?" t-"+tone:"");
-      phaseEl.style.opacity=0; phaseEl.style.transform="translateY(4px)";
-      requestAnimationFrame(function(){ phaseEl.style.opacity=1; phaseEl.style.transform="none"; }); }
-
-    function enterPhase(name){
-      st.phase=name; var z=ZONES[st.z];
-      nameEl.textContent=z.n; zEl.textContent=st.z+1; paintPips();
-      if(name==="tense"){ st.left=cfg.tense; setRegion(st.z,"is-tense"); showPhase(T.tense,"tense"); hintEl.textContent=z.t;
-        chime(466,0.7); if(cfg.haptics&&navigator.vibrate) navigator.vibrate(34); }
-      else if(name==="release"){ st.left=cfg.release; setRegion(st.z,"is-release"); showPhase(T.release,"release"); hintEl.textContent=z.r;
-        chime(392,1.1); if(cfg.haptics&&navigator.vibrate) navigator.vibrate([14,40,14]); }
-      else { st.left=cfg.rest; setRegion(st.z,"is-done"); showPhase(T.rest,""); hintEl.textContent=T.restHint; }
-      countEl.classList.remove("is-mark"); countEl.textContent=Math.ceil(st.left);
-    }
-    function advance(){
-      if(st.phase==="tense"){ enterPhase("release"); }
-      else if(st.phase==="release"){ enterPhase("rest"); }
-      else { regEls[st.z] && regEls[st.z].classList.add("is-done"); regEls[st.z] && regEls[st.z].classList.remove("is-release");
-        st.z++; if(st.z>=ZONES.length){ finish(); } else { enterPhase("tense"); } }
-    }
-    function start(){
-      ensureAudio(); st.running=true; st.paused=false; st.z=0; root.classList.remove("is-fin");
-      regEls.forEach(function(_,i){ setRegion(i,null); });
-      bStart.hidden=true; bPause.hidden=false; bPause.textContent=T.pause; bReset.hidden=false;
-      enterPhase("tense");
-    }
-    function togglePause(){ st.paused=!st.paused; bPause.textContent=st.paused?T.resume:T.pause;
-      if(st.paused){ var saved=phaseEl.textContent; phaseEl.textContent=T.pause; phaseEl.setAttribute("data-saved",saved); }
-      else { var s=phaseEl.getAttribute("data-saved"); if(s) phaseEl.textContent=s; } }
-    function reset(){ st.running=false; st.paused=false; st.z=0; st.phase="idle"; root.classList.remove("is-fin");
-      regEls.forEach(function(_,i){ setRegion(i,null); }); paintPips();
-      phaseEl.className="pmr-bphase"; phaseEl.textContent=T.ready; phaseEl.style.opacity=1; phaseEl.style.transform="none";
-      countEl.textContent="·"; countEl.classList.remove("is-mark"); nameEl.textContent=ZONES[0].n; hintEl.textContent="";
-      zEl.textContent=1; bStart.hidden=false; bStart.textContent=T.start; bPause.hidden=true; bReset.hidden=true; }
-    function finish(){ st.running=false; st.phase="idle"; root.classList.add("is-fin");
-      regEls.forEach(function(el){ el.classList.remove("is-tense","is-release","is-done"); });
-      paintPips(); pipEls.forEach(function(p){ p.classList.remove("is-now"); p.classList.add("is-done"); });
-      phaseEl.className="pmr-bphase t-release"; phaseEl.textContent=T.done; phaseEl.style.opacity=1; phaseEl.style.transform="none";
-      countEl.textContent="✓"; countEl.classList.add("is-mark"); nameEl.textContent=T.doneName; hintEl.textContent=T.doneHint;
-      if(cfg.sound){ chime(392,1.2); chime(523.25,1.4); }
-      if(cfg.haptics&&navigator.vibrate) navigator.vibrate([30,60,30,60,30]);
-      bStart.hidden=false; bStart.textContent=T.again; bPause.hidden=true; bReset.hidden=false; }
-
-    var hidden=false;
-    document.addEventListener("visibilitychange",function(){ hidden=document.hidden; });
-    function frame(now){
-      requestAnimationFrame(frame);
-      if(hidden){ st.last=now; return; }
-      var dt=st.last?(now-st.last)/1000:0; st.last=now; if(dt>0.25)dt=0.25;
-      if(st.running&&!st.paused){
-        st.left-=dt;
-        if(st.left<=0){ advance(); }
-        else { var c=Math.ceil(st.left-1e-6); if(parseInt(countEl.textContent,10)!==c){ countEl.textContent=c; } }
-      }
-    }
-    requestAnimationFrame(frame);
-
-    bStart.addEventListener("click",start);
-    bPause.addEventListener("click",togglePause);
-    bReset.addEventListener("click",reset);
-    var setT=$(".pmr-bset-toggle"), panel=$(".pmr-bpanel");
-    setT.addEventListener("click",function(){ var o=panel.classList.toggle("is-open"); setT.setAttribute("aria-expanded",o?"true":"false"); });
-    $("#pTen").addEventListener("input",function(){ cfg.tense=+this.value; $(".pTenV").textContent=cfg.tense; });
-    $("#pRel").addEventListener("input",function(){ cfg.release=+this.value; $(".pRelV").textContent=cfg.release; });
-    $("#pSnd").addEventListener("change",function(){ cfg.sound=this.checked; if(cfg.sound) ensureAudio(); });
-    $("#pHap").addEventListener("change",function(){ cfg.haptics=this.checked; });
-  }
-  function boot(){ var el=document.querySelector(".pmr-body-engine"); if(el) init(el); }
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot); else boot();
-})();
+(function(){"use strict";function init(root){var pl=(document.documentElement.getAttribute("lang")||"ru").slice(0,2)==="pl";var T=pl?{tense:"Napnij",release:"Puść",rest:"Przerwa",ready:"Gotów?",done:"Gotowe",zone:"Strefa",of:"z",start:"Zacznij",pause:"Pauza",resume:"Wznów",reset:"Reset",again:"Jeszcze raz",settings:"Ustawienia",tenseLen:"Napięcie",releaseLen:"Rozluźnienie",sound:"Delikatny dźwięk",haptics:"Wibracja w telefonie",sec:"s",doneName:"Całe ciało",doneHint:"Poleż jeszcze minutę. Zauważ, jak teraz czuje się ciało.",restHint:"Oddychaj swobodnie. Za chwilę następna strefa."}:{tense:"Напряги",release:"Отпусти",rest:"Передышка",ready:"Готов?",done:"Готово",zone:"Зона",of:"из",start:"Начать",pause:"Пауза",resume:"Продолжить",reset:"Сброс",again:"Ещё раз",settings:"Настройки",tenseLen:"Напряжение",releaseLen:"Расслабление",sound:"Мягкий звук",haptics:"Вибрация на телефоне",sec:"с",doneName:"Всё тело",doneHint:"Полежи ещё минуту. Заметь, как сейчас чувствуется тело. Оно стало другим.",restHint:"Дыши свободно. Через пару секунд: следующая зона."};var ZONES=pl?[{n:"Czoło i brwi",t:"Podnieś brwi tak wysoko, jak możesz.",r:"Puść. Powieki ciężkie."},{n:"Szczęka, usta",t:"Zaciśnij szczęki i ściśnij wargi.",r:"Puść. Szczęka lekko się uchyla."},{n:"Barki i szyja",t:"Podnieś barki do uszu tak wysoko, jak możesz.",r:"Puść gwałtownie. Barki opadają."},{n:"Ręce, pięści",t:"Zaciśnij oba pięści i napnij przedramiona.",r:"Otwórz dłonie. Palce ciepłe."},{n:"Klatka, brzuch",t:"Głęboki wdech, utrzymaj napięcie w klatce.",r:"Powolny wydech. Brzuch miękki."},{n:"Uda, pośladki",t:"Zaciśnij pośladki i napnij uda.",r:"Puść. Miednica ciężka, opada."},{n:"Łydki",t:"Podciągnij palce stóp do siebie, łydki napięte.",r:"Puść. Łydki miękkie."},{n:"Stopy, palce",t:"Zaciśnij palce stóp, napnij stopy.",r:"Otwórz. Stopy rozpływają się."}]:[{n:"Лоб и брови",t:"Подними брови как можно выше.",r:"Отпусти. Веки тяжелеют."},{n:"Челюсть, рот",t:"Сожми челюсти и сожми губы.",r:"Отпусти. Челюсть слегка приоткрывается."},{n:"Плечи и шея",t:"Подними плечи к ушам как можно выше.",r:"Отпусти резко. Плечи падают."},{n:"Руки, кулаки",t:"Сожми оба кулака и напряги предплечья.",r:"Раскрой ладони. Пальцы тёплые."},{n:"Грудь, живот",t:"Глубокий вдох, удерживай напряжение в груди.",r:"Медленный выдох. Живот мягкий."},{n:"Бёдра, ягодицы",t:"Сожми ягодицы и напряги бёдра.",r:"Отпусти. Таз тяжелеет в пол."},{n:"Икры",t:"Подтяни носки к себе, икры напряжены.",r:"Отпусти. Икры мягкие."},{n:"Стопы, пальцы",t:"Сожми пальцы ног, напряги стопы.",r:"Раскрой. Стопы расплываются."}];var SIL=''
++'<circle cx="100" cy="46" r="27"/>'
++'<rect x="90" y="66" width="20" height="20" rx="8"/>'
++'<path d="M64,98 Q100,82 136,98 L130,202 Q100,216 70,202 Z"/>'
++'<path d="M70,196 L130,196 L126,252 Q100,264 74,252 Z"/>'
++'<rect x="46" y="100" width="20" height="116" rx="10"/>'
++'<rect x="134" y="100" width="20" height="116" rx="10"/>'
++'<rect x="72" y="248" width="24" height="168" rx="12"/>'
++'<rect x="104" y="248" width="24" height="168" rx="12"/>'
++'<ellipse cx="84" cy="420" rx="15" ry="9"/>'
++'<ellipse cx="116" cy="420" rx="15" ry="9"/>';var REGIONS=['<ellipse cx="100" cy="38" rx="22" ry="15"/>','<ellipse cx="100" cy="58" rx="20" ry="13"/>','<ellipse cx="100" cy="98" rx="52" ry="20"/>','<ellipse cx="56" cy="160" rx="16" ry="52"/><ellipse cx="144" cy="160" rx="16" ry="52"/>','<ellipse cx="100" cy="150" rx="40" ry="54"/>','<ellipse cx="100" cy="226" rx="40" ry="30"/>','<ellipse cx="84" cy="350" rx="16" ry="46"/><ellipse cx="116" cy="350" rx="16" ry="46"/>','<ellipse cx="84" cy="418" rx="18" ry="12"/><ellipse cx="116" cy="418" rx="18" ry="12"/>'];var regSvg=REGIONS.map(function(s,i){return'<g class="pmr-region" data-r="'+i+'">'+s+'</g>';}).join('');var svg='<svg class="pmr-bsvg" viewBox="0 0 200 460" aria-hidden="true">'
++'<defs><clipPath id="pmrBodyClip">'+SIL+'</clipPath></defs>'
++'<g class="pmr-silhouette">'+SIL+'</g>'
++'<g clip-path="url(#pmrBodyClip)">'+regSvg+'</g></svg>';var pips=ZONES.map(function(){return'<span class="pmr-pip"></span>';}).join('');root.classList.add("pmr-body-engine");root.innerHTML='<div class="pmr-bwhich">'+T.zone+' <b class="pZ">1</b> '+T.of+' <b>'+ZONES.length+'</b></div>'
++'<div class="pmr-bstage">'+svg+'</div>'
++'<div class="pmr-brd">'
++'<div class="pmr-bphase">'+T.ready+'</div>'
++'<div class="pmr-bcount">·</div>'
++'<div class="pmr-bname">'+ZONES[0].n+'</div>'
++'<p class="pmr-bhint" aria-live="polite"></p>'
++'</div>'
++'<div class="pmr-pips">'+pips+'</div>'
++'<div class="pmr-bctl">'
++'<button class="pmr-bbtn is-primary pStart">'+T.start+'</button>'
++'<button class="pmr-bbtn pPause" hidden>'+T.pause+'</button>'
++'<button class="pmr-bbtn pReset" hidden>'+T.reset+'</button>'
++'</div>'
++'<button class="pmr-bset-toggle" aria-expanded="false">'+T.settings+' <span class="chev">⌄</span></button>'
++'<div class="pmr-bpanel"><div class="pmr-bpanel-inner">'
++'<div class="pmr-brow"><label for="pTen">'+T.tenseLen+'</label><input type="range" id="pTen" min="4" max="7" step="1" value="5"><span class="pmr-bval"><span class="pTenV">5</span> '+T.sec+'</span></div>'
++'<div class="pmr-brow"><label for="pRel">'+T.releaseLen+'</label><input type="range" id="pRel" min="8" max="14" step="1" value="10"><span class="pmr-bval"><span class="pRelV">10</span> '+T.sec+'</span></div>'
++'<div class="pmr-brow"><label for="pSnd">'+T.sound+'</label><span class="pmr-bsw"><input type="checkbox" id="pSnd"><span class="tr"></span></span></div>'
++'<div class="pmr-brow"><label for="pHap">'+T.haptics+'</label><span class="pmr-bsw"><input type="checkbox" id="pHap"><span class="tr"></span></span></div>'
++'</div></div>';var $=function(s){return root.querySelector(s);};var regEls=Array.prototype.slice.call(root.querySelectorAll(".pmr-region"));var pipEls=Array.prototype.slice.call(root.querySelectorAll(".pmr-pip"));var zEl=$(".pZ"),phaseEl=$(".pmr-bphase"),countEl=$(".pmr-bcount"),nameEl=$(".pmr-bname"),hintEl=$(".pmr-bhint");var bStart=$(".pStart"),bPause=$(".pPause"),bReset=$(".pReset");var cfg={tense:5,release:10,rest:4,sound:false,haptics:false};var actx=null;function ensureAudio(){if(!actx){try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(actx&&actx.state==="suspended")actx.resume();}
+function chime(f,dur){if(!cfg.sound||!actx)return;var t=actx.currentTime,o=actx.createOscillator(),g=actx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.05,t+0.04);g.gain.exponentialRampToValueAtTime(0.0001,t+(dur||0.9));o.connect(g);g.connect(actx.destination);o.start(t);o.stop(t+(dur||0.9)+0.1);}
+var st={running:false,paused:false,z:0,phase:"idle",left:0,last:0,acc:0};function setRegion(i,cls){var el=regEls[i];if(!el)return;el.classList.remove("is-tense","is-release","is-done");if(cls)el.classList.add(cls);}
+function paintPips(){pipEls.forEach(function(p,i){p.classList.remove("is-done","is-now");if(i<st.z)p.classList.add("is-done");else if(i===st.z&&st.running)p.classList.add("is-now");});}
+function showPhase(word,tone){phaseEl.textContent=word;phaseEl.className="pmr-bphase"+(tone?" t-"+tone:"");phaseEl.style.opacity=0;phaseEl.style.transform="translateY(4px)";requestAnimationFrame(function(){phaseEl.style.opacity=1;phaseEl.style.transform="none";});}
+function enterPhase(name){st.phase=name;var z=ZONES[st.z];nameEl.textContent=z.n;zEl.textContent=st.z+1;paintPips();if(name==="tense"){st.left=cfg.tense;setRegion(st.z,"is-tense");showPhase(T.tense,"tense");hintEl.textContent=z.t;chime(466,0.7);if(cfg.haptics&&navigator.vibrate)navigator.vibrate(34);}
+else if(name==="release"){st.left=cfg.release;setRegion(st.z,"is-release");showPhase(T.release,"release");hintEl.textContent=z.r;chime(392,1.1);if(cfg.haptics&&navigator.vibrate)navigator.vibrate([14,40,14]);}
+else{st.left=cfg.rest;setRegion(st.z,"is-done");showPhase(T.rest,"");hintEl.textContent=T.restHint;}
+countEl.classList.remove("is-mark");countEl.textContent=Math.ceil(st.left);}
+function advance(){if(st.phase==="tense"){enterPhase("release");}
+else if(st.phase==="release"){enterPhase("rest");}
+else{regEls[st.z]&&regEls[st.z].classList.add("is-done");regEls[st.z]&&regEls[st.z].classList.remove("is-release");st.z++;if(st.z>=ZONES.length){finish();}else{enterPhase("tense");}}}
+function start(){ensureAudio();st.running=true;st.paused=false;st.z=0;root.classList.remove("is-fin");regEls.forEach(function(_,i){setRegion(i,null);});bStart.hidden=true;bPause.hidden=false;bPause.textContent=T.pause;bReset.hidden=false;enterPhase("tense");}
+function togglePause(){st.paused=!st.paused;bPause.textContent=st.paused?T.resume:T.pause;if(st.paused){var saved=phaseEl.textContent;phaseEl.textContent=T.pause;phaseEl.setAttribute("data-saved",saved);}
+else{var s=phaseEl.getAttribute("data-saved");if(s)phaseEl.textContent=s;}}
+function reset(){st.running=false;st.paused=false;st.z=0;st.phase="idle";root.classList.remove("is-fin");regEls.forEach(function(_,i){setRegion(i,null);});paintPips();phaseEl.className="pmr-bphase";phaseEl.textContent=T.ready;phaseEl.style.opacity=1;phaseEl.style.transform="none";countEl.textContent="·";countEl.classList.remove("is-mark");nameEl.textContent=ZONES[0].n;hintEl.textContent="";zEl.textContent=1;bStart.hidden=false;bStart.textContent=T.start;bPause.hidden=true;bReset.hidden=true;}
+function finish(){st.running=false;st.phase="idle";root.classList.add("is-fin");regEls.forEach(function(el){el.classList.remove("is-tense","is-release","is-done");});paintPips();pipEls.forEach(function(p){p.classList.remove("is-now");p.classList.add("is-done");});phaseEl.className="pmr-bphase t-release";phaseEl.textContent=T.done;phaseEl.style.opacity=1;phaseEl.style.transform="none";countEl.textContent="✓";countEl.classList.add("is-mark");nameEl.textContent=T.doneName;hintEl.textContent=T.doneHint;if(cfg.sound){chime(392,1.2);chime(523.25,1.4);}
+if(cfg.haptics&&navigator.vibrate)navigator.vibrate([30,60,30,60,30]);bStart.hidden=false;bStart.textContent=T.again;bPause.hidden=true;bReset.hidden=false;}
+var hidden=false;document.addEventListener("visibilitychange",function(){hidden=document.hidden;});function frame(now){requestAnimationFrame(frame);if(hidden){st.last=now;return;}
+var dt=st.last?(now-st.last)/1000:0;st.last=now;if(dt>0.25)dt=0.25;if(st.running&&!st.paused){st.left-=dt;if(st.left<=0){advance();}
+else{var c=Math.ceil(st.left-1e-6);if(parseInt(countEl.textContent,10)!==c){countEl.textContent=c;}}}}
+requestAnimationFrame(frame);bStart.addEventListener("click",start);bPause.addEventListener("click",togglePause);bReset.addEventListener("click",reset);var setT=$(".pmr-bset-toggle"),panel=$(".pmr-bpanel");setT.addEventListener("click",function(){var o=panel.classList.toggle("is-open");setT.setAttribute("aria-expanded",o?"true":"false");});$("#pTen").addEventListener("input",function(){cfg.tense=+this.value;$(".pTenV").textContent=cfg.tense;});$("#pRel").addEventListener("input",function(){cfg.release=+this.value;$(".pRelV").textContent=cfg.release;});$("#pSnd").addEventListener("change",function(){cfg.sound=this.checked;if(cfg.sound)ensureAudio();});$("#pHap").addEventListener("change",function(){cfg.haptics=this.checked;});}
+function boot(){var el=document.querySelector(".pmr-body-engine");if(el)init(el);}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();})();
