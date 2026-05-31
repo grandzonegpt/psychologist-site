@@ -166,8 +166,80 @@
   </div>
 </section>
 
-<section style="padding:0 0 24px;">
+<style>
+  /* premium blog hub (Apple-inspired): soft depth, large radii, spring motion */
+  .hub-eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:0.16em;color:#8a7548;font-family:'Lato',sans-serif;}
+  .hub-h2{font-family:var(--font-serif);font-size:clamp(26px,4vw,38px);letter-spacing:-0.015em;line-height:1.08;margin:10px 0 26px;font-weight:500;}
+  .problem-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;}
+  .problem-tile{display:flex;align-items:center;gap:13px;padding:24px 26px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:22px;text-decoration:none;color:var(--text-primary);font-family:var(--font-serif);font-size:20px;line-height:1.22;box-shadow:0 1px 2px rgba(40,30,10,.04),0 12px 34px rgba(40,30,10,.05);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),border-color .3s ease;}
+  .problem-tile:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 2px 4px rgba(40,30,10,.05),0 22px 52px rgba(40,30,10,.11);}
+  .problem-tile .pt-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex-shrink:0;transition:transform .45s cubic-bezier(.22,1,.36,1);}
+  .problem-tile:hover .pt-dot{transform:scale(1.5);}
+  .blog-featured{position:relative;display:block;overflow:hidden;background:linear-gradient(135deg,var(--bg-elevated) 0%,var(--bg-secondary) 100%);border:1px solid var(--border-subtle);border-radius:28px;padding:clamp(30px,5vw,52px);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.04),0 18px 56px rgba(40,30,10,.07);transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s cubic-bezier(.22,1,.36,1);}
+  .blog-featured:hover{transform:translateY(-6px);box-shadow:0 3px 8px rgba(40,30,10,.06),0 34px 82px rgba(40,30,10,.13);}
+  .blog-featured .bf-pill{display:inline-block;padding:7px 16px;border:1px solid var(--accent);border-radius:100px;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:#8a7548;font-family:'Lato',sans-serif;}
+  .blog-featured h3{font-family:var(--font-serif);font-size:clamp(28px,5vw,42px);letter-spacing:-0.02em;line-height:1.06;margin:20px 0 16px;max-width:780px;font-weight:500;}
+  .blog-featured p{color:var(--text-muted);font-size:17px;line-height:1.62;max-width:680px;margin:0 0 20px;}
+  .blog-featured .bf-go,.popular-card .pc-arr{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-family:'Lato',sans-serif;font-size:15px;font-weight:500;}
+  .blog-featured .arr,.popular-card .arr{transition:transform .45s cubic-bezier(.22,1,.36,1);}
+  .blog-featured:hover .arr,.popular-card:hover .arr{transform:translateX(6px);}
+  .popular-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+  .popular-card{display:flex;flex-direction:column;min-height:168px;padding:28px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:22px;text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.04),0 12px 34px rgba(40,30,10,.05);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),border-color .3s ease;}
+  .popular-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 2px 4px rgba(40,30,10,.05),0 22px 52px rgba(40,30,10,.11);}
+  .popular-card .pc-cat{font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:#8a7548;font-family:'Lato',sans-serif;margin-bottom:11px;}
+  .popular-card h4{font-family:var(--font-serif);font-size:21px;line-height:1.22;margin:0 0 16px;font-weight:500;}
+  .popular-card .pc-arr{margin-top:auto;}
+  .problem-tile:focus-visible,.blog-featured:focus-visible,.popular-card:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    .problem-tile,.blog-featured,.popular-card,.problem-tile .pt-dot,.blog-featured .arr,.popular-card .arr{transition:none!important;}
+    .problem-tile:hover,.blog-featured:hover,.popular-card:hover,.problem-tile:hover .pt-dot,.blog-featured:hover .arr,.popular-card:hover .arr{transform:none!important;}
+  }
+</style>
+
+<section style="padding:18px 0 6px;">
   <div class="container">
+    <div class="hub-eyebrow">Куда смотреть</div>
+    <h2 class="hub-h2">Что тебя беспокоит?</h2>
+    <div class="problem-tiles">
+      <a href="/topics/anxiety.html" class="problem-tile"><span class="pt-dot"></span>Тревога и паника</a>
+      <a href="/topics/depression.html" class="problem-tile"><span class="pt-dot"></span>Подавленность, нет сил</a>
+      <a href="/topics/trauma.html" class="problem-tile"><span class="pt-dot"></span>Травма прошлого</a>
+      <a href="/topics/relationships.html" class="problem-tile"><span class="pt-dot"></span>Отношения и близкие</a>
+      <a href="/topics/emigration.html" class="problem-tile"><span class="pt-dot"></span>Тяжело после переезда</a>
+      <a href="/topics/burnout.html" class="problem-tile"><span class="pt-dot"></span>Выгорание</a>
+      <a href="/topics/self-esteem.html" class="problem-tile"><span class="pt-dot"></span>Самооценка</a>
+      <a href="/topics/" class="problem-tile"><span class="pt-dot"></span>Все темы</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:34px 0 6px;">
+  <div class="container">
+    <div class="hub-eyebrow" style="margin-bottom:16px;">Читать первым</div>
+    <a href="/blog/depression.html" class="blog-featured">
+      <span class="bf-pill">Опорная статья · Депрессия</span>
+      <h3>Депрессия: симптомы, виды и как её лечат</h3>
+      <p>Если не знаешь, с чего начать: большая статья обо всём главном. Симптомы, виды депрессии, причины и что реально помогает.</p>
+      <span class="bf-go">Читать <span class="arr">→</span></span>
+    </a>
+  </div>
+</section>
+
+<section style="padding:34px 0 6px;">
+  <div class="container">
+    <div class="hub-eyebrow" style="margin-bottom:16px;">Популярное</div>
+    <div class="popular-grid">
+      <a href="/blog/panic-attacks.html" class="popular-card"><div class="pc-cat">Тревога</div><h4>Панические атаки: что происходит и как помочь себе</h4><span class="pc-arr">Читать <span class="arr">→</span></span></a>
+      <a href="/blog/gaslighting.html" class="popular-card"><div class="pc-cat">Отношения</div><h4>Газлайтинг: как распознать и что делать</h4><span class="pc-arr">Читать <span class="arr">→</span></span></a>
+      <a href="/blog/love-languages.html" class="popular-card"><div class="pc-cat">Отношения</div><h4>5 языков любви: как понять свой</h4><span class="pc-arr">Читать <span class="arr">→</span></span></a>
+      <a href="/blog/choosing-therapist.html" class="popular-card"><div class="pc-cat">Практика</div><h4>Как выбрать психолога</h4><span class="pc-arr">Читать <span class="arr">→</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:42px 0 24px;">
+  <div class="container">
+    <div class="hub-eyebrow" style="margin-bottom:16px;">Все статьи</div>
     <div class="blog-filters" role="tablist" aria-label="Темы блога" style="display:flex;flex-wrap:wrap;gap:8px;">
       <button type="button" class="blog-chip is-active" data-filter="all" role="tab" aria-selected="true" tabindex="0">Все</button>
       <button type="button" class="blog-chip" data-filter="anxiety" role="tab" aria-selected="false" tabindex="-1">Тревога и паника</button>
