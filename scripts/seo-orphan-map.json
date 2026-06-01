@@ -1,0 +1,257 @@
+{
+  "blog/cbt-vs-gestalt.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/cbt-vs-gestalt.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
+  "blog/dbt.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/terapia-dbt.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
+  "blog/schema-therapy.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/terapia-schematow.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
+  "blog/what-is-psychotherapy.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/ile-kosztuje-psychoterapia.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
+  "blog/online-vs-offline.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/online-vs-offline.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
+  "blog/reflection.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog/attachment-styles.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics/relationships.html"
+  },
+  "blog-pl/typy-przywiazania.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics-pl/relacje.html"
+  },
+  "blog/dda.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics/relationships.html"
+  },
+  "blog-pl/dda.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics-pl/relacje.html"
+  },
+  "blog/manipulation.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics/relationships.html"
+  },
+  "blog-pl/manipulation.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics-pl/relacje.html"
+  },
+  "blog-pl/syndrom-sztokholmski.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics-pl/relacje.html"
+  },
+  "blog/relationship-stages.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics/relationships.html"
+  },
+  "blog/borderline.html": {
+    "bucket": "reassign",
+    "hub": "trauma",
+    "parent": "topics/trauma.html"
+  },
+  "blog-pl/zaburzenie-osobowosci-borderline.html": {
+    "bucket": "reassign",
+    "hub": "trauma",
+    "parent": "topics-pl/trauma.html"
+  },
+  "blog/dissociation.html": {
+    "bucket": "reassign",
+    "hub": "trauma",
+    "parent": "topics/trauma.html"
+  },
+  "blog-pl/dissociation.html": {
+    "bucket": "reassign",
+    "hub": "trauma",
+    "parent": "topics-pl/trauma.html"
+  },
+  "blog/derealization.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog-pl/derealization.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
+  "blog/health-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog-pl/health-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
+  "blog/introversion-vs-social-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog-pl/introversion-vs-social-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
+  "blog/night-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog/night-waking-fear.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog/panic-falling-asleep.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics/anxiety.html"
+  },
+  "blog/migration-burnout.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics/emigration.html"
+  },
+  "blog-pl/migration-burnout.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics-pl/emigracja.html"
+  },
+  "blog/homesickness.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics/emigration.html"
+  },
+  "blog/loneliness-emigration.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics/emigration.html"
+  },
+  "blog/high-functioning-depression.html": {
+    "bucket": "reassign",
+    "hub": "depression",
+    "parent": "topics/depression.html"
+  },
+  "blog-pl/high-functioning-depression.html": {
+    "bucket": "reassign",
+    "hub": "depression",
+    "parent": "topics-pl/depresja.html"
+  },
+  "blog/apathy.html": {
+    "bucket": "reassign",
+    "hub": "depression",
+    "parent": "topics/depression.html"
+  },
+  "blog/assertiveness.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics/self-esteem.html"
+  },
+  "blog-pl/assertiveness.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics-pl/samoocena.html"
+  },
+  "blog/perfectionism.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics/self-esteem.html"
+  },
+  "blog-pl/perfekcjonizm.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics-pl/samoocena.html"
+  },
+  "blog/how-to-love-yourself.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics/self-esteem.html"
+  },
+  "blog/cynicism.html": {
+    "bucket": "reassign",
+    "hub": "burnout",
+    "parent": "topics/burnout.html"
+  },
+  "blog/adult-adhd.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog-pl/adult-adhd.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog/paranoia.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog/psychosomatics.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog/emotional-regulation.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog-pl/emotional-regulation.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  }
+}

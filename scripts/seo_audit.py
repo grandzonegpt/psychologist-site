@@ -128,11 +128,14 @@ for f in sorted(ROOT.rglob("*.html")):
         if el.name == "a" and el.get("href"):
             cnt += 1  # marker placed directly on an anchor
         seo_markers[key] = seo_markers.get(key, 0) + cnt
+    bc_links = [href_to_path(a.get("href"), rel) for a in soup.select('[data-seo="breadcrumb"] a') if a.get("href")]
+    hubposts_links = [href_to_path(a.get("href"), rel) for a in soup.select('[data-seo="hub-posts"] a') if a.get("href")]
     pages[rel] = dict(
         rel=rel, url=url_for(rel), robots=robots, canonical=(canons[0] if canons else None),
         n_canon=len(canons), hreflang=hreflang, switch=sw_hrefs, refresh=bool(refresh),
         links=links, seo=seo_markers, body=soup.body,
         data_category=(soup.body.get("data-category") if soup.body else None),
+        bc_links=[x for x in bc_links if x], hubposts_links=[x for x in hubposts_links if x],
     )
 
 report["total_pages"] = len(pages)
@@ -296,6 +299,51 @@ for post in POSTS:
     theme_map[post] = cat
 report["theme_map_size"] = len(theme_map)
 
+# ---------------- [PARENT] ----------------
+omap_path = ROOT / "scripts" / "seo-orphan-map.json"
+orphan_map = json.loads(omap_path.read_text(encoding="utf-8")) if omap_path.exists() else {}
+OUTLIERS = {r for r, v in orphan_map.items() if v.get("bucket") == "outlier"}
+HUB_PAGES = [r for r in pages if r.startswith(("topics/", "topics-pl/")) and not r.endswith("index.html")] \
+            + [r for r in ("metody.html", "metody-pl.html") if r in pages]
+parent_links = {}
+for hp in HUB_PAGES:
+    for tp in set(pages[hp]["links"]):
+        if tp.startswith(("blog/", "blog-pl/")) and tp.endswith(".html"):
+            parent_links.setdefault(tp, set()).add(hp)
+
+for post in POSTS:
+    if post in OUTLIERS:
+        continue
+    if post not in parent_links:
+        fail("PARENT", f"no parent (hub/metody) and not OUTLIER: {post}")
+
+def parent_expected(post):
+    v = orphan_map.get(post)
+    if v and v.get("parent"):
+        return v["parent"]
+    if post in OUTLIERS:
+        return "blog-pl.html" if post.startswith("blog-pl/") else "blog.html"
+    return None  # 126 existing hub posts: parent not enforced (not touched)
+
+for post in POSTS:
+    exp = parent_expected(post)
+    if exp is not None and exp not in pages[post]["bc_links"]:
+        fail("PARENT", f"breadcrumb parent != assigned ({exp}): {post}")
+
+methods_posts = [r for r, v in orphan_map.items() if v.get("bucket") == "methods"]
+for mp in ("metody.html", "metody-pl.html"):
+    if mp in pages:
+        linked = set(pages[mp]["hubposts_links"])
+        for post in methods_posts:
+            if (post.startswith("blog-pl/") == (mp == "metody-pl.html")) and post not in linked:
+                fail("PARENT", f"{mp} hub-posts misses methods post: {post}")
+for post, v in orphan_map.items():
+    if v.get("bucket") == "reassign" and v["parent"] not in parent_links.get(post, set()):
+        fail("PARENT", f"assigned hub does not link reassign post: {post} -> {v['parent']}")
+report["orphan_buckets"] = {b: sum(1 for x in orphan_map.values() if x.get("bucket") == b)
+                            for b in ("methods", "reassign", "outlier")}
+report["in_hubs_already"] = len([p for p in POSTS if p in parent_links and p not in orphan_map])
+
 # ---------------- summary ----------------
 by_check = {}
 for c, m in fails:
@@ -303,7 +351,7 @@ for c, m in fails:
 
 print("\n==================  SEO AUDIT  ==================")
 print(f"pages: {report['total_pages']}  posts: {report.get('post_count')}  sitemap: {report.get('sitemap_count')}")
-order = ["ROBOTS", "CANONICAL", "HREFLANG", "SITEMAP", "LINKGRAPH", "THEME_MAP"]
+order = ["ROBOTS", "CANONICAL", "HREFLANG", "SITEMAP", "LINKGRAPH", "THEME_MAP", "PARENT"]
 for c in order:
     n = len(by_check.get(c, []))
     status = "PASS" if n == 0 else f"FAIL ({n})"

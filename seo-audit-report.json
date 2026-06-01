@@ -60,6 +60,12 @@
   "sitemap_count": 281,
   "post_count": 177,
   "theme_map_size": 177,
+  "orphan_buckets": {
+    "methods": 11,
+    "reassign": 34,
+    "outlier": 6
+  },
+  "in_hubs_already": 126,
   "fails": [],
   "fail_count": 0
 }
