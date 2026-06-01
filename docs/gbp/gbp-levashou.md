@@ -3,6 +3,7 @@
 > Сгенерировано по плейбуку GBP Setup. Вставляй секции в Google Business Profile.
 > ⚠️ Поля с TODO заполни сам. Категории/атрибуты подтверди в автокомплите GBP (не выдумывать).
 > Профиль: Service Area Business (адрес скрыт), существующий, оптимизация.
+> Ключи и приоритеты: `docs/seo/keyword-map.md` (SemRush, июнь 2026).
 
 ---
 
@@ -97,6 +98,9 @@ services:
   - name: "Terapia współuzależnienia"
     description: "Praca ze współuzależnieniem i uzależnieniem emocjonalnym w relacjach, online z Warszawy. Po polsku i rosyjsku."
     type: custom
+  - name: "Terapia par i kryzysów w związku"
+    description: "Praca z kryzysem w związku, konfliktami i komunikacją w parze, online po polsku, rosyjsku i białorusku. Keyword: psycholog dla par warszawa. Pierwsze 15 minut bezpłatnie."
+    type: predefined
   - name: "Konsultacja psychologiczna online"
     description: "Konsultacja psychologa online po polsku, rosyjsku i białorusku. Sesja 50 minut, 180 PLN. Pierwsze 15 minut bezpłatnie."
     type: predefined
