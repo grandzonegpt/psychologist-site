@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Box breathing 4·4·4·4 — премиум-демо</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --elevated:#faf5ea; --text:#1a1a1b; --muted:#5a5650;
+  --gold:#b08c5a; --sage:#5a6b4a; --sage-bright:#6f8455; --border:#d5d0c8;
+  --glow: rgba(122,142,98,0.45);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.4,.0,.2,1);
+}
+[data-theme="dark"]{
+  --bg:#0a0a0b; --elevated:#141417; --text:#f5f1e8; --muted:#a8a39a;
+  --gold:#c79a63; --sage:#8aa06a; --sage-bright:#a3bb80; --border:#2a2a30;
+  --glow: rgba(138,160,106,0.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:var(--sans); color:var(--text); background:var(--bg);
+  min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:32px 20px; overflow-x:hidden;
+  -webkit-font-smoothing:antialiased; transition:background .8s var(--ease),color .8s var(--ease);
+  position:relative;
+}
+/* atmosphere: a single soft light source + paper grain */
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 50% 18%, color-mix(in srgb,var(--sage) 9%, transparent), transparent 60%),
+    radial-gradient(80% 60% at 50% 100%, color-mix(in srgb,var(--gold) 7%, transparent), transparent 70%);
+  transition:opacity .8s var(--ease);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+[data-theme="dark"] body::after{mix-blend-mode:screen;opacity:.25}
+
+.wrap{position:relative; z-index:1; width:100%; max-width:560px; display:flex; flex-direction:column; align-items:center}
+
+/* header */
+.head{text-align:center; margin-bottom:6px}
+.eyebrow{font-size:11px; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); font-weight:700}
+.head h1{font-family:var(--serif); font-weight:500; font-size:clamp(30px,7vw,42px); letter-spacing:.01em; margin-top:10px; line-height:1.05}
+.head .sub{color:var(--muted); font-size:14.5px; font-weight:300; margin-top:10px; max-width:30em}
+
+.theme-btn{
+  position:fixed; top:18px; right:18px; z-index:5; width:40px; height:40px; border-radius:50%;
+  border:1px solid var(--border); background:var(--elevated); color:var(--muted); cursor:pointer;
+  display:grid; place-items:center; transition:.3s var(--ease); font-size:16px;
+}
+.theme-btn:hover{color:var(--text); border-color:var(--gold)}
+
+/* cycle counter */
+.cycle{margin:26px 0 4px; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:400}
+.cycle b{color:var(--text); font-weight:700; font-variant-numeric:tabular-nums}
+
+/* stage */
+.stage{position:relative; width:min(86vw,360px); aspect-ratio:1; display:grid; place-items:center; margin:8px 0 4px; touch-action:none}
+.stage svg{position:absolute; inset:0; width:100%; height:100%; overflow:visible}
+.box-path{fill:none; stroke:var(--border); stroke-width:1.4; transition:stroke .6s}
+.box-progress{fill:none; stroke:var(--sage); stroke-width:2.2; stroke-linecap:round;
+  filter:drop-shadow(0 0 5px var(--glow)); transition:stroke .5s var(--ease)}
+
+/* glowing orb */
+.orb-glow,.orb-core{position:absolute; border-radius:50%; will-change:transform; left:50%; top:50%}
+.orb-glow{
+  width:54%; height:54%; transform:translate(-50%,-50%) scale(var(--s,.55));
+  background:radial-gradient(circle at 50% 45%, var(--glow), transparent 68%);
+  filter:blur(26px); opacity:.85;
+}
+.orb-core{
+  width:40%; height:40%; transform:translate(-50%,-50%) scale(var(--s,.55));
+  background:
+    radial-gradient(circle at 42% 38%, color-mix(in srgb,var(--sage-bright) 70%, #fff) 0%, var(--sage) 52%, color-mix(in srgb,var(--sage) 60%, #000 8%) 100%);
+  box-shadow: inset 0 2px 14px rgba(255,255,255,.28), inset 0 -8px 22px rgba(0,0,0,.18), 0 14px 40px rgba(0,0,0,.14);
+}
+[data-theme="dark"] .orb-core{box-shadow: inset 0 2px 16px rgba(255,255,255,.18), inset 0 -10px 26px rgba(0,0,0,.4), 0 14px 50px rgba(0,0,0,.5)}
+
+/* traveling dot on the box */
+.dot{position:absolute; left:50%; top:50%; width:14px; height:14px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 0 4px color-mix(in srgb,var(--gold) 22%, transparent), 0 0 16px var(--gold);
+  transform:translate(-50%,-50%); will-change:transform; opacity:0; transition:opacity .6s var(--ease)}
+.stage.live .dot{opacity:1}
+
+/* center readout */
+.readout{position:relative; z-index:2; text-align:center; pointer-events:none}
+.phase{font-family:var(--serif); font-weight:500; font-size:clamp(20px,5.4vw,27px); letter-spacing:.02em; color:var(--text);
+  transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.count{font-family:var(--serif); font-weight:400; font-size:clamp(54px,15vw,82px); line-height:1; color:var(--text);
+  font-variant-numeric:tabular-nums; margin-top:2px; transition:color .5s}
+.count.dotmode{font-size:clamp(40px,10vw,56px); color:var(--muted)}
+
+/* controls */
+.controls{display:flex; gap:12px; margin-top:30px}
+.btn{
+  font-family:var(--sans); font-size:13.5px; letter-spacing:.04em; font-weight:700;
+  padding:13px 26px; border-radius:100px; cursor:pointer; border:1px solid var(--border);
+  background:transparent; color:var(--text); transition:.28s var(--ease);
+}
+.btn:hover{border-color:var(--sage)}
+.btn.primary{background:var(--sage); border-color:var(--sage); color:#fff}
+.btn.primary:hover{background:var(--sage-bright); border-color:var(--sage-bright)}
+[data-theme="dark"] .btn.primary{color:#0a0a0b}
+.btn:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+.btn[hidden]{display:none}
+
+/* settings */
+.settings-toggle{margin-top:24px; background:none; border:none; color:var(--muted); font-family:var(--sans);
+  font-size:12px; letter-spacing:.14em; text-transform:uppercase; cursor:pointer; display:flex; align-items:center; gap:7px; transition:color .3s}
+.settings-toggle:hover{color:var(--text)}
+.settings-toggle .chev{transition:transform .35s var(--ease)}
+.settings-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.panel{
+  width:100%; max-width:380px; overflow:hidden; max-height:0; opacity:0;
+  transition:max-height .5s var(--ease),opacity .4s var(--ease),margin .4s var(--ease);
+}
+.panel.open{max-height:340px; opacity:1; margin-top:18px}
+.panel-inner{background:var(--elevated); border:1px solid var(--border); border-radius:18px; padding:22px 22px 8px}
+.row{display:flex; align-items:center; justify-content:space-between; padding:11px 0; border-bottom:1px solid color-mix(in srgb,var(--border) 60%, transparent)}
+.row:last-child{border-bottom:none}
+.row label{font-size:14px; color:var(--text)}
+.row .val{font-family:var(--serif); font-size:20px; color:var(--sage); min-width:54px; text-align:right; font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none; appearance:none; width:140px; height:3px; border-radius:3px; background:var(--border); outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none; width:18px; height:18px; border-radius:50%; background:var(--sage); cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,.25); transition:.2s}
+input[type=range]::-webkit-slider-thumb:hover{background:var(--sage-bright)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border:none;border-radius:50%;background:var(--sage);cursor:pointer}
+.switch{position:relative; width:46px; height:26px; flex:none}
+.switch input{opacity:0; width:0; height:0}
+.track{position:absolute; inset:0; border-radius:100px; background:var(--border); transition:.3s var(--ease); cursor:pointer}
+.track::before{content:""; position:absolute; width:20px; height:20px; border-radius:50%; background:#fff; top:3px; left:3px; transition:.3s var(--ease); box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.switch input:checked + .track{background:var(--sage)}
+.switch input:checked + .track::before{transform:translateX(20px)}
+.switch input:focus-visible + .track{outline:2px solid var(--gold); outline-offset:2px}
+
+.foot{margin-top:34px; color:var(--muted); font-size:12px; font-weight:300; text-align:center; max-width:34em; line-height:1.6}
+
+@media (prefers-reduced-motion: reduce){
+  .orb-core,.orb-glow{transform:translate(-50%,-50%) scale(.78)!important; transition:opacity .6s}
+  .dot{transition:opacity .6s}
+}
+</style>
+</head>
+<body>
+<button class="theme-btn" id="theme" aria-label="Сменить тему">☾</button>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow">Когда тревожно прямо сейчас</div>
+    <h1>Дыхание по квадрату</h1>
+    <p class="sub">Четыре равных шага по четыре секунды. Следуй за орбом: он расширяется на вдохе и опадает на выдохе.</p>
+  </div>
+
+  <div class="cycle">Цикл <b id="cycleNow">1</b> из <b id="cycleTotal">6</b></div>
+
+  <div class="stage" id="stage" role="group" aria-label="Дыхательный таймер">
+    <svg viewBox="0 0 360 360" aria-hidden="true">
+      <rect class="box-path" x="40" y="40" width="280" height="280" rx="26"/>
+      <rect class="box-progress" id="boxProg" x="40" y="40" width="280" height="280" rx="26"/>
+    </svg>
+    <div class="orb-glow" id="orbGlow"></div>
+    <div class="orb-core" id="orbCore"></div>
+    <div class="dot" id="dot"></div>
+    <div class="readout">
+      <div class="phase" id="phase">Готов?</div>
+      <div class="count" id="count">·</div>
+    </div>
+  </div>
+  <p class="sr" aria-live="polite" id="live" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+
+  <div class="controls">
+    <button class="btn primary" id="btnStart">Начать</button>
+    <button class="btn" id="btnPause" hidden>Пауза</button>
+    <button class="btn" id="btnReset" hidden>Сброс</button>
+  </div>
+
+  <button class="settings-toggle" id="setToggle" aria-expanded="false" aria-controls="panel">
+    Настройки <span class="chev">⌄</span>
+  </button>
+  <div class="panel" id="panel">
+    <div class="panel-inner">
+      <div class="row">
+        <label for="len">Длина фазы</label>
+        <input type="range" id="len" min="3" max="6" step="1" value="4">
+        <span class="val"><span id="lenVal">4</span> с</span>
+      </div>
+      <div class="row">
+        <label for="cyc">Циклов</label>
+        <input type="range" id="cyc" min="3" max="10" step="1" value="6">
+        <span class="val" id="cycVal">6</span>
+      </div>
+      <div class="row">
+        <label for="snd">Мягкий звук</label>
+        <span class="switch"><input type="checkbox" id="snd"><span class="track"></span></span>
+      </div>
+      <div class="row">
+        <label for="hap">Вибрация на телефоне</label>
+        <span class="switch"><input type="checkbox" id="hap"><span class="track"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">Равные вдох и выдох выравнивают возбуждающую и тормозящую части нервной системы, а паузы повышают уровень CO₂ — сигнал телу, что угрозы нет. Через несколько циклов пульс заметно замедляется.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var L = { inhale:"Вдох", hold:"Задержка", exhale:"Выдох", done:"Готово" };
+  var PHASES = [
+    {key:"inhale", from:0.55, to:1.0},
+    {key:"hold",   from:1.0,  to:1.0},
+    {key:"exhale", from:1.0,  to:0.55},
+    {key:"hold",   from:0.55, to:0.55}
+  ];
+  var labelFor = [L.inhale, L.hold, L.exhale, L.hold];
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // elements
+  var stage=document.getElementById("stage"), orbGlow=document.getElementById("orbGlow"),
+      orbCore=document.getElementById("orbCore"), dot=document.getElementById("dot"),
+      phaseEl=document.getElementById("phase"), countEl=document.getElementById("count"),
+      cycleNow=document.getElementById("cycleNow"), cycleTotal=document.getElementById("cycleTotal"),
+      live=document.getElementById("live"), boxProg=document.getElementById("boxProg"),
+      btnStart=document.getElementById("btnStart"), btnPause=document.getElementById("btnPause"),
+      btnReset=document.getElementById("btnReset");
+
+  // settings
+  var lenInput=document.getElementById("len"), cycInput=document.getElementById("cyc"),
+      lenVal=document.getElementById("lenVal"), cycVal=document.getElementById("cycVal"),
+      sndInput=document.getElementById("snd"), hapInput=document.getElementById("hap");
+
+  var cfg = { len:4, cycles:6, sound:false, haptics:false };
+
+  // box-progress stroke setup
+  var BOX_LEN = boxProg.getTotalLength();
+  boxProg.style.strokeDasharray = BOX_LEN;
+  boxProg.style.strokeDashoffset = BOX_LEN;
+
+  // geometry for the traveling dot: rounded-square perimeter, corner-aligned to phases
+  // half-size of travel path (matches the 280px box in a 360 viewBox, scaled to stage px at runtime)
+  function dotXY(t){ // t in [0,1), returns {x,y} in -1..1 normalized
+    var f = (t*4)%1, side=Math.floor(t*4)%4, x=0, y=0, h=1;
+    if(side===0){ x=-h+f*2*h; y=-h; }      // top: left -> right  (inhale)
+    else if(side===1){ x=h; y=-h+f*2*h; }  // right: top -> bottom (hold)
+    else if(side===2){ x=h-f*2*h; y=h; }   // bottom: right -> left (exhale)
+    else { x=-h; y=h-f*2*h; }              // left: bottom -> top  (hold)
+    return {x:x, y:y};
+  }
+
+  var state = { running:false, paused:false, phase:0, cycle:1, elapsed:0, last:0, raf:0 };
+
+  function easeInOutSine(p){ return -(Math.cos(Math.PI*p)-1)/2; }
+
+  // audio
+  var actx=null;
+  function ensureAudio(){ if(!actx){ try{ actx=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(actx && actx.state==="suspended") actx.resume(); }
+  function chime(freq){
+    if(!cfg.sound || !actx) return;
+    var t=actx.currentTime, o=actx.createOscillator(), g=actx.createGain();
+    o.type="sine"; o.frequency.value=freq;
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(0.05, t+0.04);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+0.9);
+    o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t+1.0);
+  }
+  var FREQ=[523.25, 587.33, 392.00, 440.00]; // inhale, hold, exhale, hold — gentle
+
+  function setScale(s){
+    orbGlow.style.setProperty("--s", s.toFixed(4));
+    orbCore.style.setProperty("--s", s.toFixed(4));
+  }
+
+  function placeDot(t){
+    var rect=stage.getBoundingClientRect();
+    var travel = rect.width * (280/360) / 2; // half of the box edge in px
+    var p=dotXY(t);
+    dot.style.transform = "translate(calc(-50% + "+(p.x*travel).toFixed(1)+"px), calc(-50% + "+(p.y*travel).toFixed(1)+"px))";
+  }
+
+  function onPhaseEnter(){
+    var pk=PHASES[state.phase];
+    phaseEl.textContent = labelFor[state.phase];
+    phaseEl.style.opacity=0; phaseEl.style.transform="translateY(4px)";
+    requestAnimationFrame(function(){ phaseEl.style.opacity=1; phaseEl.style.transform="translateY(0)"; });
+    live.textContent = labelFor[state.phase];
+    chime(FREQ[state.phase]);
+    if(cfg.haptics && navigator.vibrate) navigator.vibrate(28);
+    // tint progress per breath direction
+    boxProg.style.stroke = (pk.key==="exhale") ? "var(--gold)" : "var(--sage)";
+  }
+
+  function render(){
+    var pk=PHASES[state.phase];
+    var dur=cfg.len;
+    var prog = Math.min(state.elapsed/dur, 1);          // 0..1 within phase
+    var eased = (pk.key==="hold") ? (pk.from) : (pk.from + (pk.to-pk.from)*easeInOutSine(prog));
+    if(!reduce) setScale(eased);
+
+    // countdown numeral
+    var remain = Math.max(0, Math.ceil(dur - state.elapsed - 1e-6));
+    countEl.textContent = remain;
+    countEl.classList.remove("dotmode");
+
+    // overall loop position for dot + box progress (continuous across phases)
+    var tLoop = (state.phase + prog)/4;
+    placeDot(tLoop);
+    boxProg.style.strokeDashoffset = BOX_LEN * (1 - tLoop);
+  }
+
+  function loop(now){
+    if(!state.running){ return; }
+    var dt = state.last ? (now-state.last)/1000 : 0;
+    state.last = now;
+    if(dt>0.25) dt=0.25; // tab-switch guard
+    if(!state.paused){
+      state.elapsed += dt;
+      if(state.elapsed >= cfg.len){
+        state.elapsed -= cfg.len;
+        state.phase = (state.phase+1)%4;
+        if(state.phase===0){
+          state.cycle++;
+          if(state.cycle > cfg.cycles){ finish(); return; }
+          cycleNow.textContent = state.cycle;
+        }
+        onPhaseEnter();
+      }
+      render();
+    }
+    state.raf = requestAnimationFrame(loop);
+  }
+
+  function start(){
+    ensureAudio();
+    state.running=true; state.paused=false; state.phase=0; state.cycle=1;
+    state.elapsed=0; state.last=0;
+    cycleNow.textContent=1;
+    stage.classList.add("live");
+    btnStart.hidden=true; btnPause.hidden=false; btnReset.hidden=false; btnPause.textContent="Пауза";
+    onPhaseEnter(); render();
+    state.raf=requestAnimationFrame(loop);
+  }
+  function togglePause(){
+    state.paused=!state.paused;
+    btnPause.textContent = state.paused ? "Продолжить" : "Пауза";
+    if(state.paused){ phaseEl.textContent="Пауза"; }
+    else { phaseEl.textContent=labelFor[state.phase]; state.last=0; }
+  }
+  function reset(){
+    state.running=false; state.paused=false; cancelAnimationFrame(state.raf);
+    stage.classList.remove("live");
+    setScale(0.55); boxProg.style.strokeDashoffset=BOX_LEN; boxProg.style.stroke="var(--sage)";
+    phaseEl.textContent="Готов?"; countEl.textContent="·"; countEl.classList.remove("dotmode");
+    cycleNow.textContent=1;
+    btnStart.hidden=false; btnStart.textContent="Начать"; btnPause.hidden=true; btnReset.hidden=true;
+  }
+  function finish(){
+    state.running=false; cancelAnimationFrame(state.raf);
+    stage.classList.remove("live");
+    setScale(0.7);
+    phaseEl.textContent=L.done; phaseEl.style.opacity=1; phaseEl.style.transform="none";
+    countEl.textContent="✓"; countEl.classList.add("dotmode");
+    boxProg.style.strokeDashoffset=0; boxProg.style.stroke="var(--gold)";
+    live.textContent="Готово";
+    if(cfg.haptics && navigator.vibrate) navigator.vibrate([30,60,30]);
+    btnStart.hidden=false; btnStart.textContent="Ещё раз"; btnPause.hidden=true; btnReset.hidden=false;
+  }
+
+  // wire controls
+  btnStart.addEventListener("click", start);
+  btnPause.addEventListener("click", togglePause);
+  btnReset.addEventListener("click", reset);
+
+  // settings
+  var setToggle=document.getElementById("setToggle"), panel=document.getElementById("panel");
+  setToggle.addEventListener("click", function(){
+    var open=panel.classList.toggle("open");
+    setToggle.setAttribute("aria-expanded", open?"true":"false");
+  });
+  lenInput.addEventListener("input", function(){ cfg.len=+lenInput.value; lenVal.textContent=cfg.len; });
+  cycInput.addEventListener("input", function(){ cfg.cycles=+cycInput.value; cycVal.textContent=cfg.cycles; cycleTotal.textContent=cfg.cycles; });
+  sndInput.addEventListener("change", function(){ cfg.sound=sndInput.checked; if(cfg.sound) ensureAudio(); });
+  hapInput.addEventListener("change", function(){ cfg.haptics=hapInput.checked; });
+
+  // theme
+  var themeBtn=document.getElementById("theme");
+  themeBtn.addEventListener("click", function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme", dark?"light":"dark");
+    themeBtn.textContent = dark ? "☾" : "☀";
+  });
+
+  // init resting state
+  setScale(0.55);
+  window.addEventListener("resize", function(){ if(state.running){ /* dot reposition handled next frame */ } });
+})();
+</script>
+</body>
+</html>

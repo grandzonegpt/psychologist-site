@@ -1,0 +1,65 @@
+{
+  "total_pages": 296,
+  "noindex_pages": [
+    "404.html",
+    "dziekuje.html",
+    "intro-pl.html",
+    "intro.html",
+    "spasibo.html",
+    "topics-pl/depresja.html",
+    "topics-pl/emigracja.html",
+    "topics-pl/lek.html",
+    "topics-pl/trauma.html",
+    "topics-pl/wypalenie.html",
+    "topics/anxiety.html",
+    "topics/burnout.html",
+    "topics/depression.html",
+    "topics/emigration.html",
+    "topics/trauma.html"
+  ],
+  "alt_canonical": [
+    [
+      "dziekuje.html",
+      "https://levashou.pl/dziekuje"
+    ],
+    [
+      "spasibo.html",
+      "https://levashou.pl/spasibo"
+    ]
+  ],
+  "unpaired": [
+    "404.html",
+    "blog-pl/syndrom-sztokholmski.html",
+    "blog/apathy.html",
+    "blog/cynicism.html",
+    "blog/homesickness.html",
+    "blog/how-to-love-yourself.html",
+    "blog/loneliness-emigration.html",
+    "blog/night-anxiety.html",
+    "blog/night-waking-fear.html",
+    "blog/panic-falling-asleep.html",
+    "blog/paranoia.html",
+    "blog/psychosomatics.html",
+    "blog/reflection.html",
+    "blog/relationship-stages.html",
+    "dziekuje.html",
+    "glossary-pl/cognitive-distortion.html",
+    "glossary-pl/compassion-fatigue.html",
+    "glossary-pl/dissociation.html",
+    "glossary-pl/flashback.html",
+    "glossary-pl/hyperarousal.html",
+    "glossary-pl/trigger.html",
+    "glossary/cognitive-distortion.html",
+    "glossary/compassion-fatigue.html",
+    "glossary/dissociation.html",
+    "glossary/flashback.html",
+    "glossary/hyperarousal.html",
+    "glossary/trigger.html",
+    "spasibo.html"
+  ],
+  "sitemap_count": 281,
+  "post_count": 177,
+  "theme_map_size": 177,
+  "fails": [],
+  "fail_count": 0
+}
