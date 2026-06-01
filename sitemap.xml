@@ -1868,4 +1868,65 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/pmr.html"/>
     <priority>0.8</priority>
   </url>
+  <!-- Polish versions of RU-only posts 2026-06-01 -->
+  <url>
+    <loc>https://levashou.pl/blog-pl/apathy.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/cynicism.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/homesickness.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/loneliness-emigration.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/how-to-love-yourself.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/reflection.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/night-anxiety.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/night-waking-fear.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/panic-falling-asleep.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/relationship-stages.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/paranoia.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/blog-pl/psychosomatics.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.8</priority>
+  </url>
 </urlset>

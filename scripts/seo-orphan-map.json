@@ -89,6 +89,11 @@
     "hub": "relationships",
     "parent": "topics/relationships.html"
   },
+  "blog-pl/relationship-stages.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics-pl/relacje.html"
+  },
   "blog/borderline.html": {
     "bucket": "reassign",
     "hub": "trauma",
@@ -154,6 +159,21 @@
     "hub": "anxiety",
     "parent": "topics/anxiety.html"
   },
+  "blog-pl/night-anxiety.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
+  "blog-pl/night-waking-fear.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
+  "blog-pl/panic-falling-asleep.html": {
+    "bucket": "reassign",
+    "hub": "anxiety",
+    "parent": "topics-pl/lek.html"
+  },
   "blog/migration-burnout.html": {
     "bucket": "reassign",
     "hub": "emigration",
@@ -174,6 +194,16 @@
     "hub": "emigration",
     "parent": "topics/emigration.html"
   },
+  "blog-pl/homesickness.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics-pl/emigracja.html"
+  },
+  "blog-pl/loneliness-emigration.html": {
+    "bucket": "reassign",
+    "hub": "emigration",
+    "parent": "topics-pl/emigracja.html"
+  },
   "blog/high-functioning-depression.html": {
     "bucket": "reassign",
     "hub": "depression",
@@ -188,6 +218,11 @@
     "bucket": "reassign",
     "hub": "depression",
     "parent": "topics/depression.html"
+  },
+  "blog-pl/apathy.html": {
+    "bucket": "reassign",
+    "hub": "depression",
+    "parent": "topics-pl/depresja.html"
   },
   "blog/assertiveness.html": {
     "bucket": "reassign",
@@ -214,15 +249,30 @@
     "hub": "self-esteem",
     "parent": "topics/self-esteem.html"
   },
+  "blog-pl/how-to-love-yourself.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics-pl/samoocena.html"
+  },
   "blog/reflection.html": {
     "bucket": "reassign",
     "hub": "self-esteem",
     "parent": "topics/self-esteem.html"
   },
+  "blog-pl/reflection.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics-pl/samoocena.html"
+  },
   "blog/cynicism.html": {
     "bucket": "reassign",
     "hub": "burnout",
     "parent": "topics/burnout.html"
+  },
+  "blog-pl/cynicism.html": {
+    "bucket": "reassign",
+    "hub": "burnout",
+    "parent": "topics-pl/wypalenie.html"
   },
   "blog/adult-adhd.html": {
     "bucket": "outlier",
@@ -240,6 +290,16 @@
     "parent": null
   },
   "blog/psychosomatics.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog-pl/paranoia.html": {
+    "bucket": "outlier",
+    "hub": null,
+    "parent": null
+  },
+  "blog-pl/psychosomatics.html": {
     "bucket": "outlier",
     "hub": null,
     "parent": null

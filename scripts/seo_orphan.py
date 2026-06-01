@@ -35,6 +35,7 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/dda.html": "relationships", "blog-pl/dda.html": "relationships",
     "blog/manipulation.html": "relationships", "blog-pl/manipulation.html": "relationships",
     "blog-pl/syndrom-sztokholmski.html": "relationships", "blog/relationship-stages.html": "relationships",
+    "blog-pl/relationship-stages.html": "relationships",
     # reassign -> trauma
     "blog/borderline.html": "trauma", "blog-pl/zaburzenie-osobowosci-borderline.html": "trauma",
     "blog/dissociation.html": "trauma", "blog-pl/dissociation.html": "trauma",
@@ -44,23 +45,28 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/introversion-vs-social-anxiety.html": "anxiety", "blog-pl/introversion-vs-social-anxiety.html": "anxiety",
     "blog/night-anxiety.html": "anxiety", "blog/night-waking-fear.html": "anxiety",
     "blog/panic-falling-asleep.html": "anxiety",
+    "blog-pl/night-anxiety.html": "anxiety", "blog-pl/night-waking-fear.html": "anxiety",
+    "blog-pl/panic-falling-asleep.html": "anxiety",
     # reassign -> emigration
     "blog/migration-burnout.html": "emigration", "blog-pl/migration-burnout.html": "emigration",
     "blog/homesickness.html": "emigration", "blog/loneliness-emigration.html": "emigration",
+    "blog-pl/homesickness.html": "emigration", "blog-pl/loneliness-emigration.html": "emigration",
     # reassign -> depression
     "blog/high-functioning-depression.html": "depression", "blog-pl/high-functioning-depression.html": "depression",
-    "blog/apathy.html": "depression",
+    "blog/apathy.html": "depression", "blog-pl/apathy.html": "depression",
     # reassign -> self-esteem
     "blog/assertiveness.html": "self-esteem", "blog-pl/assertiveness.html": "self-esteem",
     "blog/perfectionism.html": "self-esteem", "blog-pl/perfekcjonizm.html": "self-esteem",
-    "blog/how-to-love-yourself.html": "self-esteem",
+    "blog/how-to-love-yourself.html": "self-esteem", "blog-pl/how-to-love-yourself.html": "self-esteem",
     "blog/reflection.html": "self-esteem",  # reclassified from methods: about self-awareness
+    "blog-pl/reflection.html": "self-esteem",
     # reassign -> burnout
-    "blog/cynicism.html": "burnout",
+    "blog/cynicism.html": "burnout", "blog-pl/cynicism.html": "burnout",
 }
 OUTLIERS = [
     "blog/adult-adhd.html", "blog-pl/adult-adhd.html",
     "blog/paranoia.html", "blog/psychosomatics.html",
+    "blog-pl/paranoia.html", "blog-pl/psychosomatics.html",
     "blog/emotional-regulation.html", "blog-pl/emotional-regulation.html",
 ]
 
