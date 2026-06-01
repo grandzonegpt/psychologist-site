@@ -94,6 +94,11 @@
     "hub": "relationships",
     "parent": "topics-pl/relacje.html"
   },
+  "blog/stockholm-syndrome.html": {
+    "bucket": "reassign",
+    "hub": "relationships",
+    "parent": "topics/relationships.html"
+  },
   "blog/borderline.html": {
     "bucket": "reassign",
     "hub": "trauma",

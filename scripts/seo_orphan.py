@@ -35,7 +35,7 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/dda.html": "relationships", "blog-pl/dda.html": "relationships",
     "blog/manipulation.html": "relationships", "blog-pl/manipulation.html": "relationships",
     "blog-pl/syndrom-sztokholmski.html": "relationships", "blog/relationship-stages.html": "relationships",
-    "blog-pl/relationship-stages.html": "relationships",
+    "blog-pl/relationship-stages.html": "relationships", "blog/stockholm-syndrome.html": "relationships",
     # reassign -> trauma
     "blog/borderline.html": "trauma", "blog-pl/zaburzenie-osobowosci-borderline.html": "trauma",
     "blog/dissociation.html": "trauma", "blog-pl/dissociation.html": "trauma",
