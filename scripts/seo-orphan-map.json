@@ -49,11 +49,6 @@
     "hub": "metody",
     "parent": "metody-pl.html"
   },
-  "blog/reflection.html": {
-    "bucket": "methods",
-    "hub": "metody",
-    "parent": "metody.html"
-  },
   "blog/attachment-styles.html": {
     "bucket": "reassign",
     "hub": "relationships",
@@ -215,6 +210,11 @@
     "parent": "topics-pl/samoocena.html"
   },
   "blog/how-to-love-yourself.html": {
+    "bucket": "reassign",
+    "hub": "self-esteem",
+    "parent": "topics/self-esteem.html"
+  },
+  "blog/reflection.html": {
     "bucket": "reassign",
     "hub": "self-esteem",
     "parent": "topics/self-esteem.html"

@@ -30,7 +30,6 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/schema-therapy.html": "metody", "blog-pl/terapia-schematow.html": "metody",
     "blog/what-is-psychotherapy.html": "metody", "blog-pl/ile-kosztuje-psychoterapia.html": "metody",
     "blog/online-vs-offline.html": "metody", "blog-pl/online-vs-offline.html": "metody",
-    "blog/reflection.html": "metody",
     # reassign -> relationships
     "blog/attachment-styles.html": "relationships", "blog-pl/typy-przywiazania.html": "relationships",
     "blog/dda.html": "relationships", "blog-pl/dda.html": "relationships",
@@ -55,6 +54,7 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/assertiveness.html": "self-esteem", "blog-pl/assertiveness.html": "self-esteem",
     "blog/perfectionism.html": "self-esteem", "blog-pl/perfekcjonizm.html": "self-esteem",
     "blog/how-to-love-yourself.html": "self-esteem",
+    "blog/reflection.html": "self-esteem",  # reclassified from methods: about self-awareness
     # reassign -> burnout
     "blog/cynicism.html": "burnout",
 }
