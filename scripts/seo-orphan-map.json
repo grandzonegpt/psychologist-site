@@ -49,6 +49,16 @@
     "hub": "metody",
     "parent": "metody-pl.html"
   },
+  "blog/psychologist-vs-psychotherapist.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody.html"
+  },
+  "blog-pl/psycholog-a-psychoterapeuta.html": {
+    "bucket": "methods",
+    "hub": "metody",
+    "parent": "metody-pl.html"
+  },
   "blog/attachment-styles.html": {
     "bucket": "reassign",
     "hub": "relationships",

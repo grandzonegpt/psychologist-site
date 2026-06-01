@@ -30,6 +30,7 @@ ASSIGN = {  # bucket methods/reassign -> hub_key
     "blog/schema-therapy.html": "metody", "blog-pl/terapia-schematow.html": "metody",
     "blog/what-is-psychotherapy.html": "metody", "blog-pl/ile-kosztuje-psychoterapia.html": "metody",
     "blog/online-vs-offline.html": "metody", "blog-pl/online-vs-offline.html": "metody",
+    "blog/psychologist-vs-psychotherapist.html": "metody", "blog-pl/psycholog-a-psychoterapeuta.html": "metody",
     # reassign -> relationships
     "blog/attachment-styles.html": "relationships", "blog-pl/typy-przywiazania.html": "relationships",
     "blog/dda.html": "relationships", "blog-pl/dda.html": "relationships",
