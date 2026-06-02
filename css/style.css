@@ -3740,3 +3740,46 @@ html:not(.light-theme) .theme-toggle::after{ left: 26px; }
 }
 
 .lang-mobile .theme-toggle--bar{ margin-right: 6px; }
+
+/* === Theme toggle : refined v2 (smaller, calmer, premium day/evening mark) === */
+.theme-toggle{
+  width: 44px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(120,95,55,0.22);
+  background: rgba(120,95,55,0.08);
+  box-shadow: none;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.theme-toggle::before{ content: none; }                  /* drop the sun/moon glyphs */
+.theme-toggle::after{
+  width: 15px; height: 15px;
+  top: 50%; left: 3px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #cca766, #b18a45 72%);
+  box-shadow: 0 1px 2px rgba(60,40,15,0.28), inset 0 0 0 .5px rgba(255,255,255,0.18);
+  transition: left .2s cubic-bezier(.4,0,.2,1), background .2s ease;
+}
+html:not(.light-theme) .theme-toggle{
+  border-color: rgba(245,238,224,0.18);
+  background: rgba(245,238,224,0.08);
+}
+html:not(.light-theme) .theme-toggle::after{
+  left: 24px;
+  background: radial-gradient(circle at 35% 30%, #f3e9d4, #d9c098 72%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.32), inset 0 0 0 .5px rgba(255,255,255,0.22);
+}
+.theme-toggle:hover{
+  border-color: rgba(120,95,55,0.42);
+  box-shadow: 0 0 0 3px rgba(177,138,69,0.10);
+}
+html:not(.light-theme) .theme-toggle:hover{
+  border-color: rgba(245,238,224,0.36);
+  box-shadow: 0 0 0 3px rgba(245,238,224,0.08);
+}
+.theme-toggle:focus-visible{
+  outline: 2px solid rgba(177,138,69,0.7);
+  outline-offset: 2px;
+}
+.lang-mobile .theme-toggle--bar{ margin-right: 8px; }
