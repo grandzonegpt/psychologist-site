@@ -842,7 +842,7 @@
   </div>
 </section>
 
-<section class="materials-tabs" style="padding:80px 0;">
+<section class="materials-tabs" style="padding:62px 0;">
   <div class="container">
     <div class="eyebrow reveal">Материалы</div>
     <h2 class="reveal">Что почитать и пройти</h2>
@@ -1244,7 +1244,7 @@
       <div class="booking-col">
         <h3 class="booking-col-title">Записаться через календарь</h3>
         <div id="booking-widget-ru"></div>
-        <script src="/js/booking-widget.min.js?v=81"></script>
+        <script src="/js/booking-widget.min.js?v=82"></script>
         <script>BookingWidget.init('booking-widget-ru', 'ru');</script>
       </div>
 
@@ -1398,6 +1398,122 @@
   </div>
 </div>
 
+<style>
+/* === Главная RU: визуальная доводка, проход 1 (только CSS; контент/SEO/ссылки/структура/формы не тронуты) === */
+/* 1+13. Вертикальный ритм: секции компактнее (~-20%), на мобиле сильнее */
+section{padding:76px 0;}
+.first-aid{padding:76px 0;}
+@media(max-width:760px){section{padding:50px 0;}.first-aid{padding:50px 0;}}
+/* 5. Заголовки секций чуть меньше и спокойнее (главный H1 первого экрана не трогаю) */
+#main h2{font-size:clamp(26px,3.2vw,40px);line-height:1.14;}
+@media(max-width:760px){#main h2{font-size:clamp(24px,6vw,32px);}}
+/* 4. Навигация читаемее; кнопка «Записаться» заметна, но не кричит */
+.light-theme .site-nav .nav-links{letter-spacing:.12em;}
+.light-theme .site-nav .nav-links a{color:#3c372f;}
+.light-theme .site-nav .nav-links a[href$="#booking"]{background:rgba(176,140,90,.12);border-color:var(--accent-soft);color:var(--text-primary);}
+.light-theme .site-nav .nav-links a[href$="#booking"]:hover{background:var(--accent-soft);border-color:var(--accent-soft);color:#fff;}
+/* 6+9. Карточки (мифы, кейсы, направления) как одна тёплая система: не серые/плоские, но и не тяжёлые */
+.light-theme .myth-card,.light-theme .case-card,.light-theme .topic-card{background:#fdfaf5;border-color:rgba(150,120,72,.14);box-shadow:0 1px 2px rgba(40,30,10,.03),0 8px 24px rgba(40,30,10,.05);transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease;}
+.light-theme .myth-card:hover,.light-theme .case-card:hover,.light-theme .topic-card:hover{transform:translateY(-3px);border-color:var(--accent-soft);box-shadow:0 2px 6px rgba(40,30,10,.05),0 16px 40px rgba(40,30,10,.08);}
+/* 3. Фиксированная кнопка: мягче, ниже, аккуратный радиус, тише трекинг/тень */
+.floating-cta a{padding:12px 22px!important;letter-spacing:.03em!important;border-radius:12px!important;box-shadow:0 6px 22px rgba(40,30,10,.16)!important;}
+@media(max-width:760px){.floating-cta a{padding:10px 18px!important;letter-spacing:.02em!important;}}
+</style>
+<style>
+/* === Главная RU: визуальная доводка, проход 2 (только CSS; контент/SEO/формы/JS/календарь не тронуты) === */
+/* 1+11. Ритм ещё компактнее (ещё ~-10%), мобайл сильнее */
+section{padding:68px 0;}
+.first-aid{padding:62px 0;}
+@media(max-width:760px){section{padding:46px 0;}.first-aid{padding:46px 0;}}
+/* 8. Блок «Психотравматолог» (quals): меньше воздуха, титул чуть скромнее; доверие (SWPS/INTEREGO/PTTPB) сохранено */
+.quals{padding:80px 0;}
+.quals-main{font-size:clamp(40px,5.4vw,56px);}
+@media(max-width:760px){.quals{padding:50px 0;}}
+/* 4+5+7. Карточки одной семьёй: единый радиус/паддинг/тёплый фон/тень/hover (мифы, кейсы, направления, практики) */
+.light-theme .case-card,.light-theme .myth-card,.light-theme .topic-card,.light-theme .first-aid-card{background:#fdfaf5;border:1px solid rgba(150,120,72,.14);border-radius:14px;box-shadow:0 1px 2px rgba(40,30,10,.03),0 8px 24px rgba(40,30,10,.05);transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease;}
+.case-card,.myth-card{padding:26px;}
+.first-aid-card{padding:24px 22px;border-radius:14px;}
+.light-theme .case-card:hover,.light-theme .myth-card:hover,.light-theme .topic-card:hover,.light-theme .first-aid-card:hover{transform:translateY(-3px);border-color:var(--accent-soft);box-shadow:0 2px 6px rgba(40,30,10,.05),0 16px 40px rgba(40,30,10,.08);}
+/* 6. «Как работаем»: шаги ровные и одинаковой высоты */
+.steps{align-items:stretch;}
+.step{display:flex;flex-direction:column;}
+/* 9. Формы: единые поля (тёплый фон, мягкий радиус, понятный focus-ring) */
+.light-theme .contact-form input,.light-theme .contact-form textarea,.light-theme textarea,.light-theme .newsletter-form input{background:#fdfaf5;border:1px solid rgba(150,120,72,.16);border-radius:10px;}
+.light-theme .contact-form input:focus,.light-theme .contact-form textarea:focus,.light-theme textarea:focus,.light-theme .newsletter-form input:focus{border-color:var(--accent-soft);outline:none;box-shadow:0 0 0 3px rgba(176,140,90,.12);}
+/* 9. Fallback расписания: спокойное нормальное состояние, не «ошибка» */
+.bw-v2__fallback{background:#fdfaf5;border:1px solid rgba(150,120,72,.16);border-radius:14px;padding:24px 20px;}
+/* 3. Sticky CTA: мягче, ниже, уже, спокойный hover */
+.floating-cta a{padding:11px 20px!important;font-size:12px!important;letter-spacing:.02em!important;border-radius:12px!important;box-shadow:0 5px 18px rgba(40,30,10,.14)!important;}
+.floating-cta a:hover{box-shadow:0 8px 26px rgba(40,30,10,.2)!important;}
+@media(max-width:760px){.floating-cta{right:14px;bottom:14px;}.floating-cta a{padding:10px 15px!important;font-size:11px!important;}}
+</style>
+<style>
+/* === Главная RU: финальная доводка, проход 3 (только CSS; контент/SEO/формы/JS/календарь не тронуты) === */
+/* 1+10. Ритм ещё компактнее (~-9%) в больших промежутках, мобайл сильнее */
+section{padding:62px 0;}
+.first-aid{padding:58px 0;}
+.first-session{padding:62px 0;}
+.quals{padding:72px 0;}
+@media(max-width:760px){section{padding:42px 0;}.first-aid{padding:42px 0;}.first-session{padding:42px 0;}.quals{padding:44px 0;}}
+/* 3+6. «Что мешает записаться»: карточки/строки компактнее, длинный текст читаемее (sans вместо декоративного serif-italic) */
+.recognize-row{padding:18px 0;}
+.recognize-row p{font-family:var(--font-sans);font-style:normal;font-size:16.5px;line-height:1.55;}
+/* 4. Истории (reviews) уже в тёплой системе карточек; держим единый радиус и у мифов/направлений/практик */
+.light-theme .case-card,.light-theme .myth-card,.light-theme .topic-card,.light-theme .first-aid-card{border-radius:14px;}
+/* 8+10. Табы «Материалы»: активный понятен (подчёркивание+цвет), но БЕЗ скачка ширины (вес не меняем) */
+.mat-tab{box-sizing:border-box;}
+.mat-tab.is-active{font-weight:400;}
+/* 9. FAQ: чуть теснее между вопросами */
+.faq details{padding:18px 0;}
+/* 5. Telegram fallback-кнопка : в общую CTA-систему (тёплый акцент, единый радиус) */
+.bw-v2__fallback-btn{background:var(--accent-soft)!important;color:#fff!important;border-radius:10px!important;padding:11px 20px!important;font-weight:600!important;}
+.bw-v2__fallback-btn:hover{background:#9a7842!important;}
+/* 2. Sticky CTA: ещё мягче, уже, полупрозрачнее, спокойный hover */
+.floating-cta a{padding:10px 18px!important;font-size:11.5px!important;letter-spacing:.015em!important;opacity:.95!important;box-shadow:0 4px 16px rgba(40,30,10,.13)!important;}
+.floating-cta a:hover{opacity:1!important;box-shadow:0 7px 22px rgba(40,30,10,.18)!important;}
+@media(max-width:760px){.floating-cta a{padding:9px 14px!important;font-size:11px!important;}}
+</style>
+<style>
+/* === Главная RU: финальная мягкая доводка, проход 4 (только CSS; тексты/SEO/JS-логика/формы/календарь не тронуты) === */
+/* 1. Ритм ещё компактнее (~-16%), мобайл сильнее */
+section{padding:52px 0;}
+.first-aid{padding:48px 0;}
+.first-session{padding:52px 0;}
+.quals{padding:60px 0;}
+@media(max-width:760px){section{padding:36px 0;}.first-aid{padding:36px 0;}.first-session{padding:36px 0;}.quals{padding:40px 0;}}
+/* 4. «Что мешает записаться» (мифы): карточки компактнее по высоте, «Миф/На деле» оставлены как есть */
+.myth-card{padding:22px;}
+/* 6. «С чем я работаю»: спокойный, но заметный hover кликабельности */
+.light-theme .topic-card:hover{background:#fbf4e7;border-color:var(--accent-soft);}
+/* 7. Табы «Материалы»: мягкие пилюли вместо тяжёлой линии; активный = лёгкий тёплый фон (без скачка ширины) */
+.mat-tabs{border-bottom:none;gap:6px;}
+.mat-tab{border-bottom:0;margin-bottom:0;border-radius:8px;padding:9px 16px;}
+.mat-tab:hover{color:#3d342a;background:rgba(176,140,90,.07);}
+.mat-tab.is-active{background:rgba(176,140,90,.14);color:#3d342a;border-bottom-color:transparent;font-weight:400;}
+/* 2+9. Telegram fallback-кнопка шире, без переносов, в общей CTA-системе */
+.bw-v2__fallback-btn{white-space:nowrap;min-width:220px;text-align:center;padding:12px 26px!important;}
+/* 3. Sticky CTA: ещё мягче и компактнее, полупрозрачная */
+.floating-cta a{padding:9px 15px!important;font-size:11px!important;letter-spacing:.01em!important;opacity:.93!important;box-shadow:0 4px 14px rgba(40,30,10,.12)!important;}
+.floating-cta a:hover{opacity:1!important;box-shadow:0 7px 20px rgba(40,30,10,.17)!important;}
+@media(max-width:760px){.floating-cta a{padding:8px 13px!important;font-size:10.5px!important;}}
+</style>
+<style>
+/* === Главная RU: доводка desktop+mobile, проход 5 (только CSS; стилистику/тексты/JS не меняем) === */
+/* 1. Точечно убрать «случайную пустоту» крупных блоков */
+.hero{padding-bottom:56px;}
+.self-check{padding:54px 0;}
+.free-intro{padding:64px 0;}
+.magnet-section{padding:48px 0 32px;}
+.stats-strip{padding:36px 0;}
+.recognize-grid,.reviews-grid,.recognize-list{margin-top:30px;}
+.quals-diplomas{margin-top:30px;}
+@media(max-width:760px){.hero{padding-bottom:34px;}.self-check{padding:38px 0;}.free-intro{padding:44px 0;}}
+/* 2. Якорные переходы: заголовки не уходят под sticky-хедер */
+section[id],header[id]{scroll-margin-top:112px;}
+@media(max-width:760px){section[id],header[id]{scroll-margin-top:88px;}}
+/* 4. Hover/focus карточек: мягкая тёплая рамка (не чёрная), размер не меняется */
+.light-theme .case-card:hover,.light-theme .myth-card:hover,.light-theme .topic-card:hover,.light-theme .first-aid-card:hover,.light-theme .case-card:focus-visible,.light-theme .myth-card:focus-visible,.light-theme .topic-card:focus-visible,.light-theme .first-aid-card:focus-visible{border-color:var(--accent-soft);outline:none;}
+</style>
 <script src="/js/main.min.js?v=26"></script>
 </body>
 </html>
