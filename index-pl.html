@@ -1402,5 +1402,13 @@
 </div>
 
 <script src="/js/main.min.js?v=26"></script>
+<script>
+/* Lightbox dyplomu: na mobile powiększony obraz wypełnia ekran i trudno trafić w krzyżyk,
+   więc zamykamy powiększenie kliknięciem/tapnięciem w dowolnym miejscu (także w sam obraz). */
+window.addEventListener('load', function () {
+  var lb = document.querySelector('.lightbox');
+  if (lb) lb.addEventListener('click', function () { lb.classList.remove('open'); });
+});
+</script>
 </body>
 </html>

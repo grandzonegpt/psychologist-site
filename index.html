@@ -1534,5 +1534,13 @@ section[id],header[id]{scroll-margin-top:112px;}
 @media(max-width:760px){.floating-cta{bottom:12px;right:12px;}}
 </style>
 <script src="/js/main.min.js?v=26"></script>
+<script>
+/* Лайтбокс диплома: на мобиле увеличенная картинка занимает экран и крестик трудно попасть,
+   поэтому закрываем увеличение тапом/кликом в любом месте (включая саму картинку). */
+window.addEventListener('load', function () {
+  var lb = document.querySelector('.lightbox');
+  if (lb) lb.addEventListener('click', function () { lb.classList.remove('open'); });
+});
+</script>
 </body>
 </html>
