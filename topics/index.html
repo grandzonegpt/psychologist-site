@@ -150,57 +150,72 @@
 
 <section style="padding: 140px 0 30px;">
   <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Каталог тем</div>
-    <h1>Темы: всё по запросу в одном месте</h1>
-    <p class="muted" style="max-width:640px;">Семь тематических страниц. Каждая собирает по теме: статьи, тесты, практики, термины и запись к психологу.</p>
+    <div class="eyebrow">Направления</div>
+    <h1>С чем я работаю</h1>
+    <p class="muted" style="max-width:640px;">Выбери тему, которая ближе к твоей ситуации. Внутри: короткое объяснение, статьи, тесты, практики и способ записаться.</p>
   </div>
 </section>
 
+<style>
+/* ====== Карты состояния (направления) ====== */
+.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;}
+.route-card{display:flex;flex-direction:column;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;padding:26px 26px 22px;text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.04);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease;}
+.route-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(40,30,10,.09);border-color:#cdbf9e;}
+.route-card:focus-visible{outline:2px solid #8a6a3a;outline-offset:3px;}
+.route-card__title{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:500;line-height:1.12;margin:0 0 10px;}
+.route-card__when{font-size:15px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.route-card__meta{display:flex;flex-wrap:wrap;align-items:center;font-family:'Lato',sans-serif;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8c72;margin-bottom:20px;}
+.route-card__meta span:not(:last-child)::after{content:"·";margin:0 9px;color:#cdbf9e;}
+.route-card__open{margin-top:auto;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:8px;}
+.route-card__open .arr{transition:transform .35s cubic-bezier(.22,1,.36,1);}
+.route-card:hover .route-card__open .arr{transform:translateX(5px);}
+@media (prefers-reduced-motion:reduce){.route-card,.route-card__open .arr{transition:none!important;}.route-card:hover{transform:none!important;}}
+</style>
 <section style="padding: 20px 0 80px;">
   <div class="container">
-    <div class="blog-grid">
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Тревога и паника</h3>
-        <p>ГТР, паническое расстройство, социальная тревожность, навязчивые мысли. Тест GAD-7, статьи, практики дыхания и заземления.</p>
-        <a href="/topics/anxiety.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Травма и ПТСР</h3>
-        <p>ПТСР, кПТСР, скрытые симптомы, доказательные методы (TF-CBT, EMDR). Тест PCL-5, практики стабилизации.</p>
-        <a href="/topics/trauma.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Депрессия и сон</h3>
-        <p>Виды депрессии, связь со сном, КПТ и поведенческая активация. Тест PHQ-9, КПТ-практики.</p>
-        <a href="/topics/depression.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Выгорание</h3>
-        <p>Признаки по ВОЗ, отличие от усталости и депрессии, IT-выгорание, вторичная травматизация. План восстановления.</p>
-        <a href="/topics/burnout.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Отношения и созависимость</h3>
-        <p>Нарциссизм, газлайтинг, созависимость, расставание. Восстановление после токсичных отношений.</p>
-        <a href="/topics/relationships.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Эмиграция и адаптация</h3>
-        <p>Фазы адаптации, тревога эмигранта, потеря идентичности. Психолог на родном языке для эмигрантов в ЕС.</p>
-        <a href="/topics/emigration.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тема</div>
-        <h3>Самооценка и перфекционизм</h3>
-        <p>Синдром самозванца, когнитивные искажения, базовые схемы. КПТ-инструменты и доказательные подходы.</p>
-        <a href="/topics/self-esteem.html" class="card-link">Открыть →</a>
-      </article>
+    <div class="route-grid">
+      <a class="route-card" href="/topics/anxiety.html">
+        <h3 class="route-card__title">Тревога и паника</h3>
+        <p class="route-card__when">Когда голова не выключается, тело напряжено, случаются панические атаки или страшно заранее.</p>
+        <div class="route-card__meta"><span>GAD-7</span><span>дыхание</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/trauma.html">
+        <h3 class="route-card__title">Травма и ПТСР</h3>
+        <p class="route-card__when">Когда прошлое возвращается флешбеками, накрывает оцепенение, а тело реагирует так, будто опасность всё ещё рядом.</p>
+        <div class="route-card__meta"><span>PCL-5</span><span>заземление</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/depression.html">
+        <h3 class="route-card__title">Депрессия и сон</h3>
+        <p class="route-card__when">Когда ничего не радует, сил нет даже на простое, а сон сбился или не приносит отдыха.</p>
+        <div class="route-card__meta"><span>PHQ-9</span><span>режим дня</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/burnout.html">
+        <h3 class="route-card__title">Выгорание</h3>
+        <p class="route-card__when">Когда работа выжимает досуха, появляются цинизм и усталость, которую не снимает даже отпуск.</p>
+        <div class="route-card__meta"><span>тест выгорания</span><span>восстановление</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/relationships.html">
+        <h3 class="route-card__title">Отношения и созависимость</h3>
+        <p class="route-card__when">Когда рядом с близким тревожно, ты подстраиваешься и теряешь себя или приходишь в себя после тяжёлых отношений.</p>
+        <div class="route-card__meta"><span>созависимость</span><span>границы</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/emigration.html">
+        <h3 class="route-card__title">Эмиграция и адаптация</h3>
+        <p class="route-card__when">Когда новая страна забирает силы, накрывает тоска по дому и непонятно, кто ты теперь и где твоё место.</p>
+        <div class="route-card__meta"><span>адаптация</span><span>опора</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics/self-esteem.html">
+        <h3 class="route-card__title">Самооценка и перфекционизм</h3>
+        <p class="route-card__when">Когда внутренний критик не умолкает, любое достижение кажется недостаточным, а ошибка ощущается как провал.</p>
+        <div class="route-card__meta"><span>перфекционизм</span><span>опоры</span><span>статьи</span></div>
+        <span class="route-card__open">Открыть тему <span class="arr">→</span></span>
+      </a>
     </div>
   </div>
 </section>

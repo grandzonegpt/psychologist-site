@@ -150,57 +150,72 @@
 
 <section style="padding: 140px 0 30px;">
   <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Katalog tematów</div>
-    <h1>Tematy: wszystko wg zapytania w jednym miejscu</h1>
-    <p class="muted" style="max-width:640px;">Siedem stron tematycznych. Każda zbiera materiały po temacie: artykuły, testy, praktyki, terminy i zapis do psychologa.</p>
+    <div class="eyebrow">Specjalizacje</div>
+    <h1>Z czym pracuję</h1>
+    <p class="muted" style="max-width:640px;">Wybierz temat bliższy twojej sytuacji. W środku: krótkie wyjaśnienie, artykuły, testy, praktyki i sposób, żeby się zapisać.</p>
   </div>
 </section>
 
+<style>
+/* ====== Karty stanu (specjalizacje) ====== */
+.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;}
+.route-card{display:flex;flex-direction:column;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;padding:26px 26px 22px;text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.04);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .3s ease;}
+.route-card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(40,30,10,.09);border-color:#cdbf9e;}
+.route-card:focus-visible{outline:2px solid #8a6a3a;outline-offset:3px;}
+.route-card__title{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:500;line-height:1.12;margin:0 0 10px;}
+.route-card__when{font-size:15px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.route-card__meta{display:flex;flex-wrap:wrap;align-items:center;font-family:'Lato',sans-serif;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#9a8c72;margin-bottom:20px;}
+.route-card__meta span:not(:last-child)::after{content:"·";margin:0 9px;color:#cdbf9e;}
+.route-card__open{margin-top:auto;font-family:'Lato',sans-serif;font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:8px;}
+.route-card__open .arr{transition:transform .35s cubic-bezier(.22,1,.36,1);}
+.route-card:hover .route-card__open .arr{transform:translateX(5px);}
+@media (prefers-reduced-motion:reduce){.route-card,.route-card__open .arr{transition:none!important;}.route-card:hover{transform:none!important;}}
+</style>
 <section style="padding: 20px 0 80px;">
   <div class="container">
-    <div class="blog-grid">
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Lęk i panika</h3>
-        <p>GAD, zaburzenie paniczne, fobia społeczna, natrętne myśli. Test GAD-7, artykuły, praktyki oddechowe i uziemienia.</p>
-        <a href="/topics-pl/lek.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Trauma i PTSD</h3>
-        <p>PTSD, CPTSD, ukryte objawy, sprawdzone metody (TF-CBT, EMDR). Test PCL-5, praktyki stabilizacji.</p>
-        <a href="/topics-pl/trauma.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Depresja i sen</h3>
-        <p>Rodzaje depresji, związek ze snem, CBT i aktywacja behawioralna. Test PHQ-9, praktyki CBT.</p>
-        <a href="/topics-pl/depresja.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Wypalenie</h3>
-        <p>Objawy wg WHO, różnica od zmęczenia i depresji, IT-wypalenie, wtórna traumatyzacja. Plan odbudowy.</p>
-        <a href="/topics-pl/wypalenie.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Relacje i współuzależnienie</h3>
-        <p>Narcyzm, gaslighting, współuzależnienie, rozstanie. Odbudowa po toksycznych relacjach.</p>
-        <a href="/topics-pl/relacje.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Emigracja i adaptacja</h3>
-        <p>Fazy adaptacji, lęk emigranta, utrata tożsamości. Psycholog w języku ojczystym dla emigrantów w UE.</p>
-        <a href="/topics-pl/emigracja.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Temat</div>
-        <h3>Samoocena i perfekcjonizm</h3>
-        <p>Syndrom oszusta, zniekształcenia poznawcze, podstawowe schematy. Narzędzia CBT i sprawdzone podejścia.</p>
-        <a href="/topics-pl/samoocena.html" class="card-link">Otwórz →</a>
-      </article>
+    <div class="route-grid">
+      <a class="route-card" href="/topics-pl/lek.html">
+        <h3 class="route-card__title">Lęk i panika</h3>
+        <p class="route-card__when">Gdy głowa się nie wyłącza, ciało jest spięte, zdarzają się ataki paniki albo boisz się z wyprzedzeniem.</p>
+        <div class="route-card__meta"><span>GAD-7</span><span>oddech</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/trauma.html">
+        <h3 class="route-card__title">Trauma i PTSD</h3>
+        <p class="route-card__when">Gdy przeszłość wraca flashbackami, ogarnia odrętwienie, a ciało reaguje, jakby zagrożenie wciąż było obok.</p>
+        <div class="route-card__meta"><span>PCL-5</span><span>uziemienie</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/depresja.html">
+        <h3 class="route-card__title">Depresja i sen</h3>
+        <p class="route-card__when">Gdy nic nie cieszy, brakuje sił nawet na proste rzeczy, a sen się rozregulował albo nie daje odpoczynku.</p>
+        <div class="route-card__meta"><span>PHQ-9</span><span>rytm dnia</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/wypalenie.html">
+        <h3 class="route-card__title">Wypalenie</h3>
+        <p class="route-card__when">Gdy praca wyciska do sucha, pojawia się cynizm i zmęczenie, którego nie zdejmuje nawet urlop.</p>
+        <div class="route-card__meta"><span>test wypalenia</span><span>regeneracja</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/relacje.html">
+        <h3 class="route-card__title">Relacje i współuzależnienie</h3>
+        <p class="route-card__when">Gdy przy bliskiej osobie jest niespokojnie, dopasowujesz się i tracisz siebie albo dochodzisz do siebie po trudnym związku.</p>
+        <div class="route-card__meta"><span>współuzależnienie</span><span>granice</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/emigracja.html">
+        <h3 class="route-card__title">Emigracja i adaptacja</h3>
+        <p class="route-card__when">Gdy nowy kraj zabiera siły, ogarnia tęsknota za domem i nie wiadomo, kim teraz jesteś i gdzie twoje miejsce.</p>
+        <div class="route-card__meta"><span>adaptacja</span><span>oparcie</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
+      <a class="route-card" href="/topics-pl/samoocena.html">
+        <h3 class="route-card__title">Samoocena i perfekcjonizm</h3>
+        <p class="route-card__when">Gdy wewnętrzny krytyk nie milknie, każde osiągnięcie wydaje się niewystarczające, a błąd czujesz jak porażkę.</p>
+        <div class="route-card__meta"><span>perfekcjonizm</span><span>oparcie</span><span>artykuły</span></div>
+        <span class="route-card__open">Otwórz temat <span class="arr">→</span></span>
+      </a>
     </div>
   </div>
 </section>
