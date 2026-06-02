@@ -2045,7 +2045,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 .post-content p { margin: 0 0 20px; color: #1a1a1a; }
 .post-content ul, .post-content ol { margin: 0 0 24px; padding-left: 24px; }
 .post-content li { margin-bottom: 10px; }
-.post-content a { color: #b8860b; text-decoration: underline; }
+.post-content a { color: #8a5a00; text-decoration: underline; }
 .post-content strong { color: #1a1a1a; font-weight: 700; }
 .post-content .highlight {
   border-left: 2px solid var(--cat-color);
