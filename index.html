@@ -1514,6 +1514,25 @@ section[id],header[id]{scroll-margin-top:112px;}
 /* 4. Hover/focus карточек: мягкая тёплая рамка (не чёрная), размер не меняется */
 .light-theme .case-card:hover,.light-theme .myth-card:hover,.light-theme .topic-card:hover,.light-theme .first-aid-card:hover,.light-theme .case-card:focus-visible,.light-theme .myth-card:focus-visible,.light-theme .topic-card:focus-visible,.light-theme .first-aid-card:focus-visible{border-color:var(--accent-soft);outline:none;}
 </style>
+<style>
+/* === Главная RU: визуальная доводка, проход 6 (ритм/контраст/аккуратность; тексты/структуру/JS не меняем) === */
+/* 3. Светлая тема: вторичный текст чуть читабельнее */
+.light-theme{--text-muted:#4d473f;}
+/* 3. Карточки заметнее на кремовом фоне: чище фон + чуть контрастнее ТЁПЛАЯ рамка (не чёрная) + мягкая тень */
+.light-theme .case-card,.light-theme .myth-card,.light-theme .topic-card,.light-theme .first-aid-card,.light-theme #services .card{background:#fffdf8;border:1px solid rgba(150,120,72,.22);box-shadow:0 1px 2px rgba(40,30,10,.04),0 10px 26px rgba(40,30,10,.06);transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s ease,box-shadow .3s ease;}
+.light-theme .case-card:hover,.light-theme .myth-card:hover,.light-theme .topic-card:hover,.light-theme .first-aid-card:hover,.light-theme #services .card:hover{transform:translateY(-3px);border-color:var(--accent-soft);box-shadow:0 2px 6px rgba(40,30,10,.05),0 16px 40px rgba(40,30,10,.09);}
+/* 2. Кнопки: единая система, hover/focus без скачка размера */
+.btn,.btn-ghost,.bw-v2__fallback-btn,.link-cta{box-sizing:border-box;}
+/* secondary (Telegram fallback): светлая контурная, в общей CTA-системе */
+.bw-v2__fallback-btn{background:transparent!important;color:#8a6a3a!important;border:1.5px solid var(--accent-soft)!important;}
+.bw-v2__fallback-btn:hover{background:rgba(176,140,90,.10)!important;}
+/* 5. Hero-фото: тёплый фильтр + мягкий overlay + корректная обрезка на desktop/mobile */
+.hero-photo img{object-fit:cover;object-position:center 28%;filter:sepia(.10) saturate(.96) contrast(.98) brightness(1.02);}
+.hero-photo::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(176,140,90,.05) 0%,rgba(31,28,24,.06) 100%);mix-blend-mode:multiply;}
+/* 6. Sticky CTA: спокойнее на desktop, не перекрывает контент */
+.floating-cta{bottom:20px;right:20px;}
+@media(max-width:760px){.floating-cta{bottom:12px;right:12px;}}
+</style>
 <script src="/js/main.min.js?v=26"></script>
 </body>
 </html>
