@@ -81,7 +81,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"></noscript>
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=122"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=122"><link rel="stylesheet" href="/css/practices.css?v=1"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
     if (localStorage.getItem('cookie-consent') === 'all') {
@@ -149,14 +149,30 @@
 
 <main class="practices-page">
 
-  <div class="eyebrow">Sekcja · Materiały</div>
-  <h1>Praktyki</h1>
-  <p class="lead">Sześć krótkich protokołów, które daję klientom między sesjami.</p>
-  <p class="lead-sub">Każdy: <em>nie «zrelaksuj się»</em>, ale konkretne działanie w konkretnym stanie. Nic ezoterycznego: tylko to, co działa w moich gabinetach i w badaniach.</p>
+  <!-- HERO -->
+  <div class="practices-hero">
+    <div class="ph-text">
+      <div class="eyebrow">Sekcja · Materiały</div>
+      <h1>Praktyki</h1>
+      <p class="lead">Krótkie techniki, których możesz użyć między sesjami albo <em>gdy robi się trudno</em>.</p>
+      <p class="lead-sub">Praktyki nie zastępują terapii, ale pomagają zrobić pierwszy krok, gdy lęk, napięcie albo bezsenność już utrudniają codzienne życie.</p>
+    </div>
+    <div class="ph-sign" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor">
+        <circle class="o-ring o-ring--3" cx="60" cy="60" r="50" stroke-width="1" opacity="0.3"/>
+        <circle class="o-ring o-ring--2" cx="60" cy="60" r="34" stroke-width="1" opacity="0.55"/>
+        <circle class="o-ring" cx="60" cy="60" r="18" stroke-width="1" opacity="0.9"/>
+        <circle cx="60" cy="60" r="2.6" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+  </div>
 
   <!-- ROUTER «Z CZYM TERAZ» -->
   <div class="router-block" id="router">
-    <div class="rb-label">Z czym dokładnie teraz?</div>
+    <div class="rb-head">
+      <div class="rb-label">Z czym dokładnie teraz?</div>
+      <span class="rb-clear" id="rb-clear">Wyczyść</span>
+    </div>
     <div class="router-chips">
       <button class="router-chip" data-tag="panic">Panika, nie mogę oddychać</button>
       <button class="router-chip" data-tag="loop">Myśli się kręcą, nie wyłączają</button>
@@ -164,48 +180,50 @@
       <button class="router-chip" data-tag="freeze">Utknąłem, nic nie czuję</button>
       <button class="router-chip" data-tag="evening">Nie mogę zasnąć</button>
       <button class="router-chip" data-tag="recurring">Ta sama myśl wraca</button>
-      <span class="rb-clear" id="rb-clear">Wyczyść</span>
     </div>
   </div>
 
-  <!-- GRUPA 1: KIEDY LĘK TERAZ -->
+  <!-- GRUPA 1: KIEDY LĘK JEST TU I TERAZ -->
   <div class="pgroup">
-    <div class="pgroup-title"><span>Kiedy jest niepokój teraz</span><span class="count">trzy praktyki</span></div>
+    <div class="pgroup-title"><span>Kiedy lęk jest tu i teraz</span><span class="count">trzy praktyki</span></div>
     <div class="plist">
 
       <a href="/breathing-4-7-8-pl.html" class="pitem" data-tags="panic loop evening">
-        <div class="pnum">01</div>
-        <div class="pbody">
-          <h3>Oddech 4-7-8 <span class="pmark">Uniwersalnie</span></h3>
-          <div class="pdesc">Spowalnia tętno w półtorej minuty. Zrób, gdy mózg się rozpędza i nie wyłącza.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 22c5-13 10-13 19 0s14 13 19 0" stroke-linecap="round"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">01</span><span class="plabel">Oddech</span></div>
+        <h3>Oddech 4-7-8</h3>
+        <p class="pdesc">Spowalnia tętno w półtorej minuty. Zrób, gdy mózg się rozpędza i nie wyłącza.</p>
         <div class="pmeta">
           <span class="pmeta-row">3 min · 4 cykle</span>
-          <span class="pmeta-row">Andrew Weil<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">Andrew Weil</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/grounding-5-4-3-2-1-pl.html" class="pitem" data-tags="panic freeze">
-        <div class="pnum">02</div>
-        <div class="pbody">
-          <h3>Uziemienie 5-4-3-2-1</h3>
-          <div class="pdesc">Wraca do ciała przez zmysły. Zrób przy panice, dysocjacji albo poczuciu «nie ma mnie tu».</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="22" cy="22" r="6"/><path d="M22 7a15 15 0 0 1 15 15" opacity="0.6"/><path d="M22 2a20 20 0 0 1 20 20" opacity="0.32"/><circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">02</span><span class="plabel">Uziemienie</span></div>
+        <h3>Uziemienie 5-4-3-2-1</h3>
+        <p class="pdesc">Wraca do ciała przez zmysły. Zrób przy panice, dysocjacji albo poczuciu «nie ma mnie tu».</p>
         <div class="pmeta">
           <span class="pmeta-row">5 min · 5 kroków</span>
-          <span class="pmeta-row">DBT, M. Linehan<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">DBT, M. Linehan</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/box-breathing-pl.html" class="pitem" data-tags="panic loop body">
-        <div class="pnum">03</div>
-        <div class="pbody">
-          <h3>Oddech pudełkowy 4×4</h3>
-          <div class="pdesc">Oddech po kwadracie. Używają go Navy SEALs przed stresem. Sama struktura «pudełka» uspokaja.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="11" y="11" width="22" height="22" rx="1"/><circle cx="11" cy="11" r="2.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">03</span><span class="plabel">Oddech</span></div>
+        <h3>Oddech pudełkowy 4×4</h3>
+        <p class="pdesc">Oddech po kwadracie. Używają go Navy SEALs przed stresem. Sama struktura «pudełka» uspokaja.</p>
         <div class="pmeta">
           <span class="pmeta-row">4 min · 6 cykli</span>
-          <span class="pmeta-row">US Navy SEALs<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">US Navy SEALs</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
@@ -213,48 +231,65 @@
   </div>
 
   <!-- GRUPA 2: REGULARNIE, ŻEBY BYŁO ŁATWIEJ -->
-  <div class="pgroup">
+  <div class="pgroup pgroup-calm">
     <div class="pgroup-title"><span>Regularnie, żeby było łatwiej</span><span class="count">trzy praktyki</span></div>
     <div class="plist">
 
       <a href="/diary-pl.html" class="pitem" data-tags="loop recurring evening">
-        <div class="pnum">04</div>
-        <div class="pbody">
-          <h3>Dziennik myśli lękowych</h3>
-          <div class="pdesc">Pięć minut wieczorem, i po dwóch tygodniach rozpoznajesz swoje zniekształcenia. Podstawowa forma CBT.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M31 31a12 12 0 1 1 3-13" stroke-linecap="round"/><circle cx="31" cy="31" r="2.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">04</span><span class="plabel">CBT</span></div>
+        <h3>Dziennik myśli lękowych</h3>
+        <p class="pdesc">Pięć minut wieczorem, i po dwóch tygodniach rozpoznajesz swoje zniekształcenia. Podstawowa forma CBT.</p>
         <div class="pmeta">
           <span class="pmeta-row">5 min dziennie</span>
-          <span class="pmeta-row">A. Beck, CBT<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">A. Beck, CBT</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/abc-pl.html" class="pitem" data-tags="recurring loop">
-        <div class="pnum">05</div>
-        <div class="pbody">
-          <h3>Analiza ABC sytuacji</h3>
-          <div class="pdesc">Podstawowy model: między zdarzeniem a emocją zawsze stoi myśl. Zrób, gdy ta sama sytuacja znowu wytrąca z równowagi.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 32h7v-8h8v-9h9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">05</span><span class="plabel">CBT</span></div>
+        <h3>Analiza ABC sytuacji</h3>
+        <p class="pdesc">Podstawowy model: między zdarzeniem a emocją zawsze stoi myśl. Zrób, gdy ta sama sytuacja znowu wytrąca z równowagi.</p>
         <div class="pmeta">
           <span class="pmeta-row">10 min · 3 kroki</span>
-          <span class="pmeta-row">A. Ellis, REBT<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">A. Ellis, REBT</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/pmr-pl.html" class="pitem" data-tags="body evening">
-        <div class="pnum">06</div>
-        <div class="pbody">
-          <h3>Progresywna relaksacja mięśni</h3>
-          <div class="pdesc">Ciało przechowuje lęk jako napięcie w mięśniach. Ta praktyka uczy je zauważać i puszczać. Zrób wieczorem, leżąc.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 16c5-5 9 5 14 0s9-5 14 0" stroke-linecap="round"/><path d="M5 28c5-5 9 5 14 0s9-5 14 0" stroke-linecap="round" opacity="0.5"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">06</span><span class="plabel">Ciało</span></div>
+        <h3>Progresywna relaksacja mięśni</h3>
+        <p class="pdesc">Ciało przechowuje lęk jako napięcie w mięśniach. Ta praktyka uczy je zauważać i puszczać. Zrób wieczorem, leżąc.</p>
         <div class="pmeta">
           <span class="pmeta-row">12 min · 8 stref</span>
-          <span class="pmeta-row">E. Jacobson, 1929<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">E. Jacobson, 1929</span><span class="popen"><span class="popen-t">Otwórz</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
     </div>
   </div>
+
+  <!-- DOLNE CTA: JEŚLI OBJAWY SIĘ POWTARZAJĄ -->
+  <section class="practices-cta">
+    <span class="pc-sign" aria-hidden="true">
+      <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="28" cy="28" r="20" opacity="0.5"/><circle cx="28" cy="28" r="11"/><circle cx="28" cy="28" r="2.4" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <h2 class="pc-label">Jeśli objawy się powtarzają</h2>
+    <p class="pc-text">Jeśli lęk, panika, bezsenność albo napięcie wracają raz za razem, to nie znaczy, że «coś jest z tobą nie tak». To powód, żeby przyjrzeć się temu spokojniej: co uruchamia ten stan, co go podtrzymuje i jaka pomoc będzie dla ciebie odpowiednia.</p>
+    <div class="pc-actions">
+      <a class="pc-btn pc-btn--solid" href="/intro-pl.html" target="_blank" rel="noopener noreferrer">Umów 15&nbsp;minut</a>
+      <a class="pc-btn pc-btn--ghost" href="/tests-pl.html">Przejdź do testów</a>
+    </div>
+    <p class="pc-topics">Według tematu: <a href="/topics-pl/lek.html">lęk i panika</a>, <a href="/topics-pl/depresja.html">depresja i sen</a>, <a href="/topics-pl/trauma.html">trauma i PTSD</a>.</p>
+  </section>
 
 </main>
 

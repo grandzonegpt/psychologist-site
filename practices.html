@@ -81,7 +81,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"></noscript>
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=122"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=122"><link rel="stylesheet" href="/css/practices.css?v=1"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
     if (localStorage.getItem('cookie-consent') === 'all') {
@@ -148,14 +148,30 @@
 
 <main class="practices-page">
 
-  <div class="eyebrow">Раздел · Материалы</div>
-  <h1>Практики</h1>
-  <p class="lead">Шесть коротких протоколов, которые я даю клиентам между сессиями.</p>
-  <p class="lead-sub">Каждый: <em>не «расслабиться»</em>, а конкретное действие при конкретном состоянии. Ничего эзотерического: только то, что работает в моих кабинетах и в исследованиях.</p>
+  <!-- HERO -->
+  <div class="practices-hero">
+    <div class="ph-text">
+      <div class="eyebrow">Раздел · Материалы</div>
+      <h1>Практики</h1>
+      <p class="lead">Короткие техники, которые можно использовать между сессиями или <em>когда становится трудно</em>.</p>
+      <p class="lead-sub">Практики не заменяют терапию, но помогают сделать первый шаг, когда тревога, напряжение или бессонница уже мешают жить как обычно.</p>
+    </div>
+    <div class="ph-sign" aria-hidden="true">
+      <svg viewBox="0 0 120 120" fill="none" stroke="currentColor">
+        <circle class="o-ring o-ring--3" cx="60" cy="60" r="50" stroke-width="1" opacity="0.3"/>
+        <circle class="o-ring o-ring--2" cx="60" cy="60" r="34" stroke-width="1" opacity="0.55"/>
+        <circle class="o-ring" cx="60" cy="60" r="18" stroke-width="1" opacity="0.9"/>
+        <circle cx="60" cy="60" r="2.6" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+  </div>
 
   <!-- РОУТЕР «С ЧЕМ СЕЙЧАС» -->
   <div class="router-block" id="router">
-    <div class="rb-label">С чем именно сейчас?</div>
+    <div class="rb-head">
+      <div class="rb-label">С чем именно сейчас?</div>
+      <span class="rb-clear" id="rb-clear">Сбросить</span>
+    </div>
     <div class="router-chips">
       <button class="router-chip" data-tag="panic">Паника, не могу дышать</button>
       <button class="router-chip" data-tag="loop">Мысли крутятся, не выключаются</button>
@@ -163,7 +179,6 @@
       <button class="router-chip" data-tag="freeze">Застрял, ничего не чувствую</button>
       <button class="router-chip" data-tag="evening">Не могу заснуть</button>
       <button class="router-chip" data-tag="recurring">Одна и та же мысль возвращается</button>
-      <span class="rb-clear" id="rb-clear">Сбросить</span>
     </div>
   </div>
 
@@ -173,38 +188,41 @@
     <div class="plist">
 
       <a href="/breathing-4-7-8.html" class="pitem" data-tags="panic loop evening">
-        <div class="pnum">01</div>
-        <div class="pbody">
-          <h3>4-7-8 дыхание <span class="pmark">Универсально</span></h3>
-          <div class="pdesc">Замедляет сердцебиение за полторы минуты. Делай, когда мозг разгоняется и не выключается.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 22c5-13 10-13 19 0s14 13 19 0" stroke-linecap="round"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">01</span><span class="plabel">Дыхание</span></div>
+        <h3>4-7-8 дыхание</h3>
+        <p class="pdesc">Замедляет сердцебиение за полторы минуты. Делай, когда мозг разгоняется и не выключается.</p>
         <div class="pmeta">
           <span class="pmeta-row">3 мин · 4 цикла</span>
-          <span class="pmeta-row">Эндрю Уэйл<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">Эндрю Уэйл</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/grounding-5-4-3-2-1.html" class="pitem" data-tags="panic freeze">
-        <div class="pnum">02</div>
-        <div class="pbody">
-          <h3>5-4-3-2-1 заземление</h3>
-          <div class="pdesc">Возвращает в тело через органы чувств. Делай, если паника, диссоциация или ощущение «меня тут нет».</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="22" cy="22" r="6"/><path d="M22 7a15 15 0 0 1 15 15" opacity="0.6"/><path d="M22 2a20 20 0 0 1 20 20" opacity="0.32"/><circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">02</span><span class="plabel">Заземление</span></div>
+        <h3>5-4-3-2-1 заземление</h3>
+        <p class="pdesc">Возвращает в тело через органы чувств. Делай, если паника, диссоциация или ощущение «меня тут нет».</p>
         <div class="pmeta">
           <span class="pmeta-row">5 мин · 5 шагов</span>
-          <span class="pmeta-row">DBT, M. Linehan<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">DBT, M. Linehan</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/box-breathing.html" class="pitem" data-tags="panic loop body">
-        <div class="pnum">03</div>
-        <div class="pbody">
-          <h3>Box breathing 4×4</h3>
-          <div class="pdesc">Дыхание по квадрату. Используется морскими котиками США перед стрессом. Структура «коробки» сама по себе успокаивает.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="11" y="11" width="22" height="22" rx="1"/><circle cx="11" cy="11" r="2.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">03</span><span class="plabel">Дыхание</span></div>
+        <h3>Box breathing 4×4</h3>
+        <p class="pdesc">Дыхание по квадрату. Используется морскими котиками США перед стрессом. Структура «коробки» сама по себе успокаивает.</p>
         <div class="pmeta">
           <span class="pmeta-row">4 мин · 6 циклов</span>
-          <span class="pmeta-row">US Navy SEALs<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">US Navy SEALs</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
@@ -212,48 +230,65 @@
   </div>
 
   <!-- ГРУППА 2: РЕГУЛЯРНО, ЧТОБЫ БЫЛО ЛЕГЧЕ -->
-  <div class="pgroup">
+  <div class="pgroup pgroup-calm">
     <div class="pgroup-title"><span>Регулярно, чтобы было легче</span><span class="count">три практики</span></div>
     <div class="plist">
 
       <a href="/diary.html" class="pitem" data-tags="loop recurring evening">
-        <div class="pnum">04</div>
-        <div class="pbody">
-          <h3>Дневник тревожных мыслей</h3>
-          <div class="pdesc">Пять минут вечером, и через две недели ты узнаёшь свои искажения в лицо. Базовая форма КПТ.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M31 31a12 12 0 1 1 3-13" stroke-linecap="round"/><circle cx="31" cy="31" r="2.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">04</span><span class="plabel">КПТ</span></div>
+        <h3>Дневник тревожных мыслей</h3>
+        <p class="pdesc">Пять минут вечером, и через две недели ты узнаёшь свои искажения в лицо. Базовая форма КПТ.</p>
         <div class="pmeta">
           <span class="pmeta-row">5 мин в день</span>
-          <span class="pmeta-row">A. Beck, КПТ<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">A. Beck, КПТ</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/abc.html" class="pitem" data-tags="recurring loop">
-        <div class="pnum">05</div>
-        <div class="pbody">
-          <h3>ABC-разбор ситуации</h3>
-          <div class="pdesc">Базовая модель: между событием и эмоцией всегда стоит мысль. Делай, когда одна и та же ситуация снова выводит из себя.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 32h7v-8h8v-9h9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">05</span><span class="plabel">КПТ</span></div>
+        <h3>ABC-разбор ситуации</h3>
+        <p class="pdesc">Базовая модель: между событием и эмоцией всегда стоит мысль. Делай, когда одна и та же ситуация снова выводит из себя.</p>
         <div class="pmeta">
           <span class="pmeta-row">10 мин · 3 шага</span>
-          <span class="pmeta-row">A. Ellis, REBT<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">A. Ellis, REBT</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
       <a href="/pmr.html" class="pitem" data-tags="body evening">
-        <div class="pnum">06</div>
-        <div class="pbody">
-          <h3>Прогрессивная мышечная релаксация</h3>
-          <div class="pdesc">Тело хранит тревогу как напряжение в мышцах. Эта практика учит замечать его и отпускать. Делай вечером, лёжа.</div>
-        </div>
+        <span class="psign" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 16c5-5 9 5 14 0s9-5 14 0" stroke-linecap="round"/><path d="M5 28c5-5 9 5 14 0s9-5 14 0" stroke-linecap="round" opacity="0.5"/></svg>
+        </span>
+        <div class="pitem-top"><span class="pnum">06</span><span class="plabel">Тело</span></div>
+        <h3>Прогрессивная мышечная релаксация</h3>
+        <p class="pdesc">Тело хранит тревогу как напряжение в мышцах. Эта практика учит замечать его и отпускать. Делай вечером, лёжа.</p>
         <div class="pmeta">
           <span class="pmeta-row">12 мин · 8 зон</span>
-          <span class="pmeta-row">E. Jacobson, 1929<span class="arr">→</span></span>
+          <div class="pfoot"><span class="psrc">E. Jacobson, 1929</span><span class="popen"><span class="popen-t">Открыть</span><span class="arr">→</span></span></div>
         </div>
       </a>
 
     </div>
   </div>
+
+  <!-- НИЖНИЙ CTA: ЕСЛИ СИМПТОМЫ ПОВТОРЯЮТСЯ -->
+  <section class="practices-cta">
+    <span class="pc-sign" aria-hidden="true">
+      <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="28" cy="28" r="20" opacity="0.5"/><circle cx="28" cy="28" r="11"/><circle cx="28" cy="28" r="2.4" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <h2 class="pc-label">Если симптомы повторяются</h2>
+    <p class="pc-text">Если тревога, паника, бессонница или напряжение возвращаются снова и снова, это не значит, что с вами «что-то не так». Это повод разобраться спокойнее: что запускает состояние, что его поддерживает и какая помощь подойдёт именно вам.</p>
+    <div class="pc-actions">
+      <a class="pc-btn pc-btn--solid" href="/intro.html" target="_blank" rel="noopener noreferrer">Записаться на 15 минут</a>
+      <a class="pc-btn pc-btn--ghost" href="/tests.html">Перейти к тестам</a>
+    </div>
+    <p class="pc-topics">Разобраться по теме: <a href="/topics/anxiety.html">тревога и паника</a>, <a href="/topics/depression.html">депрессия и сон</a>, <a href="/topics/trauma.html">травма и ПТСР</a>.</p>
+  </section>
 
 </main>
 
