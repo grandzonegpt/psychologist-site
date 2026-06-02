@@ -250,10 +250,12 @@
       <button type="button" class="blog-chip is-active" data-filter="all" role="tab" aria-selected="true" tabindex="0">Wszystkie</button>
       <button type="button" class="blog-chip" data-filter="anxiety" role="tab" aria-selected="false" tabindex="-1">Lęk i panika</button>
       <button type="button" class="blog-chip" data-filter="trauma" role="tab" aria-selected="false" tabindex="-1">Trauma i PTSD</button>
-      <button type="button" class="blog-chip" data-filter="relations" role="tab" aria-selected="false" tabindex="-1">Relacje i bliscy</button>
+      <button type="button" class="blog-chip" data-filter="relations" role="tab" aria-selected="false" tabindex="-1">Relacje</button>
       <button type="button" class="blog-chip" data-filter="self" role="tab" aria-selected="false" tabindex="-1">Samoocena</button>
       <button type="button" class="blog-chip" data-filter="method" role="tab" aria-selected="false" tabindex="-1">Metoda CBT</button>
       <button type="button" class="blog-chip" data-filter="practice" role="tab" aria-selected="false" tabindex="-1">Praktyka i format</button>
+      <button type="button" class="blog-chip" data-filter="emigration" role="tab" aria-selected="false" tabindex="-1">Emigracja</button>
+      <button type="button" class="blog-chip" data-filter="depression" role="tab" aria-selected="false" tabindex="-1">Depresja i sen</button>
     </div>
   </div>
 </section>
@@ -268,7 +270,9 @@
   .blog-grid[data-active-filter="relations"] .vcard[data-category="relations"],
   .blog-grid[data-active-filter="self"] .vcard[data-category="self"],
   .blog-grid[data-active-filter="method"] .vcard[data-category="method"],
-  .blog-grid[data-active-filter="practice"] .vcard[data-category="practice"]{display:flex;}
+  .blog-grid[data-active-filter="practice"] .vcard[data-category="practice"],
+  .blog-grid[data-active-filter="emigration"] .vcard[data-category="emigration"],
+  .blog-grid[data-active-filter="depression"] .vcard[data-category="depression"]{display:flex;}
 </style>
 
 <style>
@@ -473,7 +477,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="anxiety" data-vhub="emigration" data-num="87">
+      <article class="vcard reveal" data-category="emigration" data-vhub="emigration" data-num="87">
         <a class="vcard__link" href="/blog-pl/loneliness-emigration.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/emigration/loneliness-emigration.jpg" alt="Samotność na emigracji: czemu wśród ludzi czujesz się sam" width="800" height="600" loading="lazy" decoding="async">
@@ -486,7 +490,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="anxiety" data-vhub="emigration" data-num="86">
+      <article class="vcard reveal" data-category="emigration" data-vhub="emigration" data-num="86">
         <a class="vcard__link" href="/blog-pl/homesickness.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/emigration/homesickness.jpg" alt="Tęsknota za domem: dlaczego zalewa po przeprowadzce" width="800" height="600" loading="lazy" decoding="async">
@@ -525,7 +529,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="83">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="83">
         <a class="vcard__link" href="/blog-pl/nieleczona-depresja.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/untreated-depression.jpg" alt="Nieleczona depresja: czym jest groźna i co się dzieje, gdy się jej nie leczy" width="800" height="600" loading="lazy" decoding="async">
@@ -551,7 +555,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="81">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="81">
         <a class="vcard__link" href="/blog-pl/dystymia.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/dysthymia.jpg" alt="Dystymia: gdy przygnębienie stało się tłem na lata" width="800" height="600" loading="lazy" decoding="async">
@@ -564,7 +568,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="80">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="80">
         <a class="vcard__link" href="/blog-pl/depresja-sezonowa.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/seasonal-depression.jpg" alt="Depresja sezonowa: dlaczego jesienią i zimą dopada i co pomaga" width="800" height="600" loading="lazy" decoding="async">
@@ -590,7 +594,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="78">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="78">
         <a class="vcard__link" href="/blog-pl/depresja-maskowana.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/masked-depression.jpg" alt="Depresja maskowana: gdy depresja ukrywa się za ciałem" width="800" height="600" loading="lazy" decoding="async">
@@ -616,7 +620,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="76">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="76">
         <a class="vcard__link" href="/blog-pl/depresja-poporodowa.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/postpartum-depression.jpg" alt="Depresja poporodowa: objawy, przyczyny i jak sobie pomóc" width="800" height="600" loading="lazy" decoding="async">
@@ -629,7 +633,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="75">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="75">
         <a class="vcard__link" href="/blog-pl/depresja-lekowa.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/anxious-depression.jpg" alt="Depresja lękowa: gdy lęk i przygnębienie idą razem" width="800" height="600" loading="lazy" decoding="async">
@@ -720,7 +724,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="self" data-vhub="depression" data-num="68">
+      <article class="vcard reveal" data-category="depression" data-vhub="depression" data-num="68">
         <a class="vcard__link" href="/blog-pl/depresja.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/depression/depression.jpg" alt="Depresja: objawy, rodzaje i jak ją leczyć" width="800" height="600" loading="lazy" decoding="async">
@@ -772,7 +776,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="anxiety" data-vhub="emigration" data-num="64">
+      <article class="vcard reveal" data-category="emigration" data-vhub="emigration" data-num="64">
         <a class="vcard__link" href="/blog-pl/culture-shock.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/emigration/culture-shock.jpg" alt="Szok kulturowy: etapy adaptacji w nowym kraju i jak go przejść" width="800" height="600" loading="lazy" decoding="async">
@@ -980,7 +984,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="anxiety" data-vhub="emigration" data-num="48">
+      <article class="vcard reveal" data-category="emigration" data-vhub="emigration" data-num="48">
         <a class="vcard__link" href="/blog-pl/emigrant-guilt.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/emigration/emigrant-guilt.jpg" alt="Poczucie winy po wyjeździe: dlaczego czujesz się winny wobec tych, którzy zostali" width="800" height="600" loading="lazy" decoding="async">
@@ -1175,7 +1179,7 @@
           </div>
         </a>
       </article>
-      <article class="vcard reveal" data-category="anxiety" data-vhub="emigration" data-num="33">
+      <article class="vcard reveal" data-category="emigration" data-vhub="emigration" data-num="33">
         <a class="vcard__link" href="/blog-pl/migration-burnout.html">
           <div class="vcard__media">
             <img class="vcard__img" src="/assets/blog/ru/emigration/migration-burnout.jpg" alt="Stres po emigracji, który mylą z wypaleniem" width="800" height="600" loading="lazy" decoding="async">
