@@ -1,0 +1,313 @@
+/* ============================================================
+   TESTS : premium enhancement layer for questionnaire pages
+   Loaded AFTER style.min.css + the page's inline <style>, so it
+   overrides those by cascade order. Touches visuals only; never
+   the questions, scales, scoring or links.
+
+   Theme-safe: warm --t-* vars are defined only under .light-theme
+   (the default). Rules use var(--t-x, <theme-fallback>) so dark
+   theme falls back to the existing palette and stays intact.
+   ============================================================ */
+
+.light-theme {
+  --t-card:   #faf6ee;   /* warm card */
+  --t-line:   rgba(120, 95, 50, 0.20);
+  --t-line-2: rgba(120, 95, 50, 0.32);
+  --t-sel:    #f3ecdd;   /* selected option fill (sand) */
+  --t-gold:   #8a6a3a;   /* muted gold */
+  --t-olive:  #5b5a36;   /* CTA / submit */
+  --t-olive-d:#4a4a2b;
+  --t-brown:  #4a3d2a;
+  --t-ink:    #2a2620;
+  --t-muted:  #6b645a;
+  --t-warm:   #f4ede0;   /* warm section bg */
+  --t-cream:  #f7f2e8;
+}
+
+/* ---------- Hero ---------- */
+.t-hero { padding: 88px 0 36px !important; }          /* clears fixed 72px nav, less than the inline 100px */
+.test-intro { max-width: 640px; }
+.test-intro .eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--t-gold, var(--accent-soft));
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.test-intro h1 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(30px, 5vw, 44px) !important;       /* responsive, was fixed 42px */
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px !important;
+  color: var(--t-ink, var(--text-primary));
+}
+.test-intro p { font-size: 16px !important; color: var(--t-muted, var(--text-muted)); line-height: 1.65; }
+/* delicate decorative sign: concentric circles + soft glow */
+.test-intro::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 60px;
+  margin: 24px auto 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(138, 106, 58, 0.16), transparent 68%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none' stroke='%238a6a3a'%3E%3Ccircle cx='30' cy='30' r='26' stroke-width='1' opacity='.32'/%3E%3Ccircle cx='30' cy='30' r='17' stroke-width='1' opacity='.6'/%3E%3Ccircle cx='30' cy='30' r='8.5' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='2' fill='%238a6a3a' stroke='none'/%3E%3C/svg%3E")
+    center / 60px 60px no-repeat;
+}
+
+/* ---------- Progress (injected by test-ui.js) ---------- */
+.test-progress { margin: 0 0 30px; }
+.test-progress .tp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 9px;
+}
+.test-progress .tp-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--t-muted, var(--text-muted));
+}
+.test-progress .tp-count {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--t-gold, var(--accent-soft));
+}
+.test-progress .tp-track {
+  height: 3px;
+  border-radius: 3px;
+  background: var(--t-line, var(--border-subtle));
+  overflow: hidden;
+}
+.test-progress .tp-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 3px;
+  background: var(--t-gold, var(--accent));
+  transition: width .35s ease;
+}
+
+/* ---------- Question cards ---------- */
+.test-form { max-width: 680px; }
+.test-form > p { color: var(--t-muted, var(--text-muted)); }
+.tq {
+  margin-bottom: 16px !important;
+  padding: 24px 26px !important;
+  border-radius: 14px !important;
+  background: var(--t-card, var(--bg-elevated)) !important;
+  border: 1px solid var(--t-line, var(--border-subtle)) !important;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.tq:focus-within { border-color: var(--t-line-2, var(--accent)); box-shadow: 0 10px 26px -18px rgba(60, 50, 40, 0.4); }
+.tq-text {
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  color: var(--t-ink, var(--text-primary)) !important;
+  margin-bottom: 16px !important;
+  font-weight: 400;
+}
+
+/* ---------- Options (both .tq-opts and .tq-likert) ---------- */
+.tq-opts, .tq-likert { display: flex !important; flex-direction: column !important; gap: 7px !important; flex-wrap: nowrap !important; }
+.tq-opts label, .tq-likert label {
+  display: flex !important;
+  flex-direction: row !important;        /* radio left, text right (both option variants) */
+  flex: none !important;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left !important;
+  gap: 13px !important;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+  border-radius: 9px !important;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 14.5px !important;
+  line-height: 1.4;
+  color: var(--t-muted, var(--text-muted)) !important;
+  transition: background .15s ease, border-color .15s ease, color .15s ease;
+}
+.tq-opts label:hover, .tq-likert label:hover {
+  background: rgba(138, 106, 58, 0.06) !important;
+  color: var(--t-ink, var(--text-primary)) !important;
+}
+.tq-opts label:has(input:checked), .tq-likert label:has(input:checked) {
+  background: var(--t-sel, var(--bg-secondary)) !important;
+  border-color: var(--t-line-2, var(--accent)) !important;
+  color: var(--t-ink, var(--text-primary)) !important;
+}
+/* custom radio */
+.tq-opts input[type="radio"], .tq-likert input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0;
+  flex-shrink: 0;
+  border: 1.5px solid var(--t-line-2, var(--text-muted));
+  border-radius: 50%;
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.light-theme .tq-opts input[type="radio"], .light-theme .tq-likert input[type="radio"] { background: #fffdf8; }
+.tq-opts input[type="radio"]:hover, .tq-likert input[type="radio"]:hover { border-color: var(--t-gold, var(--accent)); }
+.tq-opts input[type="radio"]:checked, .tq-likert input[type="radio"]:checked { border-color: var(--t-gold, var(--accent)); }
+.tq-opts input[type="radio"]:checked::after, .tq-likert input[type="radio"]:checked::after {
+  content: "";
+  position: absolute;
+  inset: 3.5px;
+  border-radius: 50%;
+  background: var(--t-gold, var(--accent));
+}
+.tq-opts input[type="radio"]:focus-visible, .tq-likert input[type="radio"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(138, 106, 58, 0.22);
+}
+
+/* ---------- Submit ---------- */
+.test-submit {
+  display: block !important;
+  margin: 34px auto 0 !important;
+  padding: 15px 46px !important;
+  background: var(--t-olive, var(--accent)) !important;
+  color: #f6f2e6 !important;
+  border: 1px solid var(--t-olive, var(--accent)) !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease, opacity .2s ease !important;
+}
+.test-submit:hover { background: var(--t-olive-d, var(--accent)) !important; transform: translateY(-1px); box-shadow: 0 12px 26px -14px rgba(60, 50, 40, 0.5); opacity: 1 !important; }
+.test-submit:disabled, .test-submit.is-disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ---------- Result ---------- */
+.test-result {
+  max-width: 680px !important;
+  border-radius: 16px !important;
+  padding: 44px 34px !important;
+  background: var(--t-card, var(--bg-elevated)) !important;
+  border: 1px solid var(--t-line, var(--border-subtle)) !important;
+}
+.test-result h3 { font-family: var(--font-serif) !important; color: var(--t-ink, var(--text-primary)); }
+.test-score { color: var(--t-gold, var(--accent)) !important; font-family: var(--font-serif) !important; }
+.test-severity { color: var(--t-ink, var(--text-primary)); }
+.test-desc { color: var(--t-muted, var(--text-muted)) !important; max-width: 520px; margin-left: auto; margin-right: auto; }
+.test-again {
+  border: 1px solid var(--t-line, var(--border-subtle)) !important;
+  color: var(--t-muted, var(--text-muted)) !important;
+  border-radius: 4px !important;
+}
+.test-again:hover { border-color: var(--t-gold, var(--accent)) !important; color: var(--t-ink, var(--text-primary)) !important; }
+
+/* ---------- Education section ---------- */
+.test-edu { max-width: 680px !important; line-height: 1.75; }
+.test-edu h2 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(22px, 3.4vw, 27px) !important;
+  font-weight: 500;
+  color: var(--t-ink, var(--text-primary));
+  margin: 44px 0 14px !important;
+}
+.test-edu p, .test-edu li { color: var(--t-muted, var(--text-muted)); }
+.test-edu strong { color: var(--t-ink, var(--text-primary)); }
+.test-edu ul li { margin-bottom: 10px !important; }
+
+/* premium table: thin lines, calm header */
+.test-edu table { border-collapse: collapse; width: 100%; font-size: 14.5px !important; margin: 18px 0 !important; }
+.test-edu th {
+  padding: 13px 14px !important;
+  text-align: left;
+  font-family: var(--font-serif) !important;
+  font-weight: 500 !important;
+  font-size: 15px;
+  color: var(--t-ink, var(--text-primary)) !important;
+  background: var(--t-cream, #f6f1e8) !important;
+  border-bottom: 1px solid var(--t-line-2, #73602f) !important;
+}
+.test-edu td {
+  padding: 12px 14px !important;
+  color: var(--t-muted, var(--text-primary)) !important;
+  border-bottom: 1px solid var(--t-line, #e6e0d4) !important;
+}
+.test-edu tbody tr:last-child td { border-bottom: none !important; }
+
+/* source / note-card (the inline-styled paragraph with a background) */
+.test-edu p[style*="background"] {
+  background: var(--t-cream, var(--bg-elevated)) !important;
+  border: 1px solid var(--t-line, var(--border-subtle)) !important;
+  border-left: 3px solid var(--t-gold, var(--accent)) !important;
+  border-radius: 10px !important;
+  padding: 16px 20px !important;
+  font-size: 13.5px !important;
+  color: var(--t-muted, var(--text-muted)) !important;
+}
+
+/* ---------- Bottom CTA ("если результат беспокоит") ---------- */
+.t-cta { padding: 56px 0 !important; background: var(--t-warm, var(--bg-secondary)) !important; }
+.t-cta .container { max-width: 640px !important; }
+.t-cta h2 {
+  font-family: var(--font-serif) !important;
+  font-size: clamp(24px, 4vw, 31px) !important;
+  font-weight: 500;
+  color: var(--t-ink, var(--text-primary)) !important;
+  margin-bottom: 14px !important;
+}
+.t-cta p { color: var(--t-muted, var(--text-muted)) !important; max-width: 520px; margin-left: auto; margin-right: auto; }
+.t-cta .container > a { margin-top: 6px; }
+
+/* CTA + result buttons: olive primary / outline ghost (matches topic landings) */
+.light-theme .t-cta .btn,
+.light-theme .test-result .btn {
+  background: var(--t-olive) !important;
+  border: 1px solid var(--t-olive) !important;
+  color: #f6f2e6 !important;
+  border-radius: 4px !important;
+}
+.light-theme .t-cta .btn:hover,
+.light-theme .test-result .btn:hover { background: var(--t-olive-d) !important; border-color: var(--t-olive-d) !important; }
+.light-theme .t-cta .btn-ghost,
+.light-theme .test-result .btn-ghost {
+  background: transparent !important;
+  color: var(--t-brown) !important;
+  border: 1px solid #cdbf9e !important;
+}
+.light-theme .t-cta .btn-ghost:hover,
+.light-theme .test-result .btn-ghost:hover { background: var(--t-olive) !important; color: #f6f2e6 !important; border-color: var(--t-olive) !important; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  .t-hero { padding: 78px 0 26px !important; }
+  .test-intro::after { width: 50px; height: 50px; margin-top: 18px; background-size: 50px 50px; }
+}
+@media (max-width: 600px) {
+  .container { padding-left: 20px; padding-right: 20px; }
+  .test-intro h1 { font-size: clamp(27px, 8vw, 34px) !important; }
+  .tq { padding: 18px 18px !important; }
+  .tq-text { font-size: 15px !important; }
+  .tq-opts label, .tq-likert label { padding: 13px 12px !important; }   /* taller tap targets */
+  .test-submit { width: 100%; max-width: 340px; padding: 16px 24px !important; }
+  .test-progress .tp-label { font-size: 14px; }
+  .test-result { padding: 32px 20px !important; }
+  .test-edu { padding-left: 20px !important; padding-right: 20px !important; }
+  .test-edu table, .test-edu th, .test-edu td { font-size: 13.5px !important; }
+  .t-cta { padding: 44px 0 !important; }
+  .t-cta .container > a.btn { display: block; width: 100%; max-width: 320px; margin: 8px auto 0; }
+}
