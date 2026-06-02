@@ -160,7 +160,7 @@
 #main .container{}
 @media(max-width:600px){ #main .container{ padding-left:5vw; padding-right:5vw; } }
 /* Hero */
-.tl-hero{position:relative;overflow:hidden;padding:120px 0 34px;}
+.tl-hero{position:relative;overflow:hidden;padding:90px 0 30px;}
 .tl-hero__inner{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center;}
 .tl-hero__lead{color:var(--text-muted);font-size:17px;line-height:1.7;margin:16px 0 0;max-width:520px;}
 .tl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
@@ -172,7 +172,7 @@
 .tl-hero__viz{justify-self:center;width:100%;max-width:300px;}
 .tl-hero__viz svg{width:100%;height:auto;display:block;}
 @media(max-width:760px){
-  .tl-hero{padding:30px 0 12px;}
+  .tl-hero{padding:22px 0 10px;}
   .tl-hero__inner{grid-template-columns:1fr;gap:12px;padding:0 5vw;}
   .tl-hero__viz{max-width:140px;order:-1;justify-self:start;}
   .tl-hero__lead{font-size:16px;margin-top:12px;}
@@ -196,8 +196,11 @@
 .tl-step__b{font-size:16px;line-height:1.6;color:var(--text-primary);}
 /* Toolkit (praktyki) */
 .tl-toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:16px;margin-top:24px;}
-.tl-tool{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-tool{position:relative;display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
 .tl-tool:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-tool__sign{position:absolute;top:20px;right:20px;width:38px;height:38px;color:#9c8a5e;opacity:.42;pointer-events:none;}
+.tl-tool__sign svg{width:100%;height:100%;display:block;}
+.tl-tool:hover .tl-tool__sign{opacity:.6;}
 .tl-tool__top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
 .tl-tool__n{font-family:'Cormorant Garamond',serif;font-size:22px;color:#b08344;line-height:1;}
 .tl-tool__type{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;padding-left:13px;}
@@ -214,6 +217,11 @@
 .tl-next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
 .tl-next a{display:block;padding:24px 22px;border:1px solid var(--border-subtle);border-radius:13px;text-decoration:none;color:var(--text-primary);text-align:center;background:var(--bg-elevated);transition:transform .3s ease,border-color .3s ease;}
 .tl-next a:hover{transform:translateY(-3px);border-color:#cdbf9e;}
+.tl-next a:first-child{background:#5b5a36;border-color:#5b5a36;}
+.tl-next a:first-child .tl-next__t{color:#f6f2e6;}
+.tl-next a:first-child .tl-next__s{color:rgba(246,242,230,.72);}
+.tl-next a:first-child:hover{background:#4a4a2b;border-color:#4a4a2b;}
+.tl-next a:nth-child(2){border-color:#cdbf9e;}
 .tl-next__t{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:4px;}
 .tl-next__s{font-size:13px;color:var(--text-muted);}
 @media(max-width:600px){.tl-next{grid-template-columns:1fr;}}
@@ -224,20 +232,21 @@
 .tl-index a:hover{color:#5b4a2a;}
 .tl-index__n{font-family:'Cormorant Garamond',serif;font-size:16px;color:#b08344;}
 .tl-index__a{color:#b08344;}
-@media(max-width:680px){.tl-index{columns:1;}}
+@media(max-width:760px){.tl-index{columns:1;}}
 /* Light glossary */
 .tl-gloss{list-style:none;padding:0;margin:18px 0 0;}
 .tl-gloss li{border-top:1px solid var(--border-subtle);}
 .tl-gloss li:first-child{border-top:none;}
-.tl-gloss a{display:block;padding:16px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
+.tl-gloss a{display:block;padding:18px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
 .tl-gloss a:hover{color:#5b4a2a;}
-.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:3px;}
+.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:7px;}
 .tl-gloss span{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);}
 /* Editorial article cards */
 .tl-arts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;}
-.tl-art{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-art{position:relative;display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
 .tl-art:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
-.tl-art__cat{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;}
+.tl-art__cat{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;padding-top:14px;}
+.tl-art__cat::before{content:"";position:absolute;top:0;left:0;width:28px;height:2px;border-radius:2px;background:linear-gradient(90deg,#c79a55,#8a6a3a);}
 .tl-art__h{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;line-height:1.2;margin:0 0 9px;}
 .tl-art__d{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 16px;}
 .tl-art__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
@@ -339,24 +348,28 @@
     <h2 style="margin-top:6px;">Co wypróbować już teraz</h2>
     <div class="tl-toolkit">
       <a class="tl-tool" href="/diary-pl.html">
+        <span class="tl-tool__sign"></span>
         <div class="tl-tool__top"><span class="tl-tool__n">01</span><span class="tl-tool__type">CBT</span></div>
         <div class="tl-tool__name">Dziennik myśli</div>
         <div class="tl-tool__desc">Pomaga oddzielić „co było naprawdę” od „jak przekonano mnie, żebym to widział” po gaslightingu.</div>
         <span class="tl-tool__go">Otwórz →</span>
       </a>
       <a class="tl-tool" href="/abc-pl.html">
+        <span class="tl-tool__sign"></span>
         <div class="tl-tool__top"><span class="tl-tool__n">02</span><span class="tl-tool__type">CBT</span></div>
         <div class="tl-tool__name">Dziennik ABC</div>
         <div class="tl-tool__desc">Uczy łapać automatyczne poczucie winy i sprawdzać, na ile jest uzasadnione.</div>
         <span class="tl-tool__go">Otwórz →</span>
       </a>
       <a class="tl-tool" href="/grounding-5-4-3-2-1-pl.html">
+        <span class="tl-tool__sign"></span>
         <div class="tl-tool__top"><span class="tl-tool__n">03</span><span class="tl-tool__type">Uziemienie</span></div>
         <div class="tl-tool__name">Technika 5-4-3-2-1</div>
         <div class="tl-tool__desc">Przywraca do chwili obecnej przy flashbacku, reakcji na wyzwalacz lub ataku lęku.</div>
         <span class="tl-tool__go">Otwórz →</span>
       </a>
       <a class="tl-tool" href="/pmr-pl.html">
+        <span class="tl-tool__sign"></span>
         <div class="tl-tool__top"><span class="tl-tool__n">04</span><span class="tl-tool__type">Relaksacja</span></div>
         <div class="tl-tool__name">Relaksacja mięśniowa</div>
         <div class="tl-tool__desc">Zdejmuje napięcie ciała, które gromadzi się w chronicznie stresowych relacjach.</div>
@@ -427,8 +440,8 @@
   </div>
 </section>
 
-<section style="padding: 50px 0; background:#f6f1e8;">
-  <div class="container" style="max-width:720px;text-align:center;">
+<section style="padding: 38px 0; background:#f6f1e8;">
+  <div class="container" style="max-width:680px;text-align:center;">
     <div class="eyebrow">Jeśli szukasz terapii</div>
     <h2 style="margin-top:6px;">Praca nad relacjami online</h2>
     <p style="max-width:560px;margin:14px auto 24px;color:#5e5246;">Przyjmuję osoby dorosłe online po rosyjsku, polsku i białorusku. Podejście CBT, doświadczenie ze skutkami relacji z partnerami narcystycznymi i socjopatycznymi, z gaslightingiem, współuzależnieniem i odbudową po rozstaniu.</p>
