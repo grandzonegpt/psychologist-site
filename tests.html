@@ -224,10 +224,45 @@
     <div class="eyebrow">Самодиагностика</div>
     <h1>Проверь себя</h1>
     <p class="muted" style="max-width:620px;margin:0 auto;">Научно обоснованные опросники, которые используют психологи по всему миру. Без регистрации. Результат видишь только ты.</p>
+    <div class="hero-viz" aria-hidden="true">
+      <svg viewBox="0 0 600 132" role="presentation" focusable="false">
+        <defs>
+          <radialGradient id="hvdot" cx="38%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#f7e6bf"/>
+            <stop offset="100%" stop-color="#9a6f33"/>
+          </radialGradient>
+          <radialGradient id="hvglow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8a857" stop-opacity="0.5"/>
+            <stop offset="42%" stop-color="#d8a857" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#d8a857" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle class="hv-glow" cx="300" cy="66" r="50" fill="url(#hvglow)"/>
+        <g fill="none" stroke="#b08344">
+          <circle cx="300" cy="66" r="58" stroke-opacity="0.15"/>
+          <circle cx="300" cy="66" r="40" stroke-opacity="0.24"/>
+          <circle cx="300" cy="66" r="23" stroke-opacity="0.34"/>
+        </g>
+        <line x1="60" y1="66" x2="540" y2="66" stroke="#c0b193" stroke-width="1"/>
+        <g stroke="#c0b193" stroke-width="1">
+          <line x1="60" y1="57" x2="60" y2="75"/>
+          <line x1="108" y1="61" x2="108" y2="71"/>
+          <line x1="156" y1="61" x2="156" y2="71"/>
+          <line x1="204" y1="61" x2="204" y2="71"/>
+          <line x1="252" y1="61" x2="252" y2="71"/>
+          <line x1="348" y1="61" x2="348" y2="71"/>
+          <line x1="396" y1="61" x2="396" y2="71"/>
+          <line x1="444" y1="61" x2="444" y2="71"/>
+          <line x1="492" y1="61" x2="492" y2="71"/>
+          <line x1="540" y1="57" x2="540" y2="75"/>
+        </g>
+        <circle cx="300" cy="66" r="7.5" fill="url(#hvdot)"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<section style="padding:32px 0 0;">
+<section style="padding:8px 0 0;">
   <div class="container" style="max-width:720px;">
     <h2 style="font-family:var(--font-serif);font-size:26px;margin-bottom:14px;">Зачем эти тесты</h2>
     <p style="line-height:1.7;color:var(--text-primary);font-size:16px;">Психологическая самодиагностика помогает остановиться и посмотреть на своё состояние не «изнутри», а через структуру. Когда ты в тревоге, депрессии или после травмы, мозг сужает картину: всё кажется или нормой, или катастрофой. Опросник из 7-20 пунктов даёт второй угол обзора и привязывает ощущения к конкретным симптомам, которые понятно как обсуждать с психологом.</p>
@@ -244,117 +279,248 @@
     <p style="line-height:1.7;color:var(--text-primary);font-size:16px;margin-top:14px;">Главное: тест отражает только последние 2 недели (для GAD-7, PHQ-9) или последний месяц (PCL-5). Один высокий результат после тяжёлого периода: не то же самое, что устойчиво высокий балл несколько месяцев подряд.</p>
 
     <h2 style="font-family:var(--font-serif);font-size:26px;margin-top:30px;margin-bottom:14px;">Когда обратиться к специалисту</h2>
-    <p style="line-height:1.7;color:var(--text-primary);font-size:16px;">Если несколько тестов показывают высокие баллы одновременно, или если симптомы длятся дольше двух недель и мешают работе, отношениям или сну: это веский повод записаться на первичную консультацию. Самодиагностика отвечает на вопрос «что со мной происходит», но не отвечает на «что с этим делать». Второй вопрос разбирают в кабинете.</p>
+    <ul class="signs-list">
+      <li>Если симптомы держатся дольше двух недель.</li>
+      <li>Если они мешают сну, работе или отношениям.</li>
+      <li>Если несколько тестов показывают высокий результат.</li>
+    </ul>
+    <p class="signs-note">Тест помогает понять, что может происходить. Что с этим делать: лучше разбирать со специалистом.</p>
   </div>
 </section>
 
-<section style="padding:48px 0 80px;">
+<style>
+/* ====== Премиальные карточки тестов ====== */
+.tests-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;}
+.tcard{display:flex;flex-direction:column;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:16px;overflow:hidden;text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.04),0 14px 34px rgba(40,30,10,.05);transition:transform .45s cubic-bezier(.22,1,.36,1),box-shadow .45s cubic-bezier(.22,1,.36,1),border-color .3s ease;}
+.tcard:hover{transform:translateY(-5px);box-shadow:0 2px 4px rgba(40,30,10,.05),0 24px 52px rgba(40,30,10,.10);border-color:#cdbf9e;}
+.tcard:focus-visible{outline:2px solid #8a6a3a;outline-offset:3px;}
+.tcard__media{position:relative;aspect-ratio:16/10;overflow:hidden;background:#e7ddcc;}
+.tcard__media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.22,1,.36,1);}
+.tcard:hover .tcard__media img{transform:scale(1.04);}
+.tcard__body{display:flex;flex-direction:column;flex:1;padding:20px 22px 20px;}
+.tcard__eyebrow{font-family:'Lato',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#73602f;margin-bottom:7px;}
+.tcard__title{font-family:'Cormorant Garamond',serif;font-size:33px;font-weight:500;line-height:1.04;margin:0 0 9px;}
+.tcard__desc{font-size:14px;line-height:1.55;color:var(--text-muted);margin:0 0 16px;}
+/* мини-визуализация шкалы */
+.tscale{margin-top:auto;margin-bottom:16px;}
+.tscale__ends{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);font-family:'Lato',sans-serif;}
+.tscale__cap{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#9a8c72;font-family:'Lato',sans-serif;text-align:center;margin-top:9px;}
+/* линейная шкала */
+.tscale__track{position:relative;height:1px;background:var(--border-subtle);margin:10px 3px 0;}
+.tscale__track::before,.tscale__track::after{content:"";position:absolute;top:-3px;width:1px;height:7px;background:var(--border-subtle);}
+.tscale__track::before{left:0;}.tscale__track::after{right:0;}
+.tscale__track i{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:linear-gradient(145deg,#c79a55,#8a6a3a);transform:translate(-50%,-50%);box-shadow:0 0 0 3px rgba(180,131,68,.16);}
+/* горизонтальные полоски */
+.tscale--bars{display:flex;flex-direction:column;gap:9px;margin-top:auto;margin-bottom:16px;}
+.tbar{display:grid;grid-template-columns:96px 1fr;align-items:center;gap:10px;font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:#9a8c72;font-family:'Lato',sans-serif;}
+.tbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tbar i{display:block;height:5px;border-radius:3px;background:var(--border-subtle);position:relative;}
+.tbar i::before{content:"";position:absolute;left:0;top:0;height:100%;width:var(--w);border-radius:3px;background:linear-gradient(90deg,#b9914f,#8a6a3a);}
+/* квадранты */
+.tscale--quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:62px;height:50px;margin:2px auto 0;position:relative;}
+.tscale--quad::before,.tscale--quad::after{content:"";position:absolute;background:var(--border-subtle);}
+.tscale--quad::before{left:50%;top:0;bottom:0;width:1px;}
+.tscale--quad::after{top:50%;left:0;right:0;height:1px;}
+.tscale--quad .qd{width:9px;height:9px;border-radius:50%;background:#cdbf9e;align-self:center;justify-self:center;}
+.tscale--quad .qd--on{background:radial-gradient(circle at 40% 35%,#e9c987,#9a6f33);box-shadow:0 0 9px rgba(201,154,60,.5);}
+/* ряд узлов */
+.tscale--nodes{display:flex;align-items:center;justify-content:space-between;position:relative;padding:4px 6px 0;}
+.tscale--nodes::before{content:"";position:absolute;left:13px;right:13px;top:11px;height:1px;background:var(--border-subtle);}
+.tscale--nodes .nd{position:relative;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f0d9a6,#b08344);box-shadow:0 0 7px rgba(201,154,60,.4);}
+/* точки 0..9 */
+.tdots{display:flex;justify-content:space-between;gap:3px;margin:10px 3px 0;}
+.tdots i{width:8px;height:8px;border-radius:50%;background:var(--border-subtle);flex:0 0 auto;}
+.tdots i.on{background:linear-gradient(145deg,#c79a55,#8a6a3a);}
+/* подвал карточки */
+.tcard__foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:13px;font-size:12.5px;color:var(--text-muted);font-family:'Lato',sans-serif;}
+.tcard__go{color:var(--accent);font-weight:600;}
+.tcard:hover .tcard__go{text-decoration:underline;}
+@media (prefers-reduced-motion:reduce){.tcard,.tcard__media img{transition:none!important;}.tcard:hover{transform:none!important;}.tcard:hover .tcard__media img{transform:none!important;}}
+/* мобильная плотность карточек */
+@media (max-width:600px){
+  .tcard__media{aspect-ratio:32/15;}
+  .tcard__body{padding:16px 18px 18px;}
+  .tcard__title{font-size:30px;margin-bottom:7px;}
+  .tcard__desc{margin-bottom:0;}
+  .tscale,.tscale--bars{margin-top:14px;}
+  .tscale--bars{gap:7px;}
+}
+/* абстрактный визуал в hero */
+.hero-viz{max-width:560px;margin:34px auto 0;line-height:0;}
+.hero-viz svg{width:100%;height:auto;display:block;overflow:visible;}
+.hero-viz .hv-glow{transform-box:fill-box;transform-origin:center;animation:hvPulse 3.6s ease-in-out infinite;}
+@keyframes hvPulse{0%,100%{opacity:.6;transform:scale(.95);}50%{opacity:1;transform:scale(1.06);}}
+@media (max-width:600px){.hero-viz{max-width:400px;margin-top:26px;}}
+@media (prefers-reduced-motion:reduce){.hero-viz .hv-glow{animation:none;opacity:.85;}}
+/* спокойная клиническая заметка «Важно» */
+.tests-note{max-width:640px;margin:44px auto 0;padding:2px 0 2px 18px;border-left:2px solid #cdbf9e;}
+.tests-note__label{display:block;font-family:'Lato',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#73602f;margin-bottom:7px;}
+.tests-note p{margin:0;color:var(--text-muted);font-size:14px;line-height:1.65;}
+/* структурный список «Когда обратиться» */
+.signs-list{list-style:none;padding:0;margin:10px 0 0;}
+.signs-list li{position:relative;padding:14px 0 14px 24px;border-top:1px solid var(--border-subtle);line-height:1.55;color:var(--text-primary);font-size:16px;}
+.signs-list li:first-child{border-top:none;}
+.signs-list li::before{content:"";position:absolute;left:2px;top:22px;width:6px;height:6px;border-radius:50%;background:#b8923f;}
+.signs-note{margin-top:20px;padding-left:16px;border-left:2px solid var(--border-subtle);color:var(--text-muted);font-size:15px;line-height:1.7;}
+</style>
+<section style="padding:56px 0 16px;">
   <div class="container" style="max-width:1080px;">
-    <div class="tests-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+    <div class="tests-grid">
 
-      <a href="/tests/phq-9.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Депрессия</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">PHQ-9</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">9 вопросов о последних 2 неделях. Самый используемый в мире скрининг депрессии.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~3 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/phq-9.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/phq-9.webp"><img src="/assets/tests/phq-9.jpg" alt="Туманный рассвет над озером" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Депрессия</div>
+          <h3 class="tcard__title">PHQ-9</h3>
+          <p class="tcard__desc">О последних 2 неделях. Самый используемый в мире скрининг депрессии.</p>
+          <div class="tscale">
+            <div class="tscale__ends"><span>0</span><span>27</span></div>
+            <div class="tscale__track"><i style="left:30%"></i></div>
+            <div class="tscale__cap">Шкала · балл</div>
+          </div>
+          <div class="tcard__foot"><span>9 вопросов · ~3 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/gad-7.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Тревога</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">GAD-7</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">7 вопросов о последних 2 неделях. Стандарт скрининга тревожного расстройства.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~2 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/gad-7.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/gad-7.webp"><img src="/assets/tests/gad-7.jpg" alt="Концентрические круги-волны от центра" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Тревога</div>
+          <h3 class="tcard__title">GAD-7</h3>
+          <p class="tcard__desc">О последних 2 неделях. Стандарт скрининга тревожного расстройства.</p>
+          <div class="tscale">
+            <div class="tscale__ends"><span>0</span><span>21</span></div>
+            <div class="tscale__track"><i style="left:38%"></i></div>
+            <div class="tscale__cap">Шкала · балл</div>
+          </div>
+          <div class="tcard__foot"><span>7 вопросов · ~2 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/pcl-5.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">ПТСР</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">PCL-5</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">20 вопросов о симптомах за последний месяц. Стандарт скрининга ПТСР по DSM-5.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~5 минут</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/pcl-5.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/pcl-5.webp"><img src="/assets/tests/pcl-5.jpg" alt="Светило, распадающееся на осколки" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">ПТСР</div>
+          <h3 class="tcard__title">PCL-5</h3>
+          <p class="tcard__desc">О симптомах за последний месяц. Стандарт скрининга ПТСР по DSM-5.</p>
+          <div class="tscale">
+            <div class="tscale__ends"><span>0</span><span>80</span></div>
+            <div class="tscale__track"><i style="left:32%"></i></div>
+            <div class="tscale__cap">Шкала · балл</div>
+          </div>
+          <div class="tcard__foot"><span>20 вопросов · ~5 минут</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/borderline.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">ПРЛ</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">MSI-BPD</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">10 вопросов «да/нет» по критериям DSM-5. Скрининг пограничного расстройства личности.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~3 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/borderline.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/borderline.webp"><img src="/assets/tests/borderline.jpg" alt="Круг, расколотый на свет и тень" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">ПРЛ</div>
+          <h3 class="tcard__title">MSI-BPD</h3>
+          <p class="tcard__desc">«Да/нет» по критериям DSM-5. Скрининг пограничного расстройства личности.</p>
+          <div class="tscale">
+            <div class="tscale__ends"><span>0</span><span>10</span></div>
+            <div class="tscale__track"><i style="left:60%"></i></div>
+            <div class="tscale__cap">Шкала · «да»</div>
+          </div>
+          <div class="tcard__foot"><span>10 вопросов · ~3 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/perfectionism.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Перфекционизм</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">3 шкалы</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">12 вопросов по 3-мерной модели. Покажет, какой тип перфекционизма у вас и насколько он адаптивен.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~4 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/perfectionism.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/perfectionism.webp"><img src="/assets/tests/perfectionism.jpg" alt="Три ровных световых столба" width="1200" height="800" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Перфекционизм</div>
+          <h3 class="tcard__title">3 шкалы</h3>
+          <p class="tcard__desc">По 3-мерной модели. Покажет, какой тип перфекционизма у вас и насколько он адаптивен.</p>
+          <div class="tscale--bars">
+            <div class="tbar"><span>Я-ориент.</span><i style="--w:72%"></i></div>
+            <div class="tbar"><span>Соц.-предпис.</span><i style="--w:88%"></i></div>
+            <div class="tbar"><span>Адаптив.</span><i style="--w:58%"></i></div>
+          </div>
+          <div class="tcard__foot"><span>12 вопросов · ~4 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/attachment-styles.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Привязанность</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">4 типа</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">16 вопросов по двумерной модели. 4 типа: надёжный, тревожный, избегающий, дезорганизованный.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~5 минут</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/attachment-styles.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/attachment.webp"><img src="/assets/tests/attachment.jpg" alt="Четыре сферы, соединённые сетью" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Привязанность</div>
+          <h3 class="tcard__title">4 типа</h3>
+          <p class="tcard__desc">По двумерной модели. 4 типа: надёжный, тревожный, избегающий, дезорганизованный.</p>
+          <div class="tscale">
+            <div class="tscale--quad"><span class="qd"></span><span class="qd qd--on"></span><span class="qd"></span><span class="qd"></span></div>
+            <div class="tscale__cap">Тревога × избегание</div>
+          </div>
+          <div class="tcard__foot"><span>16 вопросов · ~5 минут</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/love-languages.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Языки любви</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">5 языков</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">20 вопросов по Гэри Чепмену. Покажет ваш главный язык любви: слова, время, подарки, помощь или прикосновения.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~5 минут</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/love-languages.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/love-languages.webp"><img src="/assets/tests/love-languages.jpg" alt="Пять светящихся символов" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Языки любви</div>
+          <h3 class="tcard__title">5 языков</h3>
+          <p class="tcard__desc">По Гэри Чепмену. Покажет ваш главный язык любви: слова, время, подарки, помощь или прикосновения.</p>
+          <div class="tscale">
+            <div class="tscale--nodes"><span class="nd"></span><span class="nd"></span><span class="nd"></span><span class="nd"></span><span class="nd"></span></div>
+            <div class="tscale__cap">Главный язык</div>
+          </div>
+          <div class="tcard__foot"><span>20 вопросов · ~5 минут</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/codependency.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Созависимость</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">4 шкалы</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">12 вопросов: самопожертвование, валидация, спасательство, границы. Профиль вашей конфигурации.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~4 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/codependency.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/codependency.webp"><img src="/assets/tests/codependency.jpg" alt="Четыре узла, соединённые волной" width="1200" height="800" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Созависимость</div>
+          <h3 class="tcard__title">4 шкалы</h3>
+          <p class="tcard__desc">Самопожертвование, валидация, спасательство, границы. Профиль вашей конфигурации.</p>
+          <div class="tscale--bars">
+            <div class="tbar"><span>Самопожертв.</span><i style="--w:80%"></i></div>
+            <div class="tbar"><span>Валидация</span><i style="--w:64%"></i></div>
+            <div class="tbar"><span>Спасательство</span><i style="--w:74%"></i></div>
+            <div class="tbar"><span>Границы</span><i style="--w:40%"></i></div>
+          </div>
+          <div class="tcard__foot"><span>12 вопросов · ~4 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/burnout.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Выгорание</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">3 шкалы</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">12 вопросов: эмоциональное истощение, цинизм, снижение эффективности. По модели ICD-11 ВОЗ.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~4 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/burnout.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/burnout.webp"><img src="/assets/tests/burnout.jpg" alt="Три убывающих столба" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Выгорание</div>
+          <h3 class="tcard__title">3 шкалы</h3>
+          <p class="tcard__desc">Эмоциональное истощение, цинизм, снижение эффективности. По модели ICD-11 ВОЗ.</p>
+          <div class="tscale--bars">
+            <div class="tbar"><span>Истощение</span><i style="--w:78%"></i></div>
+            <div class="tbar"><span>Цинизм</span><i style="--w:62%"></i></div>
+            <div class="tbar"><span>Эффективн.</span><i style="--w:46%"></i></div>
+          </div>
+          <div class="tcard__foot"><span>12 вопросов · ~4 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
-      <a href="/tests/narcissism.html" class="test-card" style="display:block;padding:32px 28px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:14px;text-decoration:none;color:var(--text-primary);transition:transform .2s,border-color .2s;">
-        <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:#73602f;margin-bottom:10px;font-family:'Lato',sans-serif;">Нарциссизм</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:8px;font-weight:500;">9 критериев</div>
-        <p style="color:var(--text-muted);font-size:15px;line-height:1.6;margin-bottom:18px;">10 вопросов «да/нет» о партнёре, родителе или близком. Скрининг по критериям DSM-5.</p>
-        <div style="color:var(--text-muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border-subtle);padding-top:14px;">
-          <span>~3 минуты</span>
-          <span style="color:var(--accent);">Пройти →</span>
+      <a href="/tests/narcissism.html" class="tcard">
+        <div class="tcard__media"><picture><source type="image/webp" srcset="/assets/tests/narcissism.webp"><img src="/assets/tests/narcissism.jpg" alt="Силуэт в сфере и зеркала" width="1200" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="tcard__body">
+          <div class="tcard__eyebrow">Нарциссизм</div>
+          <h3 class="tcard__title">9 критериев</h3>
+          <p class="tcard__desc">«Да/нет» о партнёре, родителе или близком. Скрининг по критериям DSM-5.</p>
+          <div class="tscale">
+            <div class="tdots"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i></div>
+            <div class="tscale__cap">Порог · 5 из 9</div>
+          </div>
+          <div class="tcard__foot"><span>10 вопросов · ~3 минуты</span><span class="tcard__go">Пройти →</span></div>
         </div>
       </a>
 
     </div>
 
-    <p style="margin:40px auto 0;max-width:640px;text-align:center;color:var(--text-muted);font-size:14px;line-height:1.7;">Результат теста: не диагноз. Это сигнал, который помогает понять, стоит ли обратиться к специалисту. Шкалы используются психологами и психиатрами по всему миру, но окончательную оценку даёт клиническое интервью.</p>
+    <div class="tests-note">
+      <span class="tests-note__label">Важно</span>
+      <p>Результат теста: не диагноз. Он помогает понять, стоит ли обратиться к специалисту. Окончательную оценку даёт клиническое интервью.</p>
+    </div>
   </div>
 </section>
 
