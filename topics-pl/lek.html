@@ -155,197 +155,276 @@
   </div>
 </nav>
 
-<section style="padding: 140px 0 30px;">
-  <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Temat</div>
-    <h1>Lęk i panika: cały temat w jednym miejscu</h1>
-    <p class="muted" style="max-width:640px;">Artykuły, test GAD-7, praktyki oddechowe i uziemienia, kluczowe terminy i zapis do psychologa.</p>
+<style>
+/* ============ Topic landing (specjalizacja) ============ */
+.tl-olive{}
+#main .container{}
+@media(max-width:600px){ #main .container{ padding-left:5vw; padding-right:5vw; } }
+/* Hero */
+.tl-hero{position:relative;overflow:hidden;padding:120px 0 34px;}
+.tl-hero__inner{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center;}
+.tl-hero__lead{color:var(--text-muted);font-size:17px;line-height:1.7;margin:16px 0 0;max-width:520px;}
+.tl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+.tl-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+.tl-btn--primary{background:#5b5a36;color:#f6f2e6;}
+.tl-btn--primary:hover{background:#4a4a2b;transform:translateY(-2px);}
+.tl-btn--ghost{background:transparent;color:var(--text-primary);border:1px solid #cdbf9e;}
+.tl-btn--ghost:hover{border-color:#8a6a3a;color:#5b4a2a;}
+.tl-hero__viz{justify-self:center;width:100%;max-width:300px;}
+.tl-hero__viz svg{width:100%;height:auto;display:block;}
+@media(max-width:760px){
+  .tl-hero{padding:30px 0 12px;}
+  .tl-hero__inner{grid-template-columns:1fr;gap:12px;padding:0 5vw;}
+  .tl-hero__viz{max-width:140px;order:-1;justify-self:start;}
+  .tl-hero__lead{font-size:16px;margin-top:12px;}
+}
+@media(max-width:600px){
+  .tl-cta{flex-direction:column;gap:10px;}
+  .tl-cta .tl-btn{width:100%;justify-content:center;}
+}
+/* Scannable signs */
+.tl-signs{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.tl-signs li{position:relative;padding:14px 0 14px 22px;border-top:1px solid var(--border-subtle);font-size:15.5px;line-height:1.5;color:var(--text-primary);}
+.tl-signs li::before{content:"";position:absolute;left:1px;top:21px;width:6px;height:6px;border-radius:50%;background:#b08344;}
+.tl-signs li strong{font-weight:600;}
+.tl-signs li span{display:block;color:var(--text-muted);font-size:13.5px;margin-top:2px;}
+@media(max-width:600px){.tl-signs{grid-template-columns:1fr;gap:0;}}
+/* Numbered steps */
+.tl-steps{margin:22px 0 0;}
+.tl-step{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--border-subtle);}
+.tl-step:first-child{border-top:none;}
+.tl-step__n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;color:#b08344;line-height:1.05;}
+.tl-step__b{font-size:16px;line-height:1.6;color:var(--text-primary);}
+/* Toolkit (praktyki) */
+.tl-toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:16px;margin-top:24px;}
+.tl-tool{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-tool:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-tool__top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.tl-tool__n{font-family:'Cormorant Garamond',serif;font-size:22px;color:#b08344;line-height:1;}
+.tl-tool__type{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;padding-left:13px;}
+.tl-tool__type::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:7px;height:1px;background:#cdbf9e;}
+.tl-tool__name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin:0 0 8px;line-height:1.15;}
+.tl-tool__name::before{content:"";display:block;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#c79a55,#8a6a3a);margin:0 0 13px;}
+.tl-tool__desc{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.tl-tool__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+/* Soft test */
+.tl-test{margin-top:18px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);padding:26px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.tl-test__t{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:460px;}
+.tl-test__t b{color:var(--text-primary);font-weight:600;}
+/* 3-way choice */
+.tl-next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+.tl-next a{display:block;padding:24px 22px;border:1px solid var(--border-subtle);border-radius:13px;text-decoration:none;color:var(--text-primary);text-align:center;background:var(--bg-elevated);transition:transform .3s ease,border-color .3s ease;}
+.tl-next a:hover{transform:translateY(-3px);border-color:#cdbf9e;}
+.tl-next__t{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:4px;}
+.tl-next__s{font-size:13px;color:var(--text-muted);}
+@media(max-width:600px){.tl-next{grid-template-columns:1fr;}}
+/* Numbered index */
+.tl-index{list-style:none;padding:0;margin:16px 0 0;columns:2;column-gap:44px;}
+.tl-index li{break-inside:avoid;}
+.tl-index a{display:grid;grid-template-columns:26px 1fr 16px;gap:12px;align-items:baseline;padding:13px 0;border-top:1px solid var(--border-subtle);text-decoration:none;color:var(--text-primary);font-size:15px;line-height:1.45;transition:color .2s ease;}
+.tl-index a:hover{color:#5b4a2a;}
+.tl-index__n{font-family:'Cormorant Garamond',serif;font-size:16px;color:#b08344;}
+.tl-index__a{color:#b08344;}
+@media(max-width:680px){.tl-index{columns:1;}}
+/* Light glossary */
+.tl-gloss{list-style:none;padding:0;margin:18px 0 0;}
+.tl-gloss li{border-top:1px solid var(--border-subtle);}
+.tl-gloss li:first-child{border-top:none;}
+.tl-gloss a{display:block;padding:16px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
+.tl-gloss a:hover{color:#5b4a2a;}
+.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:3px;}
+.tl-gloss span{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);}
+/* Editorial article cards */
+.tl-arts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;}
+.tl-art{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-art:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-art__cat{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;}
+.tl-art__h{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;line-height:1.2;margin:0 0 9px;}
+.tl-art__d{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 16px;}
+.tl-art__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+@media(max-width:600px){.tl-arts{grid-template-columns:1fr;}}
+</style>
+<section class="tl-hero">
+  <div class="tl-hero__inner">
+    <div class="tl-hero__text">
+      <div class="eyebrow">Specjalizacja</div>
+      <h1 style="margin:6px 0 0;">Lęk i panika</h1>
+      <p class="tl-hero__lead">Jeśli jesteś stale spięty, źle śpisz, boisz się z góry albo zdarzają ci się ataki paniki: na tej stronie zebrałem, czym to jest, co pomaga i od czego zacząć.</p>
+      <div class="tl-cta">
+        <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Zapisz się</a>
+        <a href="/tests-pl/gad-7.html" class="tl-btn tl-btn--ghost">Wypełnij GAD-7 →</a>
+      </div>
+    </div>
+    <div class="tl-hero__viz" aria-hidden="true">
+      <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+        <defs>
+          <radialGradient id="tlGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8a857" stop-opacity="0.42"/>
+            <stop offset="52%" stop-color="#d8a857" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#d8a857" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tlDot" cx="38%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#f7e6bf"/>
+            <stop offset="100%" stop-color="#9a6f33"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#b08344" stroke-opacity="0.10" stroke-width="1">
+          <line x1="40" y1="120" x2="200" y2="120"/>
+          <line x1="120" y1="40" x2="120" y2="200"/>
+          <line x1="64" y1="64" x2="176" y2="176"/>
+          <line x1="176" y1="64" x2="64" y2="176"/>
+        </g>
+        <g fill="none" stroke="#9c8a5e">
+          <circle cx="120" cy="120" r="98" stroke-opacity="0.12"/>
+          <circle cx="120" cy="120" r="72" stroke-opacity="0.18"/>
+          <circle cx="120" cy="120" r="46" stroke-opacity="0.27"/>
+        </g>
+        <circle cx="120" cy="120" r="40" fill="url(#tlGlow)"/>
+        <circle cx="120" cy="120" r="8" fill="url(#tlDot)"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<section style="padding: 0 0 30px;">
+<section style="padding: 26px 0 14px;">
   <div class="container" style="max-width:780px;">
-    <aside style="background:#f6f1e8;border-left:3px solid #73602f;padding:18px 22px;margin:0;border-radius:4px;font-size:15px;line-height:1.7;">
-      <p style="margin:0 0 10px;font-weight:600;font-family:var(--font-serif);font-size:17px;">W skrócie</p>
-      <p style="margin:0 0 10px;"><strong>Lęk</strong> w normie pomaga reagować na zagrożenie. Zaburzeniem staje się, gdy włącza się często, mocno, bez wyraźnego powodu i przeszkadza w życiu.</p>
-      <p style="margin:0 0 10px;"><strong>Główne formy:</strong> uogólnione zaburzenie lękowe (GAD), zaburzenie paniczne, fobia społeczna, natrętne myśli. Każda ma swoją specyfikę i sprawdzone metody pracy.</p>
-      <p style="margin:0;"><strong>Co działa wg badań:</strong> terapia poznawczo-behawioralna (CBT), ekspozycja, praktyki oddechowe, czasem leki przy umiarkowanych i ciężkich formach. Większość osób z zaburzeniem lękowym znacząco poprawia stan w 12-20 sesjach.</p>
-    </aside>
-  </div>
-</section>
-
-<section style="padding: 20px 0 40px;">
-  <div class="container" style="max-width:780px;">
-    <h2>Czym jest lęk i gdzie przestaje być normą</h2>
-    <p>Lęk to normalna reakcja układu nerwowego. Przed rozmową kwalifikacyjną, egzaminem, ważną rozmową mobilizuje i pomaga się zebrać. Problem powstaje, gdy układ nerwowy zaczyna reagować lękiem tam, gdzie realnego zagrożenia nie ma, robi to często, długo, mocno.</p>
-    <p>Granica kliniczna mniej więcej taka: lęk przeszkadza spać, pracować, rozmawiać i utrzymuje się miesiącami, bez ustępowania na dni-tygodnie. Ciało reaguje fizycznie: kołatanie serca, napięcie, problemy z trawieniem, bezsenność. Pojawia się unikanie: rezygnujesz z sytuacji, w których wcześniej czułeś się normalnie.</p>
-
-    <h2>Formy lęku: czym się różnią</h2>
-    <p><strong>Uogólnione zaburzenie lękowe (GAD).</strong> Chroniczny niepokój o najróżniejsze sprawy, który nie wyłącza się. Stałe poczucie, że „coś się stanie”. Towarzyszą napięcie, męczliwość, problemy ze snem.</p>
-    <p><strong>Zaburzenie paniczne.</strong> Nagłe ataki silnego strachu z objawami fizycznymi (kołatanie serca, duszność, zawroty głowy). Między atakami pojawia się strach przed powtórką, który zawęża życie.</p>
-    <p><strong>Fobia społeczna.</strong> Strach przed oceną, krytyką, niezręcznością w obecności innych. To nie nieśmiałość. Realne ograniczenie możliwości.</p>
-    <p><strong>Natrętne myśli.</strong> Powtarzające się przerażające lub nieprzyjemne myśli, które zaczepiają i nie odpuszczają. Część spektrum lękowego, czasem element OCD.</p>
-    <p><strong>Lęk po emigracji.</strong> Osobna historia: nowy język, nowe środowisko, utrata znanych oparć, dystans od bliskich. Często maskuje się jako stres adaptacyjny, czasem przechodzi w pełnoprawne zaburzenie lękowe.</p>
-
-    <h2>Co działa wg badań</h2>
-    <p>Nagromadziła się solidna baza badań o zaburzeniach lękowych. Co pokazują metaanalizy:</p>
-    <ul>
-      <li><strong>Terapia poznawczo-behawioralna (CBT)</strong> działa przy GAD, zaburzeniu panicznym, fobii społecznej, natrętnych myślach. Efekt porównywalny z lekami przy łagodnych i umiarkowanych formach, bez działań niepożądanych.</li>
-      <li><strong>Ekspozycja</strong> (stopniowe spotkanie z tym, czego unikasz) to kluczowe narzędzie przy fobii społecznej i panice.</li>
-      <li><strong>Praktyki oddechowe i uziemienie</strong> pomagają w danej chwili. Same w sobie nie leczą zaburzenia. To narzędzia pomocnicze, nie terapia.</li>
-      <li><strong>Leki</strong> (SSRI, czasem benzodiazepiny krótko) włącza się przy umiarkowanych i ciężkich formach. Przepisuje psychiatra.</li>
-      <li><strong>Czas:</strong> przy CBT znacząca poprawa zwykle w 12-20 sesjach. Przy cięższych formach dłużej.</li>
+    <h2>Jak to może wyglądać</h2>
+    <p class="muted" style="max-width:620px;">Lęk w normie pomaga reagować na zagrożenie. Zaburzeniem staje się wtedy, gdy włącza się często, mocno, bez wyraźnego powodu i przeszkadza w życiu. Tak to zwykle wygląda.</p>
+    <ul class="tl-signs">
+      <li><strong>Stałe napięcie</strong><span>Poczucie, że zaraz wydarzy się coś złego (GAD).</span></li>
+      <li><strong>Ataki paniki</strong><span>Nagły strach z kołataniem serca i duszeniem.</span></li>
+      <li><strong>Strach przed oceną</strong><span>Fobia społeczna, mocniejsza niż zwykła nieśmiałość.</span></li>
+      <li><strong>Natrętne myśli</strong><span>Przerażające myśli, które zaczepiają i nie odpuszczają.</span></li>
+      <li><strong>Problemy ze snem</strong><span>Lęk nie pozwala zasnąć albo budzi w nocy.</span></li>
+      <li><strong>Unikanie</strong><span>Rezygnacja z sytuacji, w których wcześniej było normalnie.</span></li>
+      <li><strong>Lęk po przeprowadzce</strong><span>Nowe środowisko, utrata oparć, dystans od bliskich.</span></li>
     </ul>
-    <p>Najważniejsze: zaburzenia lękowe należą do najlepiej zbadanych i najlepiej poddających się leczeniu. To nie „charakter”, który się nie zmienia.</p>
   </div>
 </section>
 
-<section style="padding: 30px 0; background:#f7f5f0;">
-  <div class="container">
-    <div class="eyebrow">Pójdź test</div>
-    <h2 style="margin-top:6px;">Skala GAD-7</h2>
-    <p class="muted" style="max-width:620px;">Kwestionariusz przesiewowy zaburzeń lękowych. 7 pytań, 2 minuty, wynik od razu. Używany w praktyce klinicznej na całym świecie.</p>
-    <p style="margin-top:16px;"><a href="/tests-pl/gad-7.html" class="btn-ghost btn">Wypełnij GAD-7 →</a></p>
+<section style="padding: 22px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Jak nad tym pracuję</h2>
+    <p class="muted" style="max-width:620px;">Pracuję w podejściu CBT. Idziemy krok po kroku, bez pośpiechu.</p>
+    <div class="tl-steps">
+      <div class="tl-step"><div class="tl-step__n">01</div><div class="tl-step__b">Rozkładamy na czynniki, co dokładnie uruchamia lęk: sytuacje, myśli, sygnały z ciała.</div></div>
+      <div class="tl-step"><div class="tl-step__n">02</div><div class="tl-step__b">Pracujemy z myślami i reakcjami ciała, które nakręcają lęk i go podtrzymują.</div></div>
+      <div class="tl-step"><div class="tl-step__n">03</div><div class="tl-step__b">Przez ekspozycję stopniowo odzyskujemy działania i sytuacje, które lęk zawęził.</div></div>
+      <div class="tl-step"><div class="tl-step__n">04</div><div class="tl-step__b">Utrwalamy umiejętności między sesjami, żeby efekt trzymał się też beze mnie.</div></div>
+    </div>
+    <p class="muted" style="max-width:620px;margin-top:24px;font-size:14.5px;">Zaburzenia lękowe dobrze poddają się pracy: przy CBT zauważalna poprawa zwykle przychodzi w 12-20 spotkań. To nie „charakter”, którego nie da się zmienić.</p>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Artykuły</div>
-    <h2 style="margin-top:6px;">Czytaj po temacie</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Niepokój i lęk: na czym polega różnica i kiedy szukać pomocy</h3>
-        <p>Lęk jest normalny. Zaburzenie lękowe już nie. Omawiam, gdzie przebiega granica i kiedy warto się zgłosić.</p>
-        <a href="/blog-pl/anxiety-disorder.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Ataki paniki: co dzieje się w ciele i jak sobie poradzić tu i teraz</h3>
-        <p>Co włącza się w ciele podczas ataku, jak nie wzmacniać strachu i jakie techniki realnie pomagają.</p>
-        <a href="/blog-pl/panic-attacks.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Ataki paniki w nocy: dlaczego przychodzą we śnie i co robić</h3>
-        <p>Nocne ataki przerażają mocniej niż dzienne. Omawiam mechanizm i plan działania.</p>
-        <a href="/blog-pl/night-panic.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Fobia społeczna: kiedy strach przed ludźmi przeszkadza w życiu</h3>
-        <p>Fobia społeczna to nie nieśmiałość. To lęk przed oceną, który zawęża życie.</p>
-        <a href="/blog-pl/social-anxiety.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Natrętne myśli: dlaczego przychodzą i jak przestać się ich bać</h3>
-        <p>Przerażające myśli nie czynią cię złym. Omawiam mechanizm i pułapki reakcji.</p>
-        <a href="/blog-pl/intrusive-thoughts.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Zaburzenia snu i psychika: jak przerwać błędne koło</h3>
-        <p>Bezsenność i lęk podtrzymują się nawzajem. Co pomaga wg CBT-I.</p>
-        <a href="/blog-pl/sleep.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Emigracja</div>
-        <h3>Lęk po przeprowadzce do innego kraju</h3>
-        <p>Stres adaptacyjny czy już zaburzenie? Omawiam wg konkretnych objawów.</p>
-        <a href="/blog-pl/emigration-anxiety.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>OCD: objawy, rodzaje i jak się leczy</h3>
-        <p>Krąg obsesji i kompulsji i jak pomaga CBT z ekspozycją.</p>
-        <a href="/blog-pl/ocd.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Nietolerancja niepewności</h3>
-        <p>Dlaczego mózg nie znosi niewiadomej i jak to nakręca lęk o przyszłość.</p>
-        <a href="/blog-pl/uncertainty.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Fobie: rodzaje i jak się je leczy</h3>
-        <p>Czym fobia różni się od zwykłego strachu i jak pomaga CBT z ekspozycją.</p>
-        <a href="/blog-pl/phobias.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Stany</div>
-        <h3>Załamanie nerwowe: objawy i co robić</h3>
-        <p>Sygnał przeciążenia, a nie diagnoza. Co robić w danej chwili i jak się zregenerować.</p>
-        <a href="/blog-pl/nervous-breakdown.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Lęk antycypacyjny: gdy boisz się z góry</h3>
-        <p>Lęk wyprzedzający: dlaczego mózg boi się z góry i jak przerwać koło oczekiwania.</p>
-        <a href="/blog-pl/lek-antycypacyjny.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Lęk przed pracą: gdy strach iść do pracy</h3>
-        <p>Niedzielny strach i napięcie przed zmianą. Skąd się bierze i czym różni się od wypalenia.</p>
-        <a href="/blog-pl/lek-przed-praca.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Lęk</div>
-        <h3>Lęk separacyjny u dorosłych: strach przed utratą bliskiej osoby</h3>
-        <p>Gdy ciężko przy rozłące z partnerem. Po co tu przywiązanie i co pomaga.</p>
-        <a href="/blog-pl/lek-separacyjny.html" class="card-link">Czytaj →</a>
-      </article>
+<section style="padding: 10px 0 10px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Co możesz zrobić sam</h2>
+    <p>Przed pierwszą sesją i między spotkaniami pomaga coś prostego: oddać ciału oparcie i zbić szczyt lęku. Krótkie praktyki poniżej można robić wprost w chwili ataku, a test GAD-7 daje punkt odniesienia, na ile lęk jest teraz nasilony. Terapii to nie zastąpi. Ale daje poczuć, że na swój stan naprawdę można wpływać.</p>
+  </div>
+</section>
+
+<section style="padding: 24px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <div class="eyebrow">Test po temacie</div>
+    <h2 style="margin-top:6px;">Możesz zacząć od krótkiej samokontroli</h2>
+    <div class="tl-test">
+      <div class="tl-test__t"><b>GAD-7</b>: 7 pytań o ostatnie dwa tygodnie, kilka minut, wynik od razu. Test nie stawia diagnozy. Pokaże, na ile lęk jest teraz nasilony, i pomoże zdecydować, od czego zacząć.</div>
+      <a href="/tests-pl/gad-7.html" class="tl-btn tl-btn--ghost">Wypełnij GAD-7 →</a>
     </div>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Praktyki</div>
+<section style="padding: 30px 0 16px;">
+  <div class="container" style="max-width:900px;">
+    <div class="eyebrow">Praktyki po temacie</div>
     <h2 style="margin-top:6px;">Co spróbować teraz</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Oddech</div>
-        <h3>Oddech 4-7-8</h3>
-        <p>Spowalnia układ nerwowy w minutę. Pomaga przy ostrym ataku lęku.</p>
-        <a href="/breathing-4-7-8-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Oddech</div>
-        <h3>Oddech pudełkowy</h3>
-        <p>Prosta technika używana przez wojsko i sportowców. Dobra w stresowej sytuacji.</p>
-        <a href="/box-breathing-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Uziemienie</div>
-        <h3>Technika 5-4-3-2-1</h3>
-        <p>Przywraca w chwilę obecną przez zmysły. Działa przy ataku paniki lub dysocjacji.</p>
-        <a href="/grounding-5-4-3-2-1-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Relaksacja</div>
-        <h3>Progresywna relaksacja mięśniowa</h3>
-        <p>Uczy zauważać i puszczać napięcie cielesne. Przydatna przy chronicznym lęku.</p>
-        <a href="/pmr-pl.html" class="card-link">Otwórz →</a>
-      </article>
+    <div class="tl-toolkit">
+      <a class="tl-tool" href="/breathing-4-7-8-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">01</span><span class="tl-tool__type">Oddech</span></div>
+        <div class="tl-tool__name">Oddech 4-7-8</div>
+        <div class="tl-tool__desc">Spowalnia układ nerwowy w minutę. Pomaga przy ostrym ataku.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/box-breathing-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">02</span><span class="tl-tool__type">Oddech</span></div>
+        <div class="tl-tool__name">Oddech pudełkowy</div>
+        <div class="tl-tool__desc">Równy rytm na cztery liczenia. Dobry w ostrej sytuacji stresowej.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/grounding-5-4-3-2-1-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">03</span><span class="tl-tool__type">Uziemienie</span></div>
+        <div class="tl-tool__name">Technika 5-4-3-2-1</div>
+        <div class="tl-tool__desc">Przywraca do chwili obecnej przez zmysły. Przy panice lub dysocjacji.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/pmr-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">04</span><span class="tl-tool__type">Relaksacja</span></div>
+        <div class="tl-tool__name">Relaksacja mięśniowa</div>
+        <div class="tl-tool__desc">Uczy zauważać i puszczać napięcie w ciele. Przy chronicznym lęku.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
     </div>
+  </div>
+</section>
+
+<section style="padding: 50px 0 20px;">
+  <div class="container">
+    <div class="eyebrow">Artykuły po temacie</div>
+    <h2 style="margin-top:6px;">Jeśli chcesz zrozumieć głębiej</h2>
+    <div class="tl-arts">
+      <a class="tl-art" href="/blog-pl/anxiety-disorder.html">
+        <div class="tl-art__cat">Lęk</div>
+        <div class="tl-art__h">Niepokój i lęk: na czym polega różnica</div>
+        <div class="tl-art__d">Lęk jest normalny, zaburzenie lękowe już nie. Gdzie przebiega granica i kiedy warto się zgłosić.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/panic-attacks.html">
+        <div class="tl-art__cat">Panika</div>
+        <div class="tl-art__h">Ataki paniki: co dzieje się w ciele</div>
+        <div class="tl-art__d">Co włącza się w ciele podczas ataku i jakie techniki realnie pomagają tu i teraz.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/night-panic.html">
+        <div class="tl-art__cat">Panika</div>
+        <div class="tl-art__h">Ataki paniki w nocy</div>
+        <div class="tl-art__d">Nocne ataki przerażają mocniej niż dzienne. Omawiam mechanizm i plan działania.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+    </div>
+    <p style="margin-top:26px;"><a href="/blog-pl.html" class="tl-btn tl-btn--ghost">Wszystkie artykuły →</a></p>
   </div>
 </section>
 
 <section style="padding: 50px 0 30px;">
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Słownik</div>
-    <h2 style="margin-top:6px;">Kluczowe terminy</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/glossary-pl/trigger.html"><strong>Wyzwalacz (trigger)</strong></a>: coś, co nagle przenosi z powrotem do nieprzyjemnego przeżycia.</li>
-      <li><a href="/glossary-pl.html#panic-attack"><strong>Atak paniki</strong></a>: nagły atak silnego strachu z objawami fizycznymi.</li>
-      <li><a href="/glossary-pl.html#grounding"><strong>Uziemienie</strong></a>: sposób na powrót do chwili obecnej przez zmysły.</li>
-      <li><a href="/glossary-pl/hyperarousal.html"><strong>Hiperaktywacja</strong></a>: układ nerwowy w stałej gotowości na zagrożenie.</li>
-      <li><a href="/glossary-pl.html#cognitive-distortion"><strong>Zniekształcenie poznawcze</strong></a>: nawyk myślenia, który wykrzywia rzeczywistość i karmi lęk.</li>
+    <h2 style="margin-top:6px;">Terminy w temacie</h2>
+    <ul class="tl-gloss">
+      <li><a href="/glossary-pl/trigger.html"><b>Wyzwalacz</b><span>Coś, co nagle przenosi z powrotem do nieprzyjemnego przeżycia.</span></a></li>
+      <li><a href="/glossary-pl.html#panic-attack"><b>Atak paniki</b><span>Nagły napad silnego strachu z objawami fizycznymi.</span></a></li>
+      <li><a href="/glossary-pl.html#grounding"><b>Uziemienie</b><span>Sposób na powrót do chwili obecnej przez zmysły.</span></a></li>
+      <li><a href="/glossary-pl/hyperarousal.html"><b>Hiperaktywacja</b><span>Układ nerwowy w stałej gotowości na zagrożenie.</span></a></li>
+      <li><a href="/glossary-pl.html#cognitive-distortion"><b>Zniekształcenie poznawcze</b><span>Nawyk myślenia, który wykrzywia rzeczywistość i karmi lęk.</span></a></li>
     </ul>
+  </div>
+</section>
+
+<style>
+.signs-list{list-style:none;padding:0;margin:18px 0 0;}
+.signs-list li{position:relative;padding:13px 0 13px 24px;border-top:1px solid var(--border-subtle);line-height:1.55;color:var(--text-primary);font-size:16px;}
+.signs-list li:first-child{border-top:none;}
+.signs-list li::before{content:"";position:absolute;left:2px;top:21px;width:6px;height:6px;border-radius:50%;background:#b8923f;}
+.signs-note{margin-top:20px;padding-left:16px;border-left:2px solid var(--border-subtle);color:var(--text-muted);font-size:15px;line-height:1.7;}
+</style>
+<section style="padding: 10px 0 40px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Kiedy lepiej zgłosić się do specjalisty</h2>
+    <ul class="signs-list">
+      <li>Lęk utrzymuje się dłużej niż dwa tygodnie i nie odpuszcza na dni.</li>
+      <li>Przeszkadza spać, pracować albo rozmawiać, pojawia się unikanie.</li>
+      <li>Zdarzają się ataki paniki albo ciało jest stale „na wysokich obrotach”.</li>
+    </ul>
+    <p class="signs-note">Im dłużej żyjesz w stałym lęku, tym bardziej unikanie wchodzi w nawyk i tym węższy robi się krąg. Rozłożyć to na czynniki razem wychodzi zwykle szybciej niż w pojedynkę.</p>
   </div>
 </section>
 
@@ -356,10 +435,31 @@
     <p style="max-width:560px;margin:14px auto 24px;color:#5e5246;">Pracuję z osobami dorosłymi online w języku polskim, rosyjskim i białoruskim. Podejście CBT, doświadczenie z zaburzeniami lękowymi, zaburzeniem panicznym i fobią społeczną.</p>
     <p style="margin:0 0 8px;"><strong>Pierwsze spotkanie: 15&nbsp;minut, bez opłaty i bez zobowiązań.</strong></p>
     <p style="margin:0 0 24px;color:#5e5246;font-size:14px;">Dalej: 180&nbsp;PLN za sesję, płatność Blik lub kartą.</p>
-    <p style="margin:0;">
-      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Umów 15&nbsp;minut</a>
-      <a href="/anxiety-pl.html" class="btn-ghost btn">Więcej o pracy z lękiem →</a>
+    <p style="margin:0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Umów 15&nbsp;minut</a>
+      <a href="/anxiety-pl.html" class="tl-btn tl-btn--ghost">Więcej →</a>
     </p>
+  </div>
+</section>
+
+<section style="padding: 30px 0 10px;">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Od czego zacząć</div>
+    <h2 style="margin-top:6px;">Zrób pierwszy krok we własnym tempie</h2>
+    <div class="tl-next">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer">
+        <div class="tl-next__t">Zapisz się</div>
+        <div class="tl-next__s">15 minut, bez opłaty</div>
+      </a>
+      <a href="/tests-pl/gad-7.html">
+        <div class="tl-next__t">Wypełnij GAD-7</div>
+        <div class="tl-next__s">Krótka samokontrola</div>
+      </a>
+      <a href="/blog-pl.html">
+        <div class="tl-next__t">Czytaj artykuły</div>
+        <div class="tl-next__s">Rozłożyć to na spokojnie</div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -367,18 +467,30 @@
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Inne tematy</div>
     <h2 style="margin-top:6px;">Gdzie dalej</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/ptsd-pl.html">Trauma i PTSD →</a></li>
-      <li><a href="/depression-pl.html">Depresja →</a></li>
-      <li><a href="/burnout-page-pl.html">Wypalenie →</a></li>
-      <li><a href="/gaslighting-pl.html">Po gaslightingu →</a></li>
-      <li><a href="/emigration-pl.html">Emigracja i adaptacja →</a></li>
+    <ul class="tl-index">
+      <li><a href="/topics-pl/trauma.html"><span class="tl-index__n">01</span><span>Trauma i PTSD</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/depresja.html"><span class="tl-index__n">02</span><span>Depresja i sen</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/wypalenie.html"><span class="tl-index__n">03</span><span>Wypalenie</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/relacje.html"><span class="tl-index__n">04</span><span>Relacje i współuzależnienie</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/emigracja.html"><span class="tl-index__n">05</span><span>Emigracja i adaptacja</span><span class="tl-index__a">→</span></a></li>
     </ul>
   </div>
 </section>
 
 
-<section data-seo="hub-posts" style="padding:36px 0;border-top:1px solid var(--border-subtle);"><div class="container"><div class="eyebrow">Więcej w temacie</div><ul style="columns:2;column-gap:32px;margin-top:14px;padding:0;list-style:none;line-height:2;"><li><a href="/blog-pl/night-waking-fear.html">Budzę się w nocy ze strachu i kołatania serca: co to jest i czy jest groźne</a></li><li><a href="/blog-pl/derealization.html">Derealizacja: kiedy świat wydaje się nierealny</a></li><li><a href="/blog-pl/night-anxiety.html">Dlaczego w nocy robi się strasznie: lęk przed snem i co z nim zrobić</a></li><li><a href="/blog-pl/introversion-vs-social-anxiety.html">Introwersja czy lęk społeczny: na czym polega różnica</a></li><li><a href="/blog-pl/health-anxiety.html">Lęk o zdrowie: dlaczego googlowanie objawów pogarsza sprawę</a></li><li><a href="/blog-pl/panic-falling-asleep.html">Panika przy zasypianiu: dlaczego zalewa, gdy dopiero zaczynasz zasypiać</a></li></ul></div></section>
+<section data-seo="hub-posts" style="padding:40px 0 64px;border-top:1px solid var(--border-subtle);">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Więcej w temacie</div>
+    <ul class="tl-index">
+      <li><a href="/blog-pl/derealization.html"><span class="tl-index__n">01</span><span>Derealizacja: kiedy świat wydaje się nierealny</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/introversion-vs-social-anxiety.html"><span class="tl-index__n">02</span><span>Introwersja czy lęk społeczny: na czym polega różnica</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/panic-falling-asleep.html"><span class="tl-index__n">03</span><span>Panika przy zasypianiu: dlaczego zalewa, gdy dopiero zaczynasz zasypiać</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/night-anxiety.html"><span class="tl-index__n">04</span><span>Dlaczego w nocy robi się strasznie: lęk przed snem</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/night-waking-fear.html"><span class="tl-index__n">05</span><span>Budzę się w nocy ze strachu i kołatania serca: co to jest</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/health-anxiety.html"><span class="tl-index__n">06</span><span>Lęk o zdrowie: dlaczego googlowanie objawów pogarsza sprawę</span><span class="tl-index__a">→</span></a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer">

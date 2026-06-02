@@ -155,171 +155,276 @@
   </div>
 </nav>
 
-<section style="padding: 140px 0 30px;">
+<style>
+/* ============ Topic landing (specjalizacja) ============ */
+.tl-olive{}
+#main .container{}
+@media(max-width:600px){ #main .container{ padding-left:5vw; padding-right:5vw; } }
+/* Hero */
+.tl-hero{position:relative;overflow:hidden;padding:120px 0 34px;}
+.tl-hero__inner{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center;}
+.tl-hero__lead{color:var(--text-muted);font-size:17px;line-height:1.7;margin:16px 0 0;max-width:520px;}
+.tl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+.tl-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+.tl-btn--primary{background:#5b5a36;color:#f6f2e6;}
+.tl-btn--primary:hover{background:#4a4a2b;transform:translateY(-2px);}
+.tl-btn--ghost{background:transparent;color:var(--text-primary);border:1px solid #cdbf9e;}
+.tl-btn--ghost:hover{border-color:#8a6a3a;color:#5b4a2a;}
+.tl-hero__viz{justify-self:center;width:100%;max-width:300px;}
+.tl-hero__viz svg{width:100%;height:auto;display:block;}
+@media(max-width:760px){
+  .tl-hero{padding:30px 0 12px;}
+  .tl-hero__inner{grid-template-columns:1fr;gap:12px;padding:0 5vw;}
+  .tl-hero__viz{max-width:140px;order:-1;justify-self:start;}
+  .tl-hero__lead{font-size:16px;margin-top:12px;}
+}
+@media(max-width:600px){
+  .tl-cta{flex-direction:column;gap:10px;}
+  .tl-cta .tl-btn{width:100%;justify-content:center;}
+}
+/* Scannable signs */
+.tl-signs{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.tl-signs li{position:relative;padding:14px 0 14px 22px;border-top:1px solid var(--border-subtle);font-size:15.5px;line-height:1.5;color:var(--text-primary);}
+.tl-signs li::before{content:"";position:absolute;left:1px;top:21px;width:6px;height:6px;border-radius:50%;background:#b08344;}
+.tl-signs li strong{font-weight:600;}
+.tl-signs li span{display:block;color:var(--text-muted);font-size:13.5px;margin-top:2px;}
+@media(max-width:600px){.tl-signs{grid-template-columns:1fr;gap:0;}}
+/* Numbered steps */
+.tl-steps{margin:22px 0 0;}
+.tl-step{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--border-subtle);}
+.tl-step:first-child{border-top:none;}
+.tl-step__n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;color:#b08344;line-height:1.05;}
+.tl-step__b{font-size:16px;line-height:1.6;color:var(--text-primary);}
+/* Toolkit (praktyki) */
+.tl-toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:16px;margin-top:24px;}
+.tl-tool{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-tool:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-tool__top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.tl-tool__n{font-family:'Cormorant Garamond',serif;font-size:22px;color:#b08344;line-height:1;}
+.tl-tool__type{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;padding-left:13px;}
+.tl-tool__type::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:7px;height:1px;background:#cdbf9e;}
+.tl-tool__name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin:0 0 8px;line-height:1.15;}
+.tl-tool__name::before{content:"";display:block;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#c79a55,#8a6a3a);margin:0 0 13px;}
+.tl-tool__desc{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.tl-tool__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+/* Soft test */
+.tl-test{margin-top:18px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);padding:26px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.tl-test__t{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:460px;}
+.tl-test__t b{color:var(--text-primary);font-weight:600;}
+/* 3-way choice */
+.tl-next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+.tl-next a{display:block;padding:24px 22px;border:1px solid var(--border-subtle);border-radius:13px;text-decoration:none;color:var(--text-primary);text-align:center;background:var(--bg-elevated);transition:transform .3s ease,border-color .3s ease;}
+.tl-next a:hover{transform:translateY(-3px);border-color:#cdbf9e;}
+.tl-next__t{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:4px;}
+.tl-next__s{font-size:13px;color:var(--text-muted);}
+@media(max-width:600px){.tl-next{grid-template-columns:1fr;}}
+/* Numbered index */
+.tl-index{list-style:none;padding:0;margin:16px 0 0;columns:2;column-gap:44px;}
+.tl-index li{break-inside:avoid;}
+.tl-index a{display:grid;grid-template-columns:26px 1fr 16px;gap:12px;align-items:baseline;padding:13px 0;border-top:1px solid var(--border-subtle);text-decoration:none;color:var(--text-primary);font-size:15px;line-height:1.45;transition:color .2s ease;}
+.tl-index a:hover{color:#5b4a2a;}
+.tl-index__n{font-family:'Cormorant Garamond',serif;font-size:16px;color:#b08344;}
+.tl-index__a{color:#b08344;}
+@media(max-width:680px){.tl-index{columns:1;}}
+/* Light glossary */
+.tl-gloss{list-style:none;padding:0;margin:18px 0 0;}
+.tl-gloss li{border-top:1px solid var(--border-subtle);}
+.tl-gloss li:first-child{border-top:none;}
+.tl-gloss a{display:block;padding:16px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
+.tl-gloss a:hover{color:#5b4a2a;}
+.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:3px;}
+.tl-gloss span{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);}
+/* Editorial article cards */
+.tl-arts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;}
+.tl-art{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-art:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-art__cat{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;}
+.tl-art__h{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;line-height:1.2;margin:0 0 9px;}
+.tl-art__d{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 16px;}
+.tl-art__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+@media(max-width:600px){.tl-arts{grid-template-columns:1fr;}}
+</style>
+<section class="tl-hero">
+  <div class="tl-hero__inner">
+    <div class="tl-hero__text">
+      <div class="eyebrow">Specjalizacja</div>
+      <h1 style="margin:6px 0 0;">Wypalenie</h1>
+      <p class="tl-hero__lead">Jeśli praca, która kiedyś dawała oparcie, teraz tylko wyczerpuje, odpoczynek nie regeneruje, a w środku zbiera się cynizm i pustka: na tej stronie znajdziesz, jak to działa, co pomaga i od czego zacząć.</p>
+      <div class="tl-cta">
+        <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Zapisz się</a>
+        <a href="/tests-pl/wypalenie.html" class="tl-btn tl-btn--ghost">Wypełnij test wypalenia →</a>
+      </div>
+    </div>
+    <div class="tl-hero__viz" aria-hidden="true">
+      <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+        <defs>
+          <radialGradient id="tlGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8a857" stop-opacity="0.42"/>
+            <stop offset="52%" stop-color="#d8a857" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#d8a857" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tlDot" cx="38%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#f7e6bf"/>
+            <stop offset="100%" stop-color="#9a6f33"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#b08344" stroke-opacity="0.10" stroke-width="1">
+          <line x1="40" y1="120" x2="200" y2="120"/>
+          <line x1="120" y1="40" x2="120" y2="200"/>
+          <line x1="64" y1="64" x2="176" y2="176"/>
+          <line x1="176" y1="64" x2="64" y2="176"/>
+        </g>
+        <g fill="none" stroke="#9c8a5e">
+          <circle cx="120" cy="120" r="98" stroke-opacity="0.12"/>
+          <circle cx="120" cy="120" r="72" stroke-opacity="0.18"/>
+          <circle cx="120" cy="120" r="46" stroke-opacity="0.27"/>
+        </g>
+        <circle cx="120" cy="120" r="40" fill="url(#tlGlow)"/>
+        <circle cx="120" cy="120" r="8" fill="url(#tlDot)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 26px 0 14px;">
   <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Temat</div>
-    <h1>Wypalenie: cały temat w jednym miejscu</h1>
-    <p class="muted" style="max-width:640px;">Objawy wypalenia wg definicji WHO, różnice od zmęczenia i depresji, artykuły o IT-wypaleniu i wtórnej traumatyzacji, praktyki i zapis do psychologa.</p>
+    <h2>Jak to może się objawiać</h2>
+    <p class="muted" style="max-width:620px;">Zmęczenie mija po weekendzie. Wypalenie zbiera się miesiącami: odpoczynek przestaje regenerować, praca irytuje albo staje się obojętna. Tak to zwykle wygląda.</p>
+    <ul class="tl-signs">
+      <li><strong>Wyczerpanie</strong><span>Poczucie, że zasoby zostały wypompowane i nie ma czego oddać.</span></li>
+      <li><strong>Cynizm i odsunięcie</strong><span>Formalny stosunek do ludzi, obronna szorstkość.</span></li>
+      <li><strong>Niedzielny lęk</strong><span>Napięcie przed poniedziałkiem i niechęć do pójścia do pracy.</span></li>
+      <li><strong>Utrata sensu</strong><span>Praca wydaje się bezsensowna, nawet gdy obiektywnie jest ważna.</span></li>
+      <li><strong>Ciało daje sygnały</strong><span>Bóle głowy, problemy żołądkowo-jelitowe, częste przeziębienia.</span></li>
+      <li><strong>Nie da się wyłączyć</strong><span>Myśli o pracy krążą wieczorem i w weekend.</span></li>
+      <li><strong>Emocjonalna głuchota</strong><span>Bliscy jakby za szybą, reakcje się stępiły.</span></li>
+    </ul>
   </div>
 </section>
 
-<section style="padding: 0 0 30px;">
+<section style="padding: 22px 0 14px;">
   <div class="container" style="max-width:780px;">
-    <aside style="background:#f6f1e8;border-left:3px solid #73602f;padding:18px 22px;margin:0;border-radius:4px;font-size:15px;line-height:1.7;">
-      <p style="margin:0 0 10px;font-weight:600;font-family:var(--font-serif);font-size:17px;">W skrócie</p>
-      <p style="margin:0 0 10px;"><strong>Wypalenie</strong> wg definicji WHO to syndrom powstały w wyniku przewlekłego stresu w pracy, z którym osoba sobie nie poradziła. Trzy wymiary: wyczerpanie, cynizm/odsunięcie od pracy, spadek skuteczności zawodowej.</p>
-      <p style="margin:0 0 10px;"><strong>To nie diagnoza</strong> w ścisłym sensie klinicznym, w ICD-11 włączone jako „czynnik wpływający na zdrowie”, bez statusu choroby. Wpływ jednak realny: zwiększa ryzyko depresji, zaburzeń lękowych, chorób sercowo-naczyniowych.</p>
-      <p style="margin:0;"><strong>Co działa wg badań:</strong> zmiany strukturalne (obciążenie, granice, regeneracja), CBT, aktywacja behawioralna, czasem zmiana pracy lub formatu. Urlop pomaga tylko częściowo, jeśli przyczyny korzeniowe się nie zmieniają.</p>
-    </aside>
+    <h2>Jak z tym pracuję</h2>
+    <p class="muted" style="max-width:620px;">Pracuję w podejściu CBT. Idziemy krok po kroku, bez pośpiechu.</p>
+    <div class="tl-steps">
+      <div class="tl-step"><div class="tl-step__n">01</div><div class="tl-step__b">Sprawdzamy, gdzie dokładnie uciekają siły: obciążenie, granice, obowiązki, rytm dnia. Bez uczciwego obrazu reszta daje tylko chwilowy efekt.</div></div>
+      <div class="tl-step"><div class="tl-step__n">02</div><div class="tl-step__b">Pracujemy z przekonaniami w stylu „zawsze muszę dawać radę”, które trzymają cię w przeciążeniu i nie pozwalają się zatrzymać.</div></div>
+      <div class="tl-step"><div class="tl-step__n">03</div><div class="tl-step__b">Przez aktywację behawioralną przywracamy sen, ruch i zajęcia poza pracą, które wypalenie wypchnęło z życia.</div></div>
+      <div class="tl-step"><div class="tl-step__n">04</div><div class="tl-step__b">Budujemy granice i mikro-regenerację: krótkie, ale regularne przerwy działają lepiej niż rzadkie długie urlopy.</div></div>
+    </div>
+    <p class="muted" style="max-width:620px;margin-top:24px;font-size:14.5px;">Jeśli wypalenie przeszło już w depresję, na czas odbudowy czasem potrzebne jest też wsparcie psychiatry. Wtedy mówię o tym wprost i pomagam się zorientować.</p>
   </div>
 </section>
 
-<section style="padding: 20px 0 40px;">
+<section style="padding: 10px 0 10px;">
   <div class="container" style="max-width:780px;">
-    <h2>Gdzie zmęczenie, a gdzie wypalenie</h2>
-    <p>Zmęczenie to normalny stan po dużym obciążeniu. Regeneruje się odpoczynkiem, snem, weekendem. W poniedziałek rano znów są siły. Wypalenie wygląda inaczej: zmęczenie staje się chroniczne, odpoczynek przestaje regenerować. Sen nie pomaga. Praca, która kiedyś sprawiała przyjemność, zaczyna irytować lub staje się obojętna. Pojawia się cyniczne podejście do współpracowników, klientów, pacjentów.</p>
-    <p>Christina Maslach, autorka głównego narzędzia pomiaru wypalenia (Maslach Burnout Inventory), wyróżnia trzy kluczowe komponenty:</p>
-    <ul>
-      <li><strong>Wyczerpanie emocjonalne.</strong> Poczucie, że zasoby zostały wypompowane i nie ma czego oddać.</li>
-      <li><strong>Depersonalizacja i cynizm.</strong> Emocjonalne odsunięcie od pracy, formalny stosunek do ludzi, obronna szorstkość.</li>
-      <li><strong>Spadek poczucia osiągnięć.</strong> Wrażenie, że wysiłki nie prowadzą do rezultatu, samoocena zawodowa spada.</li>
-    </ul>
-
-    <h2>Wypalenie i depresja: różnice</h2>
-    <p>Objawy często się pokrywają: apatia, zmęczenie, zaburzenia snu. Kluczowa różnica leży w kontekście.</p>
-    <p><strong>Wypalenie</strong> jest przywiązane do konkretnej sfery (zwykle praca). Poza nią człowiek może pozostawać funkcjonalny: w weekend z dziećmi ożywa, w urlopie czuje ulgę, hobby się zachowują.</p>
-    <p><strong>Depresja</strong> obejmuje wszystkie sfery. Radość, zainteresowanie, energia nie wracają nawet na urlopie. Zmienia się samo postrzeganie siebie i świata.</p>
-    <p>Granica jest rozmyta, i wypalenie często przechodzi w depresję, jeśli się je ignoruje. Bywa też odwrotnie: depresja przejawia się jako „wypalenie” i człowiek latami leczy nie to, co trzeba.</p>
-
-    <h2>Objawy, które często się pomija</h2>
-    <ul>
-      <li>Chroniczna niechęć do chodzenia do pracy, której wcześniej nie było.</li>
-      <li>Niedzielny lęk przed poniedziałkiem.</li>
-      <li>Irytacja lub cynizm wobec współpracowników, klientów, pacjentów.</li>
-      <li>Wrażenie, że praca staje się bezsensowna, nawet gdy obiektywnie ważna.</li>
-      <li>Spadek koncentracji, błędy w prostych zadaniach.</li>
-      <li>Objawy fizyczne: bóle głowy, problemy żołądkowo-jelitowe, częste przeziębienia.</li>
-      <li>Trudność z relaksem poza pracą, ciągłe „przewijanie” myśli o pracy.</li>
-      <li>Uzależnienia jako sposób na rozładowanie napięcia: alkohol, zakupy, jedzenie, prokrastynacja w social mediach.</li>
-      <li>Emocjonalna głuchota wobec bliskich, w samej sferze zawodowej i poza nią.</li>
-    </ul>
-
-    <h2>IT-wypalenie: czym się różni</h2>
-    <p>W branży IT wypalenie zdarza się szczególnie często ze względu na kilka czynników: wysokie obciążenie poznawcze, stała konieczność uczenia się, rozmyte granice dnia pracy (zwłaszcza na zdalce), częste przełączanie kontekstu, stałe poczucie długu technicznego.</p>
-    <p>Specyficzne objawy: mdłości od kodu i pull requestów, cyniczne memy o pracodawcach przestają być śmieszne, chęć odejścia z zawodu, utrata zainteresowania pet-projektami, ciągłe poczucie „jestem w tyle”.</p>
-    <p>Szczegółowo o IT-wypaleniu w osobnym artykule poniżej.</p>
-
-    <h2>Wtórne (compassion fatigue)</h2>
-    <p>Szczególna forma u tych, którzy zawodowo lub w rodzinie długo są obok osoby w trudnym stanie: lekarze, psycholodzy, pracownicy socjalni, rodzice chorych dzieci, partnerzy osób z depresją lub uzależnieniem. Objawy podobne do klasycznego wypalenia, dochodzi poczucie winy z powodu zmęczenia i chęć zdystansowania się od tego, komu się pomaga.</p>
-
-    <h2>Co działa wg badań</h2>
-    <ul>
-      <li><strong>Zmiany strukturalne.</strong> Bez nich wszystko inne daje efekt tymczasowy. Zmniejszenie obciążenia, zmiana granic, zmiana obowiązków, czasem zmiana pracy lub formatu.</li>
-      <li><strong>CBT i aktywacja behawioralna.</strong> Praca z przekonaniami o pracy i własnej wartości, odbudowa aktywności niezwiązanych z pracą.</li>
-      <li><strong>Odbudowa snu.</strong> Jeden z pierwszych kroków. CBT-I przy bezsenności skuteczniejsze od leków nasennych.</li>
-      <li><strong>Aktywność fizyczna.</strong> Regularny wysiłek aerobowy odbudowuje regulację hormonów stresu.</li>
-      <li><strong>Granice i mikro-regeneracja.</strong> Przerwy w trakcie dnia, wyjście na zewnątrz, obiad bez ekranu. Krótkie, ale regularne pauzy działają lepiej niż rzadkie długie urlopy.</li>
-      <li><strong>Urlop pomaga częściowo.</strong> Jeśli wracasz w tę samą sytuację, efekt znika za 1-2 tygodnie. Przydatny jako okno na przegląd priorytetów; w roli samodzielnego rozwiązania działa słabo.</li>
-      <li><strong>Psychiatria w razie potrzeby.</strong> Jeśli wypalenie przeszło w depresję, wsparcie farmakologiczne często jest potrzebne na okres odbudowy.</li>
-    </ul>
+    <h2>Co możesz zrobić samodzielnie</h2>
+    <p>Przed pierwszą sesją i między spotkaniami pomaga proste: przywrócić ciału oparcie, odbudować sen i zauważyć, dokąd uciekają siły. Krótkie praktyki poniżej można wstawiać w przerwy wprost w pracy, a test wypalenia daje punkt odniesienia, na ile jesteś teraz wyczerpany. Terapii to nie zastąpi. Ale daje poczucie, że na swój stan naprawdę można wpływać.</p>
   </div>
 </section>
 
-<section style="padding: 30px 0; background:#f7f5f0;">
-  <div class="container">
-    <div class="eyebrow">Powiązane testy</div>
-    <h2 style="margin-top:6px;">Sprawdź współistniejące stany</h2>
-    <p class="muted" style="max-width:620px;">Specjalistycznej skali wypalenia na stronie jeszcze nie ma. Warto sprawdzić dwa pokrewne stany, które często idą równolegle z wypaleniem.</p>
-    <p style="margin-top:16px;">
-      <a href="/tests-pl/phq-9.html" class="btn-ghost btn" style="margin-right:8px;">PHQ-9 (depresja) →</a>
-      <a href="/tests-pl/gad-7.html" class="btn-ghost btn">GAD-7 (lęk) →</a>
-    </p>
+<section style="padding: 24px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <div class="eyebrow">Test po temacie</div>
+    <h2 style="margin-top:6px;">Możesz zacząć od krótkiej samokontroli</h2>
+    <div class="tl-test">
+      <div class="tl-test__t"><b>Test wypalenia</b>: krótkie pytania o ostatnie tygodnie, kilka minut, wynik od razu. Test nie stawia diagnozy. Pokaże, jak nasilone są wyczerpanie i cynizm, i pomoże zdecydować, od czego zacząć.</div>
+      <a href="/tests-pl/wypalenie.html" class="tl-btn tl-btn--ghost">Wypełnij test wypalenia →</a>
+    </div>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Artykuły</div>
-    <h2 style="margin-top:6px;">Czytaj po temacie</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Wypalenie</div>
-        <h3>Wypalenie: objawy i odbudowa</h3>
-        <p>Trzy wymiary wg Maslach, różnica od zmęczenia, realistyczny plan odbudowy.</p>
-        <a href="/blog-pl/burnout.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Wypalenie</div>
-        <h3>Wypalenie w IT: dlaczego programiści wypalają się i co z tym robić</h3>
-        <p>Specyfika branży IT, osobne wyzwalacze, cechy odbudowy.</p>
-        <a href="/blog-pl/it-burnout.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Sen</div>
-        <h3>Zaburzenia snu i psychika: jak przerwać błędne koło</h3>
-        <p>Sen jest jednym z pierwszych obszarów, które cierpią przy wypaleniu. Co pomaga wg CBT-I.</p>
-        <a href="/blog-pl/sleep.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Bliscy</div>
-        <h3>Bliska osoba cierpi, ale nie chce iść do psychologa. Co robić</h3>
-        <p>Przydatne przy wtórnej traumatyzacji: jak pomagać bez wypalenia samego siebie.</p>
-        <a href="/blog-pl/helping-loved-one.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Wypalenie</div>
-        <h3>Wypalenie rodzicielskie: gdy nie ma sił być rodzicem</h3>
-        <p>Wyczerpanie i oddalenie od dziecka. Czym różni się od zmęczenia i co pomaga.</p>
-        <a href="/blog-pl/parental-burnout.html" class="card-link">Czytaj →</a>
-      </article>
+<section style="padding: 30px 0 16px;">
+  <div class="container" style="max-width:900px;">
+    <div class="eyebrow">Praktyki po temacie</div>
+    <h2 style="margin-top:6px;">Co wypróbować od razu</h2>
+    <div class="tl-toolkit">
+      <a class="tl-tool" href="/pmr-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">01</span><span class="tl-tool__type">Relaksacja</span></div>
+        <div class="tl-tool__name">Relaksacja mięśniowa</div>
+        <div class="tl-tool__desc">Zdejmuje nagromadzone w ciągu dnia napięcie cielesne. Dobra na koniec dnia pracy.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/box-breathing-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">02</span><span class="tl-tool__type">Oddech</span></div>
+        <div class="tl-tool__name">Oddech pudełkowy</div>
+        <div class="tl-tool__desc">Pomaga przełączyć się między zadaniami i zbić napięcie w krótkiej przerwie.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/breathing-4-7-8-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">03</span><span class="tl-tool__type">Oddech</span></div>
+        <div class="tl-tool__name">Oddech 4-7-8</div>
+        <div class="tl-tool__desc">Spowalnia układ nerwowy. Przydatny przed snem, gdy myśli o pracy nie odpuszczają.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/abc-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">04</span><span class="tl-tool__type">CBT</span></div>
+        <div class="tl-tool__name">Dziennik ABC</div>
+        <div class="tl-tool__desc">Pomaga złapać automatyczne myśli o pracy i sprawdzić, na ile są realne.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
     </div>
   </div>
 </section>
 
 <section style="padding: 50px 0 20px;">
   <div class="container">
-    <div class="eyebrow">Praktyki</div>
-    <h2 style="margin-top:6px;">Mikro-regeneracja</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Relaksacja</div>
-        <h3>Progresywna relaksacja mięśniowa</h3>
-        <p>Zdejmuje nagromadzone w ciągu dnia napięcie cielesne. Dobra na koniec dnia pracy.</p>
-        <a href="/pmr-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Oddech</div>
-        <h3>Oddech pudełkowy</h3>
-        <p>Pomaga przełączyć się między zadaniami i zmniejszyć napięcie w krótkiej przerwie.</p>
-        <a href="/box-breathing-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Oddech</div>
-        <h3>Oddech 4-7-8</h3>
-        <p>Spowalnia układ nerwowy. Przydatny przed snem, gdy myśli o pracy nie odpuszczają.</p>
-        <a href="/breathing-4-7-8-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">CBT</div>
-        <h3>Dziennik ABC</h3>
-        <p>Pomaga złapać automatyczne myśli o pracy i sprawdzić, na ile są realne.</p>
-        <a href="/abc-pl.html" class="card-link">Otwórz →</a>
-      </article>
+    <div class="eyebrow">Artykuły po temacie</div>
+    <h2 style="margin-top:6px;">Jeśli chcesz zgłębić temat</h2>
+    <div class="tl-arts">
+      <a class="tl-art" href="/blog-pl/burnout.html">
+        <div class="tl-art__cat">Wypalenie</div>
+        <div class="tl-art__h">Wypalenie: objawy i odbudowa</div>
+        <div class="tl-art__d">Trzy wymiary wg Maslach, różnica od zmęczenia, realistyczny plan odbudowy.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/it-burnout.html">
+        <div class="tl-art__cat">Wypalenie</div>
+        <div class="tl-art__h">Wypalenie w IT: dlaczego programiści się wypalają</div>
+        <div class="tl-art__d">Specyfika branży IT, osobne wyzwalacze, cechy odbudowy.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/parental-burnout.html">
+        <div class="tl-art__cat">Wypalenie</div>
+        <div class="tl-art__h">Wypalenie rodzicielskie: gdy nie ma sił być rodzicem</div>
+        <div class="tl-art__d">Wyczerpanie i oddalenie od dziecka. Czym różni się od zmęczenia i co pomaga.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
     </div>
+    <p style="margin-top:26px;"><a href="/blog-pl.html" class="tl-btn tl-btn--ghost">Wszystkie artykuły →</a></p>
   </div>
 </section>
 
 <section style="padding: 50px 0 30px;">
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Słownik</div>
-    <h2 style="margin-top:6px;">Kluczowe terminy</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/glossary-pl.html#burnout"><strong>Wypalenie</strong></a>: emocjonalne wyczerpanie z powodu długotrwałego obciążenia.</li>
-      <li><a href="/glossary-pl/compassion-fatigue.html"><strong>Wtórna traumatyzacja</strong></a>: wypalenie u tych, którzy są obok osoby w trudnym stanie.</li>
-      <li><a href="/glossary-pl.html#depression"><strong>Depresja</strong></a>: dokąd może przejść zaniedbane wypalenie.</li>
-      <li><a href="/glossary-pl/cognitive-distortion.html"><strong>Zniekształcenie poznawcze</strong></a>: np. „muszę zawsze sobie radzić” podsyca wypalenie.</li>
-      <li><a href="/glossary-pl.html#cbt"><strong>CBT</strong></a>: metoda do pracy z przekonaniami o pracy i własnej wartości.</li>
+    <h2 style="margin-top:6px;">Terminy w temacie</h2>
+    <ul class="tl-gloss">
+      <li><a href="/glossary-pl.html#burnout"><b>Wypalenie</b><span>Emocjonalne wyczerpanie z powodu długotrwałego obciążenia.</span></a></li>
+      <li><a href="/glossary-pl/compassion-fatigue.html"><b>Wtórna traumatyzacja</b><span>Wypalenie u tych, którzy długo są obok osoby w trudnym stanie.</span></a></li>
+      <li><a href="/glossary-pl.html#depression"><b>Depresja</b><span>Dokąd może przejść zaniedbane wypalenie.</span></a></li>
+      <li><a href="/glossary-pl/cognitive-distortion.html"><b>Zniekształcenie poznawcze</b><span>Na przykład „zawsze muszę dawać radę” podsyca wypalenie.</span></a></li>
+      <li><a href="/glossary-pl.html#cbt"><b>CBT</b><span>Metoda do pracy z przekonaniami o pracy i własnej wartości.</span></a></li>
     </ul>
+  </div>
+</section>
+
+<style>
+.signs-list{list-style:none;padding:0;margin:18px 0 0;}
+.signs-list li{position:relative;padding:13px 0 13px 24px;border-top:1px solid var(--border-subtle);line-height:1.55;color:var(--text-primary);font-size:16px;}
+.signs-list li:first-child{border-top:none;}
+.signs-list li::before{content:"";position:absolute;left:2px;top:21px;width:6px;height:6px;border-radius:50%;background:#b8923f;}
+.signs-note{margin-top:20px;padding-left:16px;border-left:2px solid var(--border-subtle);color:var(--text-muted);font-size:15px;line-height:1.7;}
+</style>
+<section style="padding: 10px 0 40px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Kiedy lepiej zgłosić się do specjalisty</h2>
+    <ul class="signs-list">
+      <li>Zmęczenie stało się chroniczne, a weekend i urlop już go nie zdejmują.</li>
+      <li>Cynizm i obojętność wobec pracy rozlewają się na bliskich i na życie poza biurem.</li>
+      <li>Pojawia się apatia, która nie odpuszcza także poza pracą: to już przypomina depresję.</li>
+    </ul>
+    <p class="signs-note">Bez zmian w samym obciążeniu wypalenie wraca po paru tygodniach od każdego odpoczynku. Rozeznać, co właściwie warto zmienić i jak utrzymać granice, zwykle szybciej razem niż w pojedynkę.</p>
   </div>
 </section>
 
@@ -330,10 +435,31 @@
     <p style="max-width:560px;margin:14px auto 24px;color:#5e5246;">Pracuję z osobami dorosłymi online w języku polskim, rosyjskim i białoruskim. Podejście CBT, doświadczenie z wypaleniem zawodowym, branżą IT, wtórną traumatyzacją, odbudową po długotrwałym stresie.</p>
     <p style="margin:0 0 8px;"><strong>Pierwsze spotkanie: 15&nbsp;minut, bez opłaty i bez zobowiązań.</strong></p>
     <p style="margin:0 0 24px;color:#5e5246;font-size:14px;">Dalej: 180&nbsp;PLN za sesję, płatność Blik lub kartą.</p>
-    <p style="margin:0;">
-      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Umów 15&nbsp;minut</a>
-      <a href="/burnout-page-pl.html" class="btn-ghost btn">Więcej o pracy z wypaleniem →</a>
+    <p style="margin:0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Umów 15&nbsp;minut</a>
+      <a href="/burnout-page-pl.html" class="tl-btn tl-btn--ghost">Więcej →</a>
     </p>
+  </div>
+</section>
+
+<section style="padding: 30px 0 10px;">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Od czego zacząć</div>
+    <h2 style="margin-top:6px;">Zrób pierwszy krok w swoim tempie</h2>
+    <div class="tl-next">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer">
+        <div class="tl-next__t">Zapisz się</div>
+        <div class="tl-next__s">15 minut, bez opłaty</div>
+      </a>
+      <a href="/tests-pl/wypalenie.html">
+        <div class="tl-next__t">Wypełnij test wypalenia</div>
+        <div class="tl-next__s">Krótka samokontrola</div>
+      </a>
+      <a href="/blog-pl.html">
+        <div class="tl-next__t">Czytaj artykuły</div>
+        <div class="tl-next__s">Spokojnie się rozeznać</div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -341,17 +467,25 @@
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Inne tematy</div>
     <h2 style="margin-top:6px;">Gdzie dalej</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/topics-pl/depresja.html">Depresja i sen →</a></li>
-      <li><a href="/topics-pl/lek.html">Lęk i panika →</a></li>
-      <li><a href="/topics-pl/trauma.html">Trauma i PTSD →</a></li>
-      <li><a href="/emigration-pl.html">Emigracja i adaptacja →</a></li>
+    <ul class="tl-index">
+      <li><a href="/topics-pl/depresja.html"><span class="tl-index__n">01</span><span>Depresja i sen</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/lek.html"><span class="tl-index__n">02</span><span>Lęk i panika</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/trauma.html"><span class="tl-index__n">03</span><span>Trauma i PTSD</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/relacje.html"><span class="tl-index__n">04</span><span>Relacje i współuzależnienie</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/emigracja.html"><span class="tl-index__n">05</span><span>Emigracja i adaptacja</span><span class="tl-index__a">→</span></a></li>
     </ul>
   </div>
 </section>
 
 
-<section data-seo="hub-posts" style="padding:36px 0;border-top:1px solid var(--border-subtle);"><div class="container"><div class="eyebrow">Więcej w temacie</div><ul style="columns:2;column-gap:32px;margin-top:14px;padding:0;list-style:none;line-height:2;"><li><a href="/blog-pl/cynicism.html">Cynizm w psychologii: obrona czy objaw i co się za nim kryje</a></li></ul></div></section>
+<section data-seo="hub-posts" style="padding:40px 0 64px;border-top:1px solid var(--border-subtle);">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Więcej w temacie</div>
+    <ul class="tl-index">
+      <li><a href="/blog-pl/cynicism.html"><span class="tl-index__n">01</span><span>Cynizm w psychologii: obrona czy objaw i co się za nim kryje</span><span class="tl-index__a">→</span></a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer">

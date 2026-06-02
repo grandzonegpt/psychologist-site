@@ -155,200 +155,276 @@
   </div>
 </nav>
 
-<section style="padding: 140px 0 30px;">
-  <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Temat</div>
-    <h1>Depresja i sen: cały temat w jednym miejscu</h1>
-    <p class="muted" style="max-width:640px;">Artykuły o związku depresji i zaburzeń snu, test PHQ-9, praktyki, kluczowe terminy i zapis do psychologa.</p>
+<style>
+/* ============ Topic landing (направление) ============ */
+.tl-olive{}
+#main .container{}
+@media(max-width:600px){ #main .container{ padding-left:5vw; padding-right:5vw; } }
+/* Hero */
+.tl-hero{position:relative;overflow:hidden;padding:120px 0 34px;}
+.tl-hero__inner{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center;}
+.tl-hero__lead{color:var(--text-muted);font-size:17px;line-height:1.7;margin:16px 0 0;max-width:520px;}
+.tl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+.tl-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+.tl-btn--primary{background:#5b5a36;color:#f6f2e6;}
+.tl-btn--primary:hover{background:#4a4a2b;transform:translateY(-2px);}
+.tl-btn--ghost{background:transparent;color:var(--text-primary);border:1px solid #cdbf9e;}
+.tl-btn--ghost:hover{border-color:#8a6a3a;color:#5b4a2a;}
+.tl-hero__viz{justify-self:center;width:100%;max-width:300px;}
+.tl-hero__viz svg{width:100%;height:auto;display:block;}
+@media(max-width:760px){
+  .tl-hero{padding:30px 0 12px;}
+  .tl-hero__inner{grid-template-columns:1fr;gap:12px;padding:0 5vw;}
+  .tl-hero__viz{max-width:140px;order:-1;justify-self:start;}
+  .tl-hero__lead{font-size:16px;margin-top:12px;}
+}
+@media(max-width:600px){
+  .tl-cta{flex-direction:column;gap:10px;}
+  .tl-cta .tl-btn{width:100%;justify-content:center;}
+}
+/* Scannable signs */
+.tl-signs{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.tl-signs li{position:relative;padding:14px 0 14px 22px;border-top:1px solid var(--border-subtle);font-size:15.5px;line-height:1.5;color:var(--text-primary);}
+.tl-signs li::before{content:"";position:absolute;left:1px;top:21px;width:6px;height:6px;border-radius:50%;background:#b08344;}
+.tl-signs li strong{font-weight:600;}
+.tl-signs li span{display:block;color:var(--text-muted);font-size:13.5px;margin-top:2px;}
+@media(max-width:600px){.tl-signs{grid-template-columns:1fr;gap:0;}}
+/* Numbered steps */
+.tl-steps{margin:22px 0 0;}
+.tl-step{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--border-subtle);}
+.tl-step:first-child{border-top:none;}
+.tl-step__n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;color:#b08344;line-height:1.05;}
+.tl-step__b{font-size:16px;line-height:1.6;color:var(--text-primary);}
+/* Toolkit (практики) */
+.tl-toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:16px;margin-top:24px;}
+.tl-tool{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-tool:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-tool__top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.tl-tool__n{font-family:'Cormorant Garamond',serif;font-size:22px;color:#b08344;line-height:1;}
+.tl-tool__type{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;padding-left:13px;}
+.tl-tool__type::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:7px;height:1px;background:#cdbf9e;}
+.tl-tool__name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin:0 0 8px;line-height:1.15;}
+.tl-tool__name::before{content:"";display:block;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#c79a55,#8a6a3a);margin:0 0 13px;}
+.tl-tool__desc{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.tl-tool__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+/* Soft test */
+.tl-test{margin-top:18px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);padding:26px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.tl-test__t{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:460px;}
+.tl-test__t b{color:var(--text-primary);font-weight:600;}
+/* 3-way choice */
+.tl-next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+.tl-next a{display:block;padding:24px 22px;border:1px solid var(--border-subtle);border-radius:13px;text-decoration:none;color:var(--text-primary);text-align:center;background:var(--bg-elevated);transition:transform .3s ease,border-color .3s ease;}
+.tl-next a:hover{transform:translateY(-3px);border-color:#cdbf9e;}
+.tl-next__t{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:4px;}
+.tl-next__s{font-size:13px;color:var(--text-muted);}
+@media(max-width:600px){.tl-next{grid-template-columns:1fr;}}
+/* Numbered index */
+.tl-index{list-style:none;padding:0;margin:16px 0 0;columns:2;column-gap:44px;}
+.tl-index li{break-inside:avoid;}
+.tl-index a{display:grid;grid-template-columns:26px 1fr 16px;gap:12px;align-items:baseline;padding:13px 0;border-top:1px solid var(--border-subtle);text-decoration:none;color:var(--text-primary);font-size:15px;line-height:1.45;transition:color .2s ease;}
+.tl-index a:hover{color:#5b4a2a;}
+.tl-index__n{font-family:'Cormorant Garamond',serif;font-size:16px;color:#b08344;}
+.tl-index__a{color:#b08344;}
+@media(max-width:680px){.tl-index{columns:1;}}
+/* Light glossary */
+.tl-gloss{list-style:none;padding:0;margin:18px 0 0;}
+.tl-gloss li{border-top:1px solid var(--border-subtle);}
+.tl-gloss li:first-child{border-top:none;}
+.tl-gloss a{display:block;padding:16px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
+.tl-gloss a:hover{color:#5b4a2a;}
+.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:3px;}
+.tl-gloss span{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);}
+/* Editorial article cards */
+.tl-arts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;}
+.tl-art{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-art:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-art__cat{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;}
+.tl-art__h{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;line-height:1.2;margin:0 0 9px;}
+.tl-art__d{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 16px;}
+.tl-art__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+@media(max-width:600px){.tl-arts{grid-template-columns:1fr;}}
+</style>
+<section class="tl-hero">
+  <div class="tl-hero__inner">
+    <div class="tl-hero__text">
+      <div class="eyebrow">Specjalizacja</div>
+      <h1 style="margin:6px 0 0;">Depresja i sen</h1>
+      <p class="tl-hero__lead">Kiedy z życia uchodzą siły i radość, na proste sprawy brakuje energii, a sen się rozregulował: budzisz się o świcie albo śpisz godzinami i dalej jesteś rozbity. Zebrałem tu, czym to jest, co pomaga i od czego zacząć.</p>
+      <div class="tl-cta">
+        <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Zapisz się</a>
+        <a href="/tests-pl/phq-9.html" class="tl-btn tl-btn--ghost">Wypełnij PHQ-9 →</a>
+      </div>
+    </div>
+    <div class="tl-hero__viz" aria-hidden="true">
+      <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+        <defs>
+          <radialGradient id="tlGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8a857" stop-opacity="0.42"/>
+            <stop offset="52%" stop-color="#d8a857" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#d8a857" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tlDot" cx="38%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#f7e6bf"/>
+            <stop offset="100%" stop-color="#9a6f33"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#b08344" stroke-opacity="0.10" stroke-width="1">
+          <line x1="40" y1="120" x2="200" y2="120"/>
+          <line x1="120" y1="40" x2="120" y2="200"/>
+          <line x1="64" y1="64" x2="176" y2="176"/>
+          <line x1="176" y1="64" x2="64" y2="176"/>
+        </g>
+        <g fill="none" stroke="#9c8a5e">
+          <circle cx="120" cy="120" r="98" stroke-opacity="0.12"/>
+          <circle cx="120" cy="120" r="72" stroke-opacity="0.18"/>
+          <circle cx="120" cy="120" r="46" stroke-opacity="0.27"/>
+        </g>
+        <circle cx="120" cy="120" r="40" fill="url(#tlGlow)"/>
+        <circle cx="120" cy="120" r="8" fill="url(#tlDot)"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<section style="padding: 0 0 30px;">
+<section style="padding: 26px 0 14px;">
   <div class="container" style="max-width:780px;">
-    <aside style="background:#f6f1e8;border-left:3px solid #73602f;padding:18px 22px;margin:0;border-radius:4px;font-size:15px;line-height:1.7;">
-      <p style="margin:0 0 10px;font-weight:600;font-family:var(--font-serif);font-size:17px;">W skrócie</p>
-      <p style="margin:0 0 10px;"><strong>Depresja</strong> to utrzymujący się stan, w którym zmienia się funkcjonowanie mózgu i znika zdolność odczuwania przyjemności. Mylenie ze „złym nastrojem” jest niebezpieczne. Wg WHO dotyka 5% dorosłych rocznie.</p>
-      <p style="margin:0 0 10px;"><strong>Sen</strong> i depresja są powiązane dwukierunkowo: depresja zaburza sen, zły sen wzmacnia depresję. Zamknięte koło, które często staje się pierwszym widocznym objawem.</p>
-      <p style="margin:0;"><strong>Co działa wg badań:</strong> CBT i aktywacja behawioralna skuteczne przy łagodnej i umiarkowanej depresji. Leki (SSRI) włącza się przy umiarkowanej i ciężkiej. Większość osób znacząco poprawia stan w 12-20 sesjach terapii.</p>
-    </aside>
-  </div>
-</section>
-
-<section style="padding: 20px 0 40px;">
-  <div class="container" style="max-width:780px;">
-    <h2>Gdzie smutek, a gdzie depresja</h2>
-    <p>Smutek i chandra to normalne stany emocjonalne. Przychodzą i odchodzą, człowiek nadal zajmuje się codziennymi sprawami, czasem nawet znajduje w tym sens. Depresja jest inna: zmienia się sama zdolność przeżywania radości, zainteresowania, przyjemności. Nastrój jest tu wtórny. Świat staje się „płaski”. Na proste czynności (umyć się, zjeść, odpisać na wiadomość) idzie nieproporcjonalnie dużo sił.</p>
-    <p>Wg DSM-5 kluczowe objawy epizodu depresyjnego utrzymują się minimum dwa tygodnie prawie codziennie: obniżony nastrój, utrata zainteresowania, zmiany snu i apetytu, zmęczenie, poczucie bezwartościowości, problemy z koncentracją, czasem myśli o śmierci. Minimum 5 objawów, i przeszkadzają w funkcjonowaniu.</p>
-
-    <h2>Dlaczego sen to kluczowy objaw</h2>
-    <p>Zaburzenia snu to jeden z najczęstszych i najwcześniejszych objawów depresji. Występują w dwóch formach:</p>
-    <ul>
-      <li><strong>Bezsenność:</strong> trudność zaśnięcia, wczesne przebudzenia (często w 3-5 nad ranem), niemożność ponownego zaśnięcia. Rano wstajesz wykończony.</li>
-      <li><strong>Hipersomnia:</strong> śpisz dłużej niż zwykle, a sił i tak brakuje. Chce się leżeć całymi dniami.</li>
+    <h2>Jak to może wyglądać</h2>
+    <p class="muted" style="max-width:620px;">Smutek i chandra przychodzą i odchodzą, a człowiek dalej żyje codziennymi sprawami. Depresja to coś innego: cierpi sama zdolność odczuwania radości i zainteresowania, a na proste czynności idzie nieproporcjonalnie dużo sił. Tak to zwykle wygląda.</p>
+    <ul class="tl-signs">
+      <li><strong>Znikła radość</strong><span>To, co lubiłeś, już nie cieszy, świat stał się „płaski” (anhedonia).</span></li>
+      <li><strong>Brak sił</strong><span>Zmęczenie, nawet drobne sprawy przychodzą z trudem.</span></li>
+      <li><strong>Rozregulowany sen</strong><span>Wczesne przebudzenia o 3:5 nad ranem albo sen godzinami bez odpoczynku.</span></li>
+      <li><strong>Poczucie bezwartościowości</strong><span>Samokrytyka, wina, wrażenie, że jesteś ciężarem.</span></li>
+      <li><strong>Mgła w głowie</strong><span>Trudno się skupić, decyzje przychodzą z oporem.</span></li>
+      <li><strong>Przygnębienie w tle</strong><span>Trzyma się latami i wydaje się „po prostu charakterem” (dystymia).</span></li>
+      <li><strong>Gorzej po przeprowadzce</strong><span>Utrata oparcia i dawnego życia zaostrza ten stan.</span></li>
     </ul>
-    <p>Te zaburzenia nie są jedynie skutkiem złego nastroju. Wpływają na pracę mózgu: pogarszają się regulacja emocji, koncentracja, zdolność do przyjemności. Powstaje błędne koło: depresja psuje sen → zły sen pogłębia depresję.</p>
-    <p>Dlatego praca ze snem często staje się jednym z pierwszych kroków w terapii. CBT-I (terapia poznawczo-behawioralna bezsenności) daje trwały efekt w 6-8 sesjach i często uruchamia ogólną poprawę.</p>
-
-    <h2>Rodzaje depresji</h2>
-    <p><strong>Duża depresja (MDD).</strong> Klasyczna forma z epizodami trwającymi od tygodni do miesięcy. Może być jednorazowa lub nawracająca.</p>
-    <p><strong>Dystymia (przewlekłe zaburzenie depresyjne).</strong> Stan chroniczny, ale mniej intensywny, trwający od 2 lat. Często odbierany jako „mam taki charakter”.</p>
-    <p><strong>Sezonowe zaburzenie afektywne.</strong> Depresja z wyraźnym powiązaniem sezonowym, zwykle jesień-zima. Związana z niedoborem światła.</p>
-    <p><strong>Depresja poporodowa.</strong> Rozwija się w ciągu roku po porodzie, u 10-15% kobiet. Wymaga specjalistycznej pomocy, między innymi ze względu na bezpieczeństwo dziecka.</p>
-    <p><strong>Zaburzenie afektywne dwubiegunowe.</strong> Epizody depresyjne naprzemiennie z epizodami podwyższonego nastroju (mania lub hipomania). Osobna diagnoza, leczenie inne. Jeśli w wywiadzie były epizody nietypowej energii, euforii, impulsywnych decyzji, omów to z psychiatrą.</p>
-
-    <h2>Co działa wg badań</h2>
-    <ul>
-      <li><strong>CBT przy depresji</strong> jedno z najlepiej zbadanych podejść. Skuteczne przy łagodnej i umiarkowanej depresji. Praca z automatycznymi myślami, zniekształceniami poznawczymi, podstawowymi przekonaniami.</li>
-      <li><strong>Aktywacja behawioralna (BA)</strong> kluczowe narzędzie. Powrót do aktywności nawet przy braku chęci uruchamia poprawę. Czasem daje rezultat szybciej niż praca poznawcza.</li>
-      <li><strong>CBT-I</strong> terapia poznawczo-behawioralna bezsenności. Skuteczniejsza od leków nasennych w dłuższej perspektywie.</li>
-      <li><strong>Leki</strong> (SSRI, SNRI, czasem inne klasy) przy umiarkowanej i ciężkiej depresji. Przepisuje psychiatra. Dobrze łączą się z psychoterapią.</li>
-      <li><strong>Aktywność fizyczna.</strong> Regularny wysiłek aerobowy 3-5 razy w tygodniu pod względem skuteczności porównywalny z lekami przy łagodnej depresji. Brzmi jak banalna rada „uprawiaj sport”, w rzeczywistości to działające narzędzie.</li>
-      <li><strong>Terapia światłem</strong> przy depresji sezonowej: jasne światło 10 000 luksów przez 30 minut rano.</li>
-    </ul>
-    <p>Czas: przy łagodnej depresji znacząca poprawa zwykle w 8-16 sesjach CBT. Przy umiarkowanej i ciężkiej dłużej, i często skuteczniejsza kombinacja terapii z lekami.</p>
   </div>
 </section>
 
-<section style="padding: 30px 0; background:#f7f5f0;">
-  <div class="container">
-    <div class="eyebrow">Pójdź test</div>
-    <h2 style="margin-top:6px;">Skala PHQ-9</h2>
-    <p class="muted" style="max-width:620px;">Kwestionariusz samoopisowy do przesiewu depresji. 9 pytań wg kryteriów DSM-5, 2 minuty, wynik z interpretacją. Używany w podstawowej opiece zdrowotnej na całym świecie.</p>
-    <p style="margin-top:16px;"><a href="/tests-pl/phq-9.html" class="btn-ghost btn">Wypełnij PHQ-9 →</a></p>
+<section style="padding: 22px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Jak z tym pracuję</h2>
+    <p class="muted" style="max-width:620px;">Pracuję w podejściu CBT. Idziemy krok po kroku, w tempie na miarę sił, zwłaszcza kiedy energii jest mało.</p>
+    <div class="tl-steps">
+      <div class="tl-step"><div class="tl-step__n">01</div><div class="tl-step__b">Przyglądamy się, jak ułożony jest twój dzień teraz: co odbiera siły, gdzie sen się rozsypuje, co zniknęło z życia.</div></div>
+      <div class="tl-step"><div class="tl-step__n">02</div><div class="tl-step__b">Przez aktywację behawioralną wracamy do drobnych spraw i aktywności, nawet gdy nie ma na nie ochoty: od tego najczęściej rusza się cały stan.</div></div>
+      <div class="tl-step"><div class="tl-step__n">03</div><div class="tl-step__b">Pracujemy z myślami: łapiemy samokrytykę i zniekształcenia poznawcze, które trzymają przygnębienie, i sprawdzamy je z rzeczywistością.</div></div>
+      <div class="tl-step"><div class="tl-step__n">04</div><div class="tl-step__b">Porządkujemy sen metodami CBT-I i utrwalamy to, co działa, żeby efekt trzymał się także beze mnie.</div></div>
+    </div>
+    <p class="muted" style="max-width:620px;margin-top:24px;font-size:14.5px;">Depresja dobrze poddaje się pracy: przy formie łagodnej i umiarkowanej zauważalna poprawa zwykle przychodzi w 8:16 spotkaniach CBT. Przy ciężkiej trwa to dłużej i często skuteczniejsze jest połączenie terapii z lekami, które dobiera psychiatra.</p>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Artykuły</div>
-    <h2 style="margin-top:6px;">Czytaj po temacie</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Depresja: objawy, rodzaje i jak ją leczyć</h3>
-        <p>Artykuł filarowy: objawy psychiczne i fizyczne, rodzaje depresji, przyczyny i leczenie.</p>
-        <a href="/blog-pl/depresja.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Depresja lękowa: gdy lęk i przygnębienie idą razem</h3>
-        <p>Częste połączenie depresji i lęku, czym różni się i jak się leczy.</p>
-        <a href="/blog-pl/depresja-lekowa.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Depresja poporodowa: objawy i jak sobie pomóc</h3>
-        <p>Czym różni się od baby blues, dlaczego ostrzejsza na emigracji i jak sobie radzić.</p>
-        <a href="/blog-pl/depresja-poporodowa.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Depresja maskowana: gdy ukrywa się za ciałem</h3>
-        <p>Gdy przygnębienie ukryte jest za bólami i bezsennością. Jak rozpoznać i jak się leczy.</p>
-        <a href="/blog-pl/depresja-maskowana.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Depresja sezonowa: dlaczego jesienią i zimą dopada</h3>
-        <p>Po co tu światło, czym różni się od chandry i co naprawdę pomaga.</p>
-        <a href="/blog-pl/depresja-sezonowa.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Dystymia: gdy przygnębienie stało się tłem na lata</h3>
-        <p>Przewlekła „przygaszona" depresja, którą bierze się za charakter.</p>
-        <a href="/blog-pl/dystymia.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Depresja</div>
-        <h3>Nieleczona depresja: czym jest groźna i co się dzieje</h3>
-        <p>Skutki dla psychiki, ciała i życia i dlaczego depresja dobrze się leczy.</p>
-        <a href="/blog-pl/nieleczona-depresja.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Sen</div>
-        <h3>Zaburzenia snu i psychika: jak przerwać błędne koło</h3>
-        <p>Bezsenność i depresja wzmacniają się nawzajem. Co pomaga wg CBT-I.</p>
-        <a href="/blog-pl/sleep.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Wypalenie</div>
-        <h3>Wypalenie: objawy i odbudowa</h3>
-        <p>Wypalenie często przechodzi w depresję. Omawiam granicę i jak się odbudowywać.</p>
-        <a href="/blog-pl/burnout.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">CBT</div>
-        <h3>Zniekształcenia poznawcze: 10 pułapek myślenia</h3>
-        <p>Depresja karmi się zniekształconymi myślami. Lista najczęstszych pułapek i jak je łapać.</p>
-        <a href="/blog-pl/cognitive-distortions.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Metoda</div>
-        <h3>Czym jest CBT i po co praca domowa</h3>
-        <p>Jak działa terapia poznawczo-behawioralna przy depresji, lęku i panice.</p>
-        <a href="/blog-pl/cbt.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Stany</div>
-        <h3>Kryzys egzystencjalny: gdy traci się sens</h3>
-        <p>Czym różni się od depresji, dlaczego ostrzejszy na emigracji i co pomaga.</p>
-        <a href="/blog-pl/existential-crisis.html" class="card-link">Czytaj →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Stany</div>
-        <h3>Anhedonia: gdy nic nie cieszy</h3>
-        <p>Czym różni się od lenistwa i zmęczenia, związek z depresją i co naprawdę pomaga.</p>
-        <a href="/blog-pl/anhedonia.html" class="card-link">Czytaj →</a>
-      </article>
+<section style="padding: 10px 0 10px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Co możesz zrobić sam</h2>
+    <p>Przed pierwszą sesją i między spotkaniami pomaga rzecz prosta: przywrócić do dnia choćby jedną drobną czynność i uporządkować sen. Praktyki poniżej dają punkt oparcia, kiedy sił jest mało, a test PHQ-9 pokazuje, jak nasilony jest stan teraz. Terapii to nie zastąpi, ale daje poczuć, że na swój stan można wpływać.</p>
+  </div>
+</section>
+
+<section style="padding: 24px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <div class="eyebrow">Test w temacie</div>
+    <h2 style="margin-top:6px;">Można zacząć od krótkiej samokontroli</h2>
+    <div class="tl-test">
+      <div class="tl-test__t"><b>PHQ-9</b>: 9 pytań wg kryteriów DSM-5 o ostatnich dwóch tygodniach, kilka minut, wynik z interpretacją od razu. Test nie stawia diagnozy. Pokaże, jak nasilony jest stan teraz, i pomoże zdecydować, od czego zacząć.</div>
+      <a href="/tests-pl/phq-9.html" class="tl-btn tl-btn--ghost">Wypełnij PHQ-9 →</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 30px 0 16px;">
+  <div class="container" style="max-width:900px;">
+    <div class="eyebrow">Praktyki w temacie</div>
+    <h2 style="margin-top:6px;">Co spróbować od razu</h2>
+    <div class="tl-toolkit">
+      <a class="tl-tool" href="/abc-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">01</span><span class="tl-tool__type">CBT</span></div>
+        <div class="tl-tool__name">Dziennik ABC</div>
+        <div class="tl-tool__desc">Rozłożyć sytuację na zdarzenie, myśli i emocje. Łapie automatyczne myślenie, które karmi przygnębienie.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/diary-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">02</span><span class="tl-tool__type">CBT</span></div>
+        <div class="tl-tool__name">Dziennik myśli</div>
+        <div class="tl-tool__desc">Zapisać myśl i sprawdzić ją z rzeczywistością. Jedno z najlepiej działających narzędzi przy depresji.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/pmr-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">03</span><span class="tl-tool__type">Relaksacja</span></div>
+        <div class="tl-tool__name">Relaksacja mięśniowa</div>
+        <div class="tl-tool__desc">Zdejmuje napięcie z ciała i pomaga z zasypianiem.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
+      <a class="tl-tool" href="/breathing-4-7-8-pl.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">04</span><span class="tl-tool__type">Oddech</span></div>
+        <div class="tl-tool__name">Oddech 4-7-8</div>
+        <div class="tl-tool__desc">Spowalnia układ nerwowy. Przydatny przed snem przy bezsenności lękowej.</div>
+        <span class="tl-tool__go">Otwórz →</span>
+      </a>
     </div>
   </div>
 </section>
 
 <section style="padding: 50px 0 20px;">
   <div class="container">
-    <div class="eyebrow">Praktyki</div>
-    <h2 style="margin-top:6px;">Co spróbować teraz</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">CBT</div>
-        <h3>Dziennik ABC</h3>
-        <p>Bazowe ćwiczenie CBT: rozłożyć sytuację na zdarzenie, myśli i emocje. Pomaga złapać automatyczne myślenie karmiące depresję.</p>
-        <a href="/abc-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">CBT</div>
-        <h3>Dziennik myśli</h3>
-        <p>Strukturyzowany zapis myśli i ich weryfikacja rzeczywistością. Jedno z najskuteczniejszych narzędzi przy depresji.</p>
-        <a href="/diary-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Relaksacja</div>
-        <h3>Progresywna relaksacja mięśniowa</h3>
-        <p>Pomaga z napięciem cielesnym i problemami z zasypianiem.</p>
-        <a href="/pmr-pl.html" class="card-link">Otwórz →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Oddech</div>
-        <h3>Oddech 4-7-8</h3>
-        <p>Spowalnia układ nerwowy. Przydatny przed snem przy bezsenności lękowej.</p>
-        <a href="/breathing-4-7-8-pl.html" class="card-link">Otwórz →</a>
-      </article>
+    <div class="eyebrow">Artykuły w temacie</div>
+    <h2 style="margin-top:6px;">Jeśli chcesz zrozumieć głębiej</h2>
+    <div class="tl-arts">
+      <a class="tl-art" href="/blog-pl/depresja.html">
+        <div class="tl-art__cat">Depresja</div>
+        <div class="tl-art__h">Depresja: objawy, rodzaje i jak ją leczyć</div>
+        <div class="tl-art__d">Artykuł filarowy: objawy psychiczne i fizyczne, rodzaje depresji, przyczyny i leczenie.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/sleep.html">
+        <div class="tl-art__cat">Sen</div>
+        <div class="tl-art__h">Zaburzenia snu i psychika: jak przerwać błędne koło</div>
+        <div class="tl-art__d">Bezsenność i depresja wzmacniają się nawzajem. Co pomaga wg CBT-I.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
+      <a class="tl-art" href="/blog-pl/anhedonia.html">
+        <div class="tl-art__cat">Stany</div>
+        <div class="tl-art__h">Anhedonia: gdy nic nie cieszy</div>
+        <div class="tl-art__d">Czym różni się od lenistwa i zmęczenia, związek z depresją i co naprawdę pomaga.</div>
+        <span class="tl-art__go">Czytaj →</span>
+      </a>
     </div>
+    <p style="margin-top:26px;"><a href="/blog-pl.html" class="tl-btn tl-btn--ghost">Wszystkie artykuły →</a></p>
   </div>
 </section>
 
 <section style="padding: 50px 0 30px;">
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Słownik</div>
-    <h2 style="margin-top:6px;">Kluczowe terminy</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/glossary-pl.html#depression"><strong>Depresja</strong></a>: utrzymujący się stan ze zmienioną pracą mózgu.</li>
-      <li><a href="/glossary-pl.html#burnout"><strong>Wypalenie</strong></a>: emocjonalne wyczerpanie z powodu długotrwałego obciążenia.</li>
-      <li><a href="/glossary-pl/cognitive-distortion.html"><strong>Zniekształcenie poznawcze</strong></a>: nawyk myślenia karmiący depresję.</li>
-      <li><a href="/glossary-pl.html#cbt"><strong>CBT</strong></a>: metoda pierwszego wyboru przy depresji i lęku.</li>
-      <li><a href="/glossary-pl/compassion-fatigue.html"><strong>Wtórna traumatyzacja</strong></a>: przy długim wspieraniu bliskiej osoby z depresją.</li>
+    <h2 style="margin-top:6px;">Terminy w temacie</h2>
+    <ul class="tl-gloss">
+      <li><a href="/glossary-pl.html#depression"><b>Depresja</b><span>Utrzymujący się stan ze zmienioną pracą mózgu i utratą zdolności do radości.</span></a></li>
+      <li><a href="/glossary-pl/cognitive-distortion.html"><b>Zniekształcenie poznawcze</b><span>Nawyk myślenia, który zniekształca rzeczywistość i karmi depresję.</span></a></li>
+      <li><a href="/glossary-pl.html#cbt"><b>CBT</b><span>Metoda pierwszego wyboru przy depresji i lęku.</span></a></li>
+      <li><a href="/glossary-pl.html#burnout"><b>Wypalenie</b><span>Emocjonalne wyczerpanie z długotrwałego obciążenia, często sąsiaduje z depresją.</span></a></li>
+      <li><a href="/glossary-pl/compassion-fatigue.html"><b>Wtórna traumatyzacja</b><span>Wyczerpanie przy długim wspieraniu bliskiej osoby z depresją.</span></a></li>
     </ul>
+  </div>
+</section>
+
+<style>
+.signs-list{list-style:none;padding:0;margin:18px 0 0;}
+.signs-list li{position:relative;padding:13px 0 13px 24px;border-top:1px solid var(--border-subtle);line-height:1.55;color:var(--text-primary);font-size:16px;}
+.signs-list li:first-child{border-top:none;}
+.signs-list li::before{content:"";position:absolute;left:2px;top:21px;width:6px;height:6px;border-radius:50%;background:#b8923f;}
+.signs-note{margin-top:20px;padding-left:16px;border-left:2px solid var(--border-subtle);color:var(--text-muted);font-size:15px;line-height:1.7;}
+</style>
+<section style="padding: 10px 0 40px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Kiedy lepiej zgłosić się do specjalisty</h2>
+    <ul class="signs-list">
+      <li>Przygnębienie i utrata zainteresowania trzymają się dłużej niż dwa tygodnie, prawie codziennie.</li>
+      <li>Sen się rozregulował, zniknęły siły, zwykłe sprawy przychodzą coraz trudniej.</li>
+      <li>Pojawiają się myśli o śmierci albo że bez ciebie byłoby lepiej.</li>
+    </ul>
+    <p class="signs-note">Depresja zmienia pracę mózgu, więc próba „wzięcia się w garść” najczęściej wpędza tu głębiej. We dwoje łatwiej zatrzymać zamknięte koło depresji i snu i przywrócić do dnia oparcie. Jeśli masz myśli samobójcze lub o samookaleczaniu: w Polsce całodobowa linia 116 123, służba ratunkowa 112. Nie czekaj do rana.</p>
   </div>
 </section>
 
@@ -359,11 +435,31 @@
     <p style="max-width:560px;margin:14px auto 24px;color:#5e5246;">Pracuję z osobami dorosłymi online w języku polskim, rosyjskim i białoruskim. Podejście CBT, aktywacja behawioralna, praca z zaburzeniami snu i chronicznym zmęczeniem.</p>
     <p style="margin:0 0 8px;"><strong>Pierwsze spotkanie: 15&nbsp;minut, bez opłaty i bez zobowiązań.</strong></p>
     <p style="margin:0 0 24px;color:#5e5246;font-size:14px;">Dalej: 180&nbsp;PLN za sesję, płatność Blik lub kartą.</p>
-    <p style="margin:0;">
-      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Umów 15&nbsp;minut</a>
-      <a href="/depression-pl.html" class="btn-ghost btn">Więcej o pracy z depresją →</a>
+    <p style="margin:0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Umów 15&nbsp;minut</a>
+      <a href="/depression-pl.html" class="tl-btn tl-btn--ghost">Więcej →</a>
     </p>
-    <p style="margin:24px 0 0;font-size:13px;color:#7a6e60;">Jeśli masz myśli samobójcze lub o samookaleczaniu: w Polsce całodobowa linia 116 123, służba ratunkowa 112. Nie czekaj do rana.</p>
+  </div>
+</section>
+
+<section style="padding: 30px 0 10px;">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Od czego zacząć</div>
+    <h2 style="margin-top:6px;">Zrób pierwszy krok we własnym tempie</h2>
+    <div class="tl-next">
+      <a href="/intro-pl.html" target="_blank" rel="noopener noreferrer">
+        <div class="tl-next__t">Zapisz się</div>
+        <div class="tl-next__s">15 minut, bez opłaty</div>
+      </a>
+      <a href="/tests-pl/phq-9.html">
+        <div class="tl-next__t">Wypełnij PHQ-9</div>
+        <div class="tl-next__s">Krótka samokontrola</div>
+      </a>
+      <a href="/blog-pl.html">
+        <div class="tl-next__t">Czytaj artykuły</div>
+        <div class="tl-next__s">Spokojnie się rozeznać</div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -371,17 +467,26 @@
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Inne tematy</div>
     <h2 style="margin-top:6px;">Gdzie dalej</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/topics-pl/lek.html">Lęk i panika →</a></li>
-      <li><a href="/topics-pl/trauma.html">Trauma i PTSD →</a></li>
-      <li><a href="/burnout-page-pl.html">Wypalenie →</a></li>
-      <li><a href="/emigration-pl.html">Emigracja i adaptacja →</a></li>
+    <ul class="tl-index">
+      <li><a href="/topics-pl/lek.html"><span class="tl-index__n">01</span><span>Lęk i panika</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/trauma.html"><span class="tl-index__n">02</span><span>Trauma i PTSD</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/wypalenie.html"><span class="tl-index__n">03</span><span>Wypalenie</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/relacje.html"><span class="tl-index__n">04</span><span>Relacje i współuzależnienie</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics-pl/emigracja.html"><span class="tl-index__n">05</span><span>Emigracja i adaptacja</span><span class="tl-index__a">→</span></a></li>
     </ul>
   </div>
 </section>
 
 
-<section data-seo="hub-posts" style="padding:36px 0;border-top:1px solid var(--border-subtle);"><div class="container"><div class="eyebrow">Więcej w temacie</div><ul style="columns:2;column-gap:32px;margin-top:14px;padding:0;list-style:none;line-height:2;"><li><a href="/blog-pl/apathy.html">Apatia: co to jest, objawy, przyczyny i co z tym zrobić</a></li><li><a href="/blog-pl/high-functioning-depression.html">Depresja wysokofunkcjonująca: działasz, a w środku pusto</a></li></ul></div></section>
+<section data-seo="hub-posts" style="padding: 40px 0 64px;border-top:1px solid var(--border-subtle);">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Więcej w temacie</div>
+    <ul class="tl-index">
+      <li><a href="/blog-pl/apathy.html"><span class="tl-index__n">01</span><span>Apatia: co to jest, objawy, przyczyny i co z tym zrobić</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog-pl/high-functioning-depression.html"><span class="tl-index__n">02</span><span>Depresja wysokofunkcjonująca: działasz, a w środku pusto</span><span class="tl-index__a">→</span></a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer">
