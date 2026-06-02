@@ -219,7 +219,15 @@
   </div>
 </nav>
 
-<section class="not-sure-hero">
+<section class="not-sure-hero tests-hero">
+  <svg class="tests-hero__rings" viewBox="0 0 440 440" role="presentation" focusable="false" aria-hidden="true">
+    <g fill="none" stroke="#9c8a5e">
+      <circle cx="220" cy="220" r="210" stroke-opacity="0.10"/>
+      <circle cx="220" cy="220" r="158" stroke-opacity="0.13"/>
+      <circle cx="220" cy="220" r="108" stroke-opacity="0.17"/>
+      <circle cx="220" cy="220" r="60" stroke-opacity="0.22"/>
+    </g>
+  </svg>
   <div class="container">
     <div class="eyebrow">Samoocena</div>
     <h1>Sprawdź się</h1>
@@ -320,6 +328,23 @@
 .tests-note{max-width:640px;margin:44px auto 0;padding:2px 0 2px 18px;border-left:2px solid #cdbf9e;}
 .tests-note__label{display:block;font-family:'Lato',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#73602f;margin-bottom:7px;}
 .tests-note p{margin:0;color:var(--text-muted);font-size:14px;line-height:1.65;}
+/* ====== Hero страницы тестов: премиальный фон + ритм ====== */
+.tests-hero{position:relative;overflow:hidden;isolation:isolate;padding:100px 0 44px;}
+.tests-hero > .container{position:relative;z-index:2;}
+.tests-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(58% 66% at 50% 42%, rgba(216,168,87,.13), rgba(216,168,87,0) 60%),
+    radial-gradient(150% 100% at 50% -12%, rgba(150,130,90,.05), transparent 55%);}
+.tests-hero::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(120,95,55,.06) 1px, transparent 1px);background-size:4px 4px;}
+.tests-hero__rings{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);
+  width:min(480px,90vw);height:auto;z-index:1;pointer-events:none;}
+.tests-hero .hero-viz{margin-top:26px;}
+@media (max-width:600px){
+  .tests-hero{padding:52px 0 26px;}
+  .tests-hero__rings{width:330px;top:42%;}
+  .tests-hero .hero-viz{max-width:320px;margin-top:18px;}
+}
 </style>
 <section style="padding:8px 0 16px;">
   <div class="container" style="max-width:1080px;">
