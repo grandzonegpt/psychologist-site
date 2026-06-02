@@ -47,6 +47,16 @@ app.use((req, res, next) => {
   next();
 });
 
+// Credential scans must NOT be immutable-cached: if a redaction is updated,
+// the old copy must not stay stuck at the CDN for a year. Serve them with
+// revalidation so fixes propagate immediately. Declared before the general
+// /assets rule so it wins for this path.
+app.use('/assets/credentials', express.static(path.join(__dirname, 'assets', 'credentials'), {
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+  }
+}));
+
 // Static assets with long cache
 app.use('/assets', express.static(path.join(__dirname, 'assets'), {
   maxAge: '1y',
