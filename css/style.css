@@ -16,8 +16,8 @@
   --success:          #5b7a3a;
   --error:            #a04030;
 
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Spectral', Georgia, serif;
+  --font-sans:  'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --maxw: 1120px;
 
@@ -36,7 +36,7 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.7;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -2024,13 +2024,13 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   max-width: 680px;
   margin: 0 auto;
   padding: 0 24px;
-  font-family: 'Source Serif Pro', Georgia, serif;
+  font-family: 'Spectral', Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
   color: #1a1a1a;
 }
 .post-content h1 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: 'Spectral', Georgia, serif;
   font-weight: 500;
   font-size: clamp(28px, 4vw, 36px);
   text-align: center;
@@ -2040,8 +2040,8 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
   max-width: 720px;
   color: #1a1a1a;
 }
-.post-content h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 26px; line-height: 1.3; margin: 48px 0 16px; color: #1a1a1a; }
-.post-content h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: 21px; margin: 36px 0 12px; color: #1a1a1a; }
+.post-content h2 { font-family: 'Spectral', Georgia, serif; font-weight: 500; font-size: 26px; line-height: 1.3; margin: 48px 0 16px; color: #1a1a1a; }
+.post-content h3 { font-family: 'Spectral', Georgia, serif; font-weight: 500; font-size: 21px; margin: 36px 0 12px; color: #1a1a1a; }
 .post-content p { margin: 0 0 20px; color: #1a1a1a; }
 .post-content ul, .post-content ol { margin: 0 0 24px; padding-left: 24px; }
 .post-content li { margin-bottom: 10px; }
@@ -2392,7 +2392,7 @@ body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 }
 .blog-card p {
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   color: var(--text-muted);
   margin: 0;
@@ -3132,12 +3132,12 @@ body::after {
 .practices-page { max-width: 1080px; margin: 0 auto; padding: 96px 32px 120px; background: var(--bg-primary); color: var(--text-primary); }
 .practices-page .eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: .2em; color: var(--text-muted); margin-bottom: 24px; }
 .practices-page h1 { font-family: var(--font-serif); font-size: clamp(36px, 5vw, 56px); font-weight: 500; margin: 0 0 18px; line-height: 1.1; letter-spacing: -0.01em; max-width: 760px; }
-.practices-page .lead { font-family: var(--font-sans); font-size: 17px; color: var(--text-muted); max-width: 640px; line-height: 1.7; margin: 0 0 12px; font-weight: 300; }
+.practices-page .lead { font-family: var(--font-sans); font-size: 17px; color: var(--text-muted); max-width: 640px; line-height: 1.7; margin: 0 0 12px; font-weight: 400; }
 .practices-page .lead em { font-family: var(--font-serif); font-style: italic; color: var(--text-primary); font-size: 18px; }
 .practices-page .lead-sub {
   font-family: var(--font-sans);
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text-muted);
   max-width: 580px;
   line-height: 1.7;
@@ -3170,7 +3170,7 @@ body::after {
 .pitem.dim { opacity: 0.35; pointer-events: none; }
 .pitem .pnum { font-family: var(--font-serif); font-size: 36px; color: var(--accent); font-weight: 400; line-height: 1; letter-spacing: -0.01em; }
 .pitem .pbody h3 { font-family: var(--font-serif); font-size: 22px; font-weight: 500; margin: 0 0 8px; line-height: 1.25; letter-spacing: -0.005em; }
-.pitem .pbody .pdesc { font-family: var(--font-sans); font-weight: 300; font-size: 14px; color: var(--text-muted); line-height: 1.55; max-width: 520px; }
+.pitem .pbody .pdesc { font-family: var(--font-sans); font-weight: 400; font-size: 14px; color: var(--text-muted); line-height: 1.55; max-width: 520px; }
 .pitem .pmeta { font-size: 11px; text-transform: uppercase; letter-spacing: .15em; color: var(--text-muted); text-align: right; line-height: 1.7; min-width: 130px; }
 .pitem .pmeta .pmeta-row { display: block; }
 .pitem .pmeta .pmeta-row + .pmeta-row { margin-top: 4px; }
