@@ -155,197 +155,276 @@
   </div>
 </nav>
 
-<section style="padding: 140px 0 30px;">
-  <div class="container" style="max-width:780px;">
-    <div class="eyebrow">Тема</div>
-    <h1>Тревога и паника: всё по теме на одной странице</h1>
-    <p class="muted" style="max-width:640px;">Статьи, тест GAD-7, практики дыхания и заземления, ключевые термины и запись к психологу.</p>
+<style>
+/* ============ Topic landing (направление) ============ */
+.tl-olive{}
+#main .container{}
+@media(max-width:600px){ #main .container{ padding-left:5vw; padding-right:5vw; } }
+/* Hero */
+.tl-hero{position:relative;overflow:hidden;padding:120px 0 34px;}
+.tl-hero__inner{max-width:1000px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.12fr .88fr;gap:46px;align-items:center;}
+.tl-hero__lead{color:var(--text-muted);font-size:17px;line-height:1.7;margin:16px 0 0;max-width:520px;}
+.tl-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+.tl-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-family:'Lato',sans-serif;font-size:15px;font-weight:600;text-decoration:none;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease;}
+.tl-btn--primary{background:#5b5a36;color:#f6f2e6;}
+.tl-btn--primary:hover{background:#4a4a2b;transform:translateY(-2px);}
+.tl-btn--ghost{background:transparent;color:var(--text-primary);border:1px solid #cdbf9e;}
+.tl-btn--ghost:hover{border-color:#8a6a3a;color:#5b4a2a;}
+.tl-hero__viz{justify-self:center;width:100%;max-width:300px;}
+.tl-hero__viz svg{width:100%;height:auto;display:block;}
+@media(max-width:760px){
+  .tl-hero{padding:30px 0 12px;}
+  .tl-hero__inner{grid-template-columns:1fr;gap:12px;padding:0 5vw;}
+  .tl-hero__viz{max-width:140px;order:-1;justify-self:start;}
+  .tl-hero__lead{font-size:16px;margin-top:12px;}
+}
+@media(max-width:600px){
+  .tl-cta{flex-direction:column;gap:10px;}
+  .tl-cta .tl-btn{width:100%;justify-content:center;}
+}
+/* Scannable signs */
+.tl-signs{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.tl-signs li{position:relative;padding:14px 0 14px 22px;border-top:1px solid var(--border-subtle);font-size:15.5px;line-height:1.5;color:var(--text-primary);}
+.tl-signs li::before{content:"";position:absolute;left:1px;top:21px;width:6px;height:6px;border-radius:50%;background:#b08344;}
+.tl-signs li strong{font-weight:600;}
+.tl-signs li span{display:block;color:var(--text-muted);font-size:13.5px;margin-top:2px;}
+@media(max-width:600px){.tl-signs{grid-template-columns:1fr;gap:0;}}
+/* Numbered steps */
+.tl-steps{margin:22px 0 0;}
+.tl-step{display:grid;grid-template-columns:46px 1fr;gap:18px;align-items:start;padding:20px 0;border-top:1px solid var(--border-subtle);}
+.tl-step:first-child{border-top:none;}
+.tl-step__n{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;color:#b08344;line-height:1.05;}
+.tl-step__b{font-size:16px;line-height:1.6;color:var(--text-primary);}
+/* Toolkit (практики) */
+.tl-toolkit{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:16px;margin-top:24px;}
+.tl-tool{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-tool:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-tool__top{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.tl-tool__n{font-family:'Cormorant Garamond',serif;font-size:22px;color:#b08344;line-height:1;}
+.tl-tool__type{position:relative;font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;padding-left:13px;}
+.tl-tool__type::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:7px;height:1px;background:#cdbf9e;}
+.tl-tool__name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;margin:0 0 8px;line-height:1.15;}
+.tl-tool__name::before{content:"";display:block;width:26px;height:2px;border-radius:2px;background:linear-gradient(90deg,#c79a55,#8a6a3a);margin:0 0 13px;}
+.tl-tool__desc{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 18px;}
+.tl-tool__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+/* Soft test */
+.tl-test{margin-top:18px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);padding:26px 30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;}
+.tl-test__t{font-size:15px;line-height:1.6;color:var(--text-muted);max-width:460px;}
+.tl-test__t b{color:var(--text-primary);font-weight:600;}
+/* 3-way choice */
+.tl-next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;}
+.tl-next a{display:block;padding:24px 22px;border:1px solid var(--border-subtle);border-radius:13px;text-decoration:none;color:var(--text-primary);text-align:center;background:var(--bg-elevated);transition:transform .3s ease,border-color .3s ease;}
+.tl-next a:hover{transform:translateY(-3px);border-color:#cdbf9e;}
+.tl-next__t{font-family:'Cormorant Garamond',serif;font-size:21px;margin-bottom:4px;}
+.tl-next__s{font-size:13px;color:var(--text-muted);}
+@media(max-width:600px){.tl-next{grid-template-columns:1fr;}}
+/* Numbered index */
+.tl-index{list-style:none;padding:0;margin:16px 0 0;columns:2;column-gap:44px;}
+.tl-index li{break-inside:avoid;}
+.tl-index a{display:grid;grid-template-columns:26px 1fr 16px;gap:12px;align-items:baseline;padding:13px 0;border-top:1px solid var(--border-subtle);text-decoration:none;color:var(--text-primary);font-size:15px;line-height:1.45;transition:color .2s ease;}
+.tl-index a:hover{color:#5b4a2a;}
+.tl-index__n{font-family:'Cormorant Garamond',serif;font-size:16px;color:#b08344;}
+.tl-index__a{color:#b08344;}
+@media(max-width:680px){.tl-index{columns:1;}}
+/* Light glossary */
+.tl-gloss{list-style:none;padding:0;margin:18px 0 0;}
+.tl-gloss li{border-top:1px solid var(--border-subtle);}
+.tl-gloss li:first-child{border-top:none;}
+.tl-gloss a{display:block;padding:16px 0;text-decoration:none;color:var(--text-primary);transition:color .2s ease;}
+.tl-gloss a:hover{color:#5b4a2a;}
+.tl-gloss b{display:block;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;margin-bottom:3px;}
+.tl-gloss span{display:block;font-size:14.5px;line-height:1.55;color:var(--text-muted);}
+/* Editorial article cards */
+.tl-arts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:24px;}
+.tl-art{display:flex;flex-direction:column;padding:24px 24px 22px;border:1px solid var(--border-subtle);border-radius:14px;background:var(--bg-elevated);text-decoration:none;color:var(--text-primary);box-shadow:0 1px 2px rgba(40,30,10,.03);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s ease,border-color .3s ease;}
+.tl-art:hover{transform:translateY(-3px);border-color:#cdbf9e;box-shadow:0 14px 30px rgba(40,30,10,.07);}
+.tl-art__cat{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#9a8c72;margin-bottom:9px;}
+.tl-art__h{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;line-height:1.2;margin:0 0 9px;}
+.tl-art__d{font-size:14px;line-height:1.6;color:var(--text-muted);margin:0 0 16px;}
+.tl-art__go{margin-top:auto;font-family:'Lato',sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);}
+@media(max-width:600px){.tl-arts{grid-template-columns:1fr;}}
+</style>
+<section class="tl-hero">
+  <div class="tl-hero__inner">
+    <div class="tl-hero__text">
+      <div class="eyebrow">Направление</div>
+      <h1 style="margin:6px 0 0;">Тревога и паника</h1>
+      <p class="tl-hero__lead">Если ты постоянно напряжён, плохо спишь, боишься заранее или сталкиваешься с паническими атаками: на этой странице собрано, что это такое, что помогает и с чего начать.</p>
+      <div class="tl-cta">
+        <a href="/intro.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Записаться</a>
+        <a href="/tests/gad-7.html" class="tl-btn tl-btn--ghost">Пройти GAD-7 →</a>
+      </div>
+    </div>
+    <div class="tl-hero__viz" aria-hidden="true">
+      <svg viewBox="0 0 240 240" role="presentation" focusable="false">
+        <defs>
+          <radialGradient id="tlGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d8a857" stop-opacity="0.42"/>
+            <stop offset="52%" stop-color="#d8a857" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#d8a857" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="tlDot" cx="38%" cy="34%" r="72%">
+            <stop offset="0%" stop-color="#f7e6bf"/>
+            <stop offset="100%" stop-color="#9a6f33"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#b08344" stroke-opacity="0.10" stroke-width="1">
+          <line x1="40" y1="120" x2="200" y2="120"/>
+          <line x1="120" y1="40" x2="120" y2="200"/>
+          <line x1="64" y1="64" x2="176" y2="176"/>
+          <line x1="176" y1="64" x2="64" y2="176"/>
+        </g>
+        <g fill="none" stroke="#9c8a5e">
+          <circle cx="120" cy="120" r="98" stroke-opacity="0.12"/>
+          <circle cx="120" cy="120" r="72" stroke-opacity="0.18"/>
+          <circle cx="120" cy="120" r="46" stroke-opacity="0.27"/>
+        </g>
+        <circle cx="120" cy="120" r="40" fill="url(#tlGlow)"/>
+        <circle cx="120" cy="120" r="8" fill="url(#tlDot)"/>
+      </svg>
+    </div>
   </div>
 </section>
 
-<section style="padding: 0 0 30px;">
+<section style="padding: 26px 0 14px;">
   <div class="container" style="max-width:780px;">
-    <aside style="background:#f6f1e8;border-left:3px solid #73602f;padding:18px 22px;margin:0;border-radius:4px;font-size:15px;line-height:1.7;">
-      <p style="margin:0 0 10px;font-weight:600;font-family:var(--font-serif);font-size:17px;">Коротко</p>
-      <p style="margin:0 0 10px;"><strong>Тревога</strong> в норме помогает реагировать на опасность. Расстройством становится, когда срабатывает часто, сильно, без явной угрозы и мешает жить.</p>
-      <p style="margin:0 0 10px;"><strong>Основные формы:</strong> генерализованное тревожное расстройство (ГТР), паническое расстройство, социальная тревожность, навязчивые мысли. У каждой свои особенности и доказательные методы работы.</p>
-      <p style="margin:0;"><strong>Что работает по данным:</strong> когнитивно-поведенческая терапия (КПТ), экспозиция, дыхательные практики, иногда медикаменты при умеренных и тяжёлых формах. Большинство людей с тревожным расстройством значимо улучшаются за 12-20 сессий.</p>
-    </aside>
-  </div>
-</section>
-
-<section style="padding: 20px 0 40px;">
-  <div class="container" style="max-width:780px;">
-    <h2>Что такое тревога и где она перестаёт быть нормой</h2>
-    <p>Тревога это нормальная реакция нервной системы. Перед собеседованием, экзаменом, важным разговором она мобилизует и помогает собраться. Проблема возникает, когда нервная система начинает реагировать тревогой там, где реальной угрозы нет, и делает это часто, долго, сильно.</p>
-    <p>Клиническая граница примерно такая: тревога мешает спать, работать, общаться, и держится месяцами, без отступления на дни-недели. Тело реагирует физически: сердцебиение, напряжение, проблемы с пищеварением, бессонница. Появляется избегание: ты отказываешься от ситуаций, в которых раньше чувствовал себя нормально.</p>
-
-    <h2>Формы тревоги: чем они отличаются</h2>
-    <p><strong>Генерализованное тревожное расстройство (ГТР).</strong> Хроническое беспокойство по самым разным поводам, которое не отключается. Постоянное чувство, что «что-то случится». Сопровождается напряжением, утомляемостью, проблемами со сном.</p>
-    <p><strong>Паническое расстройство.</strong> Внезапные приступы сильного страха с телесными симптомами (сердцебиение, удушье, головокружение). Между приступами появляется страх повторения, который сужает жизнь.</p>
-    <p><strong>Социальная тревожность.</strong> Страх оценки, критики, неловкости в присутствии других. Не застенчивость. Реальное ограничение возможностей.</p>
-    <p><strong>Навязчивые мысли.</strong> Повторяющиеся пугающие или неприятные мысли, которые цепляются и не отпускают. Часть тревожного спектра, иногда часть ОКР.</p>
-    <p><strong>Тревога после эмиграции.</strong> Отдельная история: новый язык, новая среда, потеря привычных опор, дистанция от близких. Часто маскируется под адаптационный стресс, иногда переходит в полноценное тревожное расстройство.</p>
-
-    <h2>Что работает по данным</h2>
-    <p>Накопилась серьёзная база исследований по тревожным расстройствам. Что показывают мета-анализы:</p>
-    <ul>
-      <li><strong>Когнитивно-поведенческая терапия (КПТ)</strong> работает при ГТР, паническом расстройстве, социальной тревожности, навязчивых мыслях. Эффект сравним с медикаментами при лёгких и умеренных формах, без побочных эффектов.</li>
-      <li><strong>Экспозиция</strong> (постепенная встреча с тем, чего избегаешь) ключевой инструмент при социальной тревожности и панике.</li>
-      <li><strong>Дыхательные практики и заземление</strong> помогают в моменте, но не лечат расстройство сами по себе. Они инструмент, не терапия.</li>
-      <li><strong>Медикаменты</strong> (СИОЗС, иногда бензодиазепины кратко) подключают при умеренных и тяжёлых формах. Назначает психиатр.</li>
-      <li><strong>Срок:</strong> при КПТ значимое улучшение обычно за 12-20 сессий. При более тяжёлых формах дольше.</li>
+    <h2>Как это может проявляться</h2>
+    <p class="muted" style="max-width:620px;">Тревога в норме помогает реагировать на опасность. Расстройством она становится, когда срабатывает часто, сильно, без явной угрозы и мешает жить. Вот как это обычно выглядит.</p>
+    <ul class="tl-signs">
+      <li><strong>Постоянное напряжение</strong><span>Ожидание, что вот-вот случится плохое (ГТР).</span></li>
+      <li><strong>Панические приступы</strong><span>Внезапный страх с сердцебиением и удушьем.</span></li>
+      <li><strong>Страх оценки</strong><span>Социальная тревожность, которая сильнее обычной стеснительности.</span></li>
+      <li><strong>Навязчивые мысли</strong><span>Пугающие мысли, которые цепляются и не отпускают.</span></li>
+      <li><strong>Проблемы со сном</strong><span>Тревога не даёт уснуть или будит ночью.</span></li>
+      <li><strong>Избегание</strong><span>Отказ от ситуаций, где раньше было нормально.</span></li>
+      <li><strong>Тревога после переезда</strong><span>Новая среда, потеря опор, дистанция от близких.</span></li>
     </ul>
-    <p>Главное: тревожные расстройства одни из самых хорошо изученных и хорошо поддающихся лечению. Это не «характер», который не меняется.</p>
   </div>
 </section>
 
-<section style="padding: 30px 0; background:#f7f5f0;">
-  <div class="container">
-    <div class="eyebrow">Пройти тест</div>
-    <h2 style="margin-top:6px;">Шкала GAD-7</h2>
-    <p class="muted" style="max-width:620px;">Скрининговый опросник на тревожное расстройство. 7 вопросов, 2 минуты, результат сразу. Используется в клинической практике по всему миру.</p>
-    <p style="margin-top:16px;"><a href="/tests/gad-7.html" class="btn-ghost btn">Пройти GAD-7 →</a></p>
+<section style="padding: 22px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Как я с этим работаю</h2>
+    <p class="muted" style="max-width:620px;">Работаю в подходе КПТ. Идём по шагам, без спешки.</p>
+    <div class="tl-steps">
+      <div class="tl-step"><div class="tl-step__n">01</div><div class="tl-step__b">Разбираем, что именно запускает тревогу: ситуации, мысли, телесные сигналы.</div></div>
+      <div class="tl-step"><div class="tl-step__n">02</div><div class="tl-step__b">Работаем с мыслями и реакциями тела, которые раскручивают тревогу и держат её.</div></div>
+      <div class="tl-step"><div class="tl-step__n">03</div><div class="tl-step__b">Через экспозицию постепенно возвращаем действия и ситуации, которые тревога сузила.</div></div>
+      <div class="tl-step"><div class="tl-step__n">04</div><div class="tl-step__b">Закрепляем навыки между сессиями, чтобы результат держался и без меня.</div></div>
+    </div>
+    <p class="muted" style="max-width:620px;margin-top:24px;font-size:14.5px;">Тревожные расстройства хорошо поддаются работе: при КПТ заметное улучшение обычно наступает за 12-20 встреч. Это не «характер», который нельзя изменить.</p>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Статьи</div>
-    <h2 style="margin-top:6px;">Читать по теме</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Тревожность и тревога: в чём разница и когда пора обратиться за помощью</h3>
-        <p>Тревога нормальна. Тревожное расстройство уже нет. Разбираю, где проходит граница и когда пора обратиться за помощью.</p>
-        <a href="/blog/anxiety-disorder.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Панические атаки: что происходит в теле и как справиться прямо сейчас</h3>
-        <p>Что включается в теле во время атаки, как не подкреплять страх и какие техники реально помогают.</p>
-        <a href="/blog/panic-attacks.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Панические атаки ночью: почему накрывает во сне и что делать</h3>
-        <p>Ночные приступы пугают сильнее дневных. Разбираю механизм и план действий.</p>
-        <a href="/blog/night-panic.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Социальная тревожность: когда страх людей мешает жить</h3>
-        <p>Социальная тревожность это не застенчивость. Это страх оценки, который сужает жизнь.</p>
-        <a href="/blog/social-anxiety.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Навязчивые мысли: почему они приходят и как перестать их бояться</h3>
-        <p>Пугающие мысли не делают тебя плохим. Разбираю механизм и ловушки реакции.</p>
-        <a href="/blog/intrusive-thoughts.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Нарушения сна и психика: как разорвать порочный круг</h3>
-        <p>Бессонница и тревога подкрепляют друг друга. Что помогает, по данным КПТ-инсомнии.</p>
-        <a href="/blog/sleep.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Эмиграция</div>
-        <h3>Тревога после переезда в другую страну</h3>
-        <p>Адаптационный стресс или уже расстройство? Разбираю по признакам.</p>
-        <a href="/blog/emigration-anxiety.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>ОКР: симптомы, виды и как лечат</h3>
-        <p>Круг обсессий и компульсий, виды и как помогает КПТ с экспозицией.</p>
-        <a href="/blog/ocd.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Непереносимость неопределённости</h3>
-        <p>Почему мозг не выносит неизвестность и как это раскручивает тревогу о будущем.</p>
-        <a href="/blog/uncertainty.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Фобии: виды и как их лечат</h3>
-        <p>Чем фобия отличается от обычного страха и как помогает КПТ с экспозицией.</p>
-        <a href="/blog/phobias.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Состояния</div>
-        <h3>Нервный срыв: признаки и что делать</h3>
-        <p>Сигнал перегрузки, а не диагноз. Что делать в моменте и как восстановиться.</p>
-        <a href="/blog/nervous-breakdown.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Тревога ожидания: когда боишься заранее</h3>
-        <p>Предвосхищающая тревога: почему мозг боится заранее и как разорвать круг ожидания.</p>
-        <a href="/blog/anticipatory-anxiety.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Тревога перед работой: когда страшно идти на работу</h3>
-        <p>Воскресный страх и напряжение перед сменой. Откуда берётся и чем отличается от выгорания.</p>
-        <a href="/blog/work-anxiety.html" class="card-link">Читать →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Тревога</div>
-        <h3>Сепарационная тревога у взрослых: страх потерять близкого</h3>
-        <p>Когда тяжело при разлуке с партнёром. При чём здесь привязанность и что помогает.</p>
-        <a href="/blog/separation-anxiety.html" class="card-link">Читать →</a>
-      </article>
+<section style="padding: 10px 0 10px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Что можно сделать самому</h2>
+    <p>До первой сессии и между встречами помогает простое: вернуть телу опору и сбить пик тревоги. Короткие практики ниже можно делать прямо в момент приступа, а тест GAD-7 даёт ориентир, насколько тревога выражена сейчас. Терапию это не заменяет. Но даёт почувствовать, что на состояние реально можно влиять.</p>
+  </div>
+</section>
+
+<section style="padding: 24px 0 14px;">
+  <div class="container" style="max-width:780px;">
+    <div class="eyebrow">Тест по теме</div>
+    <h2 style="margin-top:6px;">Можно начать с короткой самопроверки</h2>
+    <div class="tl-test">
+      <div class="tl-test__t"><b>GAD-7</b>: 7 вопросов про последние две недели, пара минут, результат сразу. Тест не ставит диагноз. Он покажет, насколько тревога выражена сейчас, и поможет решить, с чего начать.</div>
+      <a href="/tests/gad-7.html" class="tl-btn tl-btn--ghost">Пройти GAD-7 →</a>
     </div>
   </div>
 </section>
 
-<section style="padding: 50px 0 20px;">
-  <div class="container">
-    <div class="eyebrow">Практики</div>
+<section style="padding: 30px 0 16px;">
+  <div class="container" style="max-width:900px;">
+    <div class="eyebrow">Практики по теме</div>
     <h2 style="margin-top:6px;">Что попробовать прямо сейчас</h2>
-    <div class="blog-grid" style="margin-top:24px;">
-      <article class="blog-card">
-        <div class="card-cat">Дыхание</div>
-        <h3>Дыхание 4-7-8</h3>
-        <p>Замедляет нервную систему за минуту. Помогает при остром приступе тревоги.</p>
-        <a href="/breathing-4-7-8.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Дыхание</div>
-        <h3>Квадратное дыхание</h3>
-        <p>Простая техника, которой пользуются военные и спортсмены. Хорошо в стрессовой ситуации.</p>
-        <a href="/box-breathing.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Заземление</div>
-        <h3>Техника 5-4-3-2-1</h3>
-        <p>Возвращает в момент через органы чувств. Работает при панической атаке или диссоциации.</p>
-        <a href="/grounding-5-4-3-2-1.html" class="card-link">Открыть →</a>
-      </article>
-      <article class="blog-card">
-        <div class="card-cat">Расслабление</div>
-        <h3>Прогрессивная мышечная релаксация</h3>
-        <p>Учит замечать и отпускать телесное напряжение. Полезна при хронической тревоге.</p>
-        <a href="/pmr.html" class="card-link">Открыть →</a>
-      </article>
+    <div class="tl-toolkit">
+      <a class="tl-tool" href="/breathing-4-7-8.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">01</span><span class="tl-tool__type">Дыхание</span></div>
+        <div class="tl-tool__name">Дыхание 4-7-8</div>
+        <div class="tl-tool__desc">Замедляет нервную систему за минуту. Помогает при остром приступе.</div>
+        <span class="tl-tool__go">Открыть →</span>
+      </a>
+      <a class="tl-tool" href="/box-breathing.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">02</span><span class="tl-tool__type">Дыхание</span></div>
+        <div class="tl-tool__name">Квадратное дыхание</div>
+        <div class="tl-tool__desc">Ровный ритм на четыре счёта. Хорошо в острой стрессовой ситуации.</div>
+        <span class="tl-tool__go">Открыть →</span>
+      </a>
+      <a class="tl-tool" href="/grounding-5-4-3-2-1.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">03</span><span class="tl-tool__type">Заземление</span></div>
+        <div class="tl-tool__name">Техника 5-4-3-2-1</div>
+        <div class="tl-tool__desc">Возвращает в момент через органы чувств. При панике или диссоциации.</div>
+        <span class="tl-tool__go">Открыть →</span>
+      </a>
+      <a class="tl-tool" href="/pmr.html">
+        <div class="tl-tool__top"><span class="tl-tool__n">04</span><span class="tl-tool__type">Расслабление</span></div>
+        <div class="tl-tool__name">Мышечная релаксация</div>
+        <div class="tl-tool__desc">Учит замечать и отпускать телесное напряжение. При хронической тревоге.</div>
+        <span class="tl-tool__go">Открыть →</span>
+      </a>
     </div>
+  </div>
+</section>
+
+<section style="padding: 50px 0 20px;">
+  <div class="container">
+    <div class="eyebrow">Статьи по теме</div>
+    <h2 style="margin-top:6px;">Если хочется разобраться глубже</h2>
+    <div class="tl-arts">
+      <a class="tl-art" href="/blog/anxiety-disorder.html">
+        <div class="tl-art__cat">Тревога</div>
+        <div class="tl-art__h">Тревожность и тревога: в чём разница</div>
+        <div class="tl-art__d">Тревога нормальна, тревожное расстройство уже нет. Где проходит граница и когда пора обратиться.</div>
+        <span class="tl-art__go">Читать →</span>
+      </a>
+      <a class="tl-art" href="/blog/panic-attacks.html">
+        <div class="tl-art__cat">Паника</div>
+        <div class="tl-art__h">Панические атаки: что происходит в теле</div>
+        <div class="tl-art__d">Что включается в теле во время атаки и какие техники реально помогают прямо сейчас.</div>
+        <span class="tl-art__go">Читать →</span>
+      </a>
+      <a class="tl-art" href="/blog/night-panic.html">
+        <div class="tl-art__cat">Паника</div>
+        <div class="tl-art__h">Панические атаки ночью</div>
+        <div class="tl-art__d">Ночные приступы пугают сильнее дневных. Разбираю механизм и план действий.</div>
+        <span class="tl-art__go">Читать →</span>
+      </a>
+    </div>
+    <p style="margin-top:26px;"><a href="/blog.html" class="tl-btn tl-btn--ghost">Все статьи о тревоге →</a></p>
   </div>
 </section>
 
 <section style="padding: 50px 0 30px;">
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Глоссарий</div>
-    <h2 style="margin-top:6px;">Ключевые термины</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/glossary/trigger.html"><strong>Триггер</strong></a>: что-то, что резко возвращает в неприятное переживание.</li>
-      <li><a href="/glossary.html#panic-attack"><strong>Паническая атака</strong></a>: внезапный приступ сильного страха с телесными симптомами.</li>
-      <li><a href="/glossary.html#grounding"><strong>Заземление</strong></a>: способ вернуться в настоящий момент через органы чувств.</li>
-      <li><a href="/glossary/hyperarousal.html"><strong>Гиперактивация</strong></a>: нервная система в постоянной готовности к опасности.</li>
-      <li><a href="/glossary.html#cognitive-distortion"><strong>Когнитивное искажение</strong></a>: привычка мышления, которая искажает реальность и питает тревогу.</li>
+    <h2 style="margin-top:6px;">Термины по теме</h2>
+    <ul class="tl-gloss">
+      <li><a href="/glossary/trigger.html"><b>Триггер</b><span>Что-то, что резко возвращает в неприятное переживание.</span></a></li>
+      <li><a href="/glossary.html#panic-attack"><b>Паническая атака</b><span>Внезапный приступ сильного страха с телесными симптомами.</span></a></li>
+      <li><a href="/glossary.html#grounding"><b>Заземление</b><span>Способ вернуться в настоящий момент через органы чувств.</span></a></li>
+      <li><a href="/glossary/hyperarousal.html"><b>Гиперактивация</b><span>Нервная система в постоянной готовности к опасности.</span></a></li>
+      <li><a href="/glossary.html#cognitive-distortion"><b>Когнитивное искажение</b><span>Привычка мышления, которая искажает реальность и питает тревогу.</span></a></li>
     </ul>
+  </div>
+</section>
+
+<style>
+.signs-list{list-style:none;padding:0;margin:18px 0 0;}
+.signs-list li{position:relative;padding:13px 0 13px 24px;border-top:1px solid var(--border-subtle);line-height:1.55;color:var(--text-primary);font-size:16px;}
+.signs-list li:first-child{border-top:none;}
+.signs-list li::before{content:"";position:absolute;left:2px;top:21px;width:6px;height:6px;border-radius:50%;background:#b8923f;}
+.signs-note{margin-top:20px;padding-left:16px;border-left:2px solid var(--border-subtle);color:var(--text-muted);font-size:15px;line-height:1.7;}
+</style>
+<section style="padding: 10px 0 40px;">
+  <div class="container" style="max-width:780px;">
+    <h2>Когда лучше обратиться к специалисту</h2>
+    <ul class="signs-list">
+      <li>Тревога держится дольше двух недель и не отступает на дни.</li>
+      <li>Она мешает спать, работать или общаться, появляется избегание.</li>
+      <li>Случаются панические атаки или тело постоянно «на взводе».</li>
+    </ul>
+    <p class="signs-note">Чем дольше живёшь в постоянной тревоге, тем привычнее становится избегание и тем уже круг. Разобраться с этим вместе обычно быстрее, чем в одиночку.</p>
   </div>
 </section>
 
@@ -356,10 +435,31 @@
     <p style="max-width:560px;margin:14px auto 24px;color:#5e5246;">Принимаю взрослых онлайн на русском, польском и белорусском. КПТ-подход, опыт с тревожными расстройствами, паническим расстройством и социальной тревожностью.</p>
     <p style="margin:0 0 8px;"><strong>Первая встреча: 15&nbsp;минут, без оплаты и без обязательств.</strong></p>
     <p style="margin:0 0 24px;color:#5e5246;font-size:14px;">Дальше: 180&nbsp;PLN за сессию, оплата Blik или картой.</p>
-    <p style="margin:0;">
-      <a href="/intro.html" target="_blank" rel="noopener noreferrer" class="btn-ghost btn">Записаться на 15&nbsp;минут</a>
-      <a href="/anxiety.html" class="btn-ghost btn">Подробнее о работе с тревогой →</a>
+    <p style="margin:0;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/intro.html" target="_blank" rel="noopener noreferrer" class="tl-btn tl-btn--primary">Записаться на 15&nbsp;минут</a>
+      <a href="/anxiety.html" class="tl-btn tl-btn--ghost">Подробнее →</a>
     </p>
+  </div>
+</section>
+
+<section style="padding: 30px 0 10px;">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">С чего начать</div>
+    <h2 style="margin-top:6px;">Сделай первый шаг в своём темпе</h2>
+    <div class="tl-next">
+      <a href="/intro.html" target="_blank" rel="noopener noreferrer">
+        <div class="tl-next__t">Записаться</div>
+        <div class="tl-next__s">15 минут, без оплаты</div>
+      </a>
+      <a href="/tests/gad-7.html">
+        <div class="tl-next__t">Пройти GAD-7</div>
+        <div class="tl-next__s">Короткая самопроверка</div>
+      </a>
+      <a href="/blog.html">
+        <div class="tl-next__t">Читать статьи</div>
+        <div class="tl-next__s">Разобраться спокойно</div>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -367,18 +467,30 @@
   <div class="container" style="max-width:780px;">
     <div class="eyebrow">Другие темы</div>
     <h2 style="margin-top:6px;">Куда дальше</h2>
-    <ul style="line-height:2;list-style:none;padding:0;font-size:16px;margin-top:16px;">
-      <li><a href="/ptsd.html">Травма и ПТСР →</a></li>
-      <li><a href="/depression.html">Депрессия →</a></li>
-      <li><a href="/burnout-page.html">Выгорание →</a></li>
-      <li><a href="/gaslighting.html">После газлайтинга →</a></li>
-      <li><a href="/emigration.html">Эмиграция и адаптация →</a></li>
+    <ul class="tl-index">
+      <li><a href="/topics/trauma.html"><span class="tl-index__n">01</span><span>Травма и ПТСР</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics/depression.html"><span class="tl-index__n">02</span><span>Депрессия и сон</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics/burnout.html"><span class="tl-index__n">03</span><span>Выгорание</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics/relationships.html"><span class="tl-index__n">04</span><span>Отношения и созависимость</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/topics/emigration.html"><span class="tl-index__n">05</span><span>Эмиграция и адаптация</span><span class="tl-index__a">→</span></a></li>
     </ul>
   </div>
 </section>
 
 
-<section data-seo="hub-posts" style="padding:36px 0;border-top:1px solid var(--border-subtle);"><div class="container"><div class="eyebrow">Ещё по теме</div><ul style="columns:2;column-gap:32px;margin-top:14px;padding:0;list-style:none;line-height:2;"><li><a href="/blog/derealization.html">Дереализация: когда мир как будто ненастоящий</a></li><li><a href="/blog/introversion-vs-social-anxiety.html">Интроверсия или социальная тревожность: в чём разница</a></li><li><a href="/blog/panic-falling-asleep.html">Паника при засыпании: почему накрывает, когда только начинаешь засыпать</a></li><li><a href="/blog/night-anxiety.html">Почему ночью становится страшно: тревога перед сном и что с ней делать</a></li><li><a href="/blog/night-waking-fear.html">Просыпаюсь ночью от страха и сердцебиения: что это и опасно ли</a></li><li><a href="/blog/health-anxiety.html">Тревога за здоровье: почему гугление симптомов делает хуже</a></li></ul></div></section>
+<section data-seo="hub-posts" style="padding:40px 0 64px;border-top:1px solid var(--border-subtle);">
+  <div class="container" style="max-width:820px;">
+    <div class="eyebrow">Ещё по теме</div>
+    <ul class="tl-index">
+      <li><a href="/blog/derealization.html"><span class="tl-index__n">01</span><span>Дереализация: когда мир как будто ненастоящий</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog/introversion-vs-social-anxiety.html"><span class="tl-index__n">02</span><span>Интроверсия или социальная тревожность: в чём разница</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog/panic-falling-asleep.html"><span class="tl-index__n">03</span><span>Паника при засыпании: почему накрывает, когда только начинаешь засыпать</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog/night-anxiety.html"><span class="tl-index__n">04</span><span>Почему ночью становится страшно: тревога перед сном</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog/night-waking-fear.html"><span class="tl-index__n">05</span><span>Просыпаюсь ночью от страха и сердцебиения: что это</span><span class="tl-index__a">→</span></a></li>
+      <li><a href="/blog/health-anxiety.html"><span class="tl-index__n">06</span><span>Тревога за здоровье: почему гугление симптомов делает хуже</span><span class="tl-index__a">→</span></a></li>
+    </ul>
+  </div>
+</section>
 </main>
 
 <footer class="site-footer">
