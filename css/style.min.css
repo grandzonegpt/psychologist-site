@@ -58,5 +58,7 @@ html:not(.light-theme) .theme-toggle::after{ left: 26px; }
 
 /* show the capsule on mobile too (compact, inside the menu) */
 @media (max-width: 860px){
-  .nav-links .theme-toggle{ display: inline-flex !important; align-items: center; }
+  .nav-links .theme-toggle{ display: none !important; }
 }
+
+.lang-mobile .theme-toggle--bar{ margin-right: 6px; }
