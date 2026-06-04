@@ -40,7 +40,7 @@ SKIP_PREFIXES = (".git/", "scripts/", "booking-api/", "_design_system_unpacked/"
 # pages allowed to have no canonical (utility pages, not indexable content)
 NO_CANONICAL_OK = {"404.html"}
 
-PL_RE = re.compile(r"(^|/)(blog-pl|topics-pl|tests-pl|practices-pl|library-pl)/|-pl\.html$|/index-pl\.html$|/intro-pl\.html$")
+PL_RE = re.compile(r"(^|/)(blog-pl|topics-pl|tests-pl|practices-pl|library-pl|glossary-pl)/|-pl\.html$|/index-pl\.html$|/intro-pl\.html$")
 
 fails = []            # (check, message)
 warns = []            # (check, message)

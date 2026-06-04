@@ -39,7 +39,7 @@ NOINDEX = [
     "topics-pl/wypalenie.html", "topics-pl/emigracja.html",
     "intro.html", "intro-pl.html",
 ]
-PL_RE = re.compile(r"(^|/)(blog-pl|topics-pl|tests-pl|practices-pl|library-pl)/|-pl\.html$|/index-pl\.html$|/intro-pl\.html$")
+PL_RE = re.compile(r"(^|/)(blog-pl|topics-pl|tests-pl|practices-pl|library-pl|glossary-pl)/|-pl\.html$|/index-pl\.html$|/intro-pl\.html$")
 LINK_FIXES = [
     ('"/terms.html"', '"/regulamin.html"'),
     ('"/blog/grief.html"', '"/grief.html"'),
