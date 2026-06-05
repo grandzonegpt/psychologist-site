@@ -440,6 +440,7 @@
         // Intro flow: booked immediately, no payment. Show inline success.
         if (data.ok && data.booked) {
           trackEvent('intro_booked', { locale: locale });
+          trackEvent('intro_booking', { method: 'website_widget', language: locale });
           if (selectedDate && selectedTime) {
             var booked = (daysData.find(function(dd) { return dd.date === selectedDate; }) || {}).slots || [];
             booked.forEach(function(s) { if (s.time === selectedTime) s.status = 'taken'; });
