@@ -16,13 +16,16 @@ app.disable('x-powered-by');
 // Microsoft Clarity (clarity.ms), Meta Pixel (connect.facebook.net + pixel
 // posts to facebook.com), LinkedIn Insight (snap.licdn.com + px.ads.linkedin.com).
 // Without these in the allow-list, accepting cookies silently fails on CSP.
+// GA4 routes EEA traffic to a regional endpoint (region1.google-analytics.com),
+// not www, so connect-src and img-src need https://*.google-analytics.com.
+// Without the wildcard the browser blocks every /g/collect hit and GA4 stays empty.
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://connect.facebook.net https://snap.licdn.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
-  "connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://booking-api-production-c2ca.up.railway.app https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
+  "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://booking-api-production-c2ca.up.railway.app https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
   "object-src 'none'",
   "base-uri 'self'",
   // form-action 'self' only: Stripe Checkout is a JS redirect (window.location),
