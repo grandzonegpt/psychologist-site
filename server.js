@@ -104,6 +104,9 @@ app.get('/dziekuje', (req, res) => {
 const redirects = {
   '/sos.html': '/practices.html',
   '/sos-pl.html': '/practices-pl.html',
+  // legacy URLs still in Google's index, now renamed
+  '/terms.html': '/regulamin.html',
+  '/assets/checklist-7-signs.pdf': '/assets/checklist-7-signs-ru.pdf',
 };
 
 app.use((req, res, next) => {
