@@ -3839,3 +3839,63 @@ p, li { font-variant-numeric: oldstyle-nums; }
   .svc-feature { padding: 32px 26px; }
   .svc-feature h3, .svc-feature--main h3 { font-size: 22px; max-width: 82%; }
 }
+
+
+/* ---- Margin notes: tufte-style editorial sidenotes (blog articles) ----
+   Article pages are always cream (.post-page), so colors are fixed,
+   not theme tokens. Two kinds:
+   .side-note   numbered; pair with an inline .side-note-ref anchor
+   .margin-note unnumbered; optional .margin-note-label small-caps tag */
+.post-content { counter-reset: sidenote; }
+.side-note-ref { counter-increment: sidenote; }
+.side-note-ref::after {
+  content: counter(sidenote);
+  font-family: 'Golos Text', sans-serif;
+  font-size: 0.58em;
+  font-weight: 500;
+  color: #8a6a3a;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 2px;
+}
+.margin-note, .side-note {
+  display: block;
+  margin: 20px 0 22px;
+  padding: 2px 0 2px 14px;
+  border-left: 2px solid rgba(138, 106, 58, 0.45);
+  font-family: 'Golos Text', -apple-system, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #5e5246;
+}
+.side-note::before {
+  content: counter(sidenote);
+  display: inline-block;
+  margin-right: 7px;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #8a6a3a;
+  vertical-align: super;
+  line-height: 0;
+}
+.margin-note-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #8a6a3a;
+}
+@media (min-width: 1240px) {
+  .margin-note, .side-note {
+    float: right;
+    clear: right;
+    width: 200px;
+    margin: 4px -244px 18px 0;
+    padding: 0;
+    border-left: none;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+}
