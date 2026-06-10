@@ -1347,15 +1347,20 @@ nav.breadcrumbs + section { padding-top: 32px; }
   display: flex; gap: 16px; align-items: flex-start;
   padding: 20px 0; border-bottom: 1px solid var(--border-subtle);
 }
-.signal-icon {
+.signal-icon { display: none; }
+.not-sure-signals { counter-reset: signal; }
+.not-sure-signals .signal { counter-increment: signal; }
+.not-sure-signals .signal::before {
+  content: counter(signal, decimal-leading-zero);
   flex-shrink: 0;
-  width: 24px; height: 24px;
-  margin-top: 5px;
-  color: var(--text-muted);
-  opacity: 0.85;
+  min-width: 34px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--accent-soft);
+  letter-spacing: -0.02em;
 }
-.signal-icon svg { display: block; width: 100%; height: 100%; }
-.light-theme .signal-icon { color: #8a6a3a; opacity: 0.75; }
+.light-theme .not-sure-signals .signal::before { color: #8a6a3a; }
 .signal p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin: 0; }
 .not-sure-cta { text-align: center; margin-top: 48px; padding: 48px 0; }
 
@@ -2514,8 +2519,8 @@ select:focus-visible {
 /* Reveal: progressive enhancement.
    Default = visible. JS (if present and supported) adds .js-reveal-ready to <html>,
    which hides .reveal until it gets .visible. No JS = all visible, always. */
-.reveal { transition: opacity .9s ease, transform .9s ease; }
-.js-reveal-ready .reveal { opacity: 0; transform: translateY(24px); }
+.reveal { transition: opacity .7s ease, transform .7s ease; }
+.js-reveal-ready .reveal { opacity: 0; transform: translateY(12px); }
 .js-reveal-ready .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
   .js-reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
@@ -3797,4 +3802,40 @@ html:not(.light-theme) .theme-toggle:hover::before{ background-color:#d8cdb8; }
   section { padding: 64px 0; }
   .container { padding: 0 20px; }
   .faq summary { font-size: 19px; }
+}
+
+
+/* Editorial typography details */
+p, li { font-variant-numeric: oldstyle-nums; }
+::selection { background: rgba(176, 140, 90, 0.32); }
+
+/* Services: three featured directions + compact list */
+.services-featured {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.svc-feature { position: relative; padding: 42px 38px; overflow: hidden; }
+.svc-feature--main { grid-row: span 2; }
+.svc-feature h3 { font-size: 25px; max-width: 86%; }
+.svc-feature--main h3 { font-size: 29px; }
+.svc-feature .service-num {
+  position: absolute;
+  top: 22px; right: 26px;
+  margin: 0;
+  font-size: 58px;
+  color: var(--accent-soft);
+  opacity: 0.35;
+}
+.svc-feature p { font-size: 15.5px; }
+.services-rest .card { padding: 24px 22px; }
+.services-rest .card h3 { font-size: 18px; margin-bottom: 8px; }
+.services-rest .card p { font-size: 14px; line-height: 1.65; }
+.services-rest .card .service-num { font-size: 22px; margin-bottom: 12px; color: var(--accent-soft); opacity: 0.7; }
+@media (max-width: 860px) {
+  .services-featured { grid-template-columns: 1fr; }
+  .svc-feature--main { grid-row: auto; }
+  .svc-feature { padding: 32px 26px; }
+  .svc-feature h3, .svc-feature--main h3 { font-size: 22px; max-width: 82%; }
 }
