@@ -31,7 +31,8 @@ KEEP_INDEXED = [
 ]
 # files to ignore entirely (untracked demos / preview artifacts)
 IGNORE = {"practice-premium-demo.html", "practice-premium-3d-demo.html", "_darkpreview.html",
-          "practices-design-export.html"}
+          "practices-design-export.html",
+          "_card-demo-ru.html", "_instagram-slides-ru.html", "_reel-ru.html"}
 # utility pages legitimately noindexed (thank-you / 404), not part of EXPECTED_NOINDEX
 UTILITY_NOINDEX_OK = {"404.html", "spasibo.html", "dziekuje.html"}
 HOMEPAGE = {"index.html", "index-pl.html"}
@@ -130,12 +131,16 @@ for f in sorted(ROOT.rglob("*.html")):
         seo_markers[key] = seo_markers.get(key, 0) + cnt
     bc_links = [href_to_path(a.get("href"), rel) for a in soup.select('[data-seo="breadcrumb"] a') if a.get("href")]
     hubposts_links = [href_to_path(a.get("href"), rel) for a in soup.select('[data-seo="hub-posts"] a') if a.get("href")]
+    _t = soup.find("title"); _h = soup.find("h1")
+    title_txt = re.sub(r"\s+", " ", _t.get_text()).strip() if _t else ""
+    h1_txt = re.sub(r"\s+", " ", _h.get_text()).strip() if _h else ""
     pages[rel] = dict(
         rel=rel, url=url_for(rel), robots=robots, canonical=(canons[0] if canons else None),
         n_canon=len(canons), hreflang=hreflang, switch=sw_hrefs, refresh=bool(refresh),
         links=links, seo=seo_markers, body=soup.body,
         data_category=(soup.body.get("data-category") if soup.body else None),
         bc_links=[x for x in bc_links if x], hubposts_links=[x for x in hubposts_links if x],
+        title_txt=title_txt, h1_txt=h1_txt,
     )
 
 report["total_pages"] = len(pages)
@@ -211,7 +216,10 @@ for rel, p in pages.items():
     for need in ("ru", "pl", "x-default"):
         if need not in p["hreflang"]:
             fail("HREFLANG", f"{rel}: missing hreflang {need}")
-    def norm(u): return (u or "").rstrip("/")
+    def norm(u):
+        u = u or ""
+        if u.endswith("/index.html"): u = u[:-len("index.html")]  # /topics/index.html == /topics/
+        return u.rstrip("/")
     if norm(p["hreflang"].get("ru")) != norm(ru_url):
         fail("HREFLANG", f"{rel}: hreflang ru != pair ({p['hreflang'].get('ru')} vs {ru_url})")
     if norm(p["hreflang"].get("pl")) != norm(pl_url):
@@ -343,6 +351,12 @@ for post, v in orphan_map.items():
 report["orphan_buckets"] = {b: sum(1 for x in orphan_map.values() if x.get("bucket") == b)
                             for b in ("methods", "reassign", "outlier")}
 report["in_hubs_already"] = len([p for p in POSTS if p in parent_links and p not in orphan_map])
+
+# ---------------- [TITLE_H1] (warn-only: title should differ from h1) ----------------
+title_h1_dup = sorted(p for p in POSTS if pages[p]["title_txt"] and pages[p]["title_txt"] == pages[p]["h1_txt"])
+report["title_eq_h1"] = title_h1_dup
+for p in title_h1_dup:
+    warn("TITLE_H1", p)
 
 # ---------------- summary ----------------
 by_check = {}

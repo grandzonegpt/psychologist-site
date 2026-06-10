@@ -1,5 +1,5 @@
 {
-  "total_pages": 296,
+  "total_pages": 311,
   "noindex_pages": [
     "404.html",
     "dziekuje.html",
@@ -29,43 +29,19 @@
   ],
   "unpaired": [
     "404.html",
-    "blog-pl/syndrom-sztokholmski.html",
-    "blog/apathy.html",
-    "blog/cynicism.html",
-    "blog/homesickness.html",
-    "blog/how-to-love-yourself.html",
-    "blog/loneliness-emigration.html",
-    "blog/night-anxiety.html",
-    "blog/night-waking-fear.html",
-    "blog/panic-falling-asleep.html",
-    "blog/paranoia.html",
-    "blog/psychosomatics.html",
-    "blog/reflection.html",
-    "blog/relationship-stages.html",
     "dziekuje.html",
-    "glossary-pl/cognitive-distortion.html",
-    "glossary-pl/compassion-fatigue.html",
-    "glossary-pl/dissociation.html",
-    "glossary-pl/flashback.html",
-    "glossary-pl/hyperarousal.html",
-    "glossary-pl/trigger.html",
-    "glossary/cognitive-distortion.html",
-    "glossary/compassion-fatigue.html",
-    "glossary/dissociation.html",
-    "glossary/flashback.html",
-    "glossary/hyperarousal.html",
-    "glossary/trigger.html",
     "spasibo.html"
   ],
-  "sitemap_count": 281,
-  "post_count": 177,
-  "theme_map_size": 177,
+  "sitemap_count": 296,
+  "post_count": 192,
+  "theme_map_size": 192,
   "orphan_buckets": {
-    "methods": 11,
-    "reassign": 34,
-    "outlier": 6
+    "methods": 12,
+    "reassign": 46,
+    "outlier": 8
   },
   "in_hubs_already": 126,
+  "title_eq_h1": [],
   "fails": [],
   "fail_count": 0
 }
