@@ -1952,7 +1952,7 @@ nav.breadcrumbs + section { padding-top: 32px; }
 .post-page {
   background: #f5f1e8;
   color: #1a1a1a;
-  padding: 140px 0 96px;
+  padding: 120px 0 96px;
 }
 /* Article pages are always cream; scope internal blocks to a light palette */
 .post-page .author-card,
@@ -2034,19 +2034,21 @@ nav.breadcrumbs + section { padding-top: 32px; }
   color: var(--text-muted);
 }
 .post-page .post-back:hover { color: var(--text-primary); }
+.post-page .breadcrumbs { padding: 0 0 8px; }
+.post-page .share-bar { max-width: 680px; margin: 18px auto 6px; padding: 0 24px; }
 body[data-category="anxiety"]   { --cat-color: var(--cat-anxiety); }
 body[data-category="trauma"]    { --cat-color: var(--cat-trauma); }
 body[data-category="relations"] { --cat-color: var(--cat-relations); }
 body[data-category="method"]    { --cat-color: var(--cat-method); }
 body[data-category="practice"]  { --cat-color: var(--cat-practice); }
 
-.post-page::before {
+.post-page .post-meta::before {
   content: "";
   display: block;
-  width: 60px;
+  width: 32px;
   height: 2px;
   background: var(--cat-color);
-  margin: 0 auto 24px;
+  margin: 0 auto 12px;
 }
 .post-page .post-meta {
   max-width: 680px;
