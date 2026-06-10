@@ -421,6 +421,88 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/perfectionism.html"/>
     <priority>0.85</priority>
   </url>
+
+  <!-- Tests: new self-screenings -->
+  <url>
+    <loc>https://levashou.pl/tests/adhd.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/adhd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/adhd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/adhd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/adhd.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/adhd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/adhd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/adhd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/social-anxiety.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/social-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/lek-spoleczny.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/social-anxiety.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/lek-spoleczny.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/social-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/lek-spoleczny.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/social-anxiety.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/ocd.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/ocd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/ocd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/ocd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/ocd.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/ocd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/ocd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/ocd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/stress.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/stress.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/stres.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/stress.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/stres.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/stress.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/stres.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/stress.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/self-esteem.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/self-esteem.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/samoocena.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/self-esteem.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/samoocena.html</loc>
+    <lastmod>2026-06-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/self-esteem.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/samoocena.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/self-esteem.html"/>
+    <priority>0.85</priority>
+  </url>
   <url>
     <loc>https://levashou.pl/tests/attachment-styles.html</loc>
     <lastmod>2026-05-28</lastmod>
