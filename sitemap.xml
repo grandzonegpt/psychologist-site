@@ -552,6 +552,54 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://levashou.pl/tests/abuse.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/abuse.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/przemoc-w-zwiazku.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/abuse.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/przemoc-w-zwiazku.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/abuse.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/przemoc-w-zwiazku.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/abuse.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/health-anxiety.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/health-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/lek-o-zdrowie.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/health-anxiety.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/lek-o-zdrowie.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/health-anxiety.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/lek-o-zdrowie.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/health-anxiety.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/relocation.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/relocation.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/adaptacja.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/relocation.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/adaptacja.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/relocation.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/adaptacja.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/relocation.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://levashou.pl/tests/attachment-styles.html</loc>
     <lastmod>2026-05-28</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/attachment-styles.html"/>
