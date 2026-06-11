@@ -3734,12 +3734,12 @@ body { hanging-punctuation: first last; }
   --accent-soft:#c19f63; --border-subtle:#393026;
 }
 .theme-toggle{
-  position:relative; width:34px; height:34px; flex-shrink:0; padding:0;
+  position:relative; width:40px; height:40px; flex-shrink:0; padding:0;
   display:inline-flex; align-items:center; justify-content:center;
-  border:1px solid rgba(120,100,70,0.22); border-radius:10px;
+  border:none; border-radius:10px;
   background:transparent; color:transparent; font-size:0; line-height:0;
   cursor:pointer; -webkit-tap-highlight-color:transparent;
-  transition:border-color .18s ease, background-color .18s ease, transform .18s ease;
+  transition:transform .18s ease;
 }
 .theme-toggle::before{
   content:""; width:19px; height:19px; background-color:#6b5d4c;
@@ -3747,18 +3747,13 @@ body { hanging-punctuation: first last; }
           mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/%3E%3C/svg%3E") center/19px 19px no-repeat;
   transition:background-color .18s ease;
 }
-html:not(.light-theme) .theme-toggle{
-  border-color:rgba(245,238,224,0.16); background:rgba(245,238,224,0.05);
-}
 html:not(.light-theme) .theme-toggle::before{
   background-color:#c2b6a2;
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E");
           mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E");
 }
-.theme-toggle:hover{ border-color:rgba(176,140,90,0.5); background:rgba(120,100,70,0.07); }
-.theme-toggle:hover::before{ background-color:#574b3a; }
-html:not(.light-theme) .theme-toggle:hover{ border-color:rgba(245,238,224,0.28); background:rgba(245,238,224,0.09); }
-html:not(.light-theme) .theme-toggle:hover::before{ background-color:#d8cdb8; }
+.theme-toggle:hover::before{ background-color:#8a6a3a; }
+html:not(.light-theme) .theme-toggle:hover::before{ background-color:#e6dcc8; }
 .theme-toggle:active{ transform:scale(0.97); }
 .theme-toggle:focus-visible{ outline:2px solid var(--accent-soft); outline-offset:2px; }
 /* exactly one visible per breakpoint */

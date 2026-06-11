@@ -475,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Theme toggle (default: light; user can opt into dark).
-  // Line-drawn sun/moon icons, no emoji; all toggle buttons stay in sync.
+  // All toggle buttons bound; icon itself is pure CSS.
   const themeBtns = document.querySelectorAll('.theme-toggle');
   if (themeBtns.length) {
     const saved = localStorage.getItem('theme');
@@ -484,18 +484,11 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       document.documentElement.classList.add('light-theme');
     }
-    const ICON_SUN = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>';
-    const ICON_MOON = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.2A8.2 8.2 0 0 1 9.8 3.8a8.2 8.2 0 1 0 10.4 10.4z"/></svg>';
-    const update = () => {
-      const isLight = document.documentElement.classList.contains('light-theme');
-      themeBtns.forEach((b) => { b.innerHTML = isLight ? ICON_MOON : ICON_SUN; });
-    };
-    update();
+    // Icon is drawn by CSS (.theme-toggle::before mask); JS only flips the class.
     themeBtns.forEach((btn) => btn.addEventListener('click', () => {
       document.documentElement.classList.toggle('light-theme');
       const isLight = document.documentElement.classList.contains('light-theme');
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
-      update();
     }));
   }
 
