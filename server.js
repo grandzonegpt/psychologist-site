@@ -84,9 +84,8 @@ app.get('/robots.txt', (req, res) => {
   res.sendFile(path.join(__dirname, 'robots.txt'));
 });
 
-// Serve index.html at /. The /index.html URL is left to static middleware
-// so it returns 200 with the same content; canonical tag in the HTML
-// points to / and signals the preferred URL to Google instead of a 301.
+// Serve index.html at /. The /index.html URL 301s to / (redirects map below)
+// so Google sees exactly one homepage URL.
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -102,6 +101,7 @@ app.get('/dziekuje', (req, res) => {
 
 // 301 redirects for renamed pages
 const redirects = {
+  '/index.html': '/',
   '/sos.html': '/practices.html',
   '/sos-pl.html': '/practices-pl.html',
   // legacy URLs still in Google's index, now renamed
