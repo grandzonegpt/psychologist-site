@@ -18,6 +18,7 @@ Studied at SWPS in Warsaw: clinical health psychology and psychotraumatology. On
 - [Gaslighting](https://levashou.pl/gaslighting.html): Recovering trust in own perception
 - [Social anxiety](https://levashou.pl/social-anxiety.html)
 - [Grief](https://levashou.pl/grief.html): Loss, complicated grief, ambiguous loss
+- [Couples therapy](https://levashou.pl/couples.html): Recurring conflicts, distance, trust crisis; online for couples
 - [Psychosomatics](https://levashou.pl/psychosomatics.html)
 - [Help for loved ones](https://levashou.pl/for-loved-ones.html): When close person refuses therapy
 - [Pricing](https://levashou.pl/cennik.html): 180 PLN per 50-minute session
@@ -36,6 +37,7 @@ Studied at SWPS in Warsaw: clinical health psychology and psychotraumatology. On
 - [Gaslighting](https://levashou.pl/gaslighting-pl.html)
 - [Fobia społeczna](https://levashou.pl/social-anxiety-pl.html)
 - [Żałoba](https://levashou.pl/grief-pl.html)
+- [Terapia dla par](https://levashou.pl/couples-pl.html)
 - [Psychosomatyka](https://levashou.pl/psychosomatics-pl.html)
 - [Cennik](https://levashou.pl/cennik-pl.html)
 
@@ -46,19 +48,32 @@ Studied at SWPS in Warsaw: clinical health psychology and psychotraumatology. On
 - [5-4-3-2-1 grounding](https://levashou.pl/grounding-5-4-3-2-1.html): For panic and flashbacks
 - [Thought record diary](https://levashou.pl/diary.html): CBT cognitive restructuring
 
-## Self-screening tests
+## Self-screening tests (21 free anonymous tests, Russian and Polish)
 
-- [GAD-7, PHQ-9, PCL-5 anonymous tests](https://levashou.pl/tests.html)
+- [Test catalog (Russian)](https://levashou.pl/tests.html): GAD-7, PHQ-9, PCL-5 plus original screenings
+- [Test catalog (Polish)](https://levashou.pl/tests-pl.html)
+- [Adult ADHD screening](https://levashou.pl/tests/adhd.html)
+- [Complex PTSD (ICD-11)](https://levashou.pl/tests/cptsd.html)
+- [Panic attacks](https://levashou.pl/tests/panic-attacks.html)
+- [Insomnia](https://levashou.pl/tests/insomnia.html)
+- [Social anxiety](https://levashou.pl/tests/social-anxiety.html)
+- [OCD signs](https://levashou.pl/tests/ocd.html)
+- [Stress load and recovery](https://levashou.pl/tests/stress.html)
+- [Self-esteem](https://levashou.pl/tests/self-esteem.html)
+- [Relationship abuse signs](https://levashou.pl/tests/abuse.html)
+- [Health anxiety](https://levashou.pl/tests/health-anxiety.html)
+- [Emigration adaptation](https://levashou.pl/tests/relocation.html): How relocation really went
 
 ## Blog
 
-- [Russian blog](https://levashou.pl/blog.html): Long-form articles on therapy topics
-- [Polish blog](https://levashou.pl/blog-pl.html): Polish equivalents
+- [Russian blog](https://levashou.pl/blog.html): 97 long-form articles with cited sources and editorial margin notes
+- [Polish blog](https://levashou.pl/blog-pl.html): Polish versions of all articles
 
 ## Booking
 
-- [Free 15-min intro call (Russian)](https://cal.com/levashou/intro-ru)
-- [Free 15-min intro call (Polish)](https://cal.com/levashou/intro-pl)
+- [Free 15-min intro call (Russian)](https://levashou.pl/intro.html): pick a slot, link arrives by email
+- [Free 15-min intro call (Polish)](https://levashou.pl/intro-pl.html)
+- [Paid session booking](https://levashou.pl/cennik.html): 180 PLN, 50 minutes, online
 
 ## Contact
 
@@ -68,4 +83,4 @@ Studied at SWPS in Warsaw: clinical health psychology and psychotraumatology. On
 
 ## Languages and location
 
-Sessions available in Russian (русский), Polish (polski), Belarusian (беларуская). Online for clients across the EU. Based in Warsaw, Poland: pl. Bankowy 2, 00-095 Warszawa.
+Sessions available in Russian (русский), Polish (polski), Belarusian (беларуская). Online only, for clients across the EU. Based in Warsaw, Poland (registered business address: pl. Bankowy 2, 00-095 Warszawa; no in-person visits).
