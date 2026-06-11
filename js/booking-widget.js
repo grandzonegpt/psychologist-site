@@ -185,8 +185,8 @@
         '<div class="bw-v2__form" hidden>' +
           '<div class="bw-v2__form-title"></div>' +
           '<form>' +
-            '<input type="text" name="name" placeholder="' + t.name + '" required>' +
-            '<input type="email" name="email" placeholder="' + t.email + '" required>' +
+            '<input type="text" name="name" autocomplete="name" aria-label="' + t.name + '" placeholder="' + t.name + '" required>' +
+            '<input type="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" aria-label="' + t.email + '" placeholder="' + t.email + '" required>' +
             '<button type="submit">' + t.bookContinue + '</button>' +
           '</form>' +
         '</div>' +

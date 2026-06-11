@@ -55,7 +55,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
 <script>if(localStorage.getItem("theme")!=="dark")document.documentElement.classList.add("light-theme");</script>
-<link rel="stylesheet" href="/css/style.min.css?v=135"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
+<link rel="stylesheet" href="/css/style.min.css?v=136"><noscript><style>.mat-panel[hidden],[role=tabpanel][hidden]{display:block!important;margin-top:24px}.mat-tabs,.theme-toggle,.floating-cta,.sticky-cta-mobile,.exit-popup,.cookie-banner{display:none!important}</style></noscript>
 
 <script type="application/ld+json">
 {
@@ -377,7 +377,7 @@
 <nav class="site-nav" aria-label="Главная навигация">
   <div class="nav-inner">
     <a href="/" class="nav-brand">Алексей Левашев<span class="dot">.</span></a>
-    <div class="lang-mobile" aria-label="Язык"><button class="theme-toggle theme-toggle--bar" aria-label="Переключить тему">☀️</button><a href="/" class="active">RU</a><span class="sep">|</span><a href="/index-pl.html">PL</a></div>
+    <div class="lang-mobile" aria-label="Язык"><button class="theme-toggle theme-toggle--bar" aria-label="Переключить тему"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.2A8.2 8.2 0 0 1 9.8 3.8a8.2 8.2 0 1 0 10.4 10.4z"/></svg></button><a href="/" class="active">RU</a><span class="sep">|</span><a href="/index-pl.html">PL</a></div>
     <button class="nav-toggle" aria-label="Открыть меню">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -410,7 +410,7 @@
         </div>
       </details>
       <a href="#booking">Записаться</a>
-      <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
+      <button class="theme-toggle" aria-label="Переключить тему"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M20.2 14.2A8.2 8.2 0 0 1 9.8 3.8a8.2 8.2 0 1 0 10.4 10.4z"/></svg></button>
       <div class="lang-switch" aria-label="Язык">
         <a href="/" class="active">RU</a>
         <span class="sep">|</span>
@@ -571,9 +571,10 @@
   <div class="container">
     <div class="eyebrow reveal">Примеры из практики</div>
     <h2 class="reveal">Истории, которые могут показаться твоими</h2>
-    <div class="cases-disclaimer reveal">
-      Примеры из практики. Имя, детали и развитие изменены или соединены из нескольких случаев для сохранения конфиденциальности. Длительность и результаты терапии индивидуальны: количество сессий и темп зависят от запроса, мотивации и обстоятельств. Указанные сроки служат иллюстрацией; обещанием эти сроки не являются.
-    </div>
+    <details class="cases-how reveal">
+      <summary>Как составлены эти примеры</summary>
+      <p>Примеры из практики. Имя, детали и развитие изменены или соединены из нескольких случаев для сохранения конфиденциальности. Длительность и результаты терапии индивидуальны: количество сессий и темп зависят от запроса, мотивации и обстоятельств. Указанные сроки служат иллюстрацией; обещанием эти сроки не являются.</p>
+    </details>
     <div class="cases-grid">
       <div class="case-card reveal">
         <div class="case-tag">Тревожное расстройство</div>
@@ -1280,7 +1281,7 @@
       <div class="booking-col">
         <h3 class="booking-col-title">Записаться через календарь</h3>
         <div id="booking-widget-ru"></div>
-        <script src="/js/booking-widget.min.js?v=83"></script>
+        <script src="/js/booking-widget.min.js?v=85"></script>
         <script>BookingWidget.init('booking-widget-ru', 'ru');</script>
       </div>
 
@@ -1569,7 +1570,7 @@ section[id],header[id]{scroll-margin-top:112px;}
 .floating-cta{bottom:20px;right:20px;}
 @media(max-width:760px){.floating-cta{bottom:12px;right:12px;}}
 </style>
-<script src="/js/main.min.js?v=29"></script>
+<script src="/js/main.min.js?v=30"></script>
 <script src="/js/rough-notation.iife.js?v=1" defer></script>
 <script src="/js/hero-annotate.min.js?v=1" defer></script>
 <script>
