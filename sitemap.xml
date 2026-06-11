@@ -504,6 +504,54 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://levashou.pl/tests/panic-attacks.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/panic-attacks.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/napady-paniki.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/panic-attacks.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/napady-paniki.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/panic-attacks.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/napady-paniki.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/panic-attacks.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/cptsd.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/cptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/cptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/cptsd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/cptsd.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/cptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/cptsd.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/cptsd.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests/insomnia.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/insomnia.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/bezsennosc.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/insomnia.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://levashou.pl/tests-pl/bezsennosc.html</loc>
+    <lastmod>2026-06-11</lastmod>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/insomnia.html"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://levashou.pl/tests-pl/bezsennosc.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://levashou.pl/tests/insomnia.html"/>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://levashou.pl/tests/attachment-styles.html</loc>
     <lastmod>2026-05-28</lastmod>
     <xhtml:link rel="alternate" hreflang="ru" href="https://levashou.pl/tests/attachment-styles.html"/>

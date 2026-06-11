@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 # ---------------- config ----------------
 ORIGIN = "https://levashou.pl"
 ROOT = Path(__file__).resolve().parent.parent
-TODAY = datetime.date(2026, 6, 10)
+TODAY = datetime.date.today()
 
 EXPECTED_NOINDEX = [
     "topics/anxiety.html", "topics/trauma.html", "topics/depression.html",
