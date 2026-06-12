@@ -1,5 +1,5 @@
 {
-  "total_pages": 337,
+  "total_pages": 339,
   "noindex_pages": [
     "404.html",
     "dziekuje.html",
@@ -32,15 +32,15 @@
     "dziekuje.html",
     "spasibo.html"
   ],
-  "sitemap_count": 322,
-  "post_count": 194,
-  "theme_map_size": 194,
+  "sitemap_count": 324,
+  "post_count": 196,
+  "theme_map_size": 196,
   "orphan_buckets": {
     "methods": 12,
     "reassign": 46,
     "outlier": 8
   },
-  "in_hubs_already": 128,
+  "in_hubs_already": 130,
   "title_eq_h1": [],
   "fails": [],
   "fail_count": 0
