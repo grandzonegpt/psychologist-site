@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog — Aliaksei Levashou, psycholog, CBT, trauma</title>
+    <title>Blog: Aliaksei Levashou, psycholog, CBT, trauma</title>
     <link>https://levashou.pl/blog-pl.html</link>
-    <description>Artykuły o CBT, lęku, traumie, relacjach i zdrowiu psychicznym. Aliaksei Levashou — psycholog, psychotraumatolog.</description>
+    <description>Artykuły o CBT, lęku, traumie, relacjach i zdrowiu psychicznym. Aliaksei Levashou: psycholog, psychotraumatolog.</description>
     <language>pl</language>
     <atom:link href="https://levashou.pl/blog-pl/feed.xml" rel="self" type="application/rss+xml"/>
     <lastBuildDate>Thu, 28 May 2026 14:00:00 +0200</lastBuildDate>
@@ -160,7 +160,7 @@
       <link>https://levashou.pl/blog-pl/cbt.html</link>
       <guid>https://levashou.pl/blog-pl/cbt.html</guid>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0100</pubDate>
-      <description>CBT — najlepiej zbadana metoda psychoterapii. Zasady, struktura sesji i dlaczego to działa.</description>
+      <description>CBT: najlepiej zbadana metoda psychoterapii. Zasady, struktura sesji i dlaczego to działa.</description>
     </item>
     <item>
       <title>PTSD: kiedy trauma nie odchodzi</title>
@@ -174,7 +174,7 @@
       <link>https://levashou.pl/blog-pl/anxiety-disorder.html</link>
       <guid>https://levashou.pl/blog-pl/anxiety-disorder.html</guid>
       <pubDate>Thu, 05 Dec 2024 00:00:00 +0100</pubDate>
-      <description>Lęk jest normalny. Zaburzenia lękowe — już nie. Gdzie przebiega granica.</description>
+      <description>Lęk jest normalny. Zaburzenia lękowe: już nie. Gdzie przebiega granica.</description>
     </item>
     <item>
       <title>Wypalenie: 7 oznak i pierwsze kroki do powrotu do siebie</title>
@@ -188,14 +188,14 @@
       <link>https://levashou.pl/blog-pl/grounding.html</link>
       <guid>https://levashou.pl/blog-pl/grounding.html</guid>
       <pubDate>Sat, 14 Sep 2024 00:00:00 +0200</pubDate>
-      <description>Uziemienie — zestaw technik do powrotu do „tu i teraz". Lęk, flashbacki, burze emocjonalne.</description>
+      <description>Uziemienie: zestaw technik do powrotu do „tu i teraz". Lęk, flashbacki, burze emocjonalne.</description>
     </item>
     <item>
       <title>Zaburzenia snu i psychika: jak przerwać błędne koło</title>
       <link>https://levashou.pl/blog-pl/sleep.html</link>
       <guid>https://levashou.pl/blog-pl/sleep.html</guid>
       <pubDate>Fri, 30 Aug 2024 00:00:00 +0200</pubDate>
-      <description>Depresja zakłóca sen, zły sen pogłębia depresję. CBT-I — jedyna metoda o udowodnionej skuteczności.</description>
+      <description>Depresja zakłóca sen, zły sen pogłębia depresję. CBT-I: jedyna metoda o udowodnionej skuteczności.</description>
     </item>
     <item>
       <title>Zniekształcenia poznawcze: 10 pułapek myślenia</title>
