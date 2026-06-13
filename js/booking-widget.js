@@ -134,13 +134,22 @@
       }
     }
     var ids = window.MARKETING_IDS || {};
-    if (name === 'purchase' && ids.googleAdsTag && ids.googleAdsConversionLabel && typeof gtag === 'function') {
-      gtag('event', 'conversion', {
-        send_to: ids.googleAdsTag + '/' + ids.googleAdsConversionLabel,
-        value: (params && params.value) || 180,
-        currency: (params && params.currency) || 'PLN',
-        transaction_id: (params && params.transaction_id) || ''
-      });
+    if (ids.googleAdsTag && typeof gtag === 'function') {
+      // Paid session: precise value-based Google Ads conversion.
+      if (name === 'purchase' && ids.googleAdsConversionLabel) {
+        gtag('event', 'conversion', {
+          send_to: ids.googleAdsTag + '/' + ids.googleAdsConversionLabel,
+          value: (params && params.value) || 180,
+          currency: (params && params.currency) || 'PLN',
+          transaction_id: (params && params.transaction_id) || ''
+        });
+      }
+      // Free intro booking: the pilot's primary conversion, no monetary value.
+      if (name === 'intro_booking' && ids.googleAdsIntroLabel) {
+        gtag('event', 'conversion', {
+          send_to: ids.googleAdsTag + '/' + ids.googleAdsIntroLabel
+        });
+      }
     }
   }
 

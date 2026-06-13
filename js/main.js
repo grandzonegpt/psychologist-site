@@ -193,8 +193,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //   metaPixel:                Business Manager > Events Manager > Pixel ID
   //                             (15 to 16 digit number)
   //   googleAdsTag:             AW-XXXXXXXXXX from Google Ads Conversions UI
-  //   googleAdsConversionLabel: alphanumeric label of a single conversion
-  //                             action (paired with googleAdsTag for purchase)
+  //   googleAdsConversionLabel: label of the PAID-session conversion action
+  //                             (fires on `purchase`, value-based)
+  //   googleAdsIntroLabel:      label of the FREE-intro conversion action
+  //                             (fires on `intro_booking`, the pilot's
+  //                             primary optimization goal; no monetary value)
   //   linkedInPartnerId:        numeric Partner ID from LinkedIn Campaign
   //                             Manager Insight Tag setup
   // ==========================================================================
@@ -202,6 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     metaPixel: '',
     googleAdsTag: '',
     googleAdsConversionLabel: '',
+    googleAdsIntroLabel: '',
     linkedInPartnerId: ''
   };
 
