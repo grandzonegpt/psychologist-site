@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   window.MARKETING_IDS = window.MARKETING_IDS || {
     metaPixel: '',
-    googleAdsTag: '',
+    googleAdsTag: 'AW-18118312389',
     googleAdsConversionLabel: '',
-    googleAdsIntroLabel: '',
+    googleAdsIntroLabel: 'mtpeCJHO0r4cEMWDvr9D',
     linkedInPartnerId: ''
   };
 
