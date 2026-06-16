@@ -367,7 +367,8 @@ body{
   <button class="replay" id="replay" type="button">↻ powtórz</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<!-- GSAP с самого сайта, не с CDN: иначе CSP сайта блокирует внешний скрипт и анимация не стартует -->
+<script src="/js/gsap.min.js"></script>
 <script>
 (function () {
   /* ========================================================
@@ -461,23 +462,29 @@ body{
       .from('#content > *',
         { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.16, ease: 'power2.out' }, 'start+=0.55')
 
-      // --- ЗАТМЕНИЕ ---
+      // --- ЗАТМЕНИЕ: мягкий прохладный вдох, луна НЕ исчезает ---
       .addLabel('eclipse', 'start+=3.7')
       // лёгкий ход терминатора по диску (SVG-маска)
-      .to('#phaseShadow', { x: -36, duration: 2.8, ease: 'power1.inOut' }, 'eclipse')
-      // светлая поверхность гаснет и охлаждается -> проступает тёмная сфера
-      .to('#litLayer',    { autoAlpha: 0.14, duration: 2.6, ease: 'power1.inOut' }, 'eclipse+=0.3')
-      // голубая атмосфера-ореол расширяется
-      .to('#moonAtmos',   { autoAlpha: 1, scale: 1.12, duration: 2.8, ease: 'power2.out' }, 'eclipse')
-      // тёплый ореол гаснет, уступая холоду затмения
-      .to('#moonHalo',    { autoAlpha: 0.10, duration: 2.6, ease: 'power1.inOut' }, 'eclipse')
-      // световой ободок разгорается
-      .to('#moonRim',     { autoAlpha: 1, duration: 2.4, ease: 'power2.out' }, 'eclipse+=0.5')
-      // небо: тёплое -> холодное
-      .to('.sky-warm',    { autoAlpha: 0, duration: 2.6 }, 'eclipse')
-      .to('.sky-cool',    { autoAlpha: 1, duration: 2.6 }, 'eclipse')
-      .to('.replay',      { opacity: 1, duration: 1.0 }, 'eclipse+=1.6')
-      .addLabel('settle');
+      .to('#phaseShadow', { x: 170, duration: 2.6, ease: 'power1.inOut' }, 'eclipse')
+      // луна остаётся полной и тёплой, лишь лёгкий прохладный вдох
+      .to('#litLayer',    { autoAlpha: 0.9, duration: 2.4, ease: 'power1.inOut' }, 'eclipse+=0.3')
+      .to('#moonAtmos',   { autoAlpha: 0.22, scale: 1.06, duration: 2.6, ease: 'power2.out' }, 'eclipse')
+      .to('#moonHalo',    { autoAlpha: 0.7, duration: 2.4, ease: 'power1.inOut' }, 'eclipse')
+      .to('#moonRim',     { autoAlpha: 0, duration: 2.2, ease: 'power2.out' }, 'eclipse+=0.5')
+      .to('.sky-warm',    { autoAlpha: 0.8, duration: 2.4 }, 'eclipse')
+      .to('.sky-cool',    { autoAlpha: 0.3, duration: 2.4 }, 'eclipse')
+
+      // --- ВОЗВРАТ: тёплая луна остаётся как спокойный финал ---
+      .addLabel('warm', 'eclipse+=3.4')
+      .to('#phaseShadow', { x: 210, duration: 2.6, ease: 'power1.inOut' }, 'warm')
+      .to('#litLayer',    { autoAlpha: 1, duration: 2.6, ease: 'power1.inOut' }, 'warm')
+      .to('#moonAtmos',   { autoAlpha: 0, scale: 0.95, duration: 2.4 }, 'warm')
+      .to('#moonRim',     { autoAlpha: 0, duration: 2.2 }, 'warm')
+      .to('#moonHalo',    { autoAlpha: 1, duration: 2.6 }, 'warm')
+      .to('.sky-cool',    { autoAlpha: 0, duration: 2.6 }, 'warm')
+      .to('.sky-warm',    { autoAlpha: 1, duration: 2.6 }, 'warm')
+      .to('.replay',      { opacity: 1, duration: 1.0 }, 'warm+=0.4')
+      .addLabel('rest');
 
     return tl;
   }
