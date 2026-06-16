@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Тихое место: лунная заставка (демо)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Шрифты сайта: Spectral (serif) + Golos Text (sans). Тот же URL и веса, что в css/style.css. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+<style>
+/* ============================================================
+   ЛУННАЯ ЗАСТАВКА «ТИХОЕ МЕСТО»  (демо, web-версия end card)
+   Стек: GSAP timeline + CSS-градиенты + Canvas-звёзды + SVG-маска фазы.
+   Самодостаточный файл: только GSAP с CDN, шрифты сайта (Cormorant + Lato).
+   ============================================================ */
+:root{
+  --serif:'Spectral', Georgia, serif;
+  --sans:'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --ink:        #e9e3d6;   /* основной светлый текст на ночном небе */
+  --ink-soft:   #b9b2a4;   /* вторичный текст */
+  --ink-faint:  #6f6c66;   /* подписи, footer */
+  --warm:       #d9b27a;   /* тёплый акцент (тёплая луна) */
+  --cool:       #7fa6dd;   /* холодный акцент (затмение) */
+}
+
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0;
+  background:#05070d;
+  color:var(--ink);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+
+/* ---------- СЦЕНА ---------- */
+.stage{
+  position:relative;
+  min-height:100svh;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+/* Ночное небо: глубокий градиент + лёгкая виньетка.
+   Два слоя «свечения у горизонта»: тёплый (полная луна) и холодный (затмение),
+   GSAP перекрёстно гасит их во время затмения. */
+.sky{
+  position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(120% 80% at 50% 6%, #161d33 0%, #0a0e1a 42%, #05070d 78%),
+    radial-gradient(100% 60% at 50% 120%, #0c1326 0%, #05070d 70%);
+}
+.sky-glow{ position:absolute; inset:0; z-index:0; pointer-events:none; }
+.sky-warm{
+  background:radial-gradient(46% 36% at 50% 26%, rgba(214,168,104,.20), rgba(214,168,104,0) 70%);
+}
+.sky-cool{
+  opacity:0;
+  background:radial-gradient(60% 46% at 50% 30%, rgba(96,134,206,.22), rgba(40,70,140,0) 72%);
+}
+.vignette{
+  position:absolute; inset:0; z-index:5; pointer-events:none;
+  background:radial-gradient(130% 100% at 50% 42%, transparent 52%, rgba(0,0,0,.55) 100%);
+}
+
+/* ---------- ЗВЁЗДЫ (canvas-частицы) ---------- */
+.stars{
+  position:absolute; inset:0; z-index:1;
+  width:100%; height:100%;
+  opacity:0;                     /* GSAP проявит */
+  pointer-events:none;
+}
+
+/* ---------- ЛУНА ---------- */
+.moon-wrap{
+  position:relative;
+  width:clamp(168px, 42vw, 268px);
+  aspect-ratio:1;
+  margin-bottom:clamp(18px, 4.5vh, 46px);
+  z-index:2;
+  will-change:transform, opacity;
+  transform:translateZ(0);
+}
+
+/* Голубая атмосфера-ореол (за диском). Проявляется к затмению. */
+.moon-atmos{
+  position:absolute; left:50%; top:50%;
+  width:172%; height:172%;
+  transform:translate(-50%,-50%) scale(.9);
+  border-radius:50%;
+  opacity:0;
+  background:radial-gradient(closest-side,
+    rgba(96,140,224,0) 52%,
+    rgba(96,140,224,.20) 70%,
+    rgba(70,108,186,.10) 84%,
+    rgba(70,108,186,0) 100%);
+  filter:blur(2px);
+  pointer-events:none;
+  will-change:transform, opacity;
+}
+
+/* Тёплый ореол полной луны (спадает к затмению). Даёт ту самую теплоту. */
+.moon-halo{
+  position:absolute; left:50%; top:50%;
+  width:208%; height:208%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  opacity:0;                     /* GSAP проявит */
+  background:radial-gradient(closest-side,
+    rgba(246,210,146,.24) 28%,
+    rgba(232,172,98,.13) 52%,
+    rgba(210,150,84,0) 76%);
+  filter:blur(8px);
+  pointer-events:none;
+  will-change:opacity, transform;
+}
+
+/* Сам диск: SVG c градиентами, «морями», зерном и маской фазы. */
+.moon-svg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  overflow:visible;
+  opacity:0;                     /* GSAP проявит */
+  filter:drop-shadow(0 0 36px rgba(244,208,150,.30)) drop-shadow(0 0 96px rgba(214,150,86,.16));
+  will-change:transform, opacity;
+}
+
+/* Тонкий световой ободок (rim light), как у подсвеченной сзади сферы. */
+.moon-rim{
+  position:absolute; left:50%; top:50%;
+  width:101%; height:101%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  opacity:0;
+  background:radial-gradient(closest-side,
+    rgba(190,210,255,0) 66%,
+    rgba(190,210,255,0) 78%,
+    rgba(206,222,255,.55) 90%,
+    rgba(206,222,255,0) 100%);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  will-change:opacity;
+}
+
+/* ---------- ТЕКСТ ---------- */
+.content{
+  position:relative; z-index:3;
+  width:min(92vw, 430px);
+  margin-top:clamp(-30px, -4vh, -8px);
+  text-align:center;
+  padding:0 6px 6px;
+}
+.lang{
+  font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink-faint);
+  margin-bottom:clamp(14px, 3.5vh, 30px);
+}
+.lang b{ color:var(--ink); font-weight:400; }
+.lang span{ opacity:.55; }
+.lang a{ color:inherit; text-decoration:none; opacity:.55; transition:opacity .25s ease, color .25s ease; }
+.lang a:hover{ opacity:1; color:var(--ink); }
+.lang i{ font-style:normal; opacity:.4; padding:0 .5em; }
+
+.title{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(38px, 9.5vw, 58px);
+  line-height:1.02;
+  letter-spacing:-0.01em;        /* как h1 на сайте (css/style.css) */
+  margin:0 0 clamp(16px, 3.2vh, 26px);
+  color:#f3ecdd;
+  text-shadow:0 1px 30px rgba(217,178,122,.16);
+}
+.lede{
+  font-family:var(--serif);
+  font-size:clamp(18px, 4.6vw, 22px);
+  font-weight:400;
+  line-height:1.5;
+  color:var(--ink);
+  margin:0 auto clamp(18px, 3vh, 26px);
+  max-width:30ch;
+}
+.body{
+  font-size:clamp(13.5px, 3.6vw, 15px);
+  line-height:1.62;
+  color:var(--ink-soft);
+  margin:0 auto clamp(16px, 2.6vh, 22px);
+  max-width:34ch;
+}
+.note{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:clamp(13px, 3.4vw, 14.5px);
+  color:var(--ink-faint);
+  margin:0 auto clamp(22px, 4vh, 34px);
+  max-width:32ch;
+}
+
+.cta{
+  display:inline-block;
+  font-size:14px; letter-spacing:.04em;
+  color:#f0e9da; text-decoration:none;
+  padding:14px 30px;
+  border:1px solid rgba(233,227,214,.30);
+  border-radius:999px;
+  background:rgba(233,227,214,.03);
+  backdrop-filter:blur(2px);
+  transition:border-color .4s ease, background .4s ease, transform .4s cubic-bezier(.22,1,.36,1);
+}
+.cta:hover{
+  border-color:rgba(233,227,214,.62);
+  background:rgba(233,227,214,.08);
+  transform:translateY(-2px);
+}
+.cta:focus-visible{ outline:2px solid var(--cool); outline-offset:3px; }
+
+.foot{
+  font-size:12px; letter-spacing:.02em;
+  color:var(--ink-faint);
+  margin:clamp(26px, 5vh, 42px) auto 0;
+}
+.foot a{ color:var(--ink-soft); text-decoration:none; border-bottom:1px solid rgba(185,178,164,.28); }
+.foot a:hover{ color:var(--ink); }
+
+/* ---------- ДЕМО: кнопка повтора ---------- */
+.replay{
+  position:absolute; left:50%; bottom:18px; transform:translateX(-50%);
+  z-index:6;
+  font-family:var(--sans); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-faint);
+  background:none; border:0; cursor:pointer;
+  padding:8px 12px; opacity:.0;
+  transition:color .3s ease, opacity .6s ease;
+}
+.replay:hover{ color:var(--ink-soft); }
+
+/* Очень маленькие экраны: чуть плотнее */
+@media (max-height:680px){
+  .moon-wrap{ width:clamp(140px, 34vw, 200px); }
+  .title{ font-size:clamp(34px, 8.5vw, 46px); }
+}
+</style>
+</head>
+
+<body>
+<div class="stage" id="stage">
+  <div class="sky"></div>
+  <div class="sky-glow sky-warm"></div>
+  <div class="sky-glow sky-cool"></div>
+
+  <canvas class="stars" id="stars"></canvas>
+
+  <div class="stage-inner" style="display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:2;">
+
+    <div class="moon-wrap" id="moonWrap">
+      <div class="moon-halo" id="moonHalo"></div>
+      <div class="moon-atmos" id="moonAtmos"></div>
+
+      <svg class="moon-svg" id="moonSvg" viewBox="0 0 220 220" aria-hidden="true">
+        <defs>
+          <!-- тёплая медовая поверхность -->
+          <radialGradient id="mgLit" cx="40%" cy="34%" r="80%">
+            <stop offset="0%"   stop-color="#fbeccf"/>
+            <stop offset="38%"  stop-color="#eed7a8"/>
+            <stop offset="70%"  stop-color="#d6af79"/>
+            <stop offset="100%" stop-color="#a6794a"/>
+          </radialGradient>
+          <radialGradient id="mgDark" cx="42%" cy="36%" r="80%">
+            <stop offset="0%"   stop-color="#2b3450"/>
+            <stop offset="58%"  stop-color="#1a2236"/>
+            <stop offset="100%" stop-color="#0c1018"/>
+          </radialGradient>
+          <!-- объёмная тень снизу-справа (шар) -->
+          <radialGradient id="mgShade" cx="62%" cy="66%" r="74%">
+            <stop offset="0%"   stop-color="rgba(38,24,8,0)"/>
+            <stop offset="66%"  stop-color="rgba(38,24,8,0)"/>
+            <stop offset="100%" stop-color="rgba(30,18,6,.52)"/>
+          </radialGradient>
+          <!-- потемнение к краю (limb darkening) -->
+          <radialGradient id="mgLimb" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="rgba(0,0,0,0)"/>
+            <stop offset="80%"  stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(54,34,14,.40)"/>
+          </radialGradient>
+          <!-- тёплый блик у освещённого края -->
+          <radialGradient id="mgGlow" cx="37%" cy="31%" r="42%">
+            <stop offset="0%"   stop-color="rgba(255,246,226,.50)"/>
+            <stop offset="100%" stop-color="rgba(255,246,226,0)"/>
+          </radialGradient>
+          <!-- мягкое тёплое «море» -->
+          <radialGradient id="mgMare" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stop-color="rgba(120,92,58,.50)"/>
+            <stop offset="58%"  stop-color="rgba(126,98,62,.30)"/>
+            <stop offset="100%" stop-color="rgba(126,98,62,0)"/>
+          </radialGradient>
+          <clipPath id="moonClip"><circle cx="110" cy="110" r="92"/></clipPath>
+          <filter id="moonGrain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="9" stitchTiles="stitch"/>
+            <feColorMatrix type="saturate" values="0"/>
+          </filter>
+          <filter id="mareBlur" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.2"/>
+          </filter>
+          <mask id="mgPhase">
+            <rect x="0" y="0" width="220" height="220" fill="#000"/>
+            <circle cx="110" cy="110" r="92" fill="#fff"/>
+            <circle id="phaseShadow" cx="110" cy="110" r="98" fill="#000"/>
+          </mask>
+        </defs>
+
+        <!-- Тёмная сфера (всегда под светлой поверхностью) -->
+        <circle cx="110" cy="110" r="92" fill="url(#mgDark)"/>
+
+        <!-- Светлая поверхность луны, ограниченная маской фазы -->
+        <g id="litLayer" mask="url(#mgPhase)">
+          <g clip-path="url(#moonClip)">
+            <!-- база: тёплый градиент -->
+            <circle cx="110" cy="110" r="92" fill="url(#mgLit)"/>
+
+            <!-- «моря»: мягкие неровные тёмные пятна, как лицо настоящей Луны -->
+            <g filter="url(#mareBlur)">
+              <ellipse cx="95"  cy="83"  rx="31" ry="24" fill="url(#mgMare)" transform="rotate(-18 95 83)"/>
+              <ellipse cx="129" cy="97"  rx="22" ry="18" fill="url(#mgMare)" transform="rotate(14 129 97)"/>
+              <ellipse cx="111" cy="121" rx="27" ry="20" fill="url(#mgMare)" transform="rotate(-6 111 121)"/>
+              <ellipse cx="83"  cy="115" rx="16" ry="14" fill="url(#mgMare)"/>
+              <ellipse cx="147" cy="129" rx="14" ry="12" fill="url(#mgMare)" transform="rotate(22 147 129)"/>
+              <ellipse cx="120" cy="151" rx="13" ry="10" fill="url(#mgMare)"/>
+            </g>
+
+            <!-- зерно поверхности: убирает «плоскость» градиента -->
+            <rect x="18" y="18" width="184" height="184" filter="url(#moonGrain)" opacity=".10" style="mix-blend-mode:overlay"/>
+
+            <!-- тёплый блик, объём и потемнение к краю -->
+            <circle cx="110" cy="110" r="92" fill="url(#mgGlow)"/>
+            <circle cx="110" cy="110" r="92" fill="url(#mgShade)"/>
+            <circle cx="110" cy="110" r="92" fill="url(#mgLimb)"/>
+          </g>
+        </g>
+      </svg>
+
+      <div class="moon-rim" id="moonRim"></div>
+    </div>
+
+    <div class="content" id="content">
+      <div class="lang"><b>RU</b><i>·</i><a href="_moon-splash-pl.html">PL</a></div>
+      <h1 class="title">Тихое место</h1>
+      <p class="lede">Письмо себе в будущее. Открыть его можно только тогда, когда придёт время.</p>
+      <p class="body">Письма себе, психологические практики и место, где можно ненадолго остановиться.</p>
+      <p class="note">Всё остаётся только на твоём устройстве.</p>
+      <a class="cta" href="https://quiet.levashou.pl/" id="cta">Открыть тихое место</a>
+      <p class="foot">Алексей Левашев, психотерапевт. Варшава. <a href="https://levashou.pl">levashou.pl</a></p>
+    </div>
+
+  </div>
+
+  <div class="vignette"></div>
+  <button class="replay" id="replay" type="button">↻ повторить</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script>
+(function () {
+  /* ========================================================
+     1. ЗВЁЗДЫ: canvas-частицы, обновляются через gsap.ticker.
+        DPR-aware, лёгкое мерцание + медленный дрейф.
+     ======================================================== */
+  const canvas = document.getElementById('stars');
+  const ctx = canvas.getContext('2d');
+  let stars = [], W = 0, H = 0, DPR = 1, twinkle = true;
+
+  function buildStars() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    const count = Math.round((W * H) / 9000);   // плотность под размер экрана
+    stars = new Array(count).fill(0).map(function (_, i) {
+      const r = Math.pow((i * 9301 + 49297) % 233 / 233, 2);   // детерминированный «рандом»
+      const r2 = ((i * 49297 + 233) % 997) / 997;
+      const r3 = ((i * 769 + 137) % 631) / 631;
+      return {
+        x: r * W,
+        y: r2 * H,
+        rad: 0.4 + r3 * 1.4,
+        base: 0.25 + r3 * 0.6,
+        spd: 0.6 + r * 1.6,           // скорость мерцания
+        phase: r2 * Math.PI * 2,
+        drift: 0.04 + r3 * 0.10,      // медленный дрейф вниз
+        cold: r2 > 0.78               // часть звёзд холоднее (голубее)
+      };
+    });
+  }
+
+  function drawStars(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      const a = twinkle
+        ? s.base * (0.55 + 0.45 * Math.sin(t * 0.001 * s.spd + s.phase))
+        : s.base;
+      if (twinkle) {
+        s.y += s.drift;
+        if (s.y > H + 2) { s.y = -2; }
+      }
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.rad, 0, Math.PI * 2);
+      ctx.fillStyle = s.cold
+        ? 'rgba(196,214,255,' + a.toFixed(3) + ')'
+        : 'rgba(245,240,228,' + a.toFixed(3) + ')';
+      ctx.fill();
+    }
+  }
+
+  buildStars();
+  let resizeRAF = null;
+  window.addEventListener('resize', function () {
+    if (resizeRAF) cancelAnimationFrame(resizeRAF);
+    resizeRAF = requestAnimationFrame(buildStars);
+  });
+  // gsap.ticker даёт единый rAF для всей сцены (см. gsap-performance)
+  gsap.ticker.add(function () { drawStars(gsap.ticker.time * 1000); });
+
+  /* ========================================================
+     2. TIMELINE: 8-секундная дуга (вход -> тёплая луна -> затмение),
+        затем тихий бесконечный idle. Управление через matchMedia
+        для prefers-reduced-motion.
+     ======================================================== */
+  gsap.set('#phaseShadow', { x: 210 });           // тень убрана: луна полная
+  gsap.set('.replay', { opacity: 0 });
+
+  let master = null, idle = null;
+
+  function buildArc() {
+    const tl = gsap.timeline({
+      defaults: { ease: 'power2.out' },
+      onComplete: startIdle
+    });
+
+    tl.addLabel('start')
+      // вход: небо, звёзды, тёплое свечение
+      .to('.stars',     { autoAlpha: 1, duration: 2.4 }, 'start')
+      .to('.sky-warm',  { autoAlpha: 1, duration: 2.4 }, 'start')
+      // луна всплывает
+      .fromTo('#moonSvg',
+        { autoAlpha: 0, scale: 0.72, y: 34 },
+        { autoAlpha: 1, scale: 1, y: 0, duration: 1.7, ease: 'power3.out' }, 'start')
+      .to('#moonHalo', { autoAlpha: 1, duration: 2.2 }, 'start')
+      // текст проявляется со смещением (stagger)
+      .from('#content > *',
+        { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.16, ease: 'power2.out' }, 'start+=0.55')
+
+      // --- ЗАТМЕНИЕ ---
+      .addLabel('eclipse', 'start+=3.7')
+      // лёгкий ход терминатора по диску (SVG-маска)
+      .to('#phaseShadow', { x: -36, duration: 2.8, ease: 'power1.inOut' }, 'eclipse')
+      // светлая поверхность гаснет и охлаждается -> проступает тёмная сфера
+      .to('#litLayer',    { autoAlpha: 0.14, duration: 2.6, ease: 'power1.inOut' }, 'eclipse+=0.3')
+      // голубая атмосфера-ореол расширяется
+      .to('#moonAtmos',   { autoAlpha: 1, scale: 1.12, duration: 2.8, ease: 'power2.out' }, 'eclipse')
+      // тёплый ореол гаснет, уступая холоду затмения
+      .to('#moonHalo',    { autoAlpha: 0.10, duration: 2.6, ease: 'power1.inOut' }, 'eclipse')
+      // световой ободок разгорается
+      .to('#moonRim',     { autoAlpha: 1, duration: 2.4, ease: 'power2.out' }, 'eclipse+=0.5')
+      // небо: тёплое -> холодное
+      .to('.sky-warm',    { autoAlpha: 0, duration: 2.6 }, 'eclipse')
+      .to('.sky-cool',    { autoAlpha: 1, duration: 2.6 }, 'eclipse')
+      .to('.replay',      { opacity: 1, duration: 1.0 }, 'eclipse+=1.6')
+      .addLabel('settle');
+
+    return tl;
+  }
+
+  function startIdle() {
+    if (idle) idle.kill();
+    idle = gsap.timeline({ defaults: { ease: 'sine.inOut' } });
+    // луна тихо дышит вверх-вниз
+    idle.to('#moonWrap', { y: -6, duration: 6, repeat: -1, yoyo: true }, 0);
+    // ореол едва пульсирует, как тёплое дыхание
+    idle.to('#moonAtmos', { scale: 1.16, duration: 5.5, repeat: -1, yoyo: true }, 0);
+    idle.to('#moonHalo', { autoAlpha: 0.78, duration: 5.5, repeat: -1, yoyo: true }, 0);
+  }
+
+  function play() {
+    if (idle) idle.kill();
+    gsap.set('#moonWrap', { y: 0 });
+    gsap.set('#litLayer', { autoAlpha: 1 });
+    gsap.set('#moonAtmos', { autoAlpha: 0, scale: 0.9 });
+    gsap.set('#moonRim', { autoAlpha: 0 });
+    gsap.set('#moonHalo', { autoAlpha: 0 });
+    gsap.set('#phaseShadow', { x: 210 });
+    gsap.set(['.sky-warm', '.stars'], { autoAlpha: 0 });
+    gsap.set('.sky-cool', { autoAlpha: 0 });
+    if (master) master.kill();
+    master = buildArc();
+
+    // Предпросмотр кадра: открой ссылку с #t=5.5, чтобы замереть на 5.5 сек дуги.
+    const seek = /[#&]t=([\d.]+)/.exec(location.hash);
+    if (seek) master.pause(parseFloat(seek[1]));
+  }
+
+  /* prefers-reduced-motion: без сильного движения.
+     Показываем спокойный «постер» с тёплой полной луной и текстом. */
+  const mm = gsap.matchMedia();
+  mm.add({
+    motion: '(prefers-reduced-motion: no-preference)',
+    reduce: '(prefers-reduced-motion: reduce)'
+  }, function (ctx) {
+    const c = ctx.conditions;
+    if (c.reduce) {
+      twinkle = false;
+      gsap.set(['.stars', '.sky-warm', '#moonHalo', '#moonSvg', '#content > *'], { autoAlpha: 1, scale: 1, y: 0 });
+      gsap.set('.replay', { opacity: 1 });
+    } else {
+      play();
+    }
+  });
+
+  document.getElementById('replay').addEventListener('click', play);
+})();
+</script>
+</body>
+</html>
