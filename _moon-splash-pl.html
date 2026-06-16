@@ -367,8 +367,8 @@ body{
   <button class="replay" id="replay" type="button">↻ powtórz</button>
 </div>
 
-<!-- GSAP с самого сайта, не с CDN: иначе CSP сайта блокирует внешний скрипт и анимация не стартует -->
-<script src="/js/gsap.min.js"></script>
+<!-- GSAP с самого сайта (относительный путь): работает и на проде, и при открытии файла локально. С CDN его блокирует CSP сайта. -->
+<script src="js/gsap.min.js"></script>
 <script>
 (function () {
   /* ========================================================
