@@ -155,10 +155,10 @@ body{
 /* ---------- ТЕКСТ ---------- */
 .content{
   position:relative; z-index:3;
-  width:min(92vw, 430px);
+  width:min(90vw, 420px);
   margin-top:clamp(-30px, -4vh, -8px);
   text-align:center;
-  padding:0 6px 6px;
+  padding:0 16px 6px;            /* боковой воздух: текст не упирается в край */
 }
 .lang{
   font-size:12px; letter-spacing:.22em; text-transform:uppercase;
@@ -174,8 +174,8 @@ body{
 .title{
   font-family:var(--serif);
   font-weight:500;
-  font-size:clamp(38px, 9.5vw, 58px);
-  line-height:1.02;
+  font-size:clamp(33px, 8.4vw, 58px);   /* нижняя граница меньше: не вылезает на узких телефонах */
+  line-height:1.04;
   letter-spacing:-0.01em;        /* как h1 на сайте (css/style.css) */
   margin:0 0 clamp(16px, 3.2vh, 26px);
   color:#f3ecdd;
