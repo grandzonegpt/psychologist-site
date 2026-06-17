@@ -132,6 +132,7 @@ const apiLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 30, standardHeader
 app.use('/api/book', apiLimiter);
 app.use('/api/slots', rateLimit({ windowMs: 60 * 1000, max: 20, standardHeaders: true, legacyHeaders: false }));
 app.use('/api/contact', rateLimit({ windowMs: 15 * 60 * 1000, max: 10, standardHeaders: true, legacyHeaders: false }));
+app.use('/api/checkout-amount', rateLimit({ windowMs: 60 * 1000, max: 30, standardHeaders: true, legacyHeaders: false }));
 
 const calendar = calendarLib.init();
 
@@ -414,7 +415,7 @@ app.post('/api/book', async (req, res) => {
       }],
       customer_email: email,
       metadata: { name, email, date, time, locale: locale || 'ru', holdEventId, ...attribution },
-      success_url: `${origin}${successPage}`,
+      success_url: `${origin}${successPage}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}${cancelPage}?booking=cancelled`
     });
 
@@ -460,6 +461,26 @@ app.post('/api/contact', async (req, res) => {
 });
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+// Returns the paid amount for a completed Checkout session so the thank-you
+// page can fire the Google Ads purchase conversion with the real value.
+// No PII: amount + currency only. The client falls back to a static value if
+// this is unavailable, so a hiccup here never blocks the conversion itself.
+app.get('/api/checkout-amount', async (req, res) => {
+  try {
+    const id = typeof req.query.session_id === 'string' ? req.query.session_id : '';
+    if (!id.startsWith('cs_')) return res.status(400).json({ error: 'bad_session_id' });
+    const session = await stripe.checkout.sessions.retrieve(id);
+    if (!session || session.payment_status !== 'paid') return res.json({ paid: false });
+    res.json({
+      paid: true,
+      amount: session.amount_total / 100,
+      currency: (session.currency || 'pln').toUpperCase()
+    });
+  } catch (e) {
+    res.status(500).json({ error: 'lookup_failed' });
+  }
+});
 
 // Sentry's express error handler must come after all routes. It catches any
 // unhandled exception thrown inside a handler and forwards it to Sentry,
