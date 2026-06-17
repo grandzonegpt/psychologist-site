@@ -59,5 +59,49 @@
 </main>
 
 <footer class="ty-footer">© Aliaksei Levashou, Warszawa</footer>
+
+<!-- Google Ads: paid-session purchase conversion. Consent-gated by ad_storage:
+     never fires without "all" cookie consent. Fires once per real Stripe return
+     (session_id present), value from Stripe, transaction_id for refresh dedup. -->
+<script>
+(function () {
+  var sid = new URLSearchParams(window.location.search).get('session_id');
+  if (!sid) return;
+  if (localStorage.getItem('cookie-consent') !== 'all') return;
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('consent', 'default', {
+    'ad_storage': 'granted',
+    'ad_user_data': 'granted',
+    'ad_personalization': 'granted',
+    'analytics_storage': 'granted'
+  });
+  gtag('config', 'AW-18118312389');
+
+  var tag = document.createElement('script');
+  tag.async = true;
+  tag.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18118312389';
+  document.head.appendChild(tag);
+
+  var fired = false;
+  function fire(value, currency) {
+    if (fired) return;
+    fired = true;
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18118312389/HPtzCM6Tpr8cEMWDvr9D',
+      'value': value,
+      'currency': currency,
+      'transaction_id': sid
+    });
+  }
+
+  fetch('https://booking-api-production-c2ca.up.railway.app/api/checkout-amount?session_id=' + encodeURIComponent(sid))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) { fire(d && d.paid && d.amount ? d.amount : 180, d && d.currency ? d.currency : 'PLN'); })
+    .catch(function () { fire(180, 'PLN'); });
+})();
+</script>
 </body>
 </html>
