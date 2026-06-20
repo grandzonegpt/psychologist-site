@@ -44,6 +44,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://booking-api-production-c2ca.up.railway.app" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
@@ -182,9 +183,9 @@
     <h1>Serce wali, ręce się trzęsą, czujesz, że umierasz. Lekarze mówią: wszystko w porządku.</h1>
     <p class="muted" style="max-width:620px;margin:0 auto;">Napad paniki nie jest groźny dla zdrowia, chociaż tak właśnie się czuje. Z tym da się pracować. Zwykle wystarczy 8-12 sesji.</p>
     <div class="landing-hero-cta">
-      <a href="/intro-pl.html?utm_source=landing&amp;utm_medium=hero&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
-      <a href="#booking-footer" class="btn-ghost btn">Umów sesję</a>
+      <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
     </div>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Bezpłatnie, bez zobowiązań. <a href="#booking-footer" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Albo od razu na sesję</a></p>
     <div class="landing-hero-trust">
       <span>Aliaksei Levashou · Psycholog i psychotraumatolog · Podejście CBT</span>
       <span class="sep">·</span>
@@ -192,6 +193,22 @@
       <span class="sep">·</span>
       <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">ZnanyLekarz</a>
     </div>
+  </div>
+</section>
+
+<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
+  <div class="container" style="max-width:760px;">
+    <div class="eyebrow reveal">Bezpłatnie, 15 minut</div>
+    <h2 class="reveal">Wolne terminy na zapoznanie</h2>
+    <p class="muted reveal" style="margin-bottom:28px;">Wybierasz dogodny termin, zostawiasz imię i email. Link do spotkania wideo przyjdzie na pocztę od razu. Nie trzeba nic płacić.</p>
+    <div class="intro-author">
+      <img src="/assets/photo.jpg" alt="Aliaksei Levashou" width="56" height="56" loading="lazy">
+      <div><strong>Aliaksei Levashou</strong><span>Psycholog i psychotraumatolog · Podejście CBT · SWPS · PTTPB nr&nbsp;05906</span></div>
+    </div>
+    <div id="booking-widget-intro-pl"></div>
+    <script src="/js/booking-widget.min.js?v=87"></script>
+    <script>BookingWidget.init('booking-widget-intro-pl', 'pl', { type: 'intro' });</script>
+    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Nie ma dogodnego terminu albo masz pytania? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Napisz na Telegram</a>, ustalimy termin ręcznie.</p>
   </div>
 </section>
 
@@ -248,7 +265,7 @@
 <section class="landing-midcta">
   <div class="container">
     <p>Opowiesz, co się dzieje. Powiem, czy mogę pomóc i jak. 15&nbsp;minut, bezpłatnie.</p>
-    <a href="/intro-pl.html?utm_source=landing&amp;utm_medium=mid_cta&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
+    <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
   </div>
 </section>
 
@@ -328,7 +345,7 @@
         <p class="authority">CBT jest w rekomendacjach NICE i APA. To metoda z najszerszą bazą dowodową przy lęku i traumie.</p>
         <p>Pierwsze spotkanie: 15&nbsp;minut, bez opłat i bez zobowiązań. Po prostu opowiedzieć, co się dzieje, i zrozumieć, czy mogę pomóc.</p>
         <div class="author-actions">
-          <a href="/intro-pl.html?utm_source=landing&amp;utm_medium=author_card&amp;utm_content=panic" target="_blank" rel="noopener" class="primary">Umów 15&nbsp;minut</a>
+          <a href="#intro-widget" class="primary">Umów 15&nbsp;minut</a>
           <a href="/assets/checklist-7-signs-pl.pdf?v=2" class="secondary" target="_blank" rel="noopener" download>Lista: 7 oznak</a>
         </div>
       </div>
@@ -346,7 +363,7 @@
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Zaburzenie paniczne dobrze reaguje na terapię. Im wcześniej zaczniesz, tym szybciej efekt.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/intro-pl.html?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
+      <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
       <a href="/index-pl.html?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" class="btn-ghost btn">Umów sesję</a>
     </div>
   </div>
