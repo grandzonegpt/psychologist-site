@@ -114,9 +114,30 @@
     };
   }
 
+  // SHA-256 hex of a normalized string, for Google Ads enhanced conversions.
+  // Returns null if Web Crypto is unavailable (e.g. a non-secure context).
+  async function sha256Hex(value) {
+    try {
+      if (!value || !window.crypto || !crypto.subtle) return null;
+      var norm = String(value).trim().toLowerCase();
+      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(norm));
+      return Array.prototype.map.call(new Uint8Array(buf), function(b) {
+        return ('0' + b.toString(16)).slice(-2);
+      }).join('');
+    } catch (e) {
+      return null;
+    }
+  }
+
   function trackEvent(name, params) {
+    params = params || {};
+    // Enhanced conversions: lift the hashed email out before the GA4 event so
+    // it only ever rides on the Google Ads conversion, never into GA4.
+    var emailSha256 = params._email_sha256;
+    if (emailSha256) delete params._email_sha256;
+
     if (typeof gtag === 'function') {
-      gtag('event', name, params || {});
+      gtag('event', name, params);
     }
     if (typeof window.fbq === 'function') {
       var fbMap = {
@@ -128,8 +149,8 @@
       var fbName = fbMap[name];
       if (fbName) {
         var fbParams = {};
-        if (params && params.value != null) fbParams.value = params.value;
-        if (params && params.currency) fbParams.currency = params.currency;
+        if (params.value != null) fbParams.value = params.value;
+        if (params.currency) fbParams.currency = params.currency;
         window.fbq('track', fbName, fbParams);
       }
     }
@@ -139,13 +160,19 @@
       if (name === 'purchase' && ids.googleAdsConversionLabel) {
         gtag('event', 'conversion', {
           send_to: ids.googleAdsTag + '/' + ids.googleAdsConversionLabel,
-          value: (params && params.value) || 180,
-          currency: (params && params.currency) || 'PLN',
-          transaction_id: (params && params.transaction_id) || ''
+          value: params.value || 180,
+          currency: params.currency || 'PLN',
+          transaction_id: params.transaction_id || ''
         });
       }
       // Free intro booking: the pilot's primary conversion, no monetary value.
+      // Enhanced conversions for leads: attach the hashed email when present.
+      // Consent-gated: the AW tag only loads after "accept all", and Consent
+      // Mode withholds user_data unless ad_user_data is granted.
       if (name === 'intro_booking' && ids.googleAdsIntroLabel) {
+        if (emailSha256) {
+          gtag('set', 'user_data', { sha256_email_address: emailSha256 });
+        }
         gtag('event', 'conversion', {
           send_to: ids.googleAdsTag + '/' + ids.googleAdsIntroLabel
         });
@@ -449,7 +476,8 @@
         // Intro flow: booked immediately, no payment. Show inline success.
         if (data.ok && data.booked) {
           trackEvent('intro_booked', { locale: locale });
-          trackEvent('intro_booking', { method: 'website_widget', language: locale });
+          var emailSha256 = await sha256Hex(pendingEmail);
+          trackEvent('intro_booking', { method: 'website_widget', language: locale, _email_sha256: emailSha256 });
           if (selectedDate && selectedTime) {
             var booked = (daysData.find(function(dd) { return dd.date === selectedDate; }) || {}).slots || [];
             booked.forEach(function(s) { if (s.time === selectedTime) s.status = 'taken'; });
