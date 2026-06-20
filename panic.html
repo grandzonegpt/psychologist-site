@@ -44,6 +44,7 @@
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://booking-api-production-c2ca.up.railway.app" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap"></noscript>
@@ -179,9 +180,9 @@
     <h1>Сердце колотится, руки трясутся, кажется, что умираешь. Врачи говорят: всё в порядке.</h1>
     <p class="muted" style="max-width:620px;margin:0 auto;">Паническая атака не опасна для здоровья, хотя ощущается именно так. С этим можно разобраться. Обычно хватает 8-12 сессий.</p>
     <div class="landing-hero-cta">
-      <a href="/intro.html?utm_source=landing&amp;utm_medium=hero&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
-      <a href="#booking-footer" class="btn-ghost btn">Записаться на сессию</a>
+      <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
     </div>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Бесплатно, без обязательств. <a href="#booking-footer" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Или сразу на сессию</a></p>
     <div class="landing-hero-trust">
       <span>Алексей Левашев · Психолог и психотравматолог · Подход КПТ</span>
       <span class="sep">·</span>
@@ -189,6 +190,22 @@
       <span class="sep">·</span>
       <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">ZnanyLekarz</a>
     </div>
+  </div>
+</section>
+
+<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
+  <div class="container" style="max-width:760px;">
+    <div class="eyebrow reveal">Бесплатно, 15 минут</div>
+    <h2 class="reveal">Свободные окна для знакомства</h2>
+    <p class="muted reveal" style="margin-bottom:28px;">Выбираешь удобный слот, оставляешь имя и email. Ссылка на видеовстречу придёт на почту сразу. Платить ничего не нужно.</p>
+    <div class="intro-author">
+      <img src="/assets/photo.jpg" alt="Алексей Левашев" width="56" height="56" loading="lazy">
+      <div><strong>Алексей Левашев</strong><span>Психолог и психотравматолог · Подход КПТ · SWPS · PTTPB №&nbsp;05906</span></div>
+    </div>
+    <div id="booking-widget-intro-ru"></div>
+    <script src="/js/booking-widget.min.js?v=87"></script>
+    <script>BookingWidget.init('booking-widget-intro-ru', 'ru', { type: 'intro' });</script>
+    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Не нашёл удобного времени или остались вопросы? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Напиши в Telegram</a>, подберём время вручную.</p>
   </div>
 </section>
 
@@ -245,7 +262,7 @@
 <section class="landing-midcta">
   <div class="container">
     <p>Расскажешь, что происходит. Я скажу, могу ли помочь и как. 15&nbsp;минут, бесплатно.</p>
-    <a href="/intro.html?utm_source=landing&amp;utm_medium=mid_cta&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
+    <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
   </div>
 </section>
 
@@ -325,7 +342,7 @@
         <p class="authority">КПТ входит в рекомендации NICE и APA. Это метод с самой большой доказательной базой при тревоге и травме.</p>
         <p>Первая встреча: 15&nbsp;минут, без оплаты и без обязательств. Просто рассказать, что беспокоит, и понять, смогу ли помочь.</p>
         <div class="author-actions">
-          <a href="/intro.html?utm_source=landing&amp;utm_medium=author_card&amp;utm_content=panic" target="_blank" rel="noopener" class="primary">Записаться на 15&nbsp;минут</a>
+          <a href="#intro-widget" class="primary">Записаться на 15&nbsp;минут</a>
           <a href="/assets/checklist-7-signs-ru.pdf?v=2" class="secondary" target="_blank" rel="noopener" download>Чеклист: 7 признаков</a>
         </div>
       </div>
@@ -343,7 +360,7 @@
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Паническое расстройство хорошо поддаётся терапии. Чем раньше начать, тем быстрее результат.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/intro.html?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic" target="_blank" rel="noopener" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
+      <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
       <a href="/?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" class="btn-ghost btn">Записаться на сессию</a>
     </div>
   </div>
