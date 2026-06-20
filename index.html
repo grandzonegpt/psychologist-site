@@ -432,15 +432,12 @@
       <p class="hero-lead">Онлайн, 50 минут, 180&nbsp;PLN (~42&nbsp;€). Русский, польский, белорусский.</p>
       <p class="hero-lead hero-lead--personal">Сам переехал из Беларуси. Эмиграцию знаю не из книг.</p>
       <div class="hero-cta">
-        <a href="/intro.html?utm_source=home&amp;utm_medium=hero&amp;utm_content=home" target="_blank" rel="noopener" class="btn">
+        <a href="#intro" class="btn">
           <span>Бесплатное знакомство<span class="small"> · 15&nbsp;мин</span></span>
           <span class="arrow">→</span>
         </a>
-        <a href="#booking" class="btn-ghost btn">
-          <span>Записаться на консультацию</span>
-          <span class="arrow">→</span>
-        </a>
       </div>
+      <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);"><a href="#booking" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Или сразу записаться на сессию</a></p>
       <div class="hero-trust">
         <p>15&nbsp;минут видеозвонка. Без сложных вопросов и обязательств.</p>
         <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">Профиль на ZnanyLekarz (верифицирован)</a>
@@ -1258,13 +1255,21 @@
   </div>
 </section>
 
-<section class="free-intro" id="intro">
+<section class="free-intro" id="intro" style="scroll-margin-top:80px;">
   <div class="container">
     <div class="free-intro-inner reveal">
       <div class="free-intro-badge">Бесплатно</div>
       <h2>Не готов записаться? Давай просто поговорим</h2>
       <p>15&nbsp;минут по видеозвонку. Знакомимся, я задам пару вопросов о ситуации, отвечу на твои. Без обязательств продолжать.</p>
-      <a href="/intro.html?utm_source=home&amp;utm_medium=booking_section&amp;utm_content=home" target="_blank" rel="noopener" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
+    </div>
+    <div style="max-width:760px;margin:8px auto 0;text-align:left;">
+      <div class="intro-author">
+        <img src="/assets/photo.jpg" alt="Алексей Левашев" width="56" height="56" loading="lazy">
+        <div><strong>Алексей Левашев</strong><span>Психолог и психотравматолог · Подход КПТ · SWPS · PTTPB №&nbsp;05906</span></div>
+      </div>
+      <div id="booking-widget-intro-home-ru"></div>
+      <script src="/js/booking-widget.min.js?v=87"></script>
+      <script>BookingWidget.init('booking-widget-intro-home-ru', 'ru', { type: 'intro' });</script>
     </div>
   </div>
 </section>
