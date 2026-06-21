@@ -47,8 +47,8 @@
       confirmDurationIntro: 'Знакомство · {duration} минут · бесплатно',
       confirmCancelIntro: 'Отменить можно в любой момент, ответом на письмо',
       confirmPayIntro: 'Подтвердить запись →',
-      bookedTitleIntro: 'Готово, ты записан.',
-      bookedBodyIntro: 'Ссылка на видеовстречу придёт на твой email в течение минуты. Если не пришла, проверь спам или напиши в Telegram.'
+      bookedTitleIntro: 'Готово. Запись подтверждена.',
+      bookedBodyIntro: 'Ссылка на видеовстречу придёт на почту в течение минуты. Если не пришла, проверьте спам или напишите в Telegram.'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -92,8 +92,8 @@
       confirmDurationIntro: 'Zapoznanie · {duration} minut · bezpłatnie',
       confirmCancelIntro: 'Możesz odwołać w każdej chwili, odpisując na email',
       confirmPayIntro: 'Potwierdź rezerwację →',
-      bookedTitleIntro: 'Gotowe, jesteś zapisany.',
-      bookedBodyIntro: 'Link do spotkania wideo przyjdzie na twój email w ciągu minuty. Jeśli nie dotarł, sprawdź spam albo napisz na Telegram.'
+      bookedTitleIntro: 'Gotowe. Wizyta potwierdzona.',
+      bookedBodyIntro: 'Link do spotkania wideo przyjdzie na pocztę w ciągu minuty. Jeśli nie dotarł, proszę sprawdzić spam albo napisać na Telegram.'
     }
   };
 
