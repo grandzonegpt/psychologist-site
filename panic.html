@@ -182,7 +182,22 @@
     <div class="landing-hero-cta">
       <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
     </div>
+    <p class="panic-slot-teaser" hidden style="margin:10px 0 0;font-size:14px;"><a href="#intro-widget" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Ближайшее окно: <span class="panic-slot-when"></span> →</a></p>
     <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Бесплатно, без обязательств. <a href="#booking-footer" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Или сразу на сессию</a></p>
+    <script>
+    (function(){
+      var t=document.querySelector('.panic-slot-teaser'); if(!t) return;
+      var w=t.querySelector('.panic-slot-when');
+      var days=['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+      fetch('https://booking-api-production-c2ca.up.railway.app/api/slots?type=intro').then(function(r){return r.ok?r.json():null;}).then(function(d){
+        if(!d)return; var date=null,time=null;
+        if(d.slots){var ks=Object.keys(d.slots).sort();for(var i=0;i<ks.length;i++){if(d.slots[ks[i]]&&d.slots[ks[i]].length){date=ks[i];time=d.slots[ks[i]][0];break;}}}
+        if(!date&&d.days){for(var j=0;j<d.days.length;j++){var sl=d.days[j].slots||[];for(var k=0;k<sl.length;k++){if((sl[k].status||'available')==='available'){date=d.days[j].date;time=sl[k].time;break;}}if(date)break;}}
+        if(!date||!time)return;
+        var dt=new Date(date+'T00:00:00'); w.textContent=days[dt.getDay()]+', '+time; t.hidden=false;
+      }).catch(function(){});
+    })();
+    </script>
     <div class="landing-hero-trust">
       <span>Алексей Левашев · Психолог и психотравматолог · Подход КПТ</span>
       <span class="sep">·</span>
@@ -190,22 +205,6 @@
       <span class="sep">·</span>
       <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">ZnanyLekarz</a>
     </div>
-  </div>
-</section>
-
-<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
-  <div class="container" style="max-width:760px;">
-    <div class="eyebrow reveal">Бесплатно, 15 минут</div>
-    <h2 class="reveal">Свободные окна для знакомства</h2>
-    <p class="muted reveal" style="margin-bottom:28px;">Выбираешь удобный слот, оставляешь имя и email. Ссылка на видеовстречу придёт на почту сразу. Платить ничего не нужно.</p>
-    <div class="intro-author">
-      <img src="/assets/photo.jpg" alt="Алексей Левашев" width="56" height="56" loading="lazy">
-      <div><strong>Алексей Левашев</strong><span>Психолог и психотравматолог · Подход КПТ · SWPS · PTTPB №&nbsp;05906</span></div>
-    </div>
-    <div id="booking-widget-intro-ru"></div>
-    <script src="/js/booking-widget.min.js?v=88"></script>
-    <script>BookingWidget.init('booking-widget-intro-ru', 'ru', { type: 'intro' });</script>
-    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Не нашёл удобного времени или остались вопросы? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Напиши в Telegram</a>, подберём время вручную.</p>
   </div>
 </section>
 
@@ -259,10 +258,19 @@
   </div>
 </section>
 
-<section class="landing-midcta">
-  <div class="container">
-    <p>Расскажешь, что происходит. Я скажу, могу ли помочь и как. 15&nbsp;минут, бесплатно.</p>
-    <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
+<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
+  <div class="container" style="max-width:760px;">
+    <div class="eyebrow reveal">Бесплатно, 15 минут</div>
+    <h2 class="reveal">Свободные окна для знакомства</h2>
+    <p class="muted reveal" style="margin-bottom:28px;">Выбираешь удобный слот, оставляешь имя и email. Ссылка на видеовстречу придёт на почту сразу. Платить ничего не нужно.</p>
+    <div class="intro-author">
+      <img src="/assets/photo.jpg" alt="Алексей Левашев" width="56" height="56" loading="lazy">
+      <div><strong>Алексей Левашев</strong><span>Психолог и психотравматолог · Подход КПТ · SWPS · PTTPB №&nbsp;05906</span></div>
+    </div>
+    <div id="booking-widget-intro-ru"></div>
+    <script src="/js/booking-widget.min.js?v=88"></script>
+    <script>BookingWidget.init('booking-widget-intro-ru', 'ru', { type: 'intro' });</script>
+    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Не нашёл удобного времени или остались вопросы? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Напиши в Telegram</a>, подберём время вручную.</p>
   </div>
 </section>
 
@@ -342,7 +350,6 @@
         <p class="authority">КПТ входит в рекомендации NICE и APA. Это метод с самой большой доказательной базой при тревоге и травме.</p>
         <p>Первая встреча: 15&nbsp;минут, без оплаты и без обязательств. Просто рассказать, что беспокоит, и понять, смогу ли помочь.</p>
         <div class="author-actions">
-          <a href="#intro-widget" class="primary">Записаться на 15&nbsp;минут</a>
           <a href="/assets/checklist-7-signs-ru.pdf?v=2" class="secondary" target="_blank" rel="noopener" download>Чеклист: 7 признаков</a>
         </div>
       </div>
@@ -359,10 +366,8 @@
 <div class="not-sure-cta" id="booking-footer">
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Паническое расстройство хорошо поддаётся терапии. Чем раньше начать, тем быстрее результат.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
-      <a href="/?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" class="btn-ghost btn">Записаться на сессию</a>
-    </div>
+    <a href="#intro-widget" class="btn">Бесплатное знакомство, 15&nbsp;мин</a>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Или сразу <a href="/?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">записаться на сессию</a></p>
   </div>
 </div>
 

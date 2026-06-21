@@ -185,7 +185,22 @@
     <div class="landing-hero-cta">
       <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
     </div>
+    <p class="panic-slot-teaser" hidden style="margin:10px 0 0;font-size:14px;"><a href="#intro-widget" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Najbliższy termin: <span class="panic-slot-when"></span> →</a></p>
     <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Bezpłatnie, bez zobowiązań. <a href="#booking-footer" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Albo od razu na sesję</a></p>
+    <script>
+    (function(){
+      var t=document.querySelector('.panic-slot-teaser'); if(!t) return;
+      var w=t.querySelector('.panic-slot-when');
+      var days=['niedziela','poniedziałek','wtorek','środa','czwartek','piątek','sobota'];
+      fetch('https://booking-api-production-c2ca.up.railway.app/api/slots?type=intro').then(function(r){return r.ok?r.json():null;}).then(function(d){
+        if(!d)return; var date=null,time=null;
+        if(d.slots){var ks=Object.keys(d.slots).sort();for(var i=0;i<ks.length;i++){if(d.slots[ks[i]]&&d.slots[ks[i]].length){date=ks[i];time=d.slots[ks[i]][0];break;}}}
+        if(!date&&d.days){for(var j=0;j<d.days.length;j++){var sl=d.days[j].slots||[];for(var k=0;k<sl.length;k++){if((sl[k].status||'available')==='available'){date=d.days[j].date;time=sl[k].time;break;}}if(date)break;}}
+        if(!date||!time)return;
+        var dt=new Date(date+'T00:00:00'); w.textContent=days[dt.getDay()]+', '+time; t.hidden=false;
+      }).catch(function(){});
+    })();
+    </script>
     <div class="landing-hero-trust">
       <span>Aliaksei Levashou · Psycholog i psychotraumatolog · Podejście CBT</span>
       <span class="sep">·</span>
@@ -193,22 +208,6 @@
       <span class="sep">·</span>
       <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">ZnanyLekarz</a>
     </div>
-  </div>
-</section>
-
-<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
-  <div class="container" style="max-width:760px;">
-    <div class="eyebrow reveal">Bezpłatnie, 15 minut</div>
-    <h2 class="reveal">Wolne terminy na zapoznanie</h2>
-    <p class="muted reveal" style="margin-bottom:28px;">Wybierasz dogodny termin, zostawiasz imię i email. Link do spotkania wideo przyjdzie na pocztę od razu. Nie trzeba nic płacić.</p>
-    <div class="intro-author">
-      <img src="/assets/photo.jpg" alt="Aliaksei Levashou" width="56" height="56" loading="lazy">
-      <div><strong>Aliaksei Levashou</strong><span>Psycholog i psychotraumatolog · Podejście CBT · SWPS · PTTPB nr&nbsp;05906</span></div>
-    </div>
-    <div id="booking-widget-intro-pl"></div>
-    <script src="/js/booking-widget.min.js?v=88"></script>
-    <script>BookingWidget.init('booking-widget-intro-pl', 'pl', { type: 'intro' });</script>
-    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Nie ma dogodnego terminu albo masz pytania? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Napisz na Telegram</a>, ustalimy termin ręcznie.</p>
   </div>
 </section>
 
@@ -262,10 +261,19 @@
   </div>
 </section>
 
-<section class="landing-midcta">
-  <div class="container">
-    <p>Opowiesz, co się dzieje. Powiem, czy mogę pomóc i jak. 15&nbsp;minut, bezpłatnie.</p>
-    <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
+<section id="intro-widget" style="padding:8px 0 56px;scroll-margin-top:80px;">
+  <div class="container" style="max-width:760px;">
+    <div class="eyebrow reveal">Bezpłatnie, 15 minut</div>
+    <h2 class="reveal">Wolne terminy na zapoznanie</h2>
+    <p class="muted reveal" style="margin-bottom:28px;">Wybierasz dogodny termin, zostawiasz imię i email. Link do spotkania wideo przyjdzie na pocztę od razu. Nie trzeba nic płacić.</p>
+    <div class="intro-author">
+      <img src="/assets/photo.jpg" alt="Aliaksei Levashou" width="56" height="56" loading="lazy">
+      <div><strong>Aliaksei Levashou</strong><span>Psycholog i psychotraumatolog · Podejście CBT · SWPS · PTTPB nr&nbsp;05906</span></div>
+    </div>
+    <div id="booking-widget-intro-pl"></div>
+    <script src="/js/booking-widget.min.js?v=88"></script>
+    <script>BookingWidget.init('booking-widget-intro-pl', 'pl', { type: 'intro' });</script>
+    <p class="muted reveal" style="margin-top:24px;font-size:14px;">Nie ma dogodnego terminu albo masz pytania? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Napisz na Telegram</a>, ustalimy termin ręcznie.</p>
   </div>
 </section>
 
@@ -345,7 +353,6 @@
         <p class="authority">CBT jest w rekomendacjach NICE i APA. To metoda z najszerszą bazą dowodową przy lęku i traumie.</p>
         <p>Pierwsze spotkanie: 15&nbsp;minut, bez opłat i bez zobowiązań. Po prostu opowiedzieć, co się dzieje, i zrozumieć, czy mogę pomóc.</p>
         <div class="author-actions">
-          <a href="#intro-widget" class="primary">Umów 15&nbsp;minut</a>
           <a href="/assets/checklist-7-signs-pl.pdf?v=2" class="secondary" target="_blank" rel="noopener" download>Lista: 7 oznak</a>
         </div>
       </div>
@@ -362,10 +369,8 @@
 <div class="not-sure-cta" id="booking-footer">
   <div class="container">
     <p style="color:var(--text-muted);font-size:17px;margin-bottom:24px;">Zaburzenie paniczne dobrze reaguje na terapię. Im wcześniej zaczniesz, tym szybciej efekt.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
-      <a href="/index-pl.html?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" class="btn-ghost btn">Umów sesję</a>
-    </div>
+    <a href="#intro-widget" class="btn">Bezpłatna konsultacja wstępna, 15&nbsp;min</a>
+    <p style="margin:14px 0 0;font-size:14px;color:var(--text-muted);">Albo od razu <a href="/index-pl.html?utm_source=landing&amp;utm_medium=footer_cta&amp;utm_content=panic#booking" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">umów sesję</a></p>
   </div>
 </div>
 
