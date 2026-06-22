@@ -3169,6 +3169,143 @@ body::after {
 }
 
 /* ============================================================
+   Free intro booking — quiet single column (bw-v2--intro)
+   One nearest date, a short calm choice, soft "taken" markers.
+============================================================ */
+.bw-v2--intro { max-width: 420px; }
+.bw-v2__intro-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.4vw, 27px);
+  font-weight: 400;
+  color: var(--text-primary);
+  margin: 0 0 8px;
+  letter-spacing: -0.005em;
+  line-height: 1.25;
+}
+.bw-v2__intro-sub {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 6px;
+  max-width: 380px;
+}
+.bw-v2--intro .bw-v2__tz-note { margin-bottom: 20px; }
+/* Day block(s) — one per revealed date. */
+.bw-v2__single { display: flex; flex-direction: column; gap: 24px; margin: 0 0 18px; }
+.bw-v2__iday { display: flex; flex-direction: column; }
+.bw-v2__iday-head {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--text-primary);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bw-v2__islots { display: flex; flex-direction: column; gap: 8px; }
+/* Slot row — a calm full-width button, single column on every screen. */
+.bw-v2__islot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 15px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  text-align: left;
+  line-height: 1.2;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.bw-v2__islot--available { cursor: pointer; }
+.bw-v2__islot--available:hover {
+  border-color: #C9A961;
+  color: #C9A961;
+}
+.bw-v2__islot--selected,
+.bw-v2__islot--selected:hover {
+  background: #C9A961;
+  border-color: #C9A961;
+  color: #0a0a0b;
+  font-weight: 700;
+}
+/* Taken — visually quiet: lighter, thinner, soft strike, no harsh grey. */
+.bw-v2__islot--taken {
+  border-color: transparent;
+  color: var(--text-muted);
+  opacity: 0.55;
+  cursor: default;
+}
+.bw-v2__islot--taken .bw-v2__islot-time { text-decoration: line-through; text-decoration-thickness: 1px; }
+.bw-v2__islot-note {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: var(--text-muted);
+}
+.bw-v2__intro-empty {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-muted);
+  padding: 8px 0 16px;
+}
+/* "Show more dates" — quiet inline link, not a loud button. */
+.bw-v2__more-dates {
+  display: inline-block;
+  align-self: flex-start;
+  margin: 0 0 22px;
+  padding: 4px 0;
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--border-subtle);
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+.bw-v2__more-dates:hover { color: var(--text-primary); }
+.bw-v2__more-dates[hidden] { display: none; }
+.bw-v2__intro-micro {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 18px;
+  max-width: 380px;
+}
+/* Main CTA — disabled until a slot is chosen, then warm and active. */
+.bw-v2__intro-cta {
+  display: block;
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 18px;
+  border: 1px solid #C9A961;
+  border-radius: 10px;
+  background: #C9A961;
+  color: #0a0a0b;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+.bw-v2__intro-cta:hover:not(:disabled) { background: #B89550; border-color: #B89550; }
+.bw-v2__intro-cta:disabled {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border-subtle);
+  cursor: not-allowed;
+}
+.bw-v2--intro .bw-v2__form,
+.bw-v2--intro .bw-v2__confirm { margin-top: 22px; }
+
+/* ============================================================
    Practices section — editorial layout (warm paper + ochre)
 ============================================================ */
 

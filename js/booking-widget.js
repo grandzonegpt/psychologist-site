@@ -48,7 +48,13 @@
       confirmCancelIntro: 'Отменить можно в любой момент, ответом на письмо',
       confirmPayIntro: 'Подтвердить запись →',
       bookedTitleIntro: 'Готово. Запись подтверждена.',
-      bookedBodyIntro: 'Ссылка на видеовстречу придёт на почту в течение минуты. Если не пришла, проверьте спам или напишите в Telegram.'
+      bookedBodyIntro: 'Ссылка на видеовстречу придёт на почту в течение минуты. Если не пришла, проверьте спам или напишите в Telegram.',
+      introTitle: 'Бесплатное знакомство, 15 минут',
+      introSub: 'Короткая встреча, чтобы понять запрос, задать вопросы и выбрать дальнейший формат работы.',
+      introMicro: 'Если нужно другое время, напиши, подберём вручную.',
+      introMoreDates: 'Показать ещё даты',
+      introCta: 'Записаться на бесплатное знакомство',
+      introTaken: 'занято'
     },
     pl: {
       daysShort: ['Nd','Pn','Wt','Śr','Cz','Pt','Sb'],
@@ -93,7 +99,13 @@
       confirmCancelIntro: 'Możesz odwołać w każdej chwili, odpisując na email',
       confirmPayIntro: 'Potwierdź rezerwację →',
       bookedTitleIntro: 'Gotowe. Wizyta potwierdzona.',
-      bookedBodyIntro: 'Link do spotkania wideo przyjdzie na pocztę w ciągu minuty. Jeśli nie dotarł, proszę sprawdzić spam albo napisać na Telegram.'
+      bookedBodyIntro: 'Link do spotkania wideo przyjdzie na pocztę w ciągu minuty. Jeśli nie dotarł, proszę sprawdzić spam albo napisać na Telegram.',
+      introTitle: 'Bezpłatne spotkanie wstępne, 15 minut',
+      introSub: 'Krótka rozmowa, żeby omówić temat, zadać pytania i wybrać dalszy format pracy.',
+      introMicro: 'Jeśli potrzebujesz innej godziny, napisz, dobierzemy termin indywidualnie.',
+      introMoreDates: 'Pokaż kolejne terminy',
+      introCta: 'Umów bezpłatne spotkanie wstępne',
+      introTaken: 'zajęte'
     }
   };
 
@@ -204,9 +216,17 @@
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    container.innerHTML =
-      '<div class="bw-v2">' +
-        '<h2 class="bw-v2__lead"></h2>' +
+    // Intro mode: one quiet vertical column, nearest date only, compact choice.
+    // Paid mode keeps the original multi-day grid untouched.
+    const topHtml = isIntro
+      ? '<h2 class="bw-v2__intro-title">' + t.introTitle + '</h2>' +
+        '<p class="bw-v2__intro-sub">' + t.introSub + '</p>' +
+        '<p class="bw-v2__tz-note">' + t.tzNote + '</p>' +
+        '<div class="bw-v2__single"></div>' +
+        '<button type="button" class="bw-v2__more-dates" hidden>' + t.introMoreDates + '</button>' +
+        '<p class="bw-v2__intro-micro">' + t.introMicro + '</p>' +
+        '<button type="button" class="bw-v2__intro-cta" disabled>' + t.introCta + '</button>'
+      : '<h2 class="bw-v2__lead"></h2>' +
         '<p class="bw-v2__meta"></p>' +
         '<p class="bw-v2__tz-note">' + t.tzNote + '</p>' +
         '<header class="bw-v2__header">' +
@@ -217,7 +237,11 @@
           '</div>' +
         '</header>' +
         '<div class="bw-v2__grid"></div>' +
-        '<button type="button" class="bw-v2__change-time" hidden>' + t.changeTime + '</button>' +
+        '<button type="button" class="bw-v2__change-time" hidden>' + t.changeTime + '</button>';
+
+    container.innerHTML =
+      '<div class="bw-v2' + (isIntro ? ' bw-v2--intro' : '') + '">' +
+        topHtml +
         '<div class="bw-v2__form" hidden>' +
           '<div class="bw-v2__form-title"></div>' +
           '<form>' +
@@ -233,14 +257,15 @@
           '<p class="bw-v2__confirm-meta"></p>' +
           '<p class="bw-v2__confirm-cancel"></p>' +
           '<button type="button" class="bw-v2__confirm-pay">' + payLabel + '</button>' +
-          '<details class="bw-v2__cancel-details">' +
-            '<summary class="bw-v2__cancel-details-summary">' + t.cancelDetailsTitle + '</summary>' +
-            '<div class="bw-v2__cancel-details-body">' +
-              '<p>' + t.cancelDetailsP1 + '</p>' +
-              '<p>' + t.cancelDetailsP2 + '</p>' +
-              '<p>' + t.cancelDetailsP3 + '</p>' +
-            '</div>' +
-          '</details>' +
+          (isIntro ? '' :
+            '<details class="bw-v2__cancel-details">' +
+              '<summary class="bw-v2__cancel-details-summary">' + t.cancelDetailsTitle + '</summary>' +
+              '<div class="bw-v2__cancel-details-body">' +
+                '<p>' + t.cancelDetailsP1 + '</p>' +
+                '<p>' + t.cancelDetailsP2 + '</p>' +
+                '<p>' + t.cancelDetailsP3 + '</p>' +
+              '</div>' +
+            '</details>') +
         '</div>' +
         '<div class="bw-v2__message" hidden></div>' +
         '<div class="bw-v2__loading">' + t.loadingSchedule + '</div>' +
@@ -264,6 +289,10 @@
     const $changeTime = container.querySelector('.bw-v2__change-time');
     const $message = container.querySelector('.bw-v2__message');
     const $loading = container.querySelector('.bw-v2__loading');
+    // Intro-only nodes (null in paid mode).
+    const $single = container.querySelector('.bw-v2__single');
+    const $moreDates = container.querySelector('.bw-v2__more-dates');
+    const $introCta = container.querySelector('.bw-v2__intro-cta');
 
     let daysData = [];
     let serviceInfo = isIntro ? { duration: 15, price: 0 } : { duration: 50, price: 180 };
@@ -272,6 +301,7 @@
     let pendingName = '';
     let pendingEmail = '';
     let currentBatchStart = 0;
+    let introVisibleDays = 1; // how many upcoming dates the intro column reveals
 
     const isMobile = () => window.matchMedia(MOBILE_QUERY).matches;
 
@@ -336,6 +366,76 @@
       return day.slots.every(function(s) { return s.status === 'taken'; });
     }
 
+    // ---- Intro mode ----------------------------------------------------
+    // Only days that actually have a free slot count as "dates".
+    function introDays() {
+      return daysData.filter(function(day) {
+        return day.slots.some(function(s) { return s.status === 'available'; });
+      });
+    }
+
+    function updateIntroCta() {
+      if (!$introCta) return;
+      if (selectedDate && selectedTime) $introCta.removeAttribute('disabled');
+      else $introCta.setAttribute('disabled', '');
+    }
+
+    function renderIntro() {
+      const days = introDays();
+      if (!days.length) {
+        $single.innerHTML = '<p class="bw-v2__intro-empty">' + t.leadEmpty + '</p>';
+        if ($moreDates) $moreDates.setAttribute('hidden', '');
+        updateIntroCta();
+        return;
+      }
+      const shown = days.slice(0, introVisibleDays);
+      $single.innerHTML = shown.map(function(day) {
+        const d = parseDate(day.date);
+        let dayName = t.daysFull[d.getDay()];
+        dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+        const head = dayName + ', ' + d.getDate() + ' ' + t.monthsGen[d.getMonth()];
+        // At most 1-2 quiet "taken" markers + up to 4 free slots, kept chronological.
+        const taken = day.slots.filter(function(s) { return s.status === 'taken'; }).slice(0, 2);
+        const avail = day.slots.filter(function(s) { return s.status === 'available'; }).slice(0, 4);
+        const rows = taken.concat(avail).sort(function(a, b) {
+          return a.time < b.time ? -1 : (a.time > b.time ? 1 : 0);
+        });
+        const slotsHtml = rows.map(function(s) {
+          if (s.status === 'taken') {
+            return '<div class="bw-v2__islot bw-v2__islot--taken">' +
+                     '<span class="bw-v2__islot-time">' + s.time + '</span>' +
+                     '<span class="bw-v2__islot-note">' + t.introTaken + '</span>' +
+                   '</div>';
+          }
+          const isSel = (day.date === selectedDate && s.time === selectedTime);
+          return '<button type="button" class="bw-v2__islot bw-v2__islot--available' +
+                   (isSel ? ' bw-v2__islot--selected' : '') + '"' +
+                   ' data-date="' + day.date + '" data-time="' + s.time + '" data-status="available">' +
+                   '<span class="bw-v2__islot-time">' + s.time + '</span>' +
+                 '</button>';
+        }).join('');
+        return '<div class="bw-v2__iday">' +
+                 '<div class="bw-v2__iday-head">' + head + '</div>' +
+                 '<div class="bw-v2__islots">' + slotsHtml + '</div>' +
+               '</div>';
+      }).join('');
+
+      $single.querySelectorAll('.bw-v2__islot--available').forEach(function(el) {
+        el.addEventListener('click', onSlotClick);
+      });
+
+      if ($moreDates) {
+        if (introVisibleDays < days.length) $moreDates.removeAttribute('hidden');
+        else $moreDates.setAttribute('hidden', '');
+      }
+      updateIntroCta();
+    }
+
+    function rerender() {
+      if (isIntro) renderIntro();
+      else renderGrid();
+    }
+
     function renderGrid() {
       const days = visibleDays();
       const cols = isMobile() ? Math.min(days.length, 3) : Math.max(1, Math.min(days.length, BATCH_SIZE));
@@ -376,11 +476,13 @@
     function deselectSlot() {
       selectedDate = null;
       selectedTime = null;
-      $grid.querySelectorAll('.bw-v2__time--selected').forEach(function(s) { s.classList.remove('bw-v2__time--selected'); });
+      if ($grid) $grid.querySelectorAll('.bw-v2__time--selected').forEach(function(s) { s.classList.remove('bw-v2__time--selected'); });
+      if ($single) $single.querySelectorAll('.bw-v2__islot--selected').forEach(function(s) { s.classList.remove('bw-v2__islot--selected'); });
       $form.setAttribute('hidden', '');
       $confirm.setAttribute('hidden', '');
       $message.setAttribute('hidden', '');
-      $changeTime.setAttribute('hidden', '');
+      if ($changeTime) $changeTime.setAttribute('hidden', '');
+      updateIntroCta();
     }
 
     function onSlotClick(e) {
@@ -389,6 +491,28 @@
         e.preventDefault();
         return;
       }
+
+      // Intro mode: tapping a slot only selects it; the main CTA opens the form.
+      if (isIntro) {
+        const already = (el.dataset.date === selectedDate && el.dataset.time === selectedTime);
+        $single.querySelectorAll('.bw-v2__islot--selected').forEach(function(s) { s.classList.remove('bw-v2__islot--selected'); });
+        $form.setAttribute('hidden', '');
+        $confirm.setAttribute('hidden', '');
+        $message.setAttribute('hidden', '');
+        if (already) {
+          selectedDate = null;
+          selectedTime = null;
+          updateIntroCta();
+          return;
+        }
+        selectedDate = el.dataset.date;
+        selectedTime = el.dataset.time;
+        el.classList.add('bw-v2__islot--selected');
+        updateIntroCta();
+        trackEvent('slot_selected', { locale: locale, date: selectedDate, time: selectedTime });
+        return;
+      }
+
       if (el.classList.contains('bw-v2__time--selected')) {
         deselectSlot();
         return;
@@ -444,7 +568,30 @@
       $formEl.email.value = pendingEmail;
     }
 
-    $changeTime.addEventListener('click', deselectSlot);
+    if ($changeTime) $changeTime.addEventListener('click', deselectSlot);
+
+    if ($moreDates) $moreDates.addEventListener('click', function() {
+      introVisibleDays += 1;
+      renderIntro();
+    });
+
+    // Intro main CTA: enabled once a slot is picked, opens the name/email form.
+    if ($introCta) $introCta.addEventListener('click', function() {
+      if (!selectedDate || !selectedTime) return;
+      const d = parseDate(selectedDate);
+      $formTitle.textContent = t.formTitleIntro
+        .replace('{dayName}', t.daysFull[d.getDay()])
+        .replace('{day}', d.getDate())
+        .replace('{date}', t.monthsGen[d.getMonth()])
+        .replace('{time}', selectedTime)
+        .replace('{duration}', serviceInfo.duration || 15);
+      $formEl.name.value = pendingName;
+      $formEl.email.value = pendingEmail;
+      $form.removeAttribute('hidden');
+      $confirm.setAttribute('hidden', '');
+      $message.setAttribute('hidden', '');
+      $form.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
 
     $confirmPay.addEventListener('click', async function() {
       if (!selectedDate || !selectedTime || !pendingName || !pendingEmail) {
@@ -483,9 +630,9 @@
             booked.forEach(function(s) { if (s.time === selectedTime) s.status = 'taken'; });
           }
           $confirm.setAttribute('hidden', '');
-          $changeTime.setAttribute('hidden', '');
+          if ($changeTime) $changeTime.setAttribute('hidden', '');
           deselectSlot();
-          renderGrid();
+          rerender();
           $message.innerHTML = '<strong>' + t.bookedTitleIntro + '</strong><br>' + t.bookedBodyIntro;
           $message.className = 'bw-v2__message bw-v2__message--success';
           $message.removeAttribute('hidden');
@@ -505,7 +652,7 @@
       $confirmPay.textContent = payLabel;
     });
 
-    $prev.addEventListener('click', function() {
+    if ($prev) $prev.addEventListener('click', function() {
       if (isMobile()) {
         const colWidth = $grid.clientWidth / 3;
         $grid.scrollBy({ left: -colWidth * 2, behavior: 'smooth' });
@@ -515,7 +662,7 @@
       renderGrid();
     });
 
-    $next.addEventListener('click', function() {
+    if ($next) $next.addEventListener('click', function() {
       if (isMobile()) {
         const colWidth = $grid.clientWidth / 3;
         $grid.scrollBy({ left: colWidth * 2, behavior: 'smooth' });
@@ -527,11 +674,12 @@
       }
     });
 
-    $grid.addEventListener('scroll', function() {
+    if ($grid) $grid.addEventListener('scroll', function() {
       if (isMobile()) updateNavButtons();
     }, { passive: true });
 
     window.addEventListener('resize', function() {
+      if (isIntro) return; // intro column is single-column at every width
       currentBatchStart = 0;
       renderGrid();
     });
@@ -549,15 +697,17 @@
     function showApiError() {
       $widget.classList.add('bw-v2--error');
       $loading.style.display = 'none';
-      $grid.innerHTML =
+      const target = isIntro ? $single : $grid;
+      target.innerHTML =
         '<div class="bw-v2__fallback">' +
           '<p>' + t.apiError + '</p>' +
           '<a class="bw-v2__fallback-btn" href="' + TG_URL + '" target="_blank" rel="noopener noreferrer">' + t.writeTelegram + '</a>' +
         '</div>';
-      $lead.textContent = t.leadEmpty;
-      $range.textContent = '';
-      $prev.disabled = true;
-      $next.disabled = true;
+      if ($moreDates) $moreDates.setAttribute('hidden', '');
+      if ($lead) $lead.textContent = t.leadEmpty;
+      if ($range) $range.textContent = '';
+      if ($prev) $prev.disabled = true;
+      if ($next) $next.disabled = true;
     }
 
     function normalizeDays(data) {
@@ -589,10 +739,15 @@
 
       daysData = normalizeDays(data);
       currentBatchStart = 0;
+      introVisibleDays = 1;
 
-      updateLead();
-      updateMeta();
-      renderGrid();
+      if (isIntro) {
+        renderIntro();
+      } else {
+        updateLead();
+        updateMeta();
+        renderGrid();
+      }
       $loading.style.display = 'none';
     }
 
