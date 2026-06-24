@@ -23,6 +23,10 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-48BN8FG5NG');
+  // Google Ads: configure the conversion destination on load so the
+  // conversion linker captures the gclid for cross-page attribution
+  // (the paid funnel converts on /spasibo after a Stripe round-trip).
+  gtag('config', 'AW-18118312389');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
