@@ -19,13 +19,17 @@ app.disable('x-powered-by');
 // GA4 routes EEA traffic to a regional endpoint (region1.google-analytics.com),
 // not www, so connect-src and img-src need https://*.google-analytics.com.
 // Without the wildcard the browser blocks every /g/collect hit and GA4 stays empty.
+// Google Ads conversions: modern gtag.js posts the conversion ping (and Consent
+// Mode /ccm/collect) to pagead2.googlesyndication.com, NOT googleadservices.com.
+// Without it in connect-src + img-src the CSP silently blocks every conversion
+// (GA4 keeps working on *.google-analytics.com), so Ads shows 0 conversions.
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms https://connect.facebook.net https://snap.licdn.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
-  "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
-  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://booking-api-production-c2ca.up.railway.app https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
+  "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
+  "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://booking-api-production-c2ca.up.railway.app https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
   "object-src 'none'",
   "base-uri 'self'",
   // form-action 'self' only: Stripe Checkout is a JS redirect (window.location),

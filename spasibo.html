@@ -60,24 +60,37 @@
 
 <footer class="ty-footer">© Алексей Левашев, Варшава</footer>
 
-<!-- Google Ads: paid-session purchase conversion. Consent-gated by ad_storage:
-     never fires without "all" cookie consent. Fires once per real Stripe return
+<!-- Google Ads: paid-session purchase conversion. Consent Mode v2 gates cookie
+     use, not the tag itself: cookieless/modeled until the visitor accepted
+     cookies, full + enhanced once they did. Fires once per real Stripe return
      (session_id present), value from Stripe, transaction_id for refresh dedup. -->
 <script>
 (function () {
   var sid = new URLSearchParams(window.location.search).get('session_id');
   if (!sid) return;
-  if (localStorage.getItem('cookie-consent') !== 'all') return;
 
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   gtag('js', new Date());
+  // Default denied (EEA/PL), mirroring the rest of the site. Upgrade to granted
+  // only if the visitor already accepted all cookies elsewhere.
   gtag('consent', 'default', {
-    'ad_storage': 'granted',
-    'ad_user_data': 'granted',
-    'ad_personalization': 'granted',
-    'analytics_storage': 'granted'
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'region': ['EEA', 'PL']
   });
+  if (localStorage.getItem('cookie-consent') === 'all') {
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted',
+      'analytics_storage': 'granted'
+    });
+  }
   gtag('config', 'AW-18118312389');
 
   var tag = document.createElement('script');
