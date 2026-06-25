@@ -23,9 +23,12 @@ app.disable('x-powered-by');
 // Mode /ccm/collect) to pagead2.googlesyndication.com, NOT googleadservices.com.
 // Without it in connect-src + img-src the CSP silently blocks every conversion
 // (GA4 keeps working on *.google-analytics.com), so Ads shows 0 conversions.
+// Enhanced Conversions for leads can also pull a child script from
+// www.googleadservices.com / googleads.g.doubleclick.net, so script-src has to
+// allow the Ads domains too, not only connect-src and img-src.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://*.clarity.ms https://connect.facebook.net https://snap.licdn.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://connect.facebook.net https://snap.licdn.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://stats.g.doubleclick.net https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://www.facebook.com https://px.ads.linkedin.com https://*.clarity.ms",
