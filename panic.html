@@ -207,8 +207,18 @@
       <span class="sep">·</span>
       <span>Онлайн, 50 мин, 180&nbsp;PLN (~42&nbsp;€)</span>
       <span class="sep">·</span>
-      <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">ZnanyLekarz</a>
+      <a href="https://www.znanylekarz.pl/aliaksei-levashou/psycholog-psychotraumatolog/warszawa" target="_blank" rel="noopener">Верифицированный профиль на ZnanyLekarz</a>
     </div>
+    <div class="landing-hero-trust landing-hero-trust--creds">
+      <span>SWPS</span>
+      <span class="sep">·</span>
+      <span>психотравматология</span>
+      <span class="sep">·</span>
+      <span>супервизия</span>
+      <span class="sep">·</span>
+      <span>PTTPB № 05906</span>
+    </div>
+    <p class="landing-hero-method" style="margin:8px auto 0;max-width:620px;font-size:13px;color:var(--text-muted);">КПТ: метод первой линии при тревоге и панике по рекомендациям NICE и APA.</p>
   </div>
 </section>
 
@@ -272,6 +282,18 @@
     <div id="booking-widget-intro-ru"></div>
     <script src="/js/booking-widget.min.js?v=90"></script>
     <script>BookingWidget.init('booking-widget-intro-ru', 'ru', { type: 'intro' });</script>
+    <script>
+    /* Backup conversion: a cold paid click that picks Telegram over the calendar
+       is still a lead. Log it as a GA4 event, independent of the booking widget,
+       so the demand is visible and importable into Ads. */
+    (function () {
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('a[href^="https://t.me/"]');
+        if (!a || typeof gtag !== 'function') return;
+        gtag('event', 'contact_telegram', { link_location: 'panic', method: 'telegram' });
+      });
+    })();
+    </script>
     <p class="muted reveal" style="margin-top:24px;font-size:14px;">Не нашёл удобного времени или остались вопросы? <a href="https://t.me/aliaksei_therapist" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline;">Напиши в Telegram</a>, подберём время вручную.</p>
   </div>
 </section>
@@ -317,6 +339,18 @@
       <details>
         <summary>Я уже был у врача, ничего не нашли. Это точно психология?</summary>
         <div class="faq-content"><div class="faq-inner"><p>Если обследования не показали ничего, это хороший знак. Значит, сердце здорово. Паника же: реакция нервной системы, которую можно перенастроить. КПТ для этого и существует.</p></div></div>
+      </details>
+      <details>
+        <summary>Сколько стоит и не дорого ли это?</summary>
+        <div class="faq-content"><div class="faq-inner"><p>Сессия 50 минут, 180 PLN (~42&nbsp;€), оплата Blik, картой или через Apple/Google&nbsp;Pay прямо при записи. КПТ это короткий метод: при панике обычно хватает 8-12 встреч, иногда меньше. Можно начать с одной и посмотреть, подходит ли тебе формат, без обязательства продолжать. А бесплатное знакомство на 15 минут ни к чему не обязывает.</p></div></div>
+      </details>
+      <details>
+        <summary>Что если я не смогу прийти на сессию?</summary>
+        <div class="faq-content"><div class="faq-inner"><p>Сессию можно отменить или перенести без оплаты не позже чем за 24 часа до начала. При более поздней отмене оплата сохраняется: время уже зарезервировано за тобой. Если отменяю я, ты получаешь полный возврат или новое время на свой выбор. В исключительных случаях (болезнь, форс-мажор) решаю индивидуально.</p></div></div>
+      </details>
+      <details>
+        <summary>Был у психолога раньше, не помогло. Есть смысл пробовать снова?</summary>
+        <div class="faq-content"><div class="faq-inner"><p>Да. Часто дело не в том, что «терапия не работает», а в том, что не подошёл метод или специалист. КПТ при панике устроена иначе, чем разговорная терапия: работаем не «вообще», а с конкретным механизмом приступа, мыслями-ловушками и постепенным возвращением в ситуации, которые ты начал избегать. На бесплатном знакомстве честно скажу, вижу ли, чем могу помочь.</p></div></div>
       </details>
     </div>
   </div>
@@ -434,9 +468,12 @@
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Сколько сессий нужно?","acceptedAnswer":{"@type":"Answer","text":"Обычно 8-12 сессий. Иногда меньше. Зависит от того, как давно это началось и есть ли избегание."}},
-{"@type":"Question","name":"А если мне станет хуже от экспозиции?","acceptedAnswer":{"@type":"Answer","text":"Экспозиция всегда постепенная и с твоего согласия. Начинаем с минимального дискомфорта и идём дальше, когда ты готов."}},
-{"@type":"Question","name":"Я уже был у врача, ничего не нашли. Это точно психология?","acceptedAnswer":{"@type":"Answer","text":"Если обследования ничего не выявили, это хороший знак. Сердце здорово. А паника: реакция нервной системы, которую можно перестроить. КПТ именно для этого."}}
+{"@type":"Question","name":"Сколько сессий нужно?","acceptedAnswer":{"@type":"Answer","text":"При панических атаках обычно 8-12 сессий. Иногда меньше. Зависит от того, как давно это началось и есть ли сопутствующее избегание."}},
+{"@type":"Question","name":"А если мне станет хуже от экспозиции?","acceptedAnswer":{"@type":"Answer","text":"Экспозиция всегда согласована и постепенна. Начинаем с минимального дискомфорта и двигаемся дальше только когда ты готов."}},
+{"@type":"Question","name":"Я уже был у врача, ничего не нашли. Это точно психология?","acceptedAnswer":{"@type":"Answer","text":"Если обследования не показали ничего, это хороший знак. Значит, сердце здорово. Паника же: реакция нервной системы, которую можно перенастроить. КПТ для этого и существует."}},
+{"@type":"Question","name":"Сколько стоит и не дорого ли это?","acceptedAnswer":{"@type":"Answer","text":"Сессия 50 минут, 180 PLN (~42 €), оплата Blik, картой или через Apple/Google Pay прямо при записи. КПТ это короткий метод: при панике обычно хватает 8-12 встреч, иногда меньше. Можно начать с одной и посмотреть, подходит ли тебе формат, без обязательства продолжать. А бесплатное знакомство на 15 минут ни к чему не обязывает."}},
+{"@type":"Question","name":"Что если я не смогу прийти на сессию?","acceptedAnswer":{"@type":"Answer","text":"Сессию можно отменить или перенести без оплаты не позже чем за 24 часа до начала. При более поздней отмене оплата сохраняется: время уже зарезервировано за тобой. Если отменяю я, ты получаешь полный возврат или новое время на свой выбор. В исключительных случаях (болезнь, форс-мажор) решаю индивидуально."}},
+{"@type":"Question","name":"Был у психолога раньше, не помогло. Есть смысл пробовать снова?","acceptedAnswer":{"@type":"Answer","text":"Да. Часто дело не в том, что «терапия не работает», а в том, что не подошёл метод или специалист. КПТ при панике устроена иначе, чем разговорная терапия: работаем не «вообще», а с конкретным механизмом приступа, мыслями-ловушками и постепенным возвращением в ситуации, которые ты начал избегать. На бесплатном знакомстве честно скажу, вижу ли, чем могу помочь."}}
 ]}
 </script>
 <script type="application/ld+json">
