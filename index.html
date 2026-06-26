@@ -1591,6 +1591,17 @@ window.addEventListener('load', function () {
   if (lb) lb.addEventListener('click', function () { lb.classList.remove('open'); });
 });
 </script>
+<script>
+/* Backup conversion: log Telegram contact clicks as a GA4 event, independent of
+   the booking widget, so organic Telegram leads are visible and importable into Ads. */
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="https://t.me/"]');
+    if (!a || typeof gtag !== 'function') return;
+    gtag('event', 'contact_telegram', { link_location: 'home', method: 'telegram' });
+  });
+})();
+</script>
 <style>.bw-v2__lead em{color:#8a5a00}.bw-v2__tz-note{opacity:1}</style>
 </body>
 </html>
