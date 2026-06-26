@@ -64,6 +64,13 @@
 .site-nav .nav-links > a,
 .site-nav .nav-links .nav-dropdown,
 .site-nav .nav-toggle { display: none; }
+/* Компактный cookie-баннер на узком мобайле, чтобы не перекрывал календарь записи */
+@media (max-width:640px){
+  .cookie-banner{padding:12px 14px;}
+  .cookie-banner p{margin:0 0 10px;font-size:12px;line-height:1.5;}
+  .cookie-actions{gap:8px;}
+  .cookie-actions button{padding:8px 12px;font-size:13px;flex:1 1 auto;}
+}
 </style>
 <!-- Microsoft Clarity (gated by consent) -->
 <script type="text/javascript">
