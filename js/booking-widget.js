@@ -20,6 +20,9 @@
       name: 'Имя',
       email: 'Email',
       bookContinue: 'Далее',
+      consentNote: 'Записываясь, вы соглашаетесь с <a href="/privacy.html" target="_blank" rel="noopener">политикой конфиденциальности</a>.',
+      emailInvalid: 'Кажется, в адресе ошибка. Проверьте email: на него придёт ссылка на встречу.',
+      emailMaybeTypo: 'Возможно, опечатка. Вы имели в виду %s? Если адрес верный, нажмите «Далее» ещё раз.',
       loading: 'Загрузка...',
       loadingSchedule: 'Загружаю расписание...',
       error: 'Ошибка. Попробуй ещё раз.',
@@ -71,6 +74,9 @@
       name: 'Imię',
       email: 'Email',
       bookContinue: 'Dalej',
+      consentNote: 'Rezerwując, zgadzasz się z <a href="/privacy.html" target="_blank" rel="noopener">polityką prywatności</a>.',
+      emailInvalid: 'Wygląda na błąd w adresie. Sprawdź email: na niego przyjdzie link do spotkania.',
+      emailMaybeTypo: 'Możliwa literówka. Chodziło o %s? Jeśli adres jest poprawny, kliknij „Dalej” ponownie.',
       loading: 'Ładowanie...',
       loadingSchedule: 'Ładuję terminy...',
       error: 'Błąd. Spróbuj ponownie.',
@@ -250,6 +256,8 @@
             '<input type="text" name="name" autocomplete="name" aria-label="' + t.name + '" placeholder="' + t.name + '" required>' +
             '<input type="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" aria-label="' + t.email + '" placeholder="' + t.email + '" required>' +
             '<button type="submit">' + t.bookContinue + '</button>' +
+            '<p class="bw-v2__email-warn" hidden style="margin:8px 0 0;font-size:13px;color:#b00020;"></p>' +
+            '<p class="bw-v2__consent" style="margin:10px 0 0;font-size:12px;color:var(--text-muted,#6b6b6b);">' + t.consentNote + '</p>' +
           '</form>' +
         '</div>' +
         '<div class="bw-v2__confirm" hidden>' +
@@ -283,6 +291,7 @@
     const $form = container.querySelector('.bw-v2__form');
     const $formTitle = container.querySelector('.bw-v2__form-title');
     const $formEl = $form.querySelector('form');
+    const $emailWarn = container.querySelector('.bw-v2__email-warn');
     const $confirm = container.querySelector('.bw-v2__confirm');
     const $confirmSession = container.querySelector('.bw-v2__confirm-session');
     const $confirmCancel = container.querySelector('.bw-v2__confirm-cancel');
@@ -302,6 +311,9 @@
     let selectedTime = null;
     let pendingName = '';
     let pendingEmail = '';
+    let formStarted = false;
+    let bookingCompleted = false;
+    let emailWarned = false;
     let currentBatchStart = 0;
     let introVisibleDays = 1; // how many upcoming dates the intro column reveals
 
@@ -619,11 +631,13 @@
         const data = await resp.json().catch(function() { return {}; });
         // Paid flow: Stripe checkout URL to redirect to.
         if (data.ok && data.url) {
+          bookingCompleted = true;
           window.location.href = data.url;
           return;
         }
         // Intro flow: booked immediately, no payment. Show inline success.
         if (data.ok && data.booked) {
+          bookingCompleted = true;
           trackEvent('intro_booked', { locale: locale });
           var emailSha256 = await sha256Hex(pendingEmail);
           trackEvent('intro_booking', { method: 'website_widget', language: locale, transaction_id: (selectedDate && selectedTime) ? (selectedDate + '_' + selectedTime) : '', _email_sha256: emailSha256 });
@@ -686,14 +700,59 @@
       renderGrid();
     });
 
+    // form_started: first interaction with the booking form (Ads-pilot funnel).
+    $formEl.addEventListener('focusin', function() {
+      if (!formStarted) {
+        formStarted = true;
+        trackEvent('form_started', { locale: locale, type: isIntro ? 'intro' : 'paid' });
+      }
+    });
+    $formEl.email.addEventListener('input', function() { emailWarned = false; hideEmailWarn(); });
+
+    var EMAIL_DOMAINS = ['gmail.com','googlemail.com','yandex.ru','yandex.by','ya.ru','mail.ru','outlook.com','hotmail.com','live.com','icloud.com','me.com','yahoo.com','proton.me','protonmail.com','wp.pl','o2.pl','onet.pl','interia.pl','op.pl','gazeta.pl'];
+    function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+    function lev(a, b) {
+      var m = a.length, n = b.length, i, j, d = [];
+      for (i = 0; i <= m; i++) d[i] = [i];
+      for (j = 0; j <= n; j++) d[0][j] = j;
+      for (i = 1; i <= m; i++) for (j = 1; j <= n; j++)
+        d[i][j] = Math.min(d[i-1][j] + 1, d[i][j-1] + 1, d[i-1][j-1] + (a.charAt(i-1) === b.charAt(j-1) ? 0 : 1));
+      return d[m][n];
+    }
+    function suggestEmailFix(v) {
+      var at = v.lastIndexOf('@'); if (at < 1) return '';
+      var local = v.slice(0, at), domain = v.slice(at + 1).toLowerCase();
+      if (EMAIL_DOMAINS.indexOf(domain) !== -1) return '';
+      var best = '', bestD = 3, i, dd;
+      for (i = 0; i < EMAIL_DOMAINS.length; i++) {
+        dd = lev(domain, EMAIL_DOMAINS[i]);
+        if (dd < bestD) { bestD = dd; best = EMAIL_DOMAINS[i]; }
+      }
+      return (best && bestD <= 2) ? local + '@' + best : '';
+    }
+    function showEmailWarn(msg) { if ($emailWarn) { $emailWarn.textContent = msg; $emailWarn.removeAttribute('hidden'); } }
+    function hideEmailWarn() { if ($emailWarn) { $emailWarn.setAttribute('hidden', ''); $emailWarn.textContent = ''; } }
+
     $formEl.addEventListener('submit', function(e) {
       e.preventDefault();
       const name = $formEl.name.value.trim();
       const email = $formEl.email.value.trim();
       if (!name || !email || !selectedDate || !selectedTime) return;
+      // Email is the ONLY channel for the Meet link: guard typos before booking.
+      if (!isValidEmail(email)) { showEmailWarn(t.emailInvalid); $formEl.email.focus(); return; }
+      var fix = suggestEmailFix(email);
+      if (fix && !emailWarned) { emailWarned = true; showEmailWarn(t.emailMaybeTypo.replace('%s', fix)); return; }
+      hideEmailWarn();
       pendingName = name;
       pendingEmail = email;
       showConfirm();
+    });
+
+    // form_abandoned: started the form but left before booking (drop-off signal).
+    window.addEventListener('pagehide', function() {
+      if (formStarted && !bookingCompleted) {
+        trackEvent('form_abandoned', { locale: locale, type: isIntro ? 'intro' : 'paid', transport_type: 'beacon' });
+      }
     });
 
     function showApiError() {
