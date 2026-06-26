@@ -179,14 +179,16 @@
       }
       // Free intro booking: the pilot's primary conversion, no monetary value.
       // Enhanced conversions for leads: attach the hashed email when present.
-      // Consent-gated: the AW tag only loads after "accept all", and Consent
-      // Mode withholds user_data unless ad_user_data is granted.
+      // The AW tag is configured unconditionally in the page head; Consent Mode
+      // still withholds user_data and the ping until ad_storage/ad_user_data are
+      // granted, so a visitor who declines simply does not send this conversion.
       if (name === 'intro_booking' && ids.googleAdsIntroLabel) {
         if (emailSha256) {
           gtag('set', 'user_data', { sha256_email_address: emailSha256 });
         }
         gtag('event', 'conversion', {
-          send_to: ids.googleAdsTag + '/' + ids.googleAdsIntroLabel
+          send_to: ids.googleAdsTag + '/' + ids.googleAdsIntroLabel,
+          transaction_id: params.transaction_id || ''
         });
       }
     }
@@ -624,7 +626,7 @@
         if (data.ok && data.booked) {
           trackEvent('intro_booked', { locale: locale });
           var emailSha256 = await sha256Hex(pendingEmail);
-          trackEvent('intro_booking', { method: 'website_widget', language: locale, _email_sha256: emailSha256 });
+          trackEvent('intro_booking', { method: 'website_widget', language: locale, transaction_id: (selectedDate && selectedTime) ? (selectedDate + '_' + selectedTime) : '', _email_sha256: emailSha256 });
           if (selectedDate && selectedTime) {
             var booked = (daysData.find(function(dd) { return dd.date === selectedDate; }) || {}).slots || [];
             booked.forEach(function(s) { if (s.time === selectedTime) s.status = 'taken'; });
@@ -753,14 +755,11 @@
 
     loadSlots();
 
+    // Paid checkout returns via Stripe to /spasibo or /dziekuje, which fire the
+    // purchase conversion themselves; the old ?booking=success widget path is
+    // retired. Only the cancel return is still handled here.
     const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('booking') === 'success') {
-      trackEvent('purchase', { currency: 'PLN', value: serviceInfo.price || 180, transaction_id: 'pending_' + Date.now() });
-      $message.innerHTML = '<strong>' + t.bookedTitle + '</strong><br>' + t.bookedBody;
-      $message.className = 'bw-v2__message bw-v2__message--success';
-      $message.removeAttribute('hidden');
-      window.history.replaceState({}, '', window.location.pathname);
-    } else if (urlParams.get('booking') === 'cancelled') {
+    if (urlParams.get('booking') === 'cancelled') {
       trackEvent('checkout_abandoned', { currency: 'PLN', value: 180 });
       window.history.replaceState({}, '', window.location.pathname);
     }
